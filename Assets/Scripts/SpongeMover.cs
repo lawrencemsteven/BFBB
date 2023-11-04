@@ -6,7 +6,7 @@ public class SpongeMover : MonoBehaviour
 {
     public Transform sponge;
     public Transform bar;
-    public float moveSpeed = 0.005f; // Adjust this value to control movement speed
+    public float moveSpeed = 0.05f; // Adjust this value to control movement speed
 
 
     private Bounds barBounds;
