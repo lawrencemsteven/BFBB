@@ -12,7 +12,7 @@ public class DishManager : MonoBehaviour
     private Bounds objectBounds;
     private float bottomY;
     private int i = 0;
-    private float animationTimer = 0.0f;
+    private bool animationInProgress = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,14 +22,7 @@ public class DishManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Decrease the timer in each frame
-        if (animationTimer > 0.0f)
-        {
-            animationTimer -= Time.deltaTime;
-        }
-
-        // Only check for animation conditions if the timer has run out
-        if (animationTimer <= 0.0f)
+        if (!animationInProgress)
         {
             objectBounds = plates[i].GetComponent<Renderer>().bounds;
             bottomY = objectBounds.min.y;
@@ -39,31 +32,29 @@ public class DishManager : MonoBehaviour
                 Debug.Log("Playing Animation");
                 anim = plates[i].GetComponent<Animator>();
                 anim.Play("MovePlateOffscreen");
-
+                animationInProgress = true;
+                Invoke("ContinueDelay", 0.15f);
+                rhythms[i].SetActive(false);
                 if (i + 1 < rhythms.Length)
                 {
-                    rhythms[i].SetActive(false);
-                    rhythms[i + 1].SetActive(true);
-                    bars[i + 1].SetActive(true);
-                    sponges[i + 1].SetActive(true);
-                    anim = plates[i + 1].GetComponent<Animator>();
-                    anim.Play("MovePlateOnscreen");
                     i++;
                 }
                 else
                 {
-                    rhythms[i].SetActive(false);
                     i = 0;
-                    rhythms[i].SetActive(true);
-                    bars[i].SetActive(true);
-                    sponges[i].SetActive(true);
-                    anim = plates[i].GetComponent<Animator>();
-                    anim.Play("MovePlateOnscreen");
                 }
 
-                animationTimer = 1.0f; // Set a delay of 1 second (adjust as needed)
+
+                rhythms[i].SetActive(true);
+                anim = plates[i].GetComponent<Animator>();
+                anim.Play("MovePlateOnscreen");
             }
         }
     }
 
+    private void ContinueDelay()
+    {
+        animationInProgress = false; // Reset the animation flag
+
+    }
 }
