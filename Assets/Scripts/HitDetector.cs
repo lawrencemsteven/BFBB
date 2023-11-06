@@ -8,6 +8,7 @@ public class HitDetector : MonoBehaviour
     public GameObject bar;
     public GameObject plate;
     public GameObject sponge;
+    public AudioSource hihat;
 
     private float spongeX;
     private float barY;
@@ -62,6 +63,7 @@ public class HitDetector : MonoBehaviour
 
         if ((mouseXDelta > 0 || mouseXDelta < 0) && minDistance != float.MaxValue )
         {
+            hihat.Play();
             GlobalVariables.missCounter = 0; 
             GlobalVariables.score += 1;
             GlobalVariables.notesHit += 1;
