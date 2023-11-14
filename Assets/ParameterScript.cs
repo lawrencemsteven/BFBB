@@ -9,9 +9,9 @@ public class ParameterScript : MonoBehaviour
     public AudioMixer audioMixer;
     bool ParameterScreenOn = false;
 
-    public SpongeMover sponge1;
-    public SpongeMover sponge2;
-    public SpongeMover sponge3;
+    public FreeSpongeMovement sponge1;
+    public FreeSpongeMovement sponge2;
+    public FreeSpongeMovement sponge3;
     
 
     // Update is called once per frame

@@ -11,6 +11,7 @@ public class HitDetector : MonoBehaviour
     public AudioSource hihat;
 
     private float spongeX;
+    private float spongeY;
     private float barY;
     private Bounds[] objectBounds; // An array to hold the bounds of smudge objects
     private Bounds plateBounds;
@@ -40,6 +41,7 @@ public class HitDetector : MonoBehaviour
     private void Update()
     {
         spongeX = sponge.transform.position.x;
+        spongeY = sponge.transform.position.y;
         barY = bar.transform.position.y;
         float minDistance = float.MaxValue;
         float currentMouseX = Input.mousePosition.x;
@@ -52,7 +54,7 @@ public class HitDetector : MonoBehaviour
             {
                 float distance = Mathf.Abs(barY - (objectBounds[i].min.y + objectBounds[i].max.y) / 2);
 
-                if ((spongeX >= objectBounds[i].min.x && spongeX <= objectBounds[i].max.x) && distance < minDistance &&
+                if ((spongeX >= objectBounds[i].min.x && spongeX <= objectBounds[i].max.x) && (spongeY >= objectBounds[i].min.y && spongeY <= objectBounds[i].max.y) && distance < minDistance &&
                     smudgeRenderers[i].enabled && !smudgeHitStatus[i])
                 {
                     closestSmudgeIndex = i; 
