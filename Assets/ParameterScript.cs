@@ -8,23 +8,29 @@ public class ParameterScript : MonoBehaviour
     public GameObject parameterScreen;
     public AudioMixer audioMixer;
     bool ParameterScreenOn = false;
-
+    public UpDownMovement upDownMovement1;
+    public UpDownMovement upDownMovement2;
+    public UpDownMovement upDownMovement3;
+    public MusicController musicController;
     public FreeSpongeMovement sponge1;
     public FreeSpongeMovement sponge2;
     public FreeSpongeMovement sponge3;
-    
+    private float newVol;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) {
-            if (ParameterScreenOn == false) {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (ParameterScreenOn == false)
+            {
                 AudioListener.pause = true;
                 Time.timeScale = 0;
                 ParameterScreenOn = true;
                 parameterScreen.SetActive(true);
             }
-            else {
+            else
+            {
                 AudioListener.pause = false;
                 Time.timeScale = 1f;
                 ParameterScreenOn = false;
@@ -34,13 +40,28 @@ public class ParameterScript : MonoBehaviour
         }
     }
 
-    public void setAudio(float volumeNum) {
-        audioMixer.SetFloat("Volume", volumeNum);
+    public void setAudio(float volumeNum)
+    {
+        newVol = Mathf.Log(volumeNum) * 20;
+        audioMixer.SetFloat("Volume", newVol);
+        PlayerPrefs.SetFloat("Volume", newVol);
+        PlayerPrefs.Save();
     }
 
-    public void changeMove(float moveNum) {
+    public void changeMove(float moveNum)
+    {
         sponge1.moveSpeed = moveNum;
         sponge2.moveSpeed = moveNum;
         sponge3.moveSpeed = moveNum;
     }
+
+    public void changeBPM(float bpmValue)
+    {
+        upDownMovement1.bpm = bpmValue;
+        upDownMovement2.bpm = bpmValue;
+        upDownMovement3.bpm = bpmValue;
+        musicController.UpdateMusicTempo(bpmValue);
+    }
+
 }
+
