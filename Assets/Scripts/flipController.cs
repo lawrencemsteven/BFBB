@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class flipController : MonoBehaviour
 {
-    public Animator anim;
+    
     public GameObject camera1;
+    private Animator anim;
+    private bool upsideDown = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,15 @@ public class flipController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 GlobalVariables.score += 1;
-                anim.Play("WaffleFlip");
+                FlipPancake();
             }
         }
     }
+    void FlipPancake()
+    {
+        upsideDown = !upsideDown;
+        anim.SetTrigger("FlipTrigger");
+        anim.SetBool("isFlipped", upsideDown);
+    }
+
 }
