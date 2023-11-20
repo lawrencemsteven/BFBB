@@ -5,7 +5,7 @@ using UnityEngine;
 public class UpDownMovement : MonoBehaviour
 {
     public GameObject plate;
-    public float bpm = 139f;
+    public float bpm = 135f;
     private float speed;       // Speed of the object's downward movement
     private float teleportY;
     private Bounds objectBounds;
@@ -20,12 +20,15 @@ public class UpDownMovement : MonoBehaviour
         initialPosition = objectBounds.max;
 
 
-        speed = (objectBounds.max.y - objectBounds.min.y) / (4.0f / (bpm / 60f));
+        speed = (objectBounds.max.y - objectBounds.min.y) / (4.0f * (60f/bpm));
     }
 
     private void Update()
     {
-        speed = (objectBounds.max.y - objectBounds.min.y) / (4.0f / (bpm / 60f));
+        Debug.Log("BPM =" + bpm);
+        Debug.Log("Top of plate = " + objectBounds.max.y);
+        Debug.Log("Bottom of plate = " + objectBounds.min.y);
+        //speed = (objectBounds.max.y - objectBounds.min.y) / (4.0f / (bpm / 60f));
         // Move the object downward on the Y-axis
         transform.position += Vector3.down * speed * Time.deltaTime;
         // Check if the object has reached the teleport Y-coordinate

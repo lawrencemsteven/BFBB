@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DishManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class DishManager : MonoBehaviour
     private float bottomY;
     private int i = 0;
     private bool animationInProgress = false;
+    public GameObject ready;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,10 @@ public class DishManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!rhythms[0].activeSelf)
+        {
+            ready.SetActive(false);
+        }
         if (!animationInProgress)
         {
             objectBounds = plates[i].GetComponent<Renderer>().bounds;
@@ -41,7 +47,7 @@ public class DishManager : MonoBehaviour
                 }
                 else
                 {
-                    i = 0;
+                    i = 1;
                 }
 
 

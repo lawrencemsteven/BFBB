@@ -15,7 +15,7 @@ public class MusicController : MonoBehaviour
     public void UpdateMusicTempo(float newBPM)
     {
         // Adjust the pitch to change the tempo
-        float tempoRatio = (newBPM / 139f);
+        float tempoRatio = (newBPM / 135f);
         musicAudioSource.pitch = tempoRatio;
     }
 

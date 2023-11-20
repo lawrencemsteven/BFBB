@@ -57,6 +57,7 @@ public class ParameterScript : MonoBehaviour
 
     public void changeBPM(float bpmValue)
     {
+        Debug.Log(bpmValue);
         upDownMovement1.bpm = bpmValue;
         upDownMovement2.bpm = bpmValue;
         upDownMovement3.bpm = bpmValue;
