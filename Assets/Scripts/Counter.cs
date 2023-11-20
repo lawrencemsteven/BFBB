@@ -6,7 +6,6 @@ using TMPro;
 public class Counter : MonoBehaviour
 {
     private int currentScore = 0;
-    private int test = 0;
     public TMP_Text txt;
 
     void Start()
