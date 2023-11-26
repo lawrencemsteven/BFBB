@@ -5,22 +5,23 @@ using UnityEngine;
 public class FreeSpongeMovement : MonoBehaviour
 {
     public Camera camera;
-    public Transform sponge;
     private Vector3 lastMousePosition;
     private float spongeXPosition;
     private float spongeYPosition;
     Vector3 initialPosition;
     private bool mouseIsMoving = false;
     public float moveSpeed = 5f; // Adjust this value to control movement speed
-
+    private Transform sponge;
     Vector3 mousePos;
 
     private void Start()
     {
+        sponge = transform;
         initialPosition = sponge.position;
         lastMousePosition = Input.mousePosition;
         spongeXPosition = sponge.position.x;
         spongeYPosition = sponge.position.y;
+        
     }
 
     void Update()

@@ -8,14 +8,18 @@ public class randomPlateSprite : MonoBehaviour
     public Material[] materialList;
     void Start()
     {
-        int upperBound = (materialList.Length - 1);
-        int materialNum = Random.Range(0, upperBound);
-        actualMaterial.CopyPropertiesFromMaterial(materialList[materialNum]);
+        RandomizeSprite();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void RandomizeSprite()
+    {
+        int materialNum = Random.Range(0, materialList.Length);
+        actualMaterial.CopyPropertiesFromMaterial(materialList[materialNum]);
     }
 }

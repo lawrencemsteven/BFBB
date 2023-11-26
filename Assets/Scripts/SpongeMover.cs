@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class SpongeMover : MonoBehaviour
 {
-    public Transform sponge;
     public Transform bar;
-    public float moveSpeed = 0.05f; // Adjust this value to control movement speed
+    public float moveSpeed = 4f; // Adjust this value to control movement speed
 
-
+    private Transform sponge;
     private Bounds barBounds;
     Vector3 initialPosition;
     private Vector3 lastMousePosition;
@@ -17,6 +16,9 @@ public class SpongeMover : MonoBehaviour
 
     private void Start()
     {
+        sponge = transform;
+
+        sponge.position = initialPosition;
         if (bar != null)
         {
             // Calculate the allowed range for sponge movement along the X-axis based on the bar's bounds
@@ -44,7 +46,6 @@ public class SpongeMover : MonoBehaviour
 
             // Calculate the target X position based on the sponge's current position and inverted mouse input
             float targetXPosition = newPosition.x - (currentMousePosition.x - lastMousePosition.x) * moveSpeed * Time.deltaTime* .005f;
-
             // Clamp the target X position within the bounds of the bar
             targetXPosition = Mathf.Clamp(targetXPosition, barBounds.min.x, barBounds.max.x);
 
@@ -66,7 +67,7 @@ public class SpongeMover : MonoBehaviour
         }
 
         // Set the Y position to match the Y position of the "bar"
-        newPosition.y = bar.position.y;
+        // newPosition.y = bar.position.y;
 
         // Update the "sponge" position
         sponge.position = newPosition;
