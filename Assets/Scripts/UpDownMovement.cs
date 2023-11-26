@@ -18,8 +18,6 @@ public class UpDownMovement : MonoBehaviour
         objectBounds = plate.GetComponent<Renderer>().bounds;
         teleportY = objectBounds.min.y;
         initialPosition = objectBounds.max;
-
-
         speed = (objectBounds.max.y - objectBounds.min.y) / (4.0f / (bpm / 60f));
     }
 
@@ -34,5 +32,13 @@ public class UpDownMovement : MonoBehaviour
             // Teleport the object back to the top of the screen
             transform.position = new Vector3(transform.position.x, initialPosition.y, transform.position.z);
         }
+    }
+
+    public void UpdatePlateBounds()
+    {
+        objectBounds = plate.GetComponent<Renderer>().bounds;
+        teleportY = objectBounds.min.y;
+        initialPosition = objectBounds.max;
+        speed = (objectBounds.max.y - objectBounds.min.y) / (4.0f / (bpm / 60f));
     }
 }
