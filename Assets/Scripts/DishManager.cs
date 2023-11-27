@@ -18,6 +18,7 @@ public class DishManager : MonoBehaviour
     private int i = 0;
     private bool animationInProgress = false;
     private Vector3 intitialScale, initialPos;
+    public GameObject ready;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,10 @@ public class DishManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!rhythms[0].activeSelf)
+        {
+            ready.SetActive(false);
+        }
         if (!animationInProgress)
         {
             objectBounds = plates[i].GetComponent<Renderer>().bounds;
@@ -48,7 +53,7 @@ public class DishManager : MonoBehaviour
                 }
                 else
                 {
-                    i = 0;
+                    i = 1;
                 }
 
 
