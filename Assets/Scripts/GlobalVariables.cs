@@ -8,4 +8,5 @@ public class GlobalVariables : MonoBehaviour
     public static int notesMissed = 0;
     public static int notesHit = 0;
     public static int missCounter = 0;
+    public static int streak = 0;
 }

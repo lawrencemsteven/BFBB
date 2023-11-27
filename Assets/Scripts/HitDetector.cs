@@ -21,6 +21,8 @@ public class HitDetector : MonoBehaviour
     private int closestSmudgeIndex;
     private float previousMouseX;
 
+    private int lastSmudgeIndex;
+
     private void Start()
     {
         objectBounds = new Bounds[smudges.Length];
@@ -29,6 +31,8 @@ public class HitDetector : MonoBehaviour
         plateBounds = plate.GetComponent<Renderer>().bounds;
         topPosition = plateBounds.max;
         previousMouseX = Input.mousePosition.x;
+        lastSmudgeIndex = 0;
+        closestSmudgeIndex = 0;
 
         for (int i = 0; i < smudges.Length; i++)
         {
@@ -43,34 +47,45 @@ public class HitDetector : MonoBehaviour
         spongeX = sponge.transform.position.x;
         spongeY = sponge.transform.position.y;
         barY = bar.transform.position.y;
-        float minDistance = float.MaxValue;
         float currentMouseX = Input.mousePosition.x;
         float mouseXDelta = currentMouseX - previousMouseX;
         float previousScore = GlobalVariables.score;
+        bool isHit = false;
 
         for (int i = 0; i < smudges.Length; i++)
         {
             if (barY >= objectBounds[i].min.y && barY <= objectBounds[i].max.y)
             {
-                float distance = Mathf.Abs(barY - (objectBounds[i].min.y + objectBounds[i].max.y) / 2);
-
-                if ((spongeX >= objectBounds[i].min.x && spongeX <= objectBounds[i].max.x) && (spongeY >= objectBounds[i].min.y && spongeY <= objectBounds[i].max.y) && distance < minDistance &&
+                if ((spongeX >= objectBounds[i].min.x && spongeX <= objectBounds[i].max.x) && (spongeY >= objectBounds[i].min.y && spongeY <= objectBounds[i].max.y) &&
                     smudgeRenderers[i].enabled && !smudgeHitStatus[i])
                 {
-                    closestSmudgeIndex = i; 
-                    minDistance = distance; 
+                    closestSmudgeIndex = i;
+                    isHit = true;
                 }
             }
         }
 
-        if ((mouseXDelta > 0 || mouseXDelta < 0) && minDistance != float.MaxValue )
+        if ((mouseXDelta > 0 || mouseXDelta < 0) && isHit)
         {
             hihat.Play();
             GlobalVariables.missCounter = 0; 
             GlobalVariables.score += 1;
+            GlobalVariables.streak += 1;
             GlobalVariables.notesHit += 1;
             smudgeHitStatus[closestSmudgeIndex] = true; 
-            SetSmudgeInvisible(closestSmudgeIndex); 
+            SetSmudgeInvisible(closestSmudgeIndex);
+            isHit = false;
+        }
+
+        if (lastSmudgeIndex != closestSmudgeIndex) {
+            if (!smudgeHitStatus[lastSmudgeIndex]) {
+                GlobalVariables.missCounter += 1;
+                GlobalVariables.notesMissed += 1;
+                GlobalVariables.streak = 0;
+                string missText = "Miss: " + lastSmudgeIndex.ToString();
+                Debug.Log("Miss!");
+            }
+            lastSmudgeIndex = closestSmudgeIndex;
         }
 
         //else if (Input.GetKeyDown(KeyCode.Space))
@@ -84,12 +99,12 @@ public class HitDetector : MonoBehaviour
         {
             for (int i = 0; i < smudges.Length; i++)
             {
-                if (smudgeRenderers[i].enabled)
-                {
-                    GlobalVariables.missCounter += 1;
-                    GlobalVariables.notesMissed += 1;
-                    Debug.Log(GlobalVariables.missCounter);
-                }
+                //if (smudgeRenderers[i].enabled)
+                //{
+                    //GlobalVariables.missCounter += 1;
+                    //GlobalVariables.notesMissed += 1;
+                    //Debug.Log(GlobalVariables.missCounter);
+                //}
 
                 if (!smudgeRenderers[i].enabled)
                 {

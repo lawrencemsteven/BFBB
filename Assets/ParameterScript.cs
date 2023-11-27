@@ -11,10 +11,10 @@ public class ParameterScript : MonoBehaviour
     public UpDownMovement upDownMovement1;
     public UpDownMovement upDownMovement2;
     public UpDownMovement upDownMovement3;
+    public DishManager dishManager;
+
     public MusicController musicController;
     public FreeSpongeMovement sponge1;
-    public FreeSpongeMovement sponge2;
-    public FreeSpongeMovement sponge3;
     private float newVol;
 
     // Update is called once per frame
@@ -51,8 +51,6 @@ public class ParameterScript : MonoBehaviour
     public void changeMove(float moveNum)
     {
         sponge1.moveSpeed = moveNum;
-        sponge2.moveSpeed = moveNum;
-        sponge3.moveSpeed = moveNum;
     }
 
     public void changeBPM(float bpmValue)
@@ -62,6 +60,11 @@ public class ParameterScript : MonoBehaviour
         upDownMovement2.bpm = bpmValue;
         upDownMovement3.bpm = bpmValue;
         musicController.UpdateMusicTempo(bpmValue);
+    }
+
+    public void changePlateSize(float scaleBy)
+    {
+        dishManager.scale = scaleBy;
     }
 
 }
