@@ -21,11 +21,11 @@ public class PlaySoundOnKey : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.G))
             {
-                soundToPlay[1].Play();
+                return;
             }
             else if (Input.GetKeyDown(KeyCode.H))
             {
-                soundToPlay[2].Play();
+                return;
             }
         }
         if (camera2.activeSelf)

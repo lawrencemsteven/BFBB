@@ -29,6 +29,7 @@ public class DishManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!rhythms[0].activeSelf)
         {
             ready.SetActive(false);

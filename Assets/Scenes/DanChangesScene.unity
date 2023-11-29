@@ -1100,6 +1100,7 @@ GameObject:
   - component: {fileID: 183062009}
   - component: {fileID: 183062008}
   - component: {fileID: 183062012}
+  - component: {fileID: 183062013}
   m_Layer: 0
   m_Name: Sponge
   m_TagString: Untagged
@@ -1195,13 +1196,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183062006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c24f8ce78cb14ca4d98497139f24bcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1862202497}
   moveSpeed: 0.05
+--- !u!114 &183062013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183062006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d66416abe317044aad33fc8fcb7d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dishWashingCamera: {fileID: 1862202497}
 --- !u!1 &183637069
 GameObject:
   m_ObjectHideFlags: 0
