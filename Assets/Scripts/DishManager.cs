@@ -58,7 +58,10 @@ public class DishManager : MonoBehaviour
                     i = 1;
                 }
 
-
+                if (i == 12)
+                {
+                    PlateMarker.activate = false;
+                }
                 rhythms[i].SetActive(true);
                 sponges[i].SetActive(true);
                 anim = plates[i].GetComponent<Animator>();

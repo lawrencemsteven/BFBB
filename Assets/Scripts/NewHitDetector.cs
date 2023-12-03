@@ -7,6 +7,10 @@ public class NewHitDetector : MonoBehaviour
     public AudioSource hihat;
     private bool smudgeCollision = false;
     private bool spongeCollision = false;
+
+    void Start()
+    {
+    }
     // Function called when a collision occurs
     private void OnCollisionEnter(Collision collision)
     {
