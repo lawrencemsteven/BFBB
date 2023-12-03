@@ -48,6 +48,7 @@ public class DishManager : MonoBehaviour
                 animationInProgress = true;
                 Invoke("ContinueDelay", 0.15f);
                 rhythms[i].SetActive(false);
+                sponges[i].SetActive(false);
                 if (i + 1 < rhythms.Length)
                 {
                     i++;
@@ -57,8 +58,12 @@ public class DishManager : MonoBehaviour
                     i = 1;
                 }
 
-
+                if (i == 12)
+                {
+                    PlateMarker.activate = false;
+                }
                 rhythms[i].SetActive(true);
+                sponges[i].SetActive(true);
                 anim = plates[i].GetComponent<Animator>();
                 randPlateSprite.RandomizeSprite();
                 anim.Play("MovePlateOnscreen");
