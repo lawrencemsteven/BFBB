@@ -25,30 +25,6 @@ public class IsShapeCovered : MonoBehaviour
         
     }
 
-    /*
-    private void OnParticleTrigger()
-    {
-        Debug.Log("AHHA");
-        List<ParticleSystem.Particle> particles = new List<ParticleSystem.Particle>();
-        int numParticles = particleSystem.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, particles);
-
-        for (int i = 0; i < numParticles; i++)
-        {
-            ParticleSystem.Particle particle = particles[i];
-
-            // Perform a raycast from the particle's position
-            RaycastHit hit;
-            if (Physics.Raycast(particle.position, particle.velocity.normalized, out hit, Mathf.Infinity))
-            {
-                // Access information about the collider
-                Collider collider = hit.collider;
-                Debug.Log(collider);
-                // Do something with the collider information
-            }
-        }
-    }
-    */
-
     private void OnParticleCollision(GameObject other)
     {
         Debug.Log(other);
@@ -58,6 +34,7 @@ public class IsShapeCovered : MonoBehaviour
         {
             pancake.SetActive(true);
             shape.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }
