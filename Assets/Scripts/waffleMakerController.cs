@@ -14,20 +14,22 @@ public class waffleMakerController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    //&& (waffleLid.transform.rotation.eulerAngles.x == 0)
+    //&& (wholeMachine.transform.rotation.eulerAngles.z == 180))
     // Update is called once per frame
     void Update()
     {
         if (camera1.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.G) && (waffleLid.transform.rotation.eulerAngles.x == 0))
+            if (Input.GetKeyDown(KeyCode.G))
             {
                 GlobalVariables.score += 1;
-                anim.Play("WaffleMakerClose");
+                anim.Play("NewWaffleIronClose");
             }
-            else if (Input.GetKeyDown(KeyCode.H) && (wholeMachine.transform.rotation.eulerAngles.z == 180))
+            else if (Input.GetKeyDown(KeyCode.H))
             {
                 GlobalVariables.score += 1;
-                anim.Play("WaffleMakerFlipBack");
+                anim.Play("NewWaffleFlipBack");
             }
         }
     }
