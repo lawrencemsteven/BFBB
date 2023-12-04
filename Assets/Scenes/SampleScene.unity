@@ -5072,7 +5072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &385712355
 Transform:
   m_ObjectHideFlags: 0
@@ -14796,7 +14796,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147936484278}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.8714, y: 2.305, z: -5.7807}
   m_LocalScale: {x: 0.020893488, y: 0.020893488, z: 0.020893488}
   m_ConstrainProportionsScale: 0
@@ -42642,6 +42642,10 @@ PrefabInstance:
       propertyPath: moveWithCustomTransform
       value: 
       objectReference: {fileID: 2000331554475030067}
+    - target: {fileID: 7776531196923849475, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f9cafb5da9e6e254db4a3469dfac5879, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
 --- !u!1 &3462093860408566575
