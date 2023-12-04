@@ -10,6 +10,7 @@ public class UpDownMovement : MonoBehaviour
     private float teleportY;
     private Bounds objectBounds;
     private Vector3 initialPosition;    // Store the initial position
+    public bool reset = false;
 
 
 
@@ -32,6 +33,7 @@ public class UpDownMovement : MonoBehaviour
         if (transform.position.y <= teleportY)
         {
             // Teleport the object back to the top of the screen
+            reset = true;
             transform.position = new Vector3(transform.position.x, initialPosition.y, transform.position.z);
         }
     }
