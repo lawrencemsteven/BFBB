@@ -5,7 +5,7 @@ using UnityEngine;
 public class UpDownMovement : MonoBehaviour
 {
     public GameObject plate;
-    public float bpm = 139f;
+    public float bpm = 135f;
     private float speed;       // Speed of the object's downward movement
     private float teleportY;
     private Bounds objectBounds;
@@ -19,8 +19,6 @@ public class UpDownMovement : MonoBehaviour
         objectBounds = plate.GetComponent<Renderer>().bounds;
         teleportY = objectBounds.min.y;
         initialPosition = objectBounds.max;
-
-
         speed = (objectBounds.max.y - objectBounds.min.y) / (4.0f / (bpm / 60f));
     }
 
@@ -36,5 +34,13 @@ public class UpDownMovement : MonoBehaviour
             reset = true;
             transform.position = new Vector3(transform.position.x, initialPosition.y, transform.position.z);
         }
+    }
+
+    public void UpdatePlateBounds()
+    {
+        objectBounds = plate.GetComponent<Renderer>().bounds;
+        teleportY = objectBounds.min.y;
+        initialPosition = objectBounds.max;
+        speed = (objectBounds.max.y - objectBounds.min.y) / (4.0f / (bpm / 60f));
     }
 }
