@@ -27,7 +27,6 @@ Material:
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   - _OUTLINE
-  - _RIMLIGHTING_ON
   - _TOON_SHADING_ON
   m_InvalidKeywords:
   - _STEPVIARAMPTEXTURE_ON
@@ -185,7 +184,7 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimEnabled: 1
+    - _RimEnabled: 0
     - _RimLightAlign: 0.5
     - _RimLightSmoothness: 0.122
     - _RimPower: 0.63

@@ -8,6 +8,7 @@ public class SwitchCamera : MonoBehaviour
     public GameObject Camera_2;
     public GameObject Camera_3;
     public GameObject Camera_4;
+    public GameObject Camera_5;
     public int CamState;
 
     void Awake()
@@ -37,6 +38,11 @@ public class SwitchCamera : MonoBehaviour
             Cam_4();
             CamState = 3;
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha5) && CamState != 4)
+        {
+            Cam_5();
+            CamState = 4;
+        }
     }
 
     public void ChangeCamera()
@@ -60,9 +66,14 @@ public class SwitchCamera : MonoBehaviour
             Cam_3();
             CamState = 3;
         }
-        else
+        else if (CamState == 3)
         {
             Cam_4();
+            CamState = 4;
+        }
+        else
+        {
+            Cam_5();
             CamState = 0;
         }
     }
@@ -73,6 +84,7 @@ public class SwitchCamera : MonoBehaviour
         Camera_2.SetActive(false);
         Camera_3.SetActive(false);
         Camera_4.SetActive(false);
+        Camera_5.SetActive(false);
     }
 
     void Cam_2()
@@ -81,6 +93,7 @@ public class SwitchCamera : MonoBehaviour
         Camera_2.SetActive(true);
         Camera_3.SetActive(false);
         Camera_4.SetActive(false);
+        Camera_5.SetActive(false);
     }
 
     void Cam_3()
@@ -89,6 +102,7 @@ public class SwitchCamera : MonoBehaviour
         Camera_2.SetActive(false);
         Camera_3.SetActive(true);
         Camera_4.SetActive(false);
+        Camera_5.SetActive(false);
     }
 
     void Cam_4()
@@ -97,5 +111,15 @@ public class SwitchCamera : MonoBehaviour
         Camera_2.SetActive(false);
         Camera_3.SetActive(false);
         Camera_4.SetActive(true);
+        Camera_5.SetActive(false);
+    }
+
+    void Cam_5()
+    {
+        Camera_1.SetActive(false);
+        Camera_2.SetActive(false);
+        Camera_3.SetActive(false);
+        Camera_4.SetActive(false);
+        Camera_5.SetActive(true);
     }
 }
