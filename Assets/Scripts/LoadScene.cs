@@ -17,9 +17,13 @@ public class LoadScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!spaceBarTrigger && Input.GetKeyDown(KeyCode.R) || spaceBarTrigger && Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene(scene);
-        }
+        //if(!spaceBarTrigger && Input.GetKeyDown(KeyCode.R) || spaceBarTrigger && Input.GetKeyDown(KeyCode.Space))
+        //{
+            //SceneManager.LoadScene(scene);
+        //}
+    }
+
+    public void startGame() {
+        SceneManager.LoadScene(scene);
     }
 }
