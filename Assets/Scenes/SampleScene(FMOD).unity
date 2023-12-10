@@ -3410,6 +3410,7 @@ MonoBehaviour:
   Camera_2: {fileID: 1076731133}
   Camera_3: {fileID: 1862202495}
   Camera_4: {fileID: 1235620010}
+  Camera_5: {fileID: 0}
   CamState: 0
 --- !u!1 &685664635
 GameObject:
@@ -16073,6 +16074,7 @@ MonoBehaviour:
   plate: {fileID: 560433723}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!1 &855394744
 GameObject:
   m_ObjectHideFlags: 0
@@ -24614,6 +24616,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036521373441}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!4 &1249818034928023469
 Transform:
   m_ObjectHideFlags: 0
@@ -26806,6 +26809,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036934802364}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!4 &1249818035280158454
 Transform:
   m_ObjectHideFlags: 0
@@ -28267,6 +28271,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036409623427}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!4 &1249818035560641665
 Transform:
   m_ObjectHideFlags: 0
@@ -28443,6 +28448,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035366033200}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!4 &1249818035574600921
 Transform:
   m_ObjectHideFlags: 0
@@ -29388,6 +29394,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036367443082}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!4 &1249818035676593265
 Transform:
   m_ObjectHideFlags: 0
@@ -29461,6 +29468,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035077127358}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!4 &1249818035699166427
 Transform:
   m_ObjectHideFlags: 0
@@ -31724,6 +31732,7 @@ MonoBehaviour:
   plate: {fileID: 1249818034966183425}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!1 &1249818036102057487
 GameObject:
   m_ObjectHideFlags: 0
@@ -32415,6 +32424,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035004060980}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!136 &1249818036285581252
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -34125,6 +34135,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035740931795}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!4 &1249818036586896430
 Transform:
   m_ObjectHideFlags: 0
@@ -35813,6 +35824,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036737322250}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!4 &1249818036833709121
 Transform:
   m_ObjectHideFlags: 0
@@ -48084,6 +48096,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &3307364689887425284
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3307364691802294257, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_Name
+      value: HiHat
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.4961615
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0368962
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.8229365
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307364691802294259, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 534ccac5dda8288478a7e4fb0420230b, type: 3}
 --- !u!1 &3317658594864640805
 GameObject:
   m_ObjectHideFlags: 0
@@ -50768,6 +50837,7 @@ MonoBehaviour:
   plate: {fileID: 5028729861383802013}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!1 &5028729860266802323
 GameObject:
   m_ObjectHideFlags: 0
@@ -57165,6 +57235,7 @@ MonoBehaviour:
   plate: {fileID: 8432815034645443031}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  hihatFmod: {fileID: 0}
 --- !u!1 &8432815033614402009
 GameObject:
   m_ObjectHideFlags: 0

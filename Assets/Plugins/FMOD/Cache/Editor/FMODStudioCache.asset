@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/Fmod Project/BeatFlavorFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638354727124884541
+  lastModified: 638378170055330563
   FileSizes:
   - Name: Desktop
-    Value: 1693760
+    Value: 1696448
   Exists: 1
 --- !u!114 &-974631425844432586
 MonoBehaviour:
@@ -62,10 +62,10 @@ MonoBehaviour:
   Path: Assets/Fmod Project/BeatFlavorFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638354727124914469
+  lastModified: 638378170055350083
   FileSizes:
   - Name: Desktop
-    Value: 812
+    Value: 860
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -84,12 +84,13 @@ MonoBehaviour:
   - {fileID: -6733268240209210222}
   EditorEvents:
   - {fileID: 2028031890806381343}
+  - {fileID: 4942362373933755755}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6733268240209210222}
   StringsBanks:
   - {fileID: -458134058999289164}
-  cacheTime: 638354727124914469
+  cacheTime: 638378170055350083
   cacheVersion: 131609
 --- !u!114 &2028031890806381343
 MonoBehaviour:
@@ -119,3 +120,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 115555
+--- !u!114 &4942362373933755755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/HiHat
+  m_EditorClassIdentifier: 
+  Path: event:/HiHat
+  Guid:
+    Data1: 1853785859
+    Data2: 1109807580
+    Data3: -1595890538
+    Data4: 1509819136
+  Banks:
+  - {fileID: -6733268240209210222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 136
