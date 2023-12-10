@@ -5,27 +5,20 @@ using UnityEngine;
 public class EggRotate : MonoBehaviour
 {
     public GameObject camera;
+    public GameObject camera2;
     public GameObject egg;
-    public float targetRotation = 180f;
-    private bool isRotating = false;
+    public Animator anim;
 
     void Update()
     {
-        if (camera.activeSelf && !isRotating)
+        if (camera.activeSelf)
         {
-            RotateEgg(targetRotation);
+            anim.SetBool("CamActive", true);
         }
-        else if (!camera.activeSelf && isRotating)
+        else if (camera2.activeSelf)
         {
-            float currentRotation = egg.transform.eulerAngles.y;
-            float rotationDifference = targetRotation - currentRotation;
-            RotateEgg(rotationDifference);
+            anim.SetBool("CamActive", false);
         }
     }
 
-    void RotateEgg(float rotationAmount)
-    {
-        egg.transform.Rotate(0f, rotationAmount, 0f);
-        isRotating = true;
-    }
 }
