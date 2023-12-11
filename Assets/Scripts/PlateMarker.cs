@@ -23,7 +23,6 @@ public class PlateMarker : MonoBehaviour
                 }
                 activate = true;
             }
-            Debug.Log("This Is Running");
             anim = marker.GetComponent<Animator>();
             anim.Play("MarkerMoveAlongCircle");
         }
