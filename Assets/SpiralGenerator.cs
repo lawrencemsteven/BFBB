@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -12,12 +13,13 @@ public class SpiralGenerator : MonoBehaviour
 
     public GameObject markerPrefab, pancake, trail;
     public float markerSize = 0.1f;
-    public float bpm = 135f; 
+    public float bpm = 135f;
+    public TextMeshProUGUI pancakeCountdown;
 
     private LineRenderer lineRenderer;
     private GameObject marker;
     private float elapsedTime, elapsedTimeTotal, timeToComplete, timeToFlash, timeToStart;
-    private bool markerVisible = false, startSpiraling = false;
+    private bool markerVisible = false, startSpiraling = false, spiralCountdownStarted = false;
     private int startCount = 1;
     private IsShapeCovered isShapeCovered;
 
@@ -67,6 +69,11 @@ public class SpiralGenerator : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
+        if (((timeToStart - elapsedTime) <= (4 / bpm) * 60) && (!spiralCountdownStarted))
+        {
+            spiralCountdownStarted = true;
+            StartCoroutine(CountBeatsPancake());
+        }
         if ((elapsedTime >= timeToStart) && !startSpiraling)
         {
             startSpiraling = true;
@@ -94,5 +101,27 @@ public class SpiralGenerator : MonoBehaviour
                 UpdateMarkerPosition();
             }
         }
+    }
+
+    IEnumerator CountBeatsPancake()
+    {
+        float beatInterval = 60f / bpm;
+
+        for (int count = 4; count >= 1; count--)
+        {
+            if ((4 - count) > 0)
+            {
+                pancakeCountdown.text = count.ToString();
+            }
+            else
+            {
+                pancakeCountdown.text = "";
+            }
+            
+            Debug.Log($"Beat {count}");
+            yield return new WaitForSeconds(beatInterval);
+        }
+
+        Debug.Log("Counting finished!");
     }
 }
