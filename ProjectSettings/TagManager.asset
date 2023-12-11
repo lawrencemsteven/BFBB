@@ -6,11 +6,14 @@ TagManager:
   tags:
   - Sponge
   - Bar
+  - Smudge
+  - Marker
+  - WaffleMaker
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - WaffleMaker
   - Water
   - UI
   - 
@@ -40,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: WaffleStationUI
+    uniqueID: 212581677
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -13,7 +13,7 @@ public class SwitchCamera : MonoBehaviour
     public int CamState;
     public fmodTimer timer;
     public bool waitingToSwitch;
-    public GameObject dishStation;
+    public GameObject dishStation, waffleStation, batterPourTool;
     public int switchReqBar;
     public FMOD.Studio.EventInstance eventInstance;
     public int switchToCam;
@@ -44,8 +44,8 @@ public class SwitchCamera : MonoBehaviour
             GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("SongSection", 1);
 
             
-            //Cam_1();
-            //CamState = 0;
+           // Cam_1();
+           // CamState = 0;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && CamState != 1)
         {
@@ -133,6 +133,8 @@ public class SwitchCamera : MonoBehaviour
         Camera_4.SetActive(false);
         //Camera_5.SetActive(false);
         dishStation.SetActive(false);
+        waffleStation.SetActive(true);
+        batterPourTool.SetActive(true);
     }
 
     void Cam_2()
@@ -143,6 +145,8 @@ public class SwitchCamera : MonoBehaviour
         Camera_4.SetActive(false);
         //Camera_5.SetActive(false);
         dishStation.SetActive(false);
+        waffleStation.SetActive(false);
+        batterPourTool.SetActive(false);
     }
 
     void Cam_3()
@@ -153,8 +157,10 @@ public class SwitchCamera : MonoBehaviour
         Camera_3.SetActive(true);
         Camera_4.SetActive(false);
         dishStation.SetActive(true);
+        waffleStation.SetActive(false);
+        batterPourTool.SetActive(false);
         //Camera_5.SetActive(false);
-        
+
     }
 
     void Cam_4()
@@ -165,6 +171,8 @@ public class SwitchCamera : MonoBehaviour
         Camera_4.SetActive(true);
         //Camera_5.SetActive(false);
         dishStation.SetActive(false);
+        waffleStation.SetActive(false);
+        batterPourTool.SetActive(false);
     }
 
     void Cam_5()
@@ -175,5 +183,7 @@ public class SwitchCamera : MonoBehaviour
         Camera_4.SetActive(false);
         //Camera_5.SetActive(true);
         dishStation.SetActive(false);
+        waffleStation.SetActive(false);
+        batterPourTool.SetActive(false);
     }
 }
