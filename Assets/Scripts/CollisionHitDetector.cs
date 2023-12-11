@@ -12,12 +12,16 @@ public class CollisionHitDetector : MonoBehaviour
     //public Renderer[] smudgeRenderers;
     public AudioSource hihat;
     public UpDownMovement bar;
+    public HiHatFmod hihatFmod;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if(GameObject.Find("HiHat").GetComponent<HiHatFmod>())
+        {
+            hihatFmod = GameObject.Find("HiHat").GetComponent<HiHatFmod>();
+        }
     }
 
     // Update is called once per frame
@@ -58,7 +62,8 @@ public class CollisionHitDetector : MonoBehaviour
 
     void Hit()
     {
-        hihat.Play();
+        //hihat.Play();
+        hihatFmod.PlayHiHat();
         GlobalVariables.missCounter = 0; 
         GlobalVariables.score += 1;
         GlobalVariables.streak += 1;

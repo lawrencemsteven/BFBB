@@ -20,11 +20,17 @@ public class HitDetector : MonoBehaviour
     private Renderer[] smudgeRenderers; // An array to hold the renderers of smudge objects
     private int closestSmudgeIndex;
     private float previousMouseX;
+    public HiHatFmod hihatFmod;
+
 
     private int lastSmudgeIndex;
 
     private void Start()
     {
+        if(GameObject.Find("HiHat").GetComponent<HiHatFmod>())
+        {
+            hihatFmod = GameObject.Find("HiHat").GetComponent<HiHatFmod>();
+        }
         objectBounds = new Bounds[smudges.Length];
         smudgeRenderers = new Renderer[smudges.Length];
         smudgeHitStatus = new bool[smudges.Length];
@@ -67,7 +73,8 @@ public class HitDetector : MonoBehaviour
 
         if ((mouseXDelta > 0 || mouseXDelta < 0) && isHit)
         {
-            hihat.Play();
+            //hihat.Play();
+            hihatFmod.PlayHiHat();
             GlobalVariables.missCounter = 0; 
             GlobalVariables.score += 1;
             GlobalVariables.streak += 1;
