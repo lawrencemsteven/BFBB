@@ -79,15 +79,15 @@ public class SpiralGenerator : MonoBehaviour
                 if (isShapeCovered.GetNumOfColliders() < 3)
                 {
                     pancake.SetActive(true);
-                    marker.SetActive(false);
-                    gameObject.SetActive(false);
+                    
                 }
                 else
                 {
 
                     Debug.Log(isShapeCovered.GetNumOfColliders());
                 }
-                elapsedTime = 0f;
+                marker.SetActive(false);
+                gameObject.SetActive(false);
             }
             else
             {

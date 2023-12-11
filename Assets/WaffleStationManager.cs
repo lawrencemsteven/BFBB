@@ -9,11 +9,11 @@ public class WaffleStationManager : MonoBehaviour
     public Camera stationCamera;
     public Animator waffleMakerAnim, pancakeAnim;
     public float bpm = 135f;
-    public GameObject uiCircle, pancake, waffle, waffleBatter;
+    public GameObject pancake, waffle, waffleBatter;
     private int flashCount = 1, countdownNum  = 4;
     private float timeToStartWaffles, elapsedTime, totalElapsed, timeToFlash, timeToFlipPancake, timeToFlipWaffle, timeToFinishPancake, timeToFinishWaffle;
-    private bool waffleMakerOpen = false, circleIsVisible = false, startFlashing = false, pancakeFlipped = false, waffleFlipped=false;
-    public TextMeshProUGUI countdown;
+    private bool waffleMakerOpen = false, circleIsVisible = false, pancakeFlipped = false, waffleFlipped = false, flipWaffleTimerStarted = false, flipPancakeTimerStarted = false, finishWaffleTimerStarted = false, finishPancakeTimerStarted = false;
+    public TextMeshProUGUI countdown, pancakeCountdown;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +37,6 @@ public class WaffleStationManager : MonoBehaviour
             waffleMakerAnim.SetTrigger("WaffleStationCameraActive");
             elapsedTime = 0;
             circleIsVisible = !circleIsVisible;
-            uiCircle.SetActive(circleIsVisible);
             countdown.text = countdownNum.ToString();
             countdownNum -= 1;
 
@@ -47,10 +46,33 @@ public class WaffleStationManager : MonoBehaviour
             countdown.text = countdownNum.ToString();
             countdownNum -= 1;
             flashCount++;
-            circleIsVisible = !circleIsVisible;
-            uiCircle.SetActive(circleIsVisible);
             elapsedTime = 0;
         }
+
+        if ((timeToFlipWaffle - totalElapsed) <= ((4 / bpm) * 60) && (!flipWaffleTimerStarted))
+        {
+            flipWaffleTimerStarted = true;
+            StartCoroutine(CountBeatsToWaffleFlip());
+        }
+
+        if ((timeToFlipPancake - totalElapsed) <= ((4 /bpm) * 60) && (!flipPancakeTimerStarted))
+        {
+            flipPancakeTimerStarted = true;
+            StartCoroutine(CountBeatsPancake());
+        }
+
+        if ((timeToFinishPancake - totalElapsed) <= ((4 / bpm) * 60) && (!finishPancakeTimerStarted))
+        {
+            finishPancakeTimerStarted = true;
+            StartCoroutine(CountBeatsPancake());
+        }
+
+        if ((timeToFinishWaffle - totalElapsed) <= ((4 / bpm) * 60) && (!finishWaffleTimerStarted))
+        {
+            finishWaffleTimerStarted = true;
+            StartCoroutine(CountBeatsToWaffleFinish());
+        }
+
         if ((Input.GetKeyDown(KeyCode.F) && (!pancakeFlipped)))
         {
             pancakeFlipped = true;
@@ -86,14 +108,53 @@ public class WaffleStationManager : MonoBehaviour
             waffle.SetActive(true);
             waffleFlipped = false;
             waffleMakerAnim.SetTrigger("FlipBack");
-            pancake.SetActive(false);
             if (Mathf.Abs(totalElapsed - timeToFinishWaffle) < .4)
             {
                 GlobalVariables.score += 1;
             }
         }
 
+        IEnumerator CountBeatsToWaffleFlip()
+        {
+            float beatInterval = 60f / bpm;
 
+            for (int count = 1; count <= 4; count++)
+            {
+                countdown.text = (4 - count).ToString();
+                Debug.Log($"Beat {count}");
+                yield return new WaitForSeconds(beatInterval);
+            }
+
+            Debug.Log("Counting finished!");
+        }
+
+        IEnumerator CountBeatsToWaffleFinish()
+        {
+            float beatInterval = 60f / bpm;
+
+            for (int count = 1; count <= 4; count++)
+            {
+                countdown.text = (4 - count).ToString();
+                Debug.Log($"Beat {count}");
+                yield return new WaitForSeconds(beatInterval);
+            }
+
+            Debug.Log("Counting finished!");
+        }
+
+        IEnumerator CountBeatsPancake()
+        {
+            float beatInterval = 60f / bpm;
+
+            for (int count = 1; count <= 4; count++)
+            {
+                pancakeCountdown.text = (4 - count).ToString();
+                Debug.Log($"Beat {count}");
+                yield return new WaitForSeconds(beatInterval);
+            }
+
+            Debug.Log("Counting finished!");
+        }
 
     }
 }
