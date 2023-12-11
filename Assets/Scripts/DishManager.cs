@@ -41,7 +41,6 @@ public class DishManager : MonoBehaviour
 
             if (rhythms[i].activeSelf && (bars[i].transform.position.y - bottomY < 0.01))
             {
-                Debug.Log("Playing Animation");
                 anim = plates[i].GetComponent<Animator>();
                 anim.Play("MovePlateOffscreen");
                 scalePlates();

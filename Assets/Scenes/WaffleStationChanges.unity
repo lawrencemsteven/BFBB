@@ -515,6 +515,79 @@ MonoBehaviour:
   plate: {fileID: 8432815034645443031}
   bpm: 135
   reset: 0
+--- !u!1001 &75387334
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 466837428}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.12601766
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.12601766
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.12601766
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1081822
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7687585
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.3153644
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_Name
+      value: NEWWAFFLEOBJ
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
 --- !u!1 &82248544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,7 +1971,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 299359551401660441, guid: 9e0ea3297cf23434ab8926b9ec6f7541, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 299359551401660441, guid: 9e0ea3297cf23434ab8926b9ec6f7541, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2543,7 +2616,7 @@ GameObject:
   - component: {fileID: 466837428}
   - component: {fileID: 466837429}
   m_Layer: 0
-  m_Name: WaffleStationManager
+  m_Name: WaffleStationRound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2566,6 +2639,7 @@ Transform:
   - {fileID: 1402207226}
   - {fileID: 8248535951101081643}
   - {fileID: 325804718}
+  - {fileID: 1160394402}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2586,6 +2660,9 @@ MonoBehaviour:
   pancakeAnim: {fileID: 2085735035}
   bpm: 135
   uiCircle: {fileID: 1264466164}
+  pancake: {fileID: 919132147936484278}
+  waffle: {fileID: 1160394401}
+  waffleBatter: {fileID: 1402207225}
   countdown: {fileID: 993562502}
 --- !u!198 &478529452 stripped
 ParticleSystem:
@@ -16506,7 +16583,7 @@ Transform:
   - {fileID: 784436607}
   - {fileID: 106700881}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!54 &855394750
 Rigidbody:
@@ -18220,6 +18297,16 @@ MonoBehaviour:
   plate: {fileID: 1249818035077127358}
   bpm: 135
   reset: 0
+--- !u!1 &1160394401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+  m_PrefabInstance: {fileID: 75387334}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1160394402 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 91853502e47b70245b7d8f110edc4bb6, type: 3}
+  m_PrefabInstance: {fileID: 75387334}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1171260580
 GameObject:
   m_ObjectHideFlags: 0
@@ -42841,7 +42928,7 @@ Transform:
   - {fileID: 1249818035806513486}
   - {fileID: 1661845052}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1249818035740931788
 MeshRenderer:
@@ -61832,7 +61919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3452001473513494101, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3452001473513494101, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
       propertyPath: m_LocalPosition.x
