@@ -859,7 +859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &130854266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3219,6 +3219,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618010156}
   m_CullTransparentMesh: 1
+--- !u!114 &624441198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4582210145485656788, guid: dc3ab7ee1a378b1478321041ab270026, type: 3}
+  m_PrefabInstance: {fileID: 4582210145978345251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c59236674adc55419720639eeb9386a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &639236605
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,6 +3423,12 @@ MonoBehaviour:
   Camera_4: {fileID: 1235620010}
   Camera_5: {fileID: 0}
   CamState: 0
+  timer: {fileID: 624441198}
+  waitingToSwitch: 0
+  dishStation: {fileID: 0}
+  switchReqBar: 0
+  switchToCam: 0
+  eventObjectName: 
 --- !u!1 &685664635
 GameObject:
   m_ObjectHideFlags: 0
