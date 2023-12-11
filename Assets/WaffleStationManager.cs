@@ -19,10 +19,9 @@ public class WaffleStationManager : MonoBehaviour
     {
         timeToStartWaffles  = (16 / bpm) * 60;
         timeToFlipPancake = (26 / bpm) * 60;
-        timeToFlipPancake = (28 / bpm) * 60;
         timeToFlipWaffle = (30 / bpm) * 60;
-        timeToFinishPancake = (32 / bpm) * 60;
-        timeToFinishWaffle = (34 / bpm) * 60;
+        timeToFinishPancake = (34 / bpm) * 60;
+        timeToFinishWaffle = (38 / bpm) * 60;
         timeToFlash = (1 / (bpm)) * 60;
     }
 
@@ -118,9 +117,16 @@ public class WaffleStationManager : MonoBehaviour
         {
             float beatInterval = 60f / bpm;
 
-            for (int count = 1; count <= 4; count++)
+            for (int count = 4; count >= 1; count--)
             {
-                countdown.text = (4 - count).ToString();
+                if ((4 - count) > 0)
+                {
+                    countdown.text = $"SPACE {count}";
+                }
+                else
+                {
+                    countdown.text = "";
+                }
                 Debug.Log($"Beat {count}");
                 yield return new WaitForSeconds(beatInterval);
             }
@@ -132,9 +138,16 @@ public class WaffleStationManager : MonoBehaviour
         {
             float beatInterval = 60f / bpm;
 
-            for (int count = 1; count <= 4; count++)
+            for (int count = 4; count >= 1; count--)
             {
-                countdown.text = (4 - count).ToString();
+                if ((4 - count) > 0)
+                {
+                    countdown.text = $"SPACE {count}";
+                }
+                else
+                {
+                    countdown.text = "";
+                }
                 Debug.Log($"Beat {count}");
                 yield return new WaitForSeconds(beatInterval);
             }
@@ -146,9 +159,16 @@ public class WaffleStationManager : MonoBehaviour
         {
             float beatInterval = 60f / bpm;
 
-            for (int count = 1; count <= 4; count++)
+            for (int count = 4; count >= 1; count--)
             {
-                pancakeCountdown.text = (4 - count).ToString();
+                if ((4 - count) > 0)
+                {
+                    pancakeCountdown.text = $"F {count}";
+                }
+                else
+                {
+                    pancakeCountdown.text = "";
+                }
                 Debug.Log($"Beat {count}");
                 yield return new WaitForSeconds(beatInterval);
             }
