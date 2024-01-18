@@ -19,11 +19,15 @@ public class DishManager : MonoBehaviour
     private bool animationInProgress = false;
     private Vector3 intitialScale, initialPos;
     public GameObject ready;
+
+    public ReservoirStack<ReservoirPlate> reservoir;
+
     // Start is called before the first frame update
     void Start()
     {
         intitialScale = plates[0].transform.localScale;
         initialPos = plates[0].transform.position;
+        reservoir = new ReservoirStack<ReservoirPlate>();
     }
 
     // Update is called once per frame
@@ -66,6 +70,8 @@ public class DishManager : MonoBehaviour
                 anim = plates[i].GetComponent<Animator>();
                 randPlateSprite.RandomizeSprite();
                 anim.Play("MovePlateOnscreen");
+
+                reservoir.Add(new ReservoirPlate(1));
             }
         }
     }
