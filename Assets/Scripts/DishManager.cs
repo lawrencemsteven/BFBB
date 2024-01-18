@@ -46,7 +46,12 @@ public class DishManager : MonoBehaviour
             if (rhythms[i].activeSelf && (bars[i].transform.position.y - bottomY < 0.01))
             {
                 HitDetector hitDetector = plates[i].GetComponentInChildren<HitDetector>();
-                reservoir.Add(hitDetector.CreateReservoirPlate());
+                if (hitDetector == null)
+                {
+                    Debug.Log("No hit detector?");
+                } else {
+                    reservoir.Add(hitDetector.CreateReservoirPlate());
+                }
 
                 anim = plates[i].GetComponent<Animator>();
                 anim.Play("MovePlateOffscreen");
