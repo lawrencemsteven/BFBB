@@ -45,6 +45,9 @@ public class DishManager : MonoBehaviour
 
             if (rhythms[i].activeSelf && (bars[i].transform.position.y - bottomY < 0.01))
             {
+                HitDetector hitDetector = plates[i].GetComponentInChildren<HitDetector>();
+                reservoir.Add(hitDetector.CreateReservoirPlate());
+
                 anim = plates[i].GetComponent<Animator>();
                 anim.Play("MovePlateOffscreen");
                 scalePlates();
@@ -70,8 +73,6 @@ public class DishManager : MonoBehaviour
                 anim = plates[i].GetComponent<Animator>();
                 randPlateSprite.RandomizeSprite();
                 anim.Play("MovePlateOnscreen");
-
-                reservoir.Add(new ReservoirPlate(1));
             }
         }
     }
