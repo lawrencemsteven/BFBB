@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReservoirItem : MonoBehaviour
+public class ReservoirItem
 {
     // The ideal quality should be 1.0f
     // Quality should range from 0.0f to 2.0f
@@ -35,12 +35,12 @@ public class ReservoirItem : MonoBehaviour
     }
 
     public void SetQuality(float newQuality) {
-        if (newQuality < 0)
+        if (newQuality <= 0)
         {
             quality = 0;
             return;
         }
-        if (newQuality > 2)
+        if (newQuality >= 2)
         {
             quality = 2;
             return;

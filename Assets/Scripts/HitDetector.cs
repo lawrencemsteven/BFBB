@@ -40,9 +40,7 @@ public class HitDetector : MonoBehaviour
         previousMouseX = Input.mousePosition.x;
         lastSmudgeIndex = 0;
         closestSmudgeIndex = 0;
-
-        // Easiest to populate this with each miss instead of setting it to the max smudge count at the start.
-        smudgesRemaining = 0;
+        smudgesRemaining = smudges.Length;
 
         for (int i = 0; i < smudges.Length; i++)
         {
@@ -86,6 +84,7 @@ public class HitDetector : MonoBehaviour
             smudgeHitStatus[closestSmudgeIndex] = true; 
             SetSmudgeInvisible(closestSmudgeIndex);
             isHit = false;
+            smudgesRemaining -= 1;
         }
 
         if (lastSmudgeIndex != closestSmudgeIndex) {
@@ -95,7 +94,6 @@ public class HitDetector : MonoBehaviour
                 GlobalVariables.streak = 0;
                 string missText = "Miss: " + lastSmudgeIndex.ToString();
                 Debug.Log("Miss!");
-                smudgesRemaining += 1;
             }
             lastSmudgeIndex = closestSmudgeIndex;
         }
