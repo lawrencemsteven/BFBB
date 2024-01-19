@@ -9,6 +9,7 @@ public class HitDetector : MonoBehaviour
     public GameObject plate;
     public GameObject sponge;
     public AudioSource hihat;
+    public float smudgeQualityCost = 0.2f;
 
     private float spongeX;
     private float spongeY;
@@ -21,7 +22,7 @@ public class HitDetector : MonoBehaviour
     private int closestSmudgeIndex;
     private float previousMouseX;
     public HiHatFmod hihatFmod;
-
+    private int smudgesRemaining;
 
     private int lastSmudgeIndex;
 
@@ -39,6 +40,7 @@ public class HitDetector : MonoBehaviour
         previousMouseX = Input.mousePosition.x;
         lastSmudgeIndex = 0;
         closestSmudgeIndex = 0;
+        smudgesRemaining = smudges.Length;
 
         for (int i = 0; i < smudges.Length; i++)
         {
@@ -82,6 +84,7 @@ public class HitDetector : MonoBehaviour
             smudgeHitStatus[closestSmudgeIndex] = true; 
             SetSmudgeInvisible(closestSmudgeIndex);
             isHit = false;
+            smudgesRemaining -= 1;
         }
 
         if (lastSmudgeIndex != closestSmudgeIndex) {
@@ -132,5 +135,11 @@ public class HitDetector : MonoBehaviour
     private void SetSmudgeVisible(int index)
     {
         smudgeRenderers[index].enabled = true;
+    }
+
+    public ReservoirPlate CreateReservoirPlate()
+    {
+        float quality = 1.0f - (smudgesRemaining * smudgeQualityCost);
+        return new ReservoirPlate(quality);
     }
 }
