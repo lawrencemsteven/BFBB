@@ -7,11 +7,7 @@ public class Composer : MonoBehaviour
     private float countdownTimer = 10f;
     public bool debugTimer = true;
     private bool isFading = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -59,7 +55,10 @@ public class Composer : MonoBehaviour
         {
             Debug.Log("Stopped Pouring Batter");
         }
+    }
 
-
+    public void SpongeOnPlate() //This function is called from "SpongeAsCursor" and only triggers on collision stay. If you put the play sound here it should work. Might need an exit not sure.
+    {
+        Debug.Log("Sponge is on Plate");
     }
 }
