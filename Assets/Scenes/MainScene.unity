@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 43278396}
   - component: {fileID: 43278395}
   - component: {fileID: 43278394}
+  - component: {fileID: 43278397}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -469,6 +470,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43278392}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!136 &43278397
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43278392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.50000006
+  m_Height: 0.99999994
+  m_Direction: 1
+  m_Center: {x: 0.0000038146973, y: 0.0000019073486, z: 0}
 --- !u!1 &43930851
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,7 +3174,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -3544,7 +3558,7 @@ GameObject:
   - component: {fileID: 560433724}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3579,7 +3593,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 560433723}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -16928,6 +16942,7 @@ MonoBehaviour:
   plate: {fileID: 560433723}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!1 &855394744
 GameObject:
@@ -18255,7 +18270,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -18461,6 +18475,7 @@ GameObject:
   - component: {fileID: 1171260581}
   - component: {fileID: 1171260584}
   - component: {fileID: 1171260585}
+  - component: {fileID: 1171260586}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -18546,6 +18561,19 @@ MonoBehaviour:
   camera2: {fileID: 1994977345}
   egg: {fileID: 7562391156750743137}
   anim: {fileID: 884138835}
+--- !u!114 &1171260586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171260580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9cddde9f51a65646ba494f857d3ef98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugTimer: 1
 --- !u!4 &1191933397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2076373412640554731, guid: 671da3eb1888a734bb28af4da6c9eb99, type: 3}
@@ -23396,6 +23424,7 @@ MonoBehaviour:
   upDownMovement2: {fileID: 308573358}
   upDownMovement3: {fileID: 308573359}
   ready: {fileID: 517238505}
+  reservoir: {fileID: 0}
 --- !u!1 &2084667062
 GameObject:
   m_ObjectHideFlags: 0
@@ -26577,6 +26606,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036521373441}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818034928023469
 Transform:
@@ -26858,7 +26888,7 @@ GameObject:
   - component: {fileID: 1249818034966183426}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26935,7 +26965,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818034966183425}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -27145,7 +27175,7 @@ GameObject:
   - component: {fileID: 1249818035004060983}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27159,7 +27189,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818035004060980}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -27603,7 +27633,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818035077127358}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -27694,7 +27724,7 @@ GameObject:
   - component: {fileID: 1249818035077127353}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28770,6 +28800,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036934802364}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818035280158454
 Transform:
@@ -29384,7 +29415,7 @@ GameObject:
   - component: {fileID: 1249818035366033203}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29398,7 +29429,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818035366033200}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -30232,6 +30263,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036409623427}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818035560641665
 Transform:
@@ -30409,6 +30441,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035366033200}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818035574600921
 Transform:
@@ -31355,6 +31388,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036367443082}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818035676593265
 Transform:
@@ -31429,6 +31463,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035077127358}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818035699166427
 Transform:
@@ -31860,7 +31895,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818035740931795}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -31926,7 +31961,7 @@ GameObject:
   - component: {fileID: 1249818035740931794}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33693,6 +33728,7 @@ MonoBehaviour:
   plate: {fileID: 1249818034966183425}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!1 &1249818036102057487
 GameObject:
@@ -34385,6 +34421,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035004060980}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!136 &1249818036285581252
 CapsuleCollider:
@@ -34785,7 +34822,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818036367443082}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -34876,7 +34913,7 @@ GameObject:
   - component: {fileID: 1249818036367443077}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35053,7 +35090,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818036409623427}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -35067,7 +35104,7 @@ Transform:
   m_GameObject: {fileID: 1249818036409623427}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 5.152, y: 2.272, z: -5.349}
-  m_LocalScale: {x: 0.7, y: 0.02, z: 0.7}
+  m_LocalScale: {x: 0.7, y: 0.019999996, z: 0.6999999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1249818035560641665}
@@ -35119,7 +35156,7 @@ GameObject:
   - component: {fileID: 1249818036409623426}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35673,7 +35710,7 @@ GameObject:
   - component: {fileID: 1249818036521373440}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35729,7 +35766,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818036521373441}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -36096,6 +36133,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035740931795}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818036586896430
 Transform:
@@ -37023,7 +37061,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818036737322250}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -37114,7 +37152,7 @@ GameObject:
   - component: {fileID: 1249818036737322245}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37785,6 +37823,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036737322250}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818036833709121
 Transform:
@@ -38122,7 +38161,7 @@ GameObject:
   - component: {fileID: 1249818036934802367}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38136,7 +38175,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818036934802364}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -53153,6 +53192,7 @@ MonoBehaviour:
   plate: {fileID: 5028729861383802013}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!1 &5028729860266802323
 GameObject:
@@ -53339,7 +53379,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5028729861383802013}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -53384,7 +53424,7 @@ GameObject:
   - component: {fileID: 1249818036294851247}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59990,6 +60030,7 @@ MonoBehaviour:
   plate: {fileID: 8432815034645443031}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!1 &8432815033614402009
 GameObject:
@@ -60344,7 +60385,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8432815034645443031}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -60385,7 +60426,7 @@ GameObject:
   - component: {fileID: 8432815034645443028}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
