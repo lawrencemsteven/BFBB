@@ -40,4 +40,14 @@ public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
     public bool HasRoom() { return Count() < maxSize; }
     public int GetMaxSize() { return maxSize; }
     public void SetMaxSize(int newSize) { maxSize = newSize; }
+
+    public float GetAverageDisplayQuality()
+    {
+        float totalQuality = 0f;
+        foreach (T item in items)
+        {
+            totalQuality += item.GetDisplayQuality();
+        }
+        return totalQuality / Count();
+    }
 }
