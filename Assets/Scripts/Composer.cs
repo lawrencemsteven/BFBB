@@ -6,7 +6,8 @@ public class Composer : MonoBehaviour
 {
     private float countdownTimer = 10f;
     public bool debugTimer = true;
-    private bool isFading = false;
+    public bool isFading = false;
+    public bool eqEffect = false;
 
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class Composer : MonoBehaviour
             isFading = true;
         }
 
-        if (Input.GetKey(KeyCode.UpArrow) && isFading == true)  //Holding the key simulates being active on the station
+        if (Input.GetKey(KeyCode.UpArrow) && isFading == false)  //Holding the key simulates being active on the station
         {
             Debug.Log("Volume is now fading in");
             countdownTimer += 2 * Time.deltaTime;  // Timer increases by 1 second for each second held, can be done for volume as well
@@ -44,6 +45,7 @@ public class Composer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             Debug.Log("Low pass eq");
+            eqEffect = !eqEffect;
         }
 
         //Pour batter on left click hold

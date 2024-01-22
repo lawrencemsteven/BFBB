@@ -18514,6 +18514,7 @@ GameObject:
   - component: {fileID: 1171260584}
   - component: {fileID: 1171260585}
   - component: {fileID: 1171260586}
+  - component: {fileID: 1171260587}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -18611,7 +18612,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9cddde9f51a65646ba494f857d3ef98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugTimer: 1
+  debugTimer: 0
+  isFading: 0
+  eqEffect: 0
+--- !u!114 &1171260587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171260580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad27e29c3e4950489a05927dd6e6ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventObjectName: FMOD Music Event
+  composer: {fileID: 0}
+  fadeRate: 0.1
+  eqChangeRate: 0.1
 --- !u!4 &1191933397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2076373412640554731, guid: 671da3eb1888a734bb28af4da6c9eb99, type: 3}
@@ -19092,7 +19111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1267610790
 MonoBehaviour:
   m_ObjectHideFlags: 0
