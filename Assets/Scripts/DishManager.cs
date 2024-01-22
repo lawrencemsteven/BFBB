@@ -21,13 +21,14 @@ public class DishManager : MonoBehaviour
     public GameObject ready;
 
     public ReservoirStack<ReservoirPlate> reservoir;
+    [SerializeField] int initialReservoirSize = 30;
 
     // Start is called before the first frame update
     void Start()
     {
         intitialScale = plates[0].transform.localScale;
         initialPos = plates[0].transform.position;
-        reservoir = new ReservoirStack<ReservoirPlate>();
+        reservoir = new ReservoirStack<ReservoirPlate>(initialReservoirSize);
     }
 
     // Update is called once per frame

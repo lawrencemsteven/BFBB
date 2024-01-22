@@ -5,15 +5,24 @@ using UnityEngine;
 public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
 {
     private List<T> items;
+    private int maxSize;
 
-    public ReservoirStack()
+    public ReservoirStack(int maxSize)
     {
         items = new List<T>();
+        this.maxSize = maxSize;
     }
 
-    public void Add(T item)
+    public bool Add(T item)
     {
-        items.Add(item);
+        if (HasRoom())
+        {
+            items.Add(item);
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 
     public T Pop()
@@ -27,4 +36,8 @@ public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
 
     // Pretty please don't change the list when you use this.
     public List<T> GetAll() { return items; }
+
+    public bool HasRoom() { return Count() < maxSize; }
+    public int GetMaxSize() { return maxSize; }
+    public void SetMaxSize(int newSize) { maxSize = newSize; }
 }
