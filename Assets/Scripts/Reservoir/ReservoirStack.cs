@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
 {
     private List<T> items;
     private int maxSize;
 
+    public UnityEvent onReservoirUpdated = new();
+
     public ReservoirStack(int maxSize)
     {
         items = new List<T>();
         this.maxSize = maxSize;
+        onReservoirUpdated?.Invoke();
     }
 
     public bool Add(T item)
@@ -18,6 +22,7 @@ public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
         if (HasRoom())
         {
             items.Add(item);
+            onReservoirUpdated?.Invoke();
             return true;
         } else
         {
@@ -29,6 +34,7 @@ public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
     {
         T item = items[items.Count - 1];
         items.RemoveAt(items.Count - 1);
+        onReservoirUpdated?.Invoke();
         return item;
     }
 
