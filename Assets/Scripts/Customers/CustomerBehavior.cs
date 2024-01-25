@@ -1,5 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using Orders;
+using TMPro;
 
 public class CustomerBehavior : MonoBehaviour
 {
@@ -14,13 +16,16 @@ public class CustomerBehavior : MonoBehaviour
     private int moodCount = 5;
     private int currentMood;
     private float moodInterval;
+    private Order order;
+    private TextMeshProUGUI orderText;
 
     private void Start()
     {
         customerManager = transform.parent.GetComponent<CustomerManager>();
         customerMesh = transform.GetChild(0).gameObject;
-        patienceMeter = customerMesh.transform.GetChild(0).gameObject;
-        hats = customerMesh.transform.GetChild(1);
+        patienceMeter = customerMesh.transform.GetChild(1).gameObject;
+        hats = customerMesh.transform.GetChild(2);
+        orderText = customerMesh.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
         moodInterval = patienceTimer / moodCount;
         DeactivateCustomer();
     }
@@ -46,9 +51,9 @@ public class CustomerBehavior : MonoBehaviour
     public void ActivateCustomer()
     {
         customerMesh.SetActive(true);
-        //generate hat
         SetHat();
-        //generate order
+        GenerateOrder();
+        Debug.Log(order);
         active = true;
         currentPatienceTimer = patienceTimer;
     }
@@ -84,5 +89,13 @@ public class CustomerBehavior : MonoBehaviour
         hats.GetChild(Random.Range(0, hats.childCount)).gameObject.SetActive(true);
     }
 
+    private void GenerateOrder()
+    {
+        order = Order.GenerateOrder();
+        orderText.text = order.ToString();
+    }
+
     public bool IsActive() { return active; }
+
+    public Order GetOrder() { return order; }
 }
