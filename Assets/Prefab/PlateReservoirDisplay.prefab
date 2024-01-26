@@ -46,11 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e30d7b1207a1c4d83194bcdd96e9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plate: {fileID: 5480574423901378643}
+  reservoirItem: {fileID: 5480574423901378643}
   stackParent: {fileID: 1212850561055284067}
   offset: {x: 0, y: 0.021, z: 0}
   perfectQualityColor: {r: 1, g: 1, b: 1, a: 1}
   minQualityColor: {r: 0.4968836, g: 0.5943396, b: 0.22652188, a: 1}
+  overQualityColor: {r: 0.49803922, g: 0.59607846, b: 0.22745098, a: 1}
 --- !u!1 &5480574423901378643
 GameObject:
   m_ObjectHideFlags: 0
