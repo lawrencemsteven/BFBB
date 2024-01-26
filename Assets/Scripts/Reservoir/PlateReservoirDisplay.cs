@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PlateReservoirDisplay : MonoBehaviour
 {
-    [SerializeField] private DishManager dishManager;
-
     void Start()
     {
-        dishManager.reservoir.onReservoirUpdated.AddListener(RedoDisplay);
+        ReservoirManager.GetPlates().onReservoirUpdated.AddListener(RedoDisplay);
     }
 
     void RedoDisplay()
