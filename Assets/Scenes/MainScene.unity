@@ -3159,7 +3159,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -16928,6 +16927,7 @@ MonoBehaviour:
   plate: {fileID: 560433723}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!1 &855394744
 GameObject:
@@ -18255,7 +18255,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -23396,6 +23395,7 @@ MonoBehaviour:
   upDownMovement2: {fileID: 308573358}
   upDownMovement3: {fileID: 308573359}
   ready: {fileID: 517238505}
+  reservoir: {fileID: 0}
 --- !u!1 &2084667062
 GameObject:
   m_ObjectHideFlags: 0
@@ -26577,6 +26577,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036521373441}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818034928023469
 Transform:
@@ -28770,6 +28771,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036934802364}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818035280158454
 Transform:
@@ -30232,6 +30234,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036409623427}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818035560641665
 Transform:
@@ -30409,6 +30412,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035366033200}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818035574600921
 Transform:
@@ -31355,6 +31359,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036367443082}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818035676593265
 Transform:
@@ -31429,6 +31434,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035077127358}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818035699166427
 Transform:
@@ -33693,6 +33699,7 @@ MonoBehaviour:
   plate: {fileID: 1249818034966183425}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!1 &1249818036102057487
 GameObject:
@@ -34385,6 +34392,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035004060980}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!136 &1249818036285581252
 CapsuleCollider:
@@ -36096,6 +36104,7 @@ MonoBehaviour:
   plate: {fileID: 1249818035740931795}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818036586896430
 Transform:
@@ -37785,6 +37794,7 @@ MonoBehaviour:
   plate: {fileID: 1249818036737322250}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!4 &1249818036833709121
 Transform:
@@ -53153,6 +53163,7 @@ MonoBehaviour:
   plate: {fileID: 5028729861383802013}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!1 &5028729860266802323
 GameObject:
@@ -59990,6 +60001,7 @@ MonoBehaviour:
   plate: {fileID: 8432815034645443031}
   sponge: {fileID: 183062006}
   hihat: {fileID: 496068801}
+  smudgeQualityCost: 0.2
   hihatFmod: {fileID: 2066864611}
 --- !u!1 &8432815033614402009
 GameObject:
