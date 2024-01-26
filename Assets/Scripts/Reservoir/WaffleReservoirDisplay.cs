@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlateReservoirDisplay : ReservoirDisplay
+public class WaffleReservoirDisplay : ReservoirDisplay
 {
-    private ReservoirStack<ReservoirPlate> reservoirStack;
+    private ReservoirStack<ReservoirWaffle> reservoirStack;
 
     new void Start()
     {
-        reservoirStack = ReservoirManager.GetPlates();
+        reservoirStack = ReservoirManager.GetWaffles();
         reservoirStack.onReservoirUpdated.AddListener(RedoDisplay);
         base.Start();
     }
@@ -16,9 +16,9 @@ public class PlateReservoirDisplay : ReservoirDisplay
     protected override List<ReservoirItem> getReservoirItems()
     {
         List<ReservoirItem> output = new List<ReservoirItem>();
-        foreach (ReservoirPlate plate in reservoirStack.GetAll())
+        foreach (ReservoirWaffle waffle in reservoirStack.GetAll())
         {
-            output.Add(plate);
+            output.Add(waffle);
         }
         return output;
     }
