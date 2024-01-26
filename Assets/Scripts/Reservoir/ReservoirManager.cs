@@ -8,7 +8,7 @@ public class ReservoirManager : MonoBehaviour
 
     [SerializeField] private static int maxPlates = 30;
 
-    void Start()
+    void Awake()
     {
         plates = new ReservoirStack<ReservoirPlate>(maxPlates);
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
+public class ReservoirStack<T> where T : ReservoirItem
 {
     private List<T> items;
     private int maxSize;
@@ -14,7 +14,7 @@ public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
     {
         items = new List<T>();
         this.maxSize = maxSize;
-        onReservoirUpdated?.Invoke();
+        UpdateReservoir();
     }
 
     public bool Add(T item)
@@ -22,7 +22,7 @@ public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
         if (HasRoom())
         {
             items.Add(item);
-            onReservoirUpdated?.Invoke();
+            UpdateReservoir();
             return true;
         } else
         {
@@ -34,7 +34,7 @@ public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
     {
         T item = items[items.Count - 1];
         items.RemoveAt(items.Count - 1);
-        onReservoirUpdated?.Invoke();
+        UpdateReservoir();
         return item;
     }
 
@@ -55,5 +55,13 @@ public class ReservoirStack<T> : MonoBehaviour where T : ReservoirItem
             totalQuality += item.GetDisplayQuality();
         }
         return totalQuality / Count();
+    }
+
+    private void UpdateReservoir()
+    {
+        if (onReservoirUpdated != null)
+        {
+            onReservoirUpdated.Invoke();
+        }
     }
 }
