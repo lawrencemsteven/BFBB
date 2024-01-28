@@ -20,15 +20,10 @@ public class SwitchCamera : MonoBehaviour
     public int switchToCam;
     public string eventObjectName;
 
-    void Awake()
-    {
-        CamState = 2;
-    }
-
     void Start()
     {
-        
-        if(eventObjectName == null || eventObjectName == "") eventObjectName = "FMOD Music Event";
+
+        if (eventObjectName == null || eventObjectName == "") eventObjectName = "FMOD Music Event";
         
         if(dishStation == null) dishStation = GameObject.Find("Plate Manager (1)");
         countdown1.SetActive(false);
@@ -39,7 +34,7 @@ public class SwitchCamera : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && CamState != 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && GlobalVariables.camState != 1)
         {
             switchReqBar = timer.bar;
             waitingToSwitch = true;
@@ -49,16 +44,16 @@ public class SwitchCamera : MonoBehaviour
             countdown2.SetActive(true);
 
             // Cam_1();
-            // CamState = 0;
+            GlobalVariables.camState = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && CamState != 1)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && GlobalVariables.camState != 2)
         {
             countdown1.SetActive(false);
             countdown2.SetActive(false);
             Cam_2();
-            CamState = 1;
+            GlobalVariables.camState = 1;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && CamState != 2)
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && GlobalVariables.camState != 3)
         {
             countdown1.SetActive(false);
             countdown2.SetActive(false);
@@ -67,21 +62,21 @@ public class SwitchCamera : MonoBehaviour
             switchToCam = 3;
             GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("SongSection", 0);
             //Cam_3();
-            //CamState = 2;
+            GlobalVariables.camState = 2;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4) && CamState != 3)
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && GlobalVariables.camState != 4)
         {
             countdown1.SetActive(false);
             countdown2.SetActive(false);
             Cam_4();
-            CamState = 3;
+            GlobalVariables.camState = 4;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha5) && CamState != 4)
+        else if (Input.GetKeyDown(KeyCode.Alpha5) && GlobalVariables.camState != 5)
         {
             countdown1.SetActive(false);
             countdown2.SetActive(false);
             Cam_5();
-            CamState = 4;
+            GlobalVariables.camState = 4;
         }
 
         if(waitingToSwitch && timer.bar != switchReqBar)
@@ -92,12 +87,12 @@ public class SwitchCamera : MonoBehaviour
             if(switchToCam == 3)
             {
                 Cam_3();
-                CamState = 2;   
+                CamState = 3;   
             }
             else if(switchToCam == 1)
             {
                 Cam_1();
-                CamState = 0;
+                CamState = 1;
             }
 
         }
@@ -110,30 +105,30 @@ public class SwitchCamera : MonoBehaviour
     }
     public void ManageCamera()
     {
-        if(CamState == 0)
+        if(GlobalVariables.camState == 1)
         {
             Cam_1();
-            CamState = 1;
+            GlobalVariables.camState = 1;
         }
-        else if(CamState == 1)
+        else if(GlobalVariables.camState == 2)
         {
             Cam_2();
-            CamState = 2;
+            GlobalVariables.camState = 2;
         }
-        else if (CamState == 2)
+        else if (GlobalVariables.camState == 3)
         {
             Cam_3();
-            CamState = 3;
+            GlobalVariables.camState = 3;
         }
-        else if (CamState == 3)
+        else if (GlobalVariables.camState == 4)
         {
             Cam_4();
-            CamState = 4;
+            GlobalVariables.camState  = 4;
         }
         else
         {
             Cam_5();
-            CamState = 0;
+            GlobalVariables.camState = 1;
         }
     }
 

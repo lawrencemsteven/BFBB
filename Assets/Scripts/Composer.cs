@@ -6,38 +6,45 @@ public class Composer : MonoBehaviour
 {
     private float countdownTimer = 10f;
     public bool debugTimer = true;
-    public bool isFading = false;
+    public bool isFading = false;  //Meant to mean is fading out, will be replaced by isFade
     public bool eqEffect = false;
+    public int isFade = 0;  //Replacement for isFading, I did not touch isFading since you needed it to work, so please implement this when possible, I have it right now so the states change but nothing happens
+    private float newTime;
+    private ComposerInterpreter composerInterpreter;
 
+
+    void Start()
+    {
+        composerInterpreter = this.transform.GetComponent<ComposerInterpreter>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //Decrements timer
-        if (countdownTimer > 0f && debugTimer == true)
-        {
-            countdownTimer -= Time.deltaTime;
-        }
 
-
+        newTime = composerInterpreter.getTime();
         //Simulates event triggers for music fade in/fade out
-        if (Input.GetKeyDown(KeyCode.DownArrow) || countdownTimer <= 0f)  //Event that will be triggered when internal timer hits 0 (10 seconds), or if we trigger with down arrow
+        if (Input.GetKeyDown(KeyCode.DownArrow) || newTime <= 0f)  //Event that will be triggered when internal timer hits 0 (10 seconds), or if we trigger with down arrow
         {
             Debug.Log("Volume is now fading out");
             isFading = true;
+            isFade = 1;
         }
 
         if (Input.GetKey(KeyCode.UpArrow) && isFading == false)  //Holding the key simulates being active on the station
         {
             Debug.Log("Volume is now fading in");
-            countdownTimer += 2 * Time.deltaTime;  // Timer increases by 1 second for each second held, can be done for volume as well
-            Debug.Log("Reset Timer to " + countdownTimer);
+            composerInterpreter.timerIncrement(2 * Time.deltaTime);
+            newTime = composerInterpreter.getTime();// Timer increases by 1 second for each second held, can be done for volume as well
+            Debug.Log("Reset Timer to " + newTime);
+            isFade = 2;
         }
         else if (Input.GetKeyUp(KeyCode.UpArrow) && isFading == true)  //When the player stopsworking on the station or station is back to full volume
         {
             Debug.Log("Volume has stopped fading in");
-            countdownTimer = 10f;
+            composerInterpreter.setTime(10f);
             isFading = false;
+            isFade = 0;
         }
 
 
@@ -48,19 +55,18 @@ public class Composer : MonoBehaviour
             eqEffect = !eqEffect;
         }
 
-        //Pour batter on left click hold
-        if (Input.GetMouseButtonDown(0))
+        if (GlobalVariables.camState == 3)
         {
-            Debug.Log("Pouring Batter");
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            Debug.Log("Stopped Pouring Batter");
+            //Pour batter on left click hold
+            if (Input.GetMouseButtonDown(0))
+            {
+                composerInterpreter.pourBatter();
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                composerInterpreter.stopBatter();
+            }
         }
     }
 
-    public void SpongeOnPlate() //This function is called from "SpongeAsCursor" and only triggers on collision stay. If you put the play sound here it should work. Might need an exit not sure.
-    {
-        Debug.Log("Sponge is on Plate");
-    }
 }
