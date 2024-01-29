@@ -80,31 +80,18 @@ public class fmodTimer : MonoBehaviour
 
     public bool OnBar()
     {
-        Debug.Log("::::" +position);
-        Debug.Log("::::" +previousBarPosition);
         if ((Mathf.Abs(position - previousBarPosition) <= 100) || ((Mathf.Abs((position - previousBarPosition) - positionBarLength)) <= 100) || (Mathf.Abs((position - previousBarPosition) - 1333) <= 100))
         {
-            Debug.Log("Yes on bar");
             return true;
         }
         else
         {
-            Debug.Log("Not on bar");
             return false;
         }
     }
 
     public bool OnXBars(int position1, int position2, float barNum)
     {
-        Debug.Log("POS1: " + position1 + " POS2: " + position2 + " BARLENGTH: " + positionBarLength);
-        float debugnum;
-        debugnum = Mathf.Abs(((position2 - position1)) - ((positionBarLength) * barNum));
-        Debug.Log(debugnum);
-        Debug.Log("is less than " + 0.9 * positionBarLength);
-        if ((Mathf.Abs(((position2 - position1)) - ((positionBarLength) * barNum))) < (0.9 * positionBarLength))
-        {
-            Debug.Log("Everything else is good");
-        }
         if (((Mathf.Abs(((position2 - position1)) - ((positionBarLength) * barNum))) < (0.9 * positionBarLength)) && (OnBar()))
         {
             return true;
