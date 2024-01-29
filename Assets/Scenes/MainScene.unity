@@ -383,9 +383,11 @@ GameObject:
   - component: {fileID: 43278396}
   - component: {fileID: 43278395}
   - component: {fileID: 43278394}
+  - component: {fileID: 43278397}
+  - component: {fileID: 43278398}
   m_Layer: 0
   m_Name: Quad
-  m_TagString: Untagged
+  m_TagString: Sponge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +416,7 @@ MeshCollider:
   m_GameObject: {fileID: 43278392}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -469,6 +471,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43278392}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!136 &43278397
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43278392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.50000006
+  m_Height: 0.99999994
+  m_Direction: 1
+  m_Center: {x: 0.0000038146973, y: 0.0000019073486, z: 1.08}
+--- !u!54 &43278398
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43278392}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &43930851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1292,7 @@ GameObject:
   - component: {fileID: 183062009}
   - component: {fileID: 183062008}
   - component: {fileID: 183062012}
+  - component: {fileID: 183062013}
   m_Layer: 0
   m_Name: Sponge
   m_TagString: Sponge
@@ -1275,12 +1308,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183062006}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Height: 16.45
+  m_Direction: 2
+  m_Center: {x: 0.000000059604645, y: 0.23, z: -0.00000008940697}
 --- !u!23 &183062009
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1339,7 +1372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183062006}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 5.161, y: 2.611, z: -5.273}
+  m_LocalPosition: {x: 4.305, y: 2.611, z: -5.273}
   m_LocalScale: {x: 0.004, y: 0.001, z: 0.0075}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1361,6 +1394,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dishWashingCamera: {fileID: 1862202497}
+--- !u!54 &183062013
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183062006}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &212303842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3600,7 +3649,7 @@ GameObject:
   - component: {fileID: 560433724}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3635,7 +3684,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 560433723}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -3899,6 +3948,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1249818035366033199}
     m_Modifications:
+    - target: {fileID: 493920463930643446, guid: f91374b919756f645b3ed9e5bc810ad9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 969366139001437801, guid: f91374b919756f645b3ed9e5bc810ad9, type: 3}
       propertyPath: m_Name
       value: RandomPlate
@@ -18517,6 +18570,8 @@ GameObject:
   - component: {fileID: 1171260581}
   - component: {fileID: 1171260584}
   - component: {fileID: 1171260585}
+  - component: {fileID: 1171260586}
+  - component: {fileID: 1171260587}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -18602,6 +18657,37 @@ MonoBehaviour:
   camera2: {fileID: 1994977345}
   egg: {fileID: 7562391156750743137}
   anim: {fileID: 884138835}
+--- !u!114 &1171260586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171260580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9cddde9f51a65646ba494f857d3ef98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugTimer: 0
+  isFading: 0
+  eqEffect: 0
+--- !u!114 &1171260587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171260580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad27e29c3e4950489a05927dd6e6ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventObjectName: FMOD Music Event
+  composer: {fileID: 0}
+  fadeRate: 0.1
+  eqChangeRate: 0.1
 --- !u!4 &1191933397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2076373412640554731, guid: 671da3eb1888a734bb28af4da6c9eb99, type: 3}
@@ -19082,7 +19168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1267610790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19929,7 +20015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1388462068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23578,6 +23664,7 @@ MonoBehaviour:
   upDownMovement2: {fileID: 308573358}
   upDownMovement3: {fileID: 308573359}
   ready: {fileID: 517238505}
+  reservoir: {fileID: 0}
 --- !u!1 &2084667062
 GameObject:
   m_ObjectHideFlags: 0
@@ -26921,7 +27008,7 @@ GameObject:
   - component: {fileID: 1249818034951751446}
   m_Layer: 0
   m_Name: Dish Washing Round 2
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27039,7 +27126,7 @@ GameObject:
   - component: {fileID: 1249818034966183426}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27116,7 +27203,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818034966183425}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -27326,7 +27413,7 @@ GameObject:
   - component: {fileID: 1249818035004060983}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27340,7 +27427,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818035004060980}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -27784,7 +27871,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818035077127358}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -27875,7 +27962,7 @@ GameObject:
   - component: {fileID: 1249818035077127353}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29566,7 +29653,7 @@ GameObject:
   - component: {fileID: 1249818035366033203}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29580,7 +29667,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818035366033200}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -32046,7 +32133,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818035740931795}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -32112,7 +32199,7 @@ GameObject:
   - component: {fileID: 1249818035740931794}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34973,7 +35060,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818036367443082}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -35064,7 +35151,7 @@ GameObject:
   - component: {fileID: 1249818036367443077}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35241,7 +35328,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818036409623427}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -35255,7 +35342,7 @@ Transform:
   m_GameObject: {fileID: 1249818036409623427}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 5.152, y: 2.272, z: -5.349}
-  m_LocalScale: {x: 0.7, y: 0.02, z: 0.7}
+  m_LocalScale: {x: 0.7, y: 0.019999996, z: 0.6999999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1249818035560641665}
@@ -35307,7 +35394,7 @@ GameObject:
   - component: {fileID: 1249818036409623426}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35861,7 +35948,7 @@ GameObject:
   - component: {fileID: 1249818036521373440}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35917,7 +36004,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818036521373441}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -37212,7 +37299,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818036737322250}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -37303,7 +37390,7 @@ GameObject:
   - component: {fileID: 1249818036737322245}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38312,7 +38399,7 @@ GameObject:
   - component: {fileID: 1249818036934802367}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38326,7 +38413,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1249818036934802364}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -53471,7 +53558,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5028729861383802013}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -53516,7 +53603,7 @@ GameObject:
   - component: {fileID: 1249818036294851247}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60402,8 +60489,8 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8432815034645443031}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -60444,7 +60531,7 @@ GameObject:
   - component: {fileID: 8432815034645443028}
   m_Layer: 0
   m_Name: Plate Temp
-  m_TagString: Untagged
+  m_TagString: Plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
