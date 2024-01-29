@@ -46,13 +46,6 @@ public abstract class ReservoirDisplay : MonoBehaviour
             quality = 2 - quality;
         }
 
-        Vector3 perfectVector = new Vector3(perfectColor.r, perfectColor.g, perfectColor.b);
-        Vector3 minVector = new Vector3(minColor.r, minColor.g, minColor.b);
-        Vector3 crossfadeVector = Vector3.Lerp(minVector, perfectVector, quality);
-
-        float crossfadeR = crossfadeVector.x;
-        float crossfadeG = crossfadeVector.y;
-        float crossfadeB = crossfadeVector.z;
-        return new Color(crossfadeR, crossfadeG, crossfadeB);
+        return Color.Lerp(minColor, perfectColor, quality);
     }
 }
