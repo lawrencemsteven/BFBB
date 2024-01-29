@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReservoirPlate : ReservoirItem
+public class ReservoirWaffle : ReservoirItem
 {
-    public ReservoirPlate(float newQuality) : base(newQuality)
+    public ReservoirWaffle(float newQuality) : base(newQuality)
     {
         return;
     }
