@@ -64,11 +64,13 @@ public class PancakeScorer : MonoBehaviour
             }
             if (elapsedTime >= timeToComplete)
             {
+                /*
                 if (isShapeCovered.GetNumOfColliders() < 3)
                 {
 
                 }
                 elapsedTime = 0f;
+                */
             }
             else
             {

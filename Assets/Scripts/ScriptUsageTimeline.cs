@@ -11,6 +11,7 @@ public class ScriptUsageTimeline : MonoBehaviour
     {
         public int currentBar = 0;
         public int currentBeat = 0;
+        public int position = 0;
         public FMOD.StringWrapper lastMarker = new FMOD.StringWrapper();
     }
 
@@ -78,6 +79,7 @@ public class ScriptUsageTimeline : MonoBehaviour
             var parameter = (FMOD.Studio.TIMELINE_BEAT_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_BEAT_PROPERTIES));
             timelineInfo.currentBar = parameter.bar;
             timelineInfo.currentBeat = parameter.beat;
+            timelineInfo.position = parameter.position;
                     
 
             /*

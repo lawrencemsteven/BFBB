@@ -7,55 +7,62 @@ public class WaffleBatterPour : MonoBehaviour
     public float bpm = 135f;
     public GameObject batterFill;
     public Animator waffleMakerAnim;
-    private bool isPouring = false, isClosed = false;
-    private float timeToPourBatter, timeToStopBatter, elapsedTime, accuracy1, accuracy2, timeBetweenPours, speedOfBatterPour;
+    public fmodTimer timer;
+    public bool isClosed = false;
+    public int positionClosed;
+    private bool isPouring = false;
+    private Vector3 initialBatter;
+    private float timePouring = 0, posBatterStarted, elapsedTime, accuracy1, accuracy2, timeBetweenPours, speedOfBatterPour;
 
     // Start is called before the first frame update
     void Start()
     {
         speedOfBatterPour = (1.7623f - 1.749f) / (4.0f / (bpm / 60f));
-        timeToStopBatter = (24 / bpm) * 60;
-        timeToPourBatter = (20 / bpm) * 60;
+        initialBatter = batterFill.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (elapsedTime >= timeToPourBatter)
-        {
-            //Debug.Log("NOWWW");
-        }
         if (isPouring)
         {
             batterFill.transform.position += Vector3.up * speedOfBatterPour * Time.deltaTime;
+            timePouring += Time.deltaTime;
         }
         elapsedTime += Time.deltaTime;
         timeBetweenPours += Time.deltaTime;
-        if (isPouring && timeBetweenPours > 0.045)
+        if ((isPouring && timeBetweenPours > 0.1) && (timePouring > (2.0f/(bpm/60f))))
         {
             isPouring = false;
-            accuracy2 = Mathf.Abs(elapsedTime - timeToStopBatter);
-            if (accuracy2 < .4)
+            timePouring = 0;
+            accuracy2 = Mathf.Abs((timer.position - posBatterStarted) - timer.positionBarLength);
+            if (accuracy2 < 100)
             {
                 GlobalVariables.score += 1;
             }
-        }
-        if ((elapsedTime >= timeToStopBatter) && (!isClosed))
-        {
             waffleMakerAnim.SetTrigger("Close");
+            positionClosed = timer.position;
             isClosed = true;
-            
         }
+        else if (isPouring && timeBetweenPours > 0.1) {
+            isPouring = false;
+            timePouring = 0;
+        }
+    }
+
+    public void ResetBatter()
+    {
+        batterFill.transform.position = initialBatter;
     }
 
     private void OnParticleTrigger()
     {
-        if (!isPouring)
+        if ((!isPouring))
         {
-            accuracy1 = Mathf.Abs(elapsedTime - timeToPourBatter);
-            if (accuracy1 < .4)
+            if (timer.OnBar())
             {
                 GlobalVariables.score += 1;
+                posBatterStarted = timer.position;
             }
         }
         isPouring = true;
