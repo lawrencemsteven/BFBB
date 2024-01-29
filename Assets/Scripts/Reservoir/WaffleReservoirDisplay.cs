@@ -22,4 +22,9 @@ public class WaffleReservoirDisplay : ReservoirDisplay
         }
         return output;
     }
+
+    protected override void setupDisplay(GameObject item, ReservoirItem itemStats)
+    {
+        return;
+    }
 }

@@ -37,14 +37,19 @@ public abstract class ReservoirDisplay : MonoBehaviour
             {
                 GameObject newItem = Instantiate(reservoirItem, stackParent);
                 newItem.transform.localPosition = netOffset;
-                float quality = itemStats.GetDisplayQuality();
-                Color qualityColor = crossfadeColors(quality, perfectQualityColor, minQualityColor, overQualityColor);
-                newItem.GetComponent<MeshRenderer>().material.color = qualityColor;
+                setupDisplay(newItem, itemStats);
                 newItem.SetActive(true);
             }
             j++;
             netOffset += offset;
         }
+    }
+
+    protected virtual void setupDisplay(GameObject item, ReservoirItem itemStats)
+    {
+        float quality = itemStats.GetDisplayQuality();
+        Color qualityColor = crossfadeColors(quality, perfectQualityColor, minQualityColor, overQualityColor);
+        item.GetComponent<MeshRenderer>().material.color = qualityColor;
     }
 
     protected abstract List<ReservoirItem> getReservoirItems();
