@@ -14,6 +14,7 @@ public class ComposerInterpreter : MonoBehaviour
     public float maxTime = 10f; //maximum time the timer can have, we can change this whenever
     public bool toggleTimer = true;
     public int mouseSpeed;
+    public int mode;
     // Start is called before the first frame update
     void Start()
     {
@@ -104,6 +105,26 @@ public class ComposerInterpreter : MonoBehaviour
         Debug.Log("Stopped Pouring Batter");
     }
 
+    public static void setPitch(int hitState)
+    {
+        if (hitState == 0)
+        {
+            Debug.Log("You are behind, Pitching Down");
+        }
+        else if (hitState == 1)
+        {
+            Debug.Log("On Beat! Keep pitch/resetting pitch");
+        }
+        else if (hitState == 2)
+        {
+            Debug.Log("You are behind, Pitching Up");
+        }
+    }
+
+    public static void setMode(int state)
+    {
+        mode = state;
+    }
     
 
 }
