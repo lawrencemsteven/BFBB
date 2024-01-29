@@ -20,14 +20,11 @@ public class DishManager : MonoBehaviour
     private Vector3 intitialScale, initialPos;
     public GameObject ready;
 
-    public ReservoirStack<ReservoirPlate> reservoir;
-
     // Start is called before the first frame update
     void Start()
     {
         intitialScale = plates[0].transform.localScale;
         initialPos = plates[0].transform.position;
-        reservoir = new ReservoirStack<ReservoirPlate>();
     }
 
     // Update is called once per frame
@@ -50,7 +47,7 @@ public class DishManager : MonoBehaviour
                 {
                     Debug.Log("No hit detector?");
                 } else {
-                    reservoir.Add(hitDetector.CreateReservoirPlate());
+                    ReservoirManager.GetPlates().Add(hitDetector.CreateReservoirPlate());
                 }
 
                 anim = plates[i].GetComponent<Animator>();

@@ -123,6 +123,7 @@ public class HitDetector : MonoBehaviour
                 }
 
             }
+            smudgesRemaining = smudges.Length;
         }
         previousMouseX = currentMouseX;
     }

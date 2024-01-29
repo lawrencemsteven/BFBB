@@ -6,6 +6,6 @@ public class ReservoirPlate : ReservoirItem
 {
     public ReservoirPlate(float newQuality) : base(newQuality)
     {
-        Debug.Log("Added plate with quality: " + newQuality);
+        return;
     }
 }
