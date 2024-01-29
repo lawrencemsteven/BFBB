@@ -18,20 +18,31 @@ public abstract class ReservoirDisplay : MonoBehaviour
 
     protected void RedoDisplay()
     {
+        List<ReservoirItem> items = getReservoirItems();
+        int i = 0;
+        int max = items.Count;
         foreach (Transform child in stackParent)
         {
-            Destroy(child.gameObject);
+            if (i >= max)
+            {
+                Destroy(child.gameObject);
+            }
+            i++;
         }
-        List<ReservoirItem> items = getReservoirItems();
-        Vector3 netOffset = new Vector3(0,0,0);
+        int j = 0;
+        Vector3 netOffset = new Vector3(0, 0, 0);
         foreach (ReservoirItem itemStats in items)
         {
-            GameObject newItem = Instantiate(reservoirItem, stackParent);
-            newItem.transform.localPosition = netOffset;
-            float quality = itemStats.GetDisplayQuality();
-            Color qualityColor = crossfadeColors(quality, perfectQualityColor, minQualityColor, overQualityColor);
-            newItem.GetComponent<MeshRenderer>().material.color = qualityColor;
-            newItem.SetActive(true);
+            if (j >= i)
+            {
+                GameObject newItem = Instantiate(reservoirItem, stackParent);
+                newItem.transform.localPosition = netOffset;
+                float quality = itemStats.GetDisplayQuality();
+                Color qualityColor = crossfadeColors(quality, perfectQualityColor, minQualityColor, overQualityColor);
+                newItem.GetComponent<MeshRenderer>().material.color = qualityColor;
+                newItem.SetActive(true);
+            }
+            j++;
             netOffset += offset;
         }
     }
