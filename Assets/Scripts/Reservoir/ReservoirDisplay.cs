@@ -54,7 +54,7 @@ public abstract class ReservoirDisplay : MonoBehaviour
 
     protected abstract List<ReservoirItem> getReservoirItems();
 
-    private Color crossfadeColors(float quality, Color perfectColor, Color minColor, Color maxColor)
+    protected Color crossfadeColors(float quality, Color perfectColor, Color minColor, Color maxColor)
     {
         if (quality > 1)
         {
