@@ -24,6 +24,8 @@ public class SwitchCamera : MonoBehaviour
         if(dishStation == null) dishStation = GameObject.Find("Plate Manager (1)");
         countdown1.SetActive(false);
         countdown2.SetActive(false);
+
+        GlobalVariables.camState = 0;
     }
 
 
@@ -31,8 +33,8 @@ public class SwitchCamera : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && GlobalVariables.camState != 0)
         {
-            countdown1.SetActive(true);
-            countdown2.SetActive(true);
+            countdown1.SetActive(false);
+            countdown2.SetActive(false);
 
             switchReqBar = timer.bar;
             waitingToSwitch = true;
@@ -44,8 +46,8 @@ public class SwitchCamera : MonoBehaviour
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToCam = 1;
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
+            countdown1.SetActive(true);
+            countdown2.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && GlobalVariables.camState != 2)
         {
@@ -58,20 +60,24 @@ public class SwitchCamera : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4) && GlobalVariables.camState != 3)
         {
+            Debug.Log("i run!");
+            countdown1.SetActive(false);
+            countdown2.SetActive(false);
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToCam = 3;
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5) && GlobalVariables.camState != 4)
         {
+            countdown1.SetActive(false);
+            countdown2.SetActive(false);
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToCam = 4;
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
         }
+
+        Debug.Log(waitingToSwitch);
+        Debug.Log(switchToCam);
 
         if(waitingToSwitch && timer.bar != switchReqBar)
         {
@@ -95,15 +101,20 @@ public class SwitchCamera : MonoBehaviour
         dishStation.SetActive(false);
         waffleStation.SetActive(false);
         batterPourTool.SetActive(false);
+        PrepStationManager.Instance.SetRunning(false);
 
         if (cameraIndex == 0)
         {
             dishStation.SetActive(true);
         }
-        if (cameraIndex == 1)
+        else if (cameraIndex == 1)
         {
             waffleStation.SetActive(true);
             batterPourTool.SetActive(true);
+        }
+        else if (cameraIndex == 3)
+        {
+            PrepStationManager.Instance.SetRunning(true);
         }
     }
 }
