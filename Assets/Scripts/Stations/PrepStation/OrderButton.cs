@@ -16,6 +16,15 @@ public class OrderButton : MonoBehaviour
             associatedCustomer.DeactivateCustomer();
             PrepStationManager.Instance.NullifyPreppedOrder();
             PrepStationManager.Instance.UpdateCustomerOrders();
+            if (associatedOrder.GetMainCourse() == MainCourse.PANCAKE)
+            {
+                ReservoirManager.GetPancakes().PopMany(associatedOrder.GetMainCourseCount());
+            }
+            
+            if (associatedOrder.GetMainCourse() == MainCourse.WAFFLE)
+            {
+                ReservoirManager.GetWaffles().PopMany(associatedOrder.GetMainCourseCount());
+            }
             Destroy(this);
         }
     }

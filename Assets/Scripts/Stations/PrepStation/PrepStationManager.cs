@@ -18,6 +18,11 @@ public class PrepStationManager : Singleton<PrepStationManager>
         orderLabel = prepStationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         prepStationUI.SetActive(false);
         preppedOrder = null;
+
+        //Test code
+        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
+        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
+        ReservoirManager.GetWaffles().Add(new ReservoirWaffle(1));
     }
 
     public void Update()
@@ -48,6 +53,11 @@ public class PrepStationManager : Singleton<PrepStationManager>
 
     public void SelectMainCourse(MainCourse mainCourse)
     {
+        if (mainCourse == MainCourse.PANCAKE && ReservoirManager.GetPancakes().Count() <= 0 ||
+            mainCourse == MainCourse.WAFFLE && ReservoirManager.GetWaffles().Count() <= 0)
+        {
+            return;
+        }
         if (preppedOrder is null)
         {
             preppedOrder = new Order(mainCourse, 1, new List<Topping>());
@@ -58,7 +68,11 @@ public class PrepStationManager : Singleton<PrepStationManager>
         }
         else
         {
-            preppedOrder.AddMainCourseAmount(1);
+            if (mainCourse == MainCourse.PANCAKE && ReservoirManager.GetPancakes().Count() >= preppedOrder.GetMainCourseCount() + 1 ||
+            mainCourse == MainCourse.WAFFLE && ReservoirManager.GetWaffles().Count() >= preppedOrder.GetMainCourseCount() + 1)
+            {
+                preppedOrder.AddMainCourseAmount(1);
+            }
         }
     }
 
