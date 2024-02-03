@@ -22,4 +22,11 @@ public class WaffleReservoirDisplay : ReservoirDisplay
         }
         return output;
     }
+
+    protected override void setupDisplay(GameObject item, ReservoirItem itemStats)
+    {
+        float quality = itemStats.GetDisplayQuality();
+        Color qualityColor = crossfadeColors(quality, perfectQualityColor, minQualityColor, overQualityColor);
+        item.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = qualityColor;
+    }
 }

@@ -18,27 +18,43 @@ public abstract class ReservoirDisplay : MonoBehaviour
 
     protected void RedoDisplay()
     {
+        List<ReservoirItem> items = getReservoirItems();
+        int i = 0;
+        int max = items.Count;
         foreach (Transform child in stackParent)
         {
-            Destroy(child.gameObject);
+            if (i >= max)
+            {
+                Destroy(child.gameObject);
+            }
+            i++;
         }
-        List<ReservoirItem> items = getReservoirItems();
-        Vector3 netOffset = new Vector3(0,0,0);
+        int j = 0;
+        Vector3 netOffset = new Vector3(0, 0, 0);
         foreach (ReservoirItem itemStats in items)
         {
-            GameObject newItem = Instantiate(reservoirItem, stackParent);
-            newItem.transform.localPosition = netOffset;
-            float quality = itemStats.GetDisplayQuality();
-            Color qualityColor = crossfadeColors(quality, perfectQualityColor, minQualityColor, overQualityColor);
-            newItem.GetComponent<MeshRenderer>().material.color = qualityColor;
-            newItem.SetActive(true);
+            if (j >= i)
+            {
+                GameObject newItem = Instantiate(reservoirItem, stackParent);
+                newItem.transform.localPosition = netOffset;
+                setupDisplay(newItem, itemStats);
+                newItem.SetActive(true);
+            }
+            j++;
             netOffset += offset;
         }
     }
 
+    protected virtual void setupDisplay(GameObject item, ReservoirItem itemStats)
+    {
+        float quality = itemStats.GetDisplayQuality();
+        Color qualityColor = crossfadeColors(quality, perfectQualityColor, minQualityColor, overQualityColor);
+        item.GetComponent<MeshRenderer>().material.color = qualityColor;
+    }
+
     protected abstract List<ReservoirItem> getReservoirItems();
 
-    private Color crossfadeColors(float quality, Color perfectColor, Color minColor, Color maxColor)
+    protected Color crossfadeColors(float quality, Color perfectColor, Color minColor, Color maxColor)
     {
         if (quality > 1)
         {
@@ -46,13 +62,6 @@ public abstract class ReservoirDisplay : MonoBehaviour
             quality = 2 - quality;
         }
 
-        Vector3 perfectVector = new Vector3(perfectColor.r, perfectColor.g, perfectColor.b);
-        Vector3 minVector = new Vector3(minColor.r, minColor.g, minColor.b);
-        Vector3 crossfadeVector = Vector3.Lerp(minVector, perfectVector, quality);
-
-        float crossfadeR = crossfadeVector.x;
-        float crossfadeG = crossfadeVector.y;
-        float crossfadeB = crossfadeVector.z;
-        return new Color(crossfadeR, crossfadeG, crossfadeB);
+        return Color.Lerp(minColor, perfectColor, quality);
     }
 }
