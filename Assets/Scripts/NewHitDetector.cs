@@ -8,18 +8,15 @@ public class NewHitDetector : MonoBehaviour
     private bool smudgeCollision = false;
     private bool spongeCollision = false;
 
-    void Start()
+    private void OnTriggerEnter(Collider collision)
     {
-    }
-    // Function called when a collision occurs
-    private void OnCollisionEnter(Collision collision)
-    {
+        Debug.Log(collision.gameObject.name);
         // Check if the collided object has the tag "Smudge"
         if (collision.gameObject.CompareTag("Sponge"))
         {
             spongeCollision = true;
         }
-        if (collision.gameObject.CompareTag("Smudge") && spongeCollision)
+        if (collision.gameObject.CompareTag("Smudge")/* && spongeCollision*/)
         {
             hihat.Play();
             GlobalVariables.score += 1;
