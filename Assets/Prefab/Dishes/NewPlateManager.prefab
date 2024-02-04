@@ -163,7 +163,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494299011199030121}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -731,7 +731,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2626182125485780515}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -1147,6 +1147,7 @@ GameObject:
   - component: {fileID: 7042417676634994775}
   - component: {fileID: 7042417676634994778}
   - component: {fileID: 7042417676634994777}
+  - component: {fileID: 7049676276124013549}
   - component: {fileID: 7042417676634994776}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -1220,6 +1221,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7049676276124013549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042417676634994774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &7042417676634994776
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14693,7 +14707,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134503067528176898}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -14916,6 +14930,7 @@ GameObject:
   - component: {fileID: 8134503067556370760}
   - component: {fileID: 8134503067556370756}
   - component: {fileID: 8134503067556370757}
+  - component: {fileID: 5077567617326405908}
   - component: {fileID: 8134503067556370762}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -14989,6 +15004,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5077567617326405908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134503067556370761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &8134503067556370762
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15585,6 +15613,7 @@ GameObject:
   - component: {fileID: 8134503067670457819}
   - component: {fileID: 8134503067670457812}
   - component: {fileID: 8134503067670457813}
+  - component: {fileID: 9029405625424305773}
   - component: {fileID: 8134503067670457818}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -15658,6 +15687,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &9029405625424305773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134503067670457816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &8134503067670457818
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -16341,6 +16383,7 @@ GameObject:
   - component: {fileID: 8134503067734471806}
   - component: {fileID: 8134503067734471803}
   - component: {fileID: 8134503067734471800}
+  - component: {fileID: 178265894953237778}
   - component: {fileID: 8134503067734471801}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -16414,6 +16457,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &178265894953237778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134503067734471807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &8134503067734471801
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -16985,7 +17041,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134503067913899079}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -17662,6 +17718,7 @@ GameObject:
   - component: {fileID: 8134503068039229865}
   - component: {fileID: 8134503068039229866}
   - component: {fileID: 8134503068039229867}
+  - component: {fileID: 6896572289798953823}
   - component: {fileID: 8134503068039229864}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -17735,6 +17792,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6896572289798953823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134503068039229870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &8134503068039229864
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18569,7 +18639,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134503068174820918}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -18595,6 +18665,7 @@ GameObject:
   - component: {fileID: 8134503068206612224}
   - component: {fileID: 8134503068206612252}
   - component: {fileID: 8134503068206612253}
+  - component: {fileID: 701920685842651397}
   - component: {fileID: 8134503068206612226}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -18668,6 +18739,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &701920685842651397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134503068206612225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &8134503068206612226
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18839,7 +18923,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134503068224562798}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -19585,7 +19669,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134503068297133672}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -19643,7 +19727,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134503068326981318}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -21242,6 +21326,7 @@ GameObject:
   - component: {fileID: 8134503068552410764}
   - component: {fileID: 8134503068552410761}
   - component: {fileID: 8134503068552410766}
+  - component: {fileID: 6124069061441148568}
   - component: {fileID: 8134503068552410767}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -21315,6 +21400,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6124069061441148568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134503068552410765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &8134503068552410767
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22028,7 +22126,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134503068699466943}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -22512,7 +22610,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134503068847565305}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -24611,7 +24709,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134503069220474527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -24971,6 +25069,7 @@ GameObject:
   - component: {fileID: 8134503069303052570}
   - component: {fileID: 8134503069303052567}
   - component: {fileID: 8134503069303052564}
+  - component: {fileID: 1485495722048628151}
   - component: {fileID: 8134503069303052565}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -25044,6 +25143,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1485495722048628151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134503069303052571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &8134503069303052565
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -25616,6 +25728,7 @@ GameObject:
   - component: {fileID: 8134503069382759617}
   - component: {fileID: 8134503069382759618}
   - component: {fileID: 8134503069382759619}
+  - component: {fileID: 2131870090041409545}
   - component: {fileID: 8134503069382759616}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -25689,6 +25802,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2131870090041409545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134503069382759622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &8134503069382759616
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -26112,7 +26238,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134503069448421110}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -26236,6 +26362,7 @@ GameObject:
   - component: {fileID: 8134503069487113351}
   - component: {fileID: 8134503069487113348}
   - component: {fileID: 8134503069487113349}
+  - component: {fileID: 2115034812590260999}
   - component: {fileID: 8134503069487113354}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -26309,6 +26436,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2115034812590260999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134503069487113352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &8134503069487113354
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -26852,6 +26992,7 @@ GameObject:
   - component: {fileID: 8134503069596565190}
   - component: {fileID: 8134503069596565187}
   - component: {fileID: 8134503069596565184}
+  - component: {fileID: 4521160163386434594}
   - component: {fileID: 8134503069596565185}
   m_Layer: 0
   m_Name: Bar Hitbox
@@ -26925,6 +27066,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4521160163386434594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134503069596565191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hihat: {fileID: 0}
 --- !u!136 &8134503069596565185
 CapsuleCollider:
   m_ObjectHideFlags: 0
