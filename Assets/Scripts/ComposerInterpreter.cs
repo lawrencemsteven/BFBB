@@ -14,7 +14,7 @@ public class ComposerInterpreter : MonoBehaviour
     public float maxTime = 10f; //maximum time the timer can have, we can change this whenever
     public bool toggleTimer = true;
     public int mouseSpeed;
-    public int mode;
+    public static int mode;  //Tells us what sound type we are working with. 
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,6 @@ public class ComposerInterpreter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //All effect functions are called every frame
         //Logic is handled within the functions
         VolumeFader();
         EQ();

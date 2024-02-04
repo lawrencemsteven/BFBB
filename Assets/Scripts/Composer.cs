@@ -31,7 +31,7 @@ public class Composer : MonoBehaviour
             isFade = 1;
         }
 
-        if (Input.GetKey(KeyCode.UpArrow) && isFading == false)  //Holding the key simulates being active on the station
+        if (Input.GetKey(KeyCode.UpArrow) && !isFading)  //Holding the key simulates being active on the station
         {
             Debug.Log("Volume is now fading in");
             composerInterpreter.timerIncrement(2 * Time.deltaTime);
@@ -39,7 +39,7 @@ public class Composer : MonoBehaviour
             Debug.Log("Reset Timer to " + newTime);
             isFade = 2;
         }
-        else if (Input.GetKeyUp(KeyCode.UpArrow) && isFading == true)  //When the player stopsworking on the station or station is back to full volume
+        else if (Input.GetKeyUp(KeyCode.UpArrow) && isFading)  //When the player stopsworking on the station or station is back to full volume
         {
             Debug.Log("Volume has stopped fading in");
             composerInterpreter.setTime(10f);
