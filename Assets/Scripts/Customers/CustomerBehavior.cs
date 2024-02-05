@@ -23,9 +23,8 @@ public class CustomerBehavior : MonoBehaviour
     {
         customerManager = transform.parent.GetComponent<CustomerManager>();
         customerMesh = transform.GetChild(0).gameObject;
-        patienceMeter = customerMesh.transform.GetChild(1).gameObject;
-        hats = customerMesh.transform.GetChild(2);
-        orderText = customerMesh.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
+        patienceMeter = customerMesh.transform.GetChild(0).gameObject;
+        hats = customerMesh.transform.GetChild(1);
         moodInterval = patienceTimer / moodCount;
         DeactivateCustomer();
     }
@@ -53,7 +52,6 @@ public class CustomerBehavior : MonoBehaviour
         customerMesh.SetActive(true);
         SetHat();
         GenerateOrder();
-        Debug.Log(order);
         active = true;
         currentPatienceTimer = patienceTimer;
     }
@@ -92,7 +90,6 @@ public class CustomerBehavior : MonoBehaviour
     private void GenerateOrder()
     {
         order = Order.GenerateOrder();
-        orderText.text = order.ToString();
     }
 
     public bool IsActive() { return active; }

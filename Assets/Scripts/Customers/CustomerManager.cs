@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using Orders;
 using UnityEngine;
 
-public class CustomerManager : MonoBehaviour
+public class CustomerManager : Singleton<CustomerManager>
 {
     [SerializeField] private List<Material> moodMaterials = new List<Material>();
     private List<CustomerBehavior> customers = new List<CustomerBehavior>();
@@ -46,10 +47,27 @@ public class CustomerManager : MonoBehaviour
         CustomerBehavior selectedCustomer = disabledCustomers[Random.Range(0, disabledCustomers.Count)];
         
         selectedCustomer.ActivateCustomer();
+
+        PrepStationManager.Instance.UpdateCustomerOrders();
     }
 
     public Material GetMaterialFromMood(int mood)
     { 
         return moodMaterials[Mathf.Max(0, mood - 1)];
+    }
+
+    public Dictionary<Order, CustomerBehavior> GetAllActiveOrders()
+    {
+        Dictionary<Order, CustomerBehavior> orders = new Dictionary<Order, CustomerBehavior>();
+        
+        foreach (CustomerBehavior customer in customers)
+        {
+            if (customer.IsActive())
+            {
+                orders.Add(customer.GetOrder(), customer);
+            }
+        }
+
+        return orders;
     }
 }

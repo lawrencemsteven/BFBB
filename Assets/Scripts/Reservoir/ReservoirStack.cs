@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -36,6 +37,14 @@ public class ReservoirStack<T> where T : ReservoirItem
         items.RemoveAt(items.Count - 1);
         UpdateReservoir();
         return item;
+    }
+
+    public List<T> PopMany(int amount)
+    {
+        List<T> subList = items.GetRange(items.Count - amount, amount);
+        items.RemoveRange(items.Count - amount, amount);
+        UpdateReservoir();
+        return subList;
     }
 
     public int Count() { return items.Count; }

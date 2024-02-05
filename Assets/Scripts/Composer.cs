@@ -26,7 +26,7 @@ public class Composer : MonoBehaviour
         //Simulates event triggers for music fade in/fade out
         if (Input.GetKeyDown(KeyCode.DownArrow) || newTime <= 0f)  //Event that will be triggered when internal timer hits 0 (10 seconds), or if we trigger with down arrow
         {
-            Debug.Log("Volume is now fading out");
+            //Debug.Log("Volume is now fading out");
             isFading = true;
             isFade = 1;
         }
