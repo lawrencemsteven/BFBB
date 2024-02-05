@@ -21,21 +21,20 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PBR 22
-  m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
-  m_ValidKeywords:
+  m_Shader: {fileID: 4800000, guid: 640d51aecc3d944f6ae85f65243e76ca, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _HALFTONESHAPE_DOT
   - _OUTLINE
   - _RIMLIGHTING_ON
   - _SPECULAR_SETUP
-  - _TOON_SHADING_ON
-  m_InvalidKeywords:
   - _STEPVIARAMPTEXTURE_ON
+  - _TOON_SHADING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3050
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses:
   - SHADOWCASTER
   m_SavedProperties:
@@ -151,6 +150,7 @@ Material:
     - _FaceShadowMapEnabled: 0
     - _FaceShadowMapPow: 0.2
     - _FaceShadowSmoothness: 0.1
+    - _FillAmount: 0.228
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -185,6 +185,7 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Rim: 0.0073
     - _RimEnabled: 1
     - _RimLightAlign: 0.5
     - _RimLightSmoothness: 0.122
@@ -207,15 +208,20 @@ Material:
     - _ToonBlending: 0.608
     - _ToonEnabled: 1
     - _UseRampColor: 0
+    - _WobbleX: 0
+    - _WobbleZ: 0
     - _WorkflowMode: 0
     - _ZWrite: 0
     - _brushScale: 8
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0.83137256}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorBack: {r: 0.7, g: 1, b: 0.7, a: 0}
+    - _ColorFront: {r: 1, g: 0.7, b: 0.7, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
+    - _FoamColor: {r: 0.26415092, g: 0.095692396, b: 0.095692396, a: 1}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
@@ -225,4 +231,6 @@ Material:
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 0}
+    - _Tint: {r: 0.16037738, g: 0.11308823, b: 0.09138485, a: 1}
+    - _TopColor: {r: 0.46226418, g: 0.16310075, b: 0.16310075, a: 1}
   m_BuildTextureStacks: []

@@ -9,7 +9,7 @@ public class SwitchCamera : MonoBehaviour
     [SerializeField] private List<GameObject> cameras;
     [SerializeField] private GameObject countdown1, countdown2;
     [SerializeField] private fmodTimer timer;
-    [SerializeField] private GameObject dishStation, waffleStation, batterPourTool;
+    [SerializeField] private GameObject dishStation, waffleStation, batterPourTool, coffeeStation;
     private bool waitingToSwitch;
     private int switchReqBar;
     private FMOD.Studio.EventInstance eventInstance;
@@ -60,7 +60,6 @@ public class SwitchCamera : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4) && GlobalVariables.camState != 3)
         {
-            Debug.Log("i run!");
             countdown1.SetActive(false);
             countdown2.SetActive(false);
             switchReqBar = timer.bar;
@@ -75,9 +74,6 @@ public class SwitchCamera : MonoBehaviour
             waitingToSwitch = true;
             switchToCam = 4;
         }
-
-        Debug.Log(waitingToSwitch);
-        Debug.Log(switchToCam);
 
         if(waitingToSwitch && timer.bar != switchReqBar)
         {
@@ -101,6 +97,7 @@ public class SwitchCamera : MonoBehaviour
         dishStation.SetActive(false);
         waffleStation.SetActive(false);
         batterPourTool.SetActive(false);
+        coffeeStation.SetActive(false);
         PrepStationManager.Instance.SetRunning(false);
 
         if (cameraIndex == 0)
@@ -111,6 +108,10 @@ public class SwitchCamera : MonoBehaviour
         {
             waffleStation.SetActive(true);
             batterPourTool.SetActive(true);
+        }
+        else if (cameraIndex == 2)
+        {
+            coffeeStation.SetActive(true);
         }
         else if (cameraIndex == 3)
         {
