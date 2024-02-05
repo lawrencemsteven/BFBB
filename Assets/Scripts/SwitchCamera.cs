@@ -14,7 +14,7 @@ public class SwitchCamera : MonoBehaviour
     public int CamState;
     public fmodTimer timer;
     public bool waitingToSwitch;
-    public GameObject dishStation, waffleStation, batterPourTool;
+    public GameObject dishStation, waffleStation, batterPourTool, coffeeStation;
     public int switchReqBar;
     public FMOD.Studio.EventInstance eventInstance;
     public int switchToCam;
@@ -142,6 +142,7 @@ public class SwitchCamera : MonoBehaviour
         dishStation.SetActive(false);
         waffleStation.SetActive(true);
         batterPourTool.SetActive(true);
+        coffeeStation.SetActive(false);
     }
 
     void Cam_2()
@@ -154,6 +155,7 @@ public class SwitchCamera : MonoBehaviour
         dishStation.SetActive(false);
         waffleStation.SetActive(false);
         batterPourTool.SetActive(false);
+        coffeeStation.SetActive(false);
     }
 
     void Cam_3()
@@ -166,6 +168,7 @@ public class SwitchCamera : MonoBehaviour
         dishStation.SetActive(true);
         waffleStation.SetActive(false);
         batterPourTool.SetActive(false);
+        coffeeStation.SetActive(false);
         Camera_5.SetActive(false);
 
     }
@@ -180,6 +183,7 @@ public class SwitchCamera : MonoBehaviour
         dishStation.SetActive(false);
         waffleStation.SetActive(false);
         batterPourTool.SetActive(false);
+        coffeeStation.SetActive(false);
     }
 
     void Cam_5()
@@ -192,5 +196,6 @@ public class SwitchCamera : MonoBehaviour
         dishStation.SetActive(false);
         waffleStation.SetActive(false);
         batterPourTool.SetActive(false);
+        coffeeStation.SetActive(true);
     }
 }
