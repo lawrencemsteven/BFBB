@@ -22,6 +22,7 @@ public class PancakeMarker : MonoBehaviour
         timeToComplete = (8 / bpm) * 60;
         lineRenderer.positionCount = segments;
         CreateMarker();
+        GlobalVariables.pancakeStationActive = true;
     }
 
     void CreateMarker()
@@ -37,6 +38,11 @@ public class PancakeMarker : MonoBehaviour
 
         Vector3 spiralPoint = lineRenderer.GetPosition(index);
         marker.transform.localPosition = new Vector3(spiralPoint.x, marker.transform.localPosition.y, spiralPoint.z);
+    }
+
+    public Vector3 getMarkerPosition()
+    {
+        return marker.transform.localPosition;
     }
 
     void Update()

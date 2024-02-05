@@ -124,6 +124,11 @@ public class ComposerInterpreter : MonoBehaviour
     {
         mode = state;
     }
+
+    public static void setPosition(Vector3 newPos)
+    {
+        GlobalVariables.markerPos = newPos;
+    }
     
 
 }

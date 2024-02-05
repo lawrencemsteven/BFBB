@@ -38,4 +38,6 @@ public class PancakeHitDetector : MonoBehaviour
             other.GetComponent<PointIsHittable>().SetHittable(false);
         }
     }
+
+ 
 }

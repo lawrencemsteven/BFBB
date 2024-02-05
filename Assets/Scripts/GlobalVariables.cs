@@ -15,4 +15,7 @@ public class GlobalVariables : MonoBehaviour
     public static int notesHit = 0;
     public static int missCounter = 0;
     public static int streak = 0;
+    public static Vector3 markerPos;
+    public static Vector3 mousePos;
+    public static bool pancakeStationActive = false;
 }

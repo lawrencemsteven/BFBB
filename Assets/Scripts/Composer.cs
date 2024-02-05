@@ -67,6 +67,8 @@ public class Composer : MonoBehaviour
                 composerInterpreter.stopBatter();
             }
         }
+
+       // if (GlobalVariables.pancakeStationActive )
     }
 
 }

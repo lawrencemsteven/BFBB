@@ -28,11 +28,13 @@ public class SmudgeCollision : MonoBehaviour
         print(collider.gameObject.tag);
         if(collider.gameObject.tag == "Sponge")
         {
+            Debug.Log("SPONGE");
             spongeColliding = true;
         }
 
         if(collider.gameObject.tag == "Bar")
         {
+            Debug.Log("BAR");
             barColliding = true;
         }
     }

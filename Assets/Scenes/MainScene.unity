@@ -1310,7 +1310,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
+  m_Radius: 2
   m_Height: 16.45
   m_Direction: 2
   m_Center: {x: 0.000000059604645, y: 0.23, z: -0.00000008940697}
@@ -18672,6 +18672,7 @@ MonoBehaviour:
   debugTimer: 0
   isFading: 0
   eqEffect: 0
+  isFade: 0
 --- !u!114 &1171260587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18688,6 +18689,10 @@ MonoBehaviour:
   composer: {fileID: 0}
   fadeRate: 0.1
   eqChangeRate: 0.1
+  countdownTimer: 10
+  maxTime: 10
+  toggleTimer: 1
+  mouseSpeed: 0
 --- !u!4 &1191933397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2076373412640554731, guid: 671da3eb1888a734bb28af4da6c9eb99, type: 3}
@@ -23664,7 +23669,6 @@ MonoBehaviour:
   upDownMovement2: {fileID: 308573358}
   upDownMovement3: {fileID: 308573359}
   ready: {fileID: 517238505}
-  reservoir: {fileID: 0}
 --- !u!1 &2084667062
 GameObject:
   m_ObjectHideFlags: 0
@@ -29305,10 +29309,10 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249818035357387770}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 3
+  m_Height: 30
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!95 &1249818035357387767
@@ -29345,13 +29349,29 @@ GameObject:
   - component: {fileID: 1249818035357387761}
   - component: {fileID: 1249818035357387766}
   - component: {fileID: 1249818035357387767}
+  - component: {fileID: 1249818035357387771}
   m_Layer: 0
   m_Name: Brown Smudge (2)
-  m_TagString: Untagged
+  m_TagString: Smudge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1249818035357387771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249818035357387770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e610dfad849b643845c48ffad00c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spongeColliding: 0
+  barColliding: 0
+  barExit: 0
 --- !u!64 &1249818035359073404
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32261,9 +32281,9 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249818035789748085}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5000001
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -32282,7 +32302,7 @@ GameObject:
   - component: {fileID: 308573358}
   m_Layer: 0
   m_Name: Bar
-  m_TagString: Untagged
+  m_TagString: Bar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32600,7 +32620,7 @@ MeshCollider:
   m_GameObject: {fileID: 1249818035857979602}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -33464,10 +33484,10 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249818035984413775}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 3
+  m_Height: 30
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1249818035984413775
@@ -33483,13 +33503,29 @@ GameObject:
   - component: {fileID: 1249818035984413770}
   - component: {fileID: 1249818035984413771}
   - component: {fileID: 1249818035984413768}
+  - component: {fileID: 1249818035984413776}
   m_Layer: 0
   m_Name: Brown Smudge (3)
-  m_TagString: Untagged
+  m_TagString: Smudge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1249818035984413776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249818035984413775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e610dfad849b643845c48ffad00c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spongeColliding: 0
+  barColliding: 0
+  barExit: 0
 --- !u!33 &1249818035999723357
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -33953,7 +33989,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249818036102057487}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4f51f9b03f26e4a8a089c4a6bc284e, type: 3}
   m_Name: 
@@ -33978,6 +34014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1249818036102057481}
   - component: {fileID: 1249818036102057486}
+  - component: {fileID: 1249818036102057488}
   m_Layer: 0
   m_Name: Smudges
   m_TagString: Untagged
@@ -33985,6 +34022,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1249818036102057488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249818036102057487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06706cab988c2fd4088362b3b909ac68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smudgeColliders: []
+  i: 0
+  hihat: {fileID: 496068801}
+  bar: {fileID: 308573358}
+  hihatFmod: {fileID: 2066864611}
 --- !u!23 &1249818036105753480
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34555,10 +34609,10 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249818036221182462}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 3
+  m_Height: 30
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!95 &1249818036221182459
@@ -34595,13 +34649,29 @@ GameObject:
   - component: {fileID: 1249818036221182453}
   - component: {fileID: 1249818036221182458}
   - component: {fileID: 1249818036221182459}
+  - component: {fileID: 1249818036221182463}
   m_Layer: 0
   m_Name: Brown Smudge
-  m_TagString: Untagged
+  m_TagString: Smudge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1249818036221182463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249818036221182462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e610dfad849b643845c48ffad00c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spongeColliding: 0
+  barColliding: 0
+  barExit: 0
 --- !u!4 &1249818036231125832
 Transform:
   m_ObjectHideFlags: 0
@@ -60662,7 +60732,7 @@ Transform:
   m_GameObject: {fileID: 8432815034929485987}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 5.161, y: 2.611, z: -5.31}
-  m_LocalScale: {x: 0.01, y: 0.40000018, z: 0.01}
+  m_LocalScale: {x: 0.009999998, y: 0.40000024, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1249818036854060599}
