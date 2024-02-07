@@ -155,7 +155,7 @@ public class CoffeeStationController : MonoBehaviour
 
         if (current == 2)
         {
-            Debug.Log("coffee pot should move");
+            //Debug.Log("coffee pot should move");
             coffeeMousePos = Input.mousePosition;
             coffeePot.transform.position = coffeeCam.ScreenToWorldPoint(new Vector3(coffeeMousePos.x, coffeeMousePos.y, 2f));
 

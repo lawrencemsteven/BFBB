@@ -11,7 +11,6 @@ public class ParameterScript : MonoBehaviour
     public UpDownMovement upDownMovement1;
     public UpDownMovement upDownMovement2;
     public UpDownMovement upDownMovement3;
-    public DishManager dishManager;
 
     public MusicController musicController;
     public FreeSpongeMovement sponge1;
@@ -64,7 +63,7 @@ public class ParameterScript : MonoBehaviour
 
     public void changePlateSize(float scaleBy)
     {
-        dishManager.scale = scaleBy;
+        DishStationManager.Instance.SetScale(scaleBy);
     }
 
 }
