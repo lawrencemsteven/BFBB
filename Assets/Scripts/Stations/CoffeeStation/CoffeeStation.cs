@@ -2,46 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoffeeStationController : MonoBehaviour
+public class CoffeeStation : Station
 {
-    public GameObject coffeeStationDeco;
-    public GameObject customerMug;
-    public GameObject coffeePot;
-    public ParticleSystem coffeeParticle;
-    public GameObject sugar;
-    public ParticleSystem sugarParticle;
-    public GameObject cream;
-    public ParticleSystem creamParticle;
-    public Camera coffeeCam;
+    [SerializeField] private GameObject coffeeStationDeco;
+    [SerializeField] private GameObject customerMug;
+    [SerializeField] private GameObject coffeePot;
+    [SerializeField] private ParticleSystem coffeeParticle;
+    [SerializeField] private GameObject sugar;
+    [SerializeField] private ParticleSystem sugarParticle;
+    [SerializeField] private GameObject cream;
+    [SerializeField] private ParticleSystem creamParticle;
 
-    public GameObject[] waypoints;
-    public int current = 0;
+    [SerializeField] private GameObject[] waypoints;
+    [SerializeField] private int current = 0;
     private float waypointRadius = .1f;
 
-    private float currentMoveSpeed;
     private float baseMoveSpeed;
-    private float pouringAreaMoveSpeed;
 
-    public float bpm = 135f;
+    [SerializeField] private float bpm = 135f;
     private float travelDistance;
     private float time;
 
-    private Vector3 iniMousePos;
     private Vector3 coffeeMousePos;
     private Vector3 iniPotPos;
     private Vector3 iniCreamPos;
     private Vector3 initialCoffeePourBarSize;
     private Vector3 initialCreamPourBarSize;
 
-    public float coffeePourTime = 0f;
+    [SerializeField] private float coffeePourTime = 0f;
     private float idealCoffeePourTime;
     private float coffeePourPercentage;
-    public GameObject coffeePourBar;
+    [SerializeField] private GameObject coffeePourBar;
 
-    public float creamPourTime = 0f;
+    [SerializeField] private float creamPourTime = 0f;
     private float idealCreamPourTime;
     private float creamPourPercentage;
-    public GameObject creamPourBar;
+    [SerializeField] private GameObject creamPourBar;
 
     private float coffeeDistanceFromMug;
     private float creamDistanceFromMug;
@@ -51,15 +47,15 @@ public class CoffeeStationController : MonoBehaviour
     private bool pouring = false;
     private bool sugarEnabled;
 
-    public GameObject instructions;
+    [SerializeField] private GameObject instructions;
 
-    public int pointTotal = 0;
+    [SerializeField] private int pointTotal = 0;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        time = (8f / (bpm / 60f));
+        time = 8f / (bpm / 60f);
         travelDistance = Vector3.Distance(waypoints[0].transform.position, waypoints[waypoints.Length - 1].transform.position);
         baseMoveSpeed = travelDistance / time;
 
@@ -84,6 +80,11 @@ public class CoffeeStationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!running)
+        {
+            return;
+        }
+
         if (customerMugMoving)
         {
             if (Vector3.Distance(waypoints[current].transform.position, customerMug.transform.position) < waypointRadius)
@@ -157,7 +158,7 @@ public class CoffeeStationController : MonoBehaviour
         {
             //Debug.Log("coffee pot should move");
             coffeeMousePos = Input.mousePosition;
-            coffeePot.transform.position = coffeeCam.ScreenToWorldPoint(new Vector3(coffeeMousePos.x, coffeeMousePos.y, 2f));
+            coffeePot.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(coffeeMousePos.x, coffeeMousePos.y, 2f));
 
 
             if (pouring)
@@ -198,7 +199,7 @@ public class CoffeeStationController : MonoBehaviour
         else if (current == 4)
         {
             coffeeMousePos = Input.mousePosition;
-            cream.transform.position = coffeeCam.ScreenToWorldPoint(new Vector3(coffeeMousePos.x, coffeeMousePos.y, 2f));
+            cream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(coffeeMousePos.x, coffeeMousePos.y, 2f));
 
             if (pouring)
             {

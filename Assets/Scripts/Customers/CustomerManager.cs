@@ -48,7 +48,7 @@ public class CustomerManager : Singleton<CustomerManager>
         
         selectedCustomer.ActivateCustomer();
 
-        PrepStationManager.Instance.UpdateCustomerOrders();
+        Stations.Prep.UpdateCustomerOrders();
     }
 
     public Material GetMaterialFromMood(int mood)

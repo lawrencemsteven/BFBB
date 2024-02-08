@@ -6,11 +6,11 @@ public class DishAnimationEvents : MonoBehaviour
 {
     public void RefreshPlate()
     {
-        DishStationManager.Instance.RefreshPlate();
+        Stations.Dish.RefreshPlate();
     }
 
     public void EndPlateMovement()
     {
-        DishStationManager.Instance.EndPlateMovement();
+        Stations.Dish.EndPlateMovement();
     }
 }

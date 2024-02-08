@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DishStationManager : Singleton<DishStationManager>
+public class DishStation : Station
 {
     private List<GameObject> rhythms = new List<GameObject>();
     private GameObject plate;
@@ -44,7 +44,7 @@ public class DishStationManager : Singleton<DishStationManager>
         {
             ready.SetActive(false);
         }
-        if (!animationInProgress)
+        if (!animationInProgress && running)
         {
             objectBounds = plate.GetComponent<Renderer>().bounds;
             bottomY = objectBounds.min.y;
@@ -98,11 +98,6 @@ public class DishStationManager : Singleton<DishStationManager>
         plate.transform.position = new Vector3(initialPos.x, initialPos.y, initialPos.z);
         
         bar.GetComponent<UpDownMovement>().UpdatePlateBounds();
-    }
-
-    private void ContinueDelay()
-    {
-        animationInProgress = false;
     }
 
     public GameObject GetPlate() { return plate; }

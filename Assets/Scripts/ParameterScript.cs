@@ -63,7 +63,7 @@ public class ParameterScript : MonoBehaviour
 
     public void changePlateSize(float scaleBy)
     {
-        DishStationManager.Instance.SetScale(scaleBy);
+        Stations.Dish.SetScale(scaleBy);
     }
 
 }

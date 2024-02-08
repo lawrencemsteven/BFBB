@@ -3,14 +3,14 @@ using Orders;
 using TMPro;
 using System.Collections.Generic;
 
-public class PrepStationManager : Singleton<PrepStationManager>
+public class PrepStation : Station
 {
     [SerializeField] private GameObject prepStationUI;
     [SerializeField] private GameObject orderPrefab;
     private Transform orderList;
-    private bool running;
     private Order preppedOrder;
     private TextMeshProUGUI orderLabel;
+
 
     public void Start()
     {
@@ -104,7 +104,5 @@ public class PrepStationManager : Singleton<PrepStationManager>
         orderLabel.text = "";
     }
     public Order GetPreppedOrder() { return preppedOrder; }
-
-    public bool IsRunning() { return running; }
     public void SetRunning(bool running) { this.running = running; }
 }

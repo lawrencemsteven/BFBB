@@ -32,9 +32,9 @@ public class HitDetector : MonoBehaviour
             hihatFmod = GameObject.Find("HiHat").GetComponent<HiHatFmod>();
         }
 
-        plate = DishStationManager.Instance.GetPlate();
-        bar = DishStationManager.Instance.GetBar();
-        sponge = DishStationManager.Instance.GetSponge();
+        plate = Stations.Dish.GetPlate();
+        bar = Stations.Dish.GetBar();
+        sponge = Stations.Dish.GetSponge();
         
         foreach (Transform smudge in transform)
         {
