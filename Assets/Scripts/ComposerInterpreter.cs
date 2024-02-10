@@ -91,7 +91,7 @@ public class ComposerInterpreter : MonoBehaviour
 
     public void spongeOnPlate() //This function is called from "SpongeAsCursor" and only triggers on collision stay and if the mouse is moving.
     {
-        Debug.Log("Sponge is on Plate");
+        //Debug.Log("Sponge is on Plate");
     }
 
     public void pourBatter() //implement fmod sound here

@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class EggRotate : MonoBehaviour
 {
-    public GameObject camera;
-    public GameObject camera2;
-    public GameObject egg;
     public Animator anim;
-
     void Update()
     {
-        if (camera.activeSelf)
-        {
-            anim.SetBool("CamActive", true);
-        }
-        else if (camera2.activeSelf)
+        bool coffeeCamActive = Stations.Coffee.GetAssociatedCamera().gameObject.activeSelf;
+
+        if (coffeeCamActive && anim.GetBool("CamActive"))
         {
             anim.SetBool("CamActive", false);
+        }
+        else if (!coffeeCamActive && !anim.GetBool("CamActive"))
+        {
+            anim.SetBool("CamActive", true);
         }
     }
 
