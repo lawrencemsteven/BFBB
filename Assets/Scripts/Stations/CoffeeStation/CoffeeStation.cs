@@ -23,6 +23,7 @@ public class CoffeeStation : Station
     private float travelDistance;
     private float time;
 
+    private Vector2 iniMousePos;
     private Vector3 coffeeMousePos;
     private Vector3 iniPotPos;
     private Vector3 iniCreamPos;
@@ -90,6 +91,7 @@ public class CoffeeStation : Station
             if (Vector3.Distance(waypoints[current].transform.position, customerMug.transform.position) < waypointRadius)
             {
                 current++;
+
 
                 if (current >= waypoints.Length)
                 {
@@ -177,15 +179,16 @@ public class CoffeeStation : Station
                     coffeePourBar.transform.localScale += new Vector3(0f, .005f, 0f);
                     //add sound effects for when the coffee is hitting or not
                 }
-            }
 
-            if (coffeePourTime >= idealCoffeePourTime && coffeePourTime <= idealCoffeePourTime + .2f)
-            {
-                coffeePourBar.GetComponent<Renderer>().material.color = Color.green;
-            }
-            else
-            {
-                coffeePourBar.GetComponent<Renderer>().material.color = Color.red;
+
+                if (coffeePourTime >= idealCoffeePourTime && coffeePourTime <= idealCoffeePourTime + .2f)
+                {
+                    coffeePourBar.GetComponent<Renderer>().material.color = Color.green;
+                }
+                else
+                {
+                    coffeePourBar.GetComponent<Renderer>().material.color = Color.red;
+                }
             }
 
         }
@@ -255,26 +258,20 @@ public class CoffeeStation : Station
                 instructions.SetActive(true);
 
             }
+            else if(current == 2 || current == 4) 
+            {
+                iniMousePos = Input.mousePosition;
+            }
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (Input.GetMouseButtonUp(0)) 
         {
-            //pouring starts
-            if (current == 2 || current == 4)
+            if((current == 2 || current ==4) && Input.mousePosition.y > iniMousePos.y + .25f)
             {
                 pouring = true;
             }
-        } 
-        else if(Input.GetAxis("Mouse ScrollWheel") < 0)
-        {
-            //pouring stops
-            if(current == 2 || current == 4)
-            {
-                pouring = false;
-                coffeePot.GetComponentInChildren<ParticleSystem>().Stop();
-                cream.GetComponentInChildren<ParticleSystem>().Stop();
-            }
         }
+
 
         if (Input.GetKeyDown(KeyCode.Space) && sugarEnabled && customerMugMoving)
         {
@@ -282,15 +279,18 @@ public class CoffeeStation : Station
             sugarParticle.Emit(20);
             sugarDistanceFromMug = System.Math.Abs(sugarParticle.transform.position.x - customerMug.transform.position.x);
 
-            if (sugarDistanceFromMug <= .01)
+            if (sugarDistanceFromMug <= .1)
             {
                 pointTotal += 3;
                 Debug.Log("Ive never seen a better sugar pour!");
             }
-            else if (sugarDistanceFromMug < .025)
+            else if (sugarDistanceFromMug < .25)
             {
                 pointTotal += 1;
                 Debug.Log("Almost! keep practicing high five");
+            }
+            else {
+                Debug.Log("No sugar even got in you worthless failure");
             }
         }
     }
