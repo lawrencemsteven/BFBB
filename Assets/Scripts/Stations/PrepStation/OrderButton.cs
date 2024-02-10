@@ -11,11 +11,11 @@ public class OrderButton : MonoBehaviour
 
     public void CheckOrder()
     {
-        if (Order.Equals(PrepStationManager.Instance.GetPreppedOrder(), associatedOrder))
+        if (Order.Equals(Stations.Prep.GetPreppedOrder(), associatedOrder))
         {
             associatedCustomer.DeactivateCustomer();
-            PrepStationManager.Instance.NullifyPreppedOrder();
-            PrepStationManager.Instance.UpdateCustomerOrders();
+            Stations.Prep.NullifyPreppedOrder();
+            Stations.Prep.UpdateCustomerOrders();
             if (associatedOrder.GetMainCourse() == MainCourse.PANCAKE)
             {
                 ReservoirManager.GetPancakes().PopMany(associatedOrder.GetMainCourseCount());

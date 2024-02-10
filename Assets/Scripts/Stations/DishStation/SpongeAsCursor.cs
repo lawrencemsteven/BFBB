@@ -32,7 +32,7 @@ public class SpongeAsCursor : MonoBehaviour
 
         Ray ray = dishWashingCamera.ScreenPointToRay(Input.mousePosition);
         Vector3 targetPosition = ray.GetPoint(offset);
-        transform.localPosition = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
+        transform.position = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
     }
 
     void OnTriggerStay(Collider other)
