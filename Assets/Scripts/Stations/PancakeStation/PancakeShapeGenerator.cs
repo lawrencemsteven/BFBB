@@ -5,7 +5,9 @@ using UnityEngine;
 public class PancakeShapeGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject samplePoint;
+    [SerializeField] private IsShapeCovered isShapeCovered;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private PancakeMarkerManager markerManager;
     public List<Vector2> coordinates;
 
     void Start()
@@ -14,6 +16,7 @@ public class PancakeShapeGenerator : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.useWorldSpace = false;
         GenerateShape();
+        isShapeCovered.SetupColliders();
     }
 
     public void GenerateShape()
@@ -28,5 +31,6 @@ public class PancakeShapeGenerator : MonoBehaviour
             lineRenderer.SetPosition(i, position);
             i++;
         }
+        markerManager.segments = coordinates.Count;
     }
 }
