@@ -23,6 +23,7 @@ public class CoffeeStation : Station
     private float travelDistance;
     private float time;
 
+    private Vector2 iniMousePos;
     private Vector3 coffeeMousePos;
     private Vector3 iniPotPos;
     private Vector3 iniCreamPos;
