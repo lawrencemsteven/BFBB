@@ -11,15 +11,16 @@ public class WaffleStationManager : MonoBehaviour
     public Camera stationCamera;
     public Animator waffleMakerAnim;
     public float bpm = 135f;
+    public WaffleBatterPour waffleBatterPour;
+    public fmodTimer timer;
     public GameObject pancakePrefab, waffle, waffleFill, marker1, marker2, marker3, marker4, marker5, marker6, shape1, shape2, shape3, shape4, shape5, shape6;
     private int positionFlipped = 0, positionPancakeSpawn = 0, positionPancakeFlip = 0;
     private float elapsedTime = 0, timeToComplete;
-    private bool pancakeFlipped = false, waffleFlipped = false;
+    private bool pancakeFlipped = false, waffleFlipped = false, pointsSet = false;
     public TextMeshProUGUI countdown, pancakeCountdown;
     public IsShapeCovered isShapeCovered;
     private ShapeGenerator sg1, sg2, sg3, sg4, sg5, sg6;
-    public WaffleBatterPour waffleBatterPour;
-    public fmodTimer timer;
+
     private Animator pancake1Anim;
     private GameObject pancake1, pancake2, pancake3, pancake4, pancake5, pancake6;
     private List<ShapeGenerator> sgs = new List<ShapeGenerator>();
@@ -30,99 +31,59 @@ public class WaffleStationManager : MonoBehaviour
     {
         timeToComplete = (8 / bpm) * 60;
         waffleBatterPour.isClosed = false;
-        sg1 = shape1.GetComponent<ShapeGenerator>();
-        sg2 = shape2.GetComponent<ShapeGenerator>();
-        sg3 = shape3.GetComponent<ShapeGenerator>();
-        sg4 = shape4.GetComponent<ShapeGenerator>();
-        sg5 = shape5.GetComponent<ShapeGenerator>();
-        sg6 = shape6.GetComponent<ShapeGenerator>();
-        sgs.Add(sg1);
-        sgs.Add(sg2);
-        sgs.Add(sg3);
-        sgs.Add(sg4);
-        sgs.Add(sg5);
-        sgs.Add(sg6);
-        pancakes.Add(pancake1);
-        pancakes.Add(pancake2);
-        pancakes.Add(pancake3);
-        pancakes.Add(pancake4);
-        pancakes.Add(pancake5);
-        pancakes.Add(pancake6);
-        markers.Add(marker1);
-        markers.Add(marker2);
-        markers.Add(marker3);
-        markers.Add(marker4);
-        markers.Add(marker5);
-        markers.Add(marker6);
-
+        SetLists();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!pointsSet)
+        {
+            isShapeCovered.SetPoints();
+            pointsSet = true;
+        }
         elapsedTime += Time.deltaTime;
         waffleMakerAnim.SetTrigger("Open");
         
         if (elapsedTime >= timeToComplete)
         {
-            if (isShapeCovered.GetNumOfColliders().ToArray()[0] < 3)
+            if (isShapeCovered.GetNumOfHitColliders().ToArray()[0] <10)
             {
-                Debug.Log("Marker should go away");
                 pancake1 = Instantiate(pancakePrefab, shape1.transform.position, shape1.transform.rotation);
                 pancake1Anim = pancake1.GetComponent<Animator>();
                 positionPancakeSpawn = timer.position;
-                marker1.SetActive(false);
             }
-            if (isShapeCovered.GetNumOfColliders().ToArray()[1] < 3)
+            if (isShapeCovered.GetNumOfHitColliders().ToArray()[1] < 10)
             {
                 pancake2 = Instantiate(pancakePrefab, shape2.transform.position, shape2.transform.rotation);
-                //pancake2.SetActive(true);
-                //positionPancakeSpawn = timer.position;
-                marker2.SetActive(false);
             }
-            if (isShapeCovered.GetNumOfColliders().ToArray()[2] < 3)
+            if (isShapeCovered.GetNumOfHitColliders().ToArray()[2] < 10)
             {
                 pancake3 = Instantiate(pancakePrefab, shape3.transform.position, shape3.transform.rotation);
-                //pancake3.SetActive(true);
-                //positionPancakeSpawn = timer.position;
-                marker3.SetActive(false);
             }
-            if (isShapeCovered.GetNumOfColliders().ToArray()[3] < 3)
+            if (isShapeCovered.GetNumOfHitColliders().ToArray()[3] < 10)
             {
                 pancake4 = Instantiate(pancakePrefab, shape4.transform.position, shape4.transform.rotation);
-                //pancake4.SetActive(true);
-                //positionPancakeSpawn = timer.position;
-                marker4.SetActive(false);
             }
-            if (isShapeCovered.GetNumOfColliders().ToArray()[4] < 3)
+            if (isShapeCovered.GetNumOfHitColliders().ToArray()[4] < 10)
             {
-                pancake5 = Instantiate(pancakePrefab, shape4.transform.position, shape4.transform.rotation);
-                //pancake4.SetActive(true);
-                //positionPancakeSpawn = timer.position;
-                marker5.SetActive(false);
+                pancake5 = Instantiate(pancakePrefab, shape5.transform.position, shape5.transform.rotation);
             }
-            if (isShapeCovered.GetNumOfColliders().ToArray()[5] < 3)
+            if (isShapeCovered.GetNumOfHitColliders().ToArray()[5] < 10)
             {
-                pancake6 = Instantiate(pancakePrefab, shape4.transform.position, shape4.transform.rotation);
-                //pancake4.SetActive(true);
-                //positionPancakeSpawn = timer.position;
-                marker6.SetActive(false);
+                pancake6 = Instantiate(pancakePrefab, shape6.transform.position, shape6.transform.rotation);
             }
 
             elapsedTime = 0;
-            for (int i = 0; i < isShapeCovered.GetNumOfColliders().Count; i++)
+            //isShapeCovered.SetPoints();
+            for (int i = 0; i < isShapeCovered.GetNumOfHitColliders().Count; i++)
             {
-                if (isShapeCovered.GetNumOfColliders()[i] >= 3)
+                if (isShapeCovered.GetNumOfHitColliders()[i] >= 10)
                 {
                     sgs[i].UpdateMarkerPosition(0);
                 }
-                else
-                {
-                    markers[i].SetActive(false);
-                }
             }
         }
-
         else
         {
             sg1.UpdateMarkerPosition(elapsedTime);
@@ -202,5 +163,33 @@ public class WaffleStationManager : MonoBehaviour
             Debug.Log("Counting finished!");
         }
 
+    }
+
+    void SetLists()
+    {
+        sg1 = shape1.GetComponent<ShapeGenerator>();
+        sg2 = shape2.GetComponent<ShapeGenerator>();
+        sg3 = shape3.GetComponent<ShapeGenerator>();
+        sg4 = shape4.GetComponent<ShapeGenerator>();
+        sg5 = shape5.GetComponent<ShapeGenerator>();
+        sg6 = shape6.GetComponent<ShapeGenerator>();
+        sgs.Add(sg1);
+        sgs.Add(sg2);
+        sgs.Add(sg3);
+        sgs.Add(sg4);
+        sgs.Add(sg5);
+        sgs.Add(sg6);
+        pancakes.Add(pancake1);
+        pancakes.Add(pancake2);
+        pancakes.Add(pancake3);
+        pancakes.Add(pancake4);
+        pancakes.Add(pancake5);
+        pancakes.Add(pancake6);
+        markers.Add(marker1);
+        markers.Add(marker2);
+        markers.Add(marker3);
+        markers.Add(marker4);
+        markers.Add(marker5);
+        markers.Add(marker6);
     }
 }

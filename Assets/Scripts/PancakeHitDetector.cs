@@ -6,6 +6,7 @@ public class PancakeHitDetector : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform shape;
+    public IsShapeCovered isc;
     private List<GameObject> points = new List<GameObject>();
     void Start()
     {

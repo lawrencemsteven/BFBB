@@ -7,7 +7,7 @@ public class WaffleStationCursor : MonoBehaviour
     public Camera waffleCamera;
     public ParticleSystem batter;
     public Material squeezed, unsqueezed;
-    private float offset = 0.70f;
+    public float offset = 0.85f;
     private Renderer bottleRenderer;
 
     // Start is called before the first frame update

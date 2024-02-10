@@ -1,83 +1,116 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+
+
+
+public class PointData
+{
+    public GameObject gameObject;
+    public bool isHit;
+}
 
 public class IsShapeCovered : MonoBehaviour
 {
     public GameObject shape1, shape2, shape3, shape4, shape5, shape6;
-    private List<GameObject> points = new List<GameObject>();
-    private List<GameObject> points2 = new List<GameObject>();
-    private List<GameObject> points3 = new List<GameObject>();
-    private List<GameObject> points4 = new List<GameObject>();
-    private List<GameObject> points5 = new List<GameObject>();
-    private List<GameObject> points6 = new List<GameObject>();
-    // Start is called before the first frame update
-    void Start()
+    public int currentMarkerPos = 0;
+    private List<PointData> points = new List<PointData>();
+    private List<PointData> points2 = new List<PointData>();
+    private List<PointData> points3 = new List<PointData>();
+    private List<PointData> points4 = new List<PointData>();
+    private List<PointData> points5 = new List<PointData>();
+    private List<PointData> points6 = new List<PointData>();
+
+    public void SetPoints()
     {
-        for (int i = 0; i < shape1.transform.childCount; i++)
+        Debug.Log("Setting points");
+        SetPointDataList(shape1, points);
+        SetPointDataList(shape2, points2);
+        SetPointDataList(shape3, points3);
+        SetPointDataList(shape4, points4);
+        SetPointDataList(shape5, points5);
+        SetPointDataList(shape6, points6);
+    }
+
+    private void SetPointDataList(GameObject shape, List<PointData> pointList)
+    {
+        Debug.Log("Collider count for " +  shape.gameObject+ " : " + shape.transform.childCount);
+        for (int i = 0; i < shape.transform.childCount - 1; i++)
         {
-            Transform point = shape1.transform.GetChild(i);
-            points.Add(point.gameObject);
-        }
-        for (int i = 0; i < shape2.transform.childCount; i++)
-        {
-            Transform point = shape2.transform.GetChild(i);
-            points2.Add(point.gameObject);
-        }
-        for (int i = 0; i < shape3.transform.childCount; i++)
-        {
-            Transform point = shape3.transform.GetChild(i);
-            points3.Add(point.gameObject);
-        }
-        for (int i = 0; i < shape4.transform.childCount; i++)
-        {
-            Transform point = shape4.transform.GetChild(i);
-            points4.Add(point.gameObject);
-        }
-        for (int i = 0; i < shape5.transform.childCount; i++)
-        {
-            Transform point = shape5.transform.GetChild(i);
-            points5.Add(point.gameObject);
-        }
-        for (int i = 0; i < shape6.transform.childCount; i++)
-        {
-            Transform point = shape6.transform.GetChild(i);
-            points6.Add(point.gameObject);
+            Transform point = shape.transform.GetChild(i);
+            pointList.Add(new PointData { gameObject = point.gameObject, isHit = false });
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
-    public List<int> GetNumOfColliders()
+    public List<int> GetNumOfHitColliders()
     {
         List<int> numOfColliders = new List<int>();
-        numOfColliders.Add(points.Count);
-        numOfColliders.Add(points2.Count);
-        numOfColliders.Add(points3.Count);
-        numOfColliders.Add(points4.Count);
-        numOfColliders.Add(points5.Count);
-        numOfColliders.Add(points6.Count);
+
+        List<List<PointData>> pointDataLists = new List<List<PointData>>
+        {
+            points,
+            points2,
+            points3,
+            points4,
+            points5,
+            points6
+        };
+
+        
+
+        foreach(List<PointData> points in pointDataLists)
+        {
+            int num = points.Count;
+            foreach(PointData point in points)
+            {
+                Debug.Log("Returning point data: " + point.gameObject.transform.parent.gameObject + " " + point.isHit + num);
+                if (point.isHit){
+                    num -= 1;
+                }
+
+            }
+            numOfColliders.Add(num);
+        }
         return numOfColliders;
+    }
+
+    public void SetCurrentMarkerPos(GameObject shape, int pos){
+        shape.GetComponent<ShapeGenerator>().currentMarkerPos = pos;
+    
+    }
+
+    private void SetColliderToHit(GameObject collider, List<PointData> points)
+    {
+        foreach (PointData point in points)
+        {   
+            if (point.gameObject == collider)
+            {
+                Debug.Log(point.gameObject.transform.parent.gameObject);
+                point.isHit = true;
+                return;
+            }
+        }
     }
 
     private void OnParticleCollision(GameObject other)
     {
         PointIsHittable hittableComponent = other.GetComponent<PointIsHittable>();
-
+        
         if (other.transform.parent != null)
         {
             if (other.transform.parent.gameObject == shape1)
             {
                 if (hittableComponent != null)
                 {
-
                     if (hittableComponent.GetHittable() == true)
                     {
-                        points.Remove(other);
+                        SetColliderToHit(other, points);
                     }
 
                 }
@@ -89,7 +122,7 @@ public class IsShapeCovered : MonoBehaviour
 
                     if (hittableComponent.GetHittable() == true)
                     {
-                        points2.Remove(other);
+                        SetColliderToHit(other, points2);
                     }
 
                 }
@@ -101,7 +134,7 @@ public class IsShapeCovered : MonoBehaviour
 
                     if (hittableComponent.GetHittable() == true)
                     {
-                        points3.Remove(other);
+                        SetColliderToHit(other, points3);
                     }
 
                 }
@@ -113,7 +146,7 @@ public class IsShapeCovered : MonoBehaviour
 
                     if (hittableComponent.GetHittable() == true)
                     {
-                        points4.Remove(other);
+                        SetColliderToHit(other, points4);
                     }
 
                 }
@@ -125,7 +158,7 @@ public class IsShapeCovered : MonoBehaviour
 
                     if (hittableComponent.GetHittable() == true)
                     {
-                        points5.Remove(other);
+                        SetColliderToHit(other, points5);
                     }
 
                 }
@@ -137,20 +170,11 @@ public class IsShapeCovered : MonoBehaviour
 
                     if (hittableComponent.GetHittable() == true)
                     {
-                        points6.Remove(other);
+                        SetColliderToHit(other, points6);
                     }
 
                 }
             }
         }
-        
-        /*
-        if (points.Count == 0)
-        {
-            pancake.SetActive(true);
-            shape.SetActive(false);
-            gameObject.SetActive(false);
-        }
-        */
     }
 }

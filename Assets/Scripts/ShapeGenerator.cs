@@ -10,6 +10,8 @@ public class ShapeGenerator : MonoBehaviour
     public float radiusIncrease = 0.0001f;
     public float rotationSpeed = 5f;
     public float colliderRadius = 0.01f;
+    public IsShapeCovered isc;
+    public int currentMarkerPos = -1;
 
     public GameObject markerPrefab, trail;
     public float markerSize = 0.1f;
@@ -33,9 +35,10 @@ public class ShapeGenerator : MonoBehaviour
         }
         else if (shapeInput ==1)
         {
-            GenerateMickeyMouse();
+            GenerateHeartShape();
         }
         CreateMarker();
+        //isc.SetPoints();
     }
 
     void GenerateSpiral()
@@ -52,52 +55,71 @@ public class ShapeGenerator : MonoBehaviour
 
             angle += Mathf.Deg2Rad * rotationSpeed;
             radius += radiusIncrease;
+            if (i % 4 == 0)
+            {
+                AddSphereCollider(new Vector3(x + transform.position.x, 0f + transform.position.y, z + +transform.position.z));
+
+            }
         }
     }
 
-    void GenerateMickeyMouse()
+    void GenerateHeartShape()
     {
-        /*
-        lineRenderer.positionCount = segments * 3; // Mickey Mouse has three parts: head and two ears
-        float radius = 0.05f;
+        lineRenderer.positionCount = segments;
+
         float angle = 0f;
-        for (int i = 0; i < segments; i++)
-        {
-            float x = Mathf.Cos(angle) * radius;
-            float z = Mathf.Sin(angle) * radius;
-            lineRenderer.SetPosition(i, new Vector3(x, 0, z));
-
-            angle += Mathf.PI * 2f / segments;
-        }
+        float step = (2f * Mathf.PI) / segments;
+        float radius = 0.01f;
 
         for (int i = 0; i < segments; i++)
         {
-            float x = Mathf.Cos(angle) * headSize;
-            float z = Mathf.Sin(angle) * headSize;
-            lineRenderer.SetPosition(i + segments, new Vector3(x, 0, z));
+            float x = 16f * Mathf.Pow(Mathf.Sin(angle), 3);
+            float y = 0f;
+            float z = -(13f * Mathf.Cos(angle) - 5f * Mathf.Cos(2 * angle) - 2f * Mathf.Cos(3 * angle) - Mathf.Cos(4 * angle));
 
-            angle += Mathf.PI * 2f / segments;
+            x *= radius;
+            z *= radius;
+
+            lineRenderer.SetPosition(i, new Vector3(x, y, z));
+            if (i % 4 == 0)
+            {
+                AddSphereCollider(new Vector3(x + transform.position.x, y + transform.position.y, z + +transform.position.z));
+                
+            }
+
+            angle += step;
         }
-
-        for (int i = 0; i < segments; i++)
-        {
-            float x = Mathf.Cos(angle) * earSize;
-            float z = Mathf.Sin(angle) * earSize;
-            lineRenderer.SetPosition(i + segments * 2, new Vector3(x - 0.3f, 0, z + 0.3f)); // Adjust position for left ear
-
-            angle += Mathf.PI * 2f / segments;
-        }
-        
-        for (int i = 0; i < segments; i++)
-        {
-            float x = Mathf.Cos(angle) * earSize;
-            float y = Mathf.Sin(angle) * earSize;
-            lineRenderer.SetPosition(i + segments * 3, new Vector3(x + 0.3f, y + 0.3f, 0)); // Adjust position for right ear
-
-            angle += Mathf.PI * 2f / segments;
-        }
-        */
     }
+/*
+    void GenerateStarShape()
+    {
+        int numPoints = 5;
+        int segments = 10; // Number of line segments between each point
+        lineRenderer.positionCount = segments * numPoints;
+
+        float angleIncrement = (2f * Mathf.PI) / segments;
+        float outerRadius = 0.05f;
+        float innerRadius = outerRadius / 2f;
+
+        float angle = 0f;
+
+        for (int i = 0; i < segments * numPoints; i += 2)
+        {
+            float currentAngle = angle + (i / 2 % numPoints) * (2f * Mathf.PI / numPoints);
+
+            float outerX = Mathf.Cos(currentAngle) * outerRadius;
+            float outerZ = Mathf.Sin(currentAngle) * outerRadius;
+            float innerX = Mathf.Cos(currentAngle + angleIncrement / 2f) * innerRadius;
+            float innerZ = Mathf.Sin(currentAngle + angleIncrement / 2f) * innerRadius;
+
+            lineRenderer.SetPosition(i, new Vector3(outerX, 0, outerZ));
+            lineRenderer.SetPosition(i + 1, new Vector3(innerX, 0, innerZ));
+        }
+
+    }
+*/
+
+
 
     void CreateMarker()
     {
@@ -112,6 +134,15 @@ public class ShapeGenerator : MonoBehaviour
 
         Vector3 spiralPoint = lineRenderer.GetPosition(index);
         marker.transform.localPosition = new Vector3(spiralPoint.x, marker.transform.localPosition.y, spiralPoint.z);
+    }
+
+    void AddSphereCollider(Vector3 position)
+    {
+        GameObject colliderObject = new GameObject("Collider");
+        colliderObject.transform.position = position;
+        colliderObject.transform.SetParent(transform);
+        colliderObject.AddComponent<SphereCollider>().radius = 0.01f;
+        colliderObject.AddComponent<PointIsHittable>();
     }
 
     void Update()

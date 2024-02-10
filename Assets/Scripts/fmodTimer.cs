@@ -80,7 +80,7 @@ public class fmodTimer : MonoBehaviour
 
     public bool OnBar()
     {
-        if ((Mathf.Abs(position - previousBarPosition) <= 100) || ((Mathf.Abs((position - previousBarPosition) - positionBarLength)) <= 100) || (Mathf.Abs((position - previousBarPosition) - 1333) <= 100))
+        if ((Mathf.Abs(position - previousBarPosition) <= 100) || ((Mathf.Abs((position - previousBarPosition) - positionBarLength)) <= 100))
         {
             return true;
         }
