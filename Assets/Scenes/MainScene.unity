@@ -8428,64 +8428,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 740c6836ed4fc5242a3b77d65532d918, type: 3}
---- !u!1 &1801165829
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1801165830}
-  - component: {fileID: 1801165832}
-  - component: {fileID: 1801165831}
-  m_Layer: 3
-  m_Name: Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1801165830
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801165829}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0, z: 0.05}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1859468958}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1801165831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801165829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49c01a2426ba2af41ad14da7b1ea2201, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!135 &1801165832
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801165829}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.0065
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1810800657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8703,9 +8645,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1859468958}
   - component: {fileID: 1859468960}
-  - component: {fileID: 1859468959}
-  - component: {fileID: 1859468961}
-  - component: {fileID: 1859468962}
+  - component: {fileID: 1859468963}
+  - component: {fileID: 1859468964}
   m_Layer: 3
   m_Name: PancakeShape
   m_TagString: Untagged
@@ -8724,33 +8665,10 @@ Transform:
   m_LocalPosition: {x: -0.987, y: 1.289, z: 2.297164}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1801165830}
+  m_Children: []
   m_Father: {fileID: 1928135998}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1859468959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859468957}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 482d535cb80a31d4a838382feea8e948, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  segments: 100
-  radiusIncrease: 0.0013
-  rotationSpeed: 5
-  colliderRadius: 0.01
-  markerPrefab: {fileID: 1467763016}
-  pancake: {fileID: 919132147936484278}
-  trail: {fileID: 522285597}
-  markerSize: 0.1
-  bpm: 135
-  pancakeCountdown: {fileID: 1575860860}
 --- !u!120 &1859468960
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -8850,7 +8768,7 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &1859468961
+--- !u!114 &1859468963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8859,13 +8777,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1859468957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f76b52dd432f540bbf899c719c7a29, type: 3}
+  m_Script: {fileID: 11500000, guid: 7af91b987ae36bf40b72ec05d54b8488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  samplePoint: {fileID: 1801165829}
-  isShapeCovered: {fileID: 522285599}
-  lineRenderer: {fileID: 1859468960}
-  markerManager: {fileID: 1859468962}
+  pointPrefab: {fileID: 7713697457560765894, guid: cd34427478571be4b9bc5371bb06e453, type: 3}
   extent: 0.2
   coordinates:
   - {x: 0.62, y: 0.77}
@@ -8874,7 +8789,10 @@ MonoBehaviour:
   - {x: -0.62, y: 0.77}
   - {x: 0, y: -0.91}
   - {x: 0.62, y: 0.77}
---- !u!114 &1859468962
+  afterShapeGenerated:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1859468964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8883,16 +8801,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1859468957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7a38218c1b99b643a8f1c9478fe9003, type: 3}
+  m_Script: {fileID: 11500000, guid: ee95a6c62a940ad44acb5ad7ce6cf90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pancake: {fileID: 919132147936484278}
-  pancakeCountdown: {fileID: 1575860860}
-  bpm: 135
-  segments: 0
-  isShapeCovered: {fileID: 522285599}
-  lineRenderer: {fileID: 1859468960}
-  markerPrefab: {fileID: 1467763016}
 --- !u!1 &1862202495
 GameObject:
   m_ObjectHideFlags: 0

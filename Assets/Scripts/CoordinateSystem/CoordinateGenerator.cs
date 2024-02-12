@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CoordinateGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject pointPrefab;
     [SerializeField] private float extent;
+    private List<CoordinateCollider> points = new List<CoordinateCollider>();
     public List<Vector2> coordinates;
+
+    public UnityEvent afterShapeGenerated = new();
 
     void Start()
     {
@@ -21,8 +25,17 @@ public class CoordinateGenerator : MonoBehaviour
             GameObject newPoint = GameObject.Instantiate(pointPrefab, transform);
             Vector3 position = extent * new Vector3(point.x, 0, point.y);
             newPoint.transform.localPosition = position;
-            newPoint.GetComponent<CoordinateCollider>().index = i;
+            CoordinateCollider coordCollider = newPoint.GetComponent<CoordinateCollider>();
+            coordCollider.index = i;
+            points.Add(coordCollider);
             i++;
         }
+
+        afterShapeGenerated?.Invoke();
+    }
+
+    public List<CoordinateCollider> GetColliders()
+    {
+        return points;
     }
 }
