@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12072234, g: 0.124731, b: 0.10821967, a: 1}
+  m_IndirectSpecularColor: {r: 0.12072234, g: 0.12473106, b: 0.1082197, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8653,6 +8653,7 @@ GameObject:
   - component: {fileID: 1859468960}
   - component: {fileID: 1859468963}
   - component: {fileID: 1859468964}
+  - component: {fileID: 1859468965}
   m_Layer: 3
   m_Name: PancakeShape
   m_TagString: Untagged
@@ -8789,12 +8790,12 @@ MonoBehaviour:
   pointPrefab: {fileID: 7713697457560765894, guid: cd34427478571be4b9bc5371bb06e453, type: 3}
   extent: 0.2
   coordinates:
-  - {x: 0.62, y: 0.77}
-  - {x: -0.84, y: -0.3}
-  - {x: 0.84, y: -0.3}
   - {x: -0.62, y: 0.77}
-  - {x: 0, y: -0.91}
+  - {x: 0.84, y: -0.3}
+  - {x: -0.84, y: -0.3}
   - {x: 0.62, y: 0.77}
+  - {x: 0, y: -0.91}
+  - {x: -0.62, y: 0.77}
   afterShapeGenerated:
     m_PersistentCalls:
       m_Calls: []
@@ -8810,6 +8811,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee95a6c62a940ad44acb5ad7ce6cf90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1859468965
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859468957}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0, z: 0.4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1862202495
 GameObject:
   m_ObjectHideFlags: 0

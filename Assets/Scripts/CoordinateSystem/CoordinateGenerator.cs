@@ -23,7 +23,7 @@ public class CoordinateGenerator : MonoBehaviour
         foreach (Vector2 point in coordinates)
         {
             GameObject newPoint = GameObject.Instantiate(pointPrefab, transform);
-            Vector3 position = extent * new Vector3(point.x, 0, point.y);
+            Vector3 position = extent * new Vector3(-point.x, 0, point.y);
             newPoint.transform.localPosition = position;
             CoordinateCollider coordCollider = newPoint.GetComponent<CoordinateCollider>();
             coordCollider.index = i;
