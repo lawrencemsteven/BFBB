@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class WaffleStationManager : MonoBehaviour
+public class PancakeStation : Station
 {
 
-    public Camera stationCamera;
     public Animator waffleMakerAnim, pancakeAnim;
     public float bpm = 135f;
     public GameObject pancake, waffle, waffleBatter;

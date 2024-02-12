@@ -9,7 +9,7 @@ public class SwitchCamera : MonoBehaviour
 {
     [SerializeField] private GameObject countdown1, countdown2;
     [SerializeField] private fmodTimer timer;
-    [SerializeField] private GameObject waffleCamera, waffleStation, batterPourTool, overheadCamera;
+    [SerializeField] private GameObject overheadCamera;
     private bool waitingToSwitch;
     private int switchReqBar;
     private FMOD.Studio.EventInstance eventInstance;
@@ -46,7 +46,7 @@ public class SwitchCamera : MonoBehaviour
         {
             switchReqBar = timer.bar;
             waitingToSwitch = true;
-            switchToStation = StationType.WAFFLE_PANCAKE;
+            switchToStation = StationType.PANCAKE;
             countdown1.SetActive(true);
             countdown2.SetActive(true);
         }
@@ -92,17 +92,7 @@ public class SwitchCamera : MonoBehaviour
 
         if (selectedStation is null)
         {
-            //TODO: remove this when waffle station is abstracted
-            if (selectedStationType == StationType.WAFFLE_PANCAKE)
-            {
-                waffleCamera.SetActive(false);
-                waffleStation.SetActive(false);
-                batterPourTool.SetActive(false);
-            }
-            else
-            {
-                overheadCamera.SetActive(false);
-            }
+            overheadCamera.SetActive(false);
         }
         else
         {
@@ -113,17 +103,7 @@ public class SwitchCamera : MonoBehaviour
 
         if (station is null)
         {
-            //TODO: remove this when waffle station is abstracted
-            if (stationType == StationType.WAFFLE_PANCAKE)
-            {
-                waffleCamera.SetActive(true);
-                waffleStation.SetActive(true);
-                batterPourTool.SetActive(true);
-            }
-            else
-            {
-                overheadCamera.SetActive(true);
-            }
+            overheadCamera.SetActive(true);
         }
         else
         {
@@ -142,9 +122,8 @@ public class SwitchCamera : MonoBehaviour
             case StationType.DISH:
                 return Stations.Dish;
             
-            case StationType.WAFFLE_PANCAKE:
-                //we don't have it yet
-                return null;
+            case StationType.PANCAKE:
+                return Stations.Pancake;
 
             case StationType.COFFEE:
                 return Stations.Coffee;
