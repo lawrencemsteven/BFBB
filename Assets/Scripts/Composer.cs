@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Composer : MonoBehaviour
+public class Composer : Singleton<Composer>
 {
     private float countdownTimer = 10f;
     public bool debugTimer = true;
@@ -14,6 +14,7 @@ public class Composer : MonoBehaviour
     public static float MAX_PITCH = 1.0f;
     public static float MIN_PITCH = 0.0f;
     public static float DEF_PITCH = 0.33f;
+    [SerializeField] private HiHatFmod hiHatFmod;
 
 
     void Start()
@@ -83,6 +84,11 @@ public class Composer : MonoBehaviour
         {
             composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MIN_PITCH, -pitch));
         }
+    }
+
+    public void PlayHiHat()
+    {
+        hiHatFmod.PlayHiHat();
     }
 
 }
