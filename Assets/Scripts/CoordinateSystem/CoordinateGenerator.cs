@@ -28,6 +28,7 @@ public class CoordinateGenerator : MonoBehaviour
         {
             GameObject.Destroy(point.gameObject);
         }
+        points = new List<CoordinateCollider>();
 
         int i = 0;
         foreach (Vector2 point in coordinates)
