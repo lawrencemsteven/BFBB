@@ -9,7 +9,7 @@ public class CoordinateCollider : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag(targetTag))
+        if (other.gameObject.CompareTag(targetTag))
         {
             Station.HandlePointCollision(index);
         }

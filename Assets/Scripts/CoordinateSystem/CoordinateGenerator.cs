@@ -18,7 +18,7 @@ public class CoordinateGenerator : MonoBehaviour
         int i = 0;
         foreach (Vector2 point in coordinates)
         {
-            GameObject newPoint = GameObject.Instantiate(samplePoint, transform);
+            GameObject newPoint = GameObject.Instantiate(pointPrefab, transform);
             Vector3 position = extent * new Vector3(point.x, 0, point.y);
             newPoint.transform.localPosition = position;
             newPoint.GetComponent<CoordinateCollider>().index = i;
