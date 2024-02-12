@@ -12,6 +12,11 @@ public class CoordinateGenerator : MonoBehaviour
 
     public UnityEvent afterShapeGenerated = new();
 
+    void Awake()
+    {
+        SongInfo.Instance.onMeasure.AddListener(GenerateShape);
+    }
+
     void Start()
     {
         GenerateShape();
@@ -19,6 +24,11 @@ public class CoordinateGenerator : MonoBehaviour
 
     public void GenerateShape()
     {
+        foreach (CoordinateCollider point in points)
+        {
+            GameObject.Destroy(point.gameObject);
+        }
+
         int i = 0;
         foreach (Vector2 point in coordinates)
         {
