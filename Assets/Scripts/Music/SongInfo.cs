@@ -62,4 +62,9 @@ public class SongInfo : Singleton<SongInfo>
     {
         return secondsPerBeat;
     }
+
+    public uint getBeatsPerMeasure()
+    {
+        return beatsPerMeasure;
+    }
 }
