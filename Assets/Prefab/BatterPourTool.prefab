@@ -110,7 +110,6 @@ GameObject:
   - component: {fileID: 3452001473513494090}
   - component: {fileID: 3452001473513494091}
   - component: {fileID: 3452001473513494088}
-  - component: {fileID: 3452001473513494094}
   - component: {fileID: 3452001473513494100}
   m_Layer: 0
   m_Name: BatterPourTool
@@ -200,19 +199,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &3452001473513494094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3452001473513494095}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2d66416abe317044aad33fc8fcb7d5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dishWashingCamera: {fileID: 0}
 --- !u!114 &3452001473513494100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8de6735cdaaeb4dad4682cc14c477e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waffleCamera: {fileID: 0}
+  batter: {fileID: 7776531196923744931}
+  squeezed: {fileID: 2100000, guid: ef65036ed34ad704e86c33a402d4a24d, type: 2}
+  unsqueezed: {fileID: 2100000, guid: b8b7797fea2a3104280512658de6a7c2, type: 2}
 --- !u!1 &7776531196905622465
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class SongInfo
+public class SongInfo : Singleton<SongInfo>
 {
-    private static uint bpm = 120u;
-    private static uint beatsPerMeasure = 4u;
+    private uint bpm = 120u;
+    private uint beatsPerMeasure = 4u;
 
-    private static float secondsPerBeat;
-    private static float nextBeatTime = 0.0f;
-    private static uint measureCounter = 0u;
+    private float secondsPerBeat;
+    private float nextBeatTime = 0.0f;
+    private uint measureCounter = 0u;
 
 
-    private static void Start()
+    private void Start()
     {
         // NEED TO GET bpm
         // bpm = ???
@@ -25,7 +25,7 @@ public static class SongInfo
         nextBeatTime = Time.time + secondsPerBeat;
     }
 
-    private static void Update()
+    private void Update()
     {
         // Time passing for each beat
         if (Time.time > nextBeatTime)
@@ -42,18 +42,18 @@ public static class SongInfo
         }
     }
 
-    private static void onBeat()
+    private void onBeat()
     {
         // Call Station onBeat() Functions
     }
 
-    private static void onMeasure()
+    private void onMeasure()
     {
         // Call Station onMeasure() Functions
     }
 
     // Returns a range (-0.5f, 0.5f] that will determine how far away or close to a beat this function was called.
-    private static float onBeatCheck()
+    private float onBeatCheck()
     {
         float beatTimeDifference = nextBeatTime - Time.time;
         float beatTimeRatio = beatTimeDifference / secondsPerBeat;
@@ -65,7 +65,7 @@ public static class SongInfo
     }
 
     // Returns the time in seconds for each beat
-    private static float getSecondsPerBeat()
+    private float getSecondsPerBeat()
     {
         return secondsPerBeat;
     }

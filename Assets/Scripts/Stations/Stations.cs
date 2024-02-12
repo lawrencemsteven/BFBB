@@ -3,8 +3,10 @@ using UnityEngine;
 public static class Stations
 {
     private static DishStation dish;
+    private static PancakeStation pancake;
     private static CoffeeStation coffee;
     private static PrepStation prep;
+
     public static DishStation Dish
     {
         get
@@ -20,6 +22,24 @@ public static class Stations
             }
 
             return dish;
+        }
+    }
+
+    public static PancakeStation Pancake
+    {
+        get
+        {
+            if (pancake is null)
+            {
+                pancake = Object.FindObjectOfType<PancakeStation>();
+
+                if (pancake is null)
+                {
+                    return null;
+                }
+            }
+
+            return pancake;
         }
     }
 

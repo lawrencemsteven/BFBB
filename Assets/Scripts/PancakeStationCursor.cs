@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaffleStationCursor : MonoBehaviour
+public class PancakeStationCursor : MonoBehaviour
 {
-    public Camera waffleCamera;
     public ParticleSystem batter;
     public Material squeezed, unsqueezed;
     private float offset = 0.70f;
@@ -22,10 +21,15 @@ public class WaffleStationCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Stations.Pancake.IsRunning())
+        {
+            return;
+        }
+        
         var emissionBatter = batter.emission;
-        Ray ray = waffleCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Stations.Pancake.GetAssociatedCamera().ScreenPointToRay(Input.mousePosition);
         Vector3 targetPosition = ray.GetPoint(offset);
-        transform.localPosition = new Vector3(targetPosition.x, targetPosition.y, targetPosition.z);
+        transform.position = new Vector3(targetPosition.x, targetPosition.y, targetPosition.z);
         if (Input.GetMouseButtonDown(0))
         {
             bottleRenderer.material = squeezed;

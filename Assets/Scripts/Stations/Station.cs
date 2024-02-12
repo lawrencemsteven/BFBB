@@ -6,7 +6,6 @@ using Enumerations;
 public abstract class Station : MonoBehaviour
 {
     [SerializeField] protected Camera associatedCamera;
-    [SerializeField] protected StationType stationType;
     protected bool running = false;
 
     public static Station activeStation;
@@ -29,6 +28,5 @@ public abstract class Station : MonoBehaviour
     }
 
     public Camera GetAssociatedCamera() { return associatedCamera; }
-    public StationType GetStationType() { return stationType; }
     public bool IsRunning() { return running; }
 }
