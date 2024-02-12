@@ -104,6 +104,11 @@ public class ComposerInterpreter : MonoBehaviour
         Debug.Log("Stopped Pouring Batter");
     }
 
+    public void setPitch(float newPitch)
+    {
+        Debug.Log("Change Pitch Here");
+    }
+
     
 
 }

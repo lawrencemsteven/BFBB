@@ -11,6 +11,9 @@ public class Composer : MonoBehaviour
     public int isFade = 0;  //Replacement for isFading, I did not touch isFading since you needed it to work, so please implement this when possible, I have it right now so the states change but nothing happens
     private float newTime;
     private ComposerInterpreter composerInterpreter;
+    public static float MAX_PITCH = 1.0f;
+    public static float MIN_PITCH = 0.0f;
+    public static float DEF_PITCH = 0.33f;
 
 
     void Start()
@@ -66,6 +69,19 @@ public class Composer : MonoBehaviour
             {
                 composerInterpreter.stopBatter();
             }
+        }
+    }
+
+    public void PitchChange(float pitch)
+    {
+        pitch = Mathf.Clamp(pitch, -1.0f, 1.0f);
+        if(pitch >= 0.0f)
+        {
+            composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MAX_PITCH, pitch));
+        }
+        else
+        {
+            composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MIN_PITCH, -pitch));
         }
     }
 
