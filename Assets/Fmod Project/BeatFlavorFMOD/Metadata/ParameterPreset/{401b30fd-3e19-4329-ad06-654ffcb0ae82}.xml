@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{401b30fd-3e19-4329-ad06-654ffcb0ae82}">
+		<property name="name">
+			<value>Pitch Master</value>
+		</property>
+		<relationship name="folder">
+			<destination>{467718f6-d863-49cb-9d7b-9a40f63964f8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{f7d6077f-aac1-4116-8902-8003fb693a67}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{f7d6077f-aac1-4116-8902-8003fb693a67}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
