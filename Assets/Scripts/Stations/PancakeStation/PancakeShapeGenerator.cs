@@ -8,6 +8,7 @@ public class PancakeShapeGenerator : MonoBehaviour
     [SerializeField] private IsShapeCovered isShapeCovered;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private PancakeMarkerManager markerManager;
+    [SerializeField] private float extent;
     public List<Vector2> coordinates;
 
     void Start()
@@ -26,7 +27,7 @@ public class PancakeShapeGenerator : MonoBehaviour
         foreach (Vector2 point in coordinates)
         {
             GameObject newPoint = GameObject.Instantiate(samplePoint, transform);
-            Vector3 position = new Vector3(point.x, 0, point.y);
+            Vector3 position = extent * new Vector3(point.x, 0, point.y);
             newPoint.transform.localPosition = position;
             lineRenderer.SetPosition(i, position);
             i++;
