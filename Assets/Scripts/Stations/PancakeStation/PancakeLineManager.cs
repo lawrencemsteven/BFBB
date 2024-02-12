@@ -6,8 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class PancakeLineManager : MonoBehaviour
 {
+    [SerializeField] private GameObject markerPrefab;
+
     private CoordinateGenerator coordinateGenerator;
     private LineRenderer lineRenderer;
+    private GameObject marker;
 
     void Awake()
     {

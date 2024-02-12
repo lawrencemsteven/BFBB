@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SongInfo : Singleton<SongInfo>
 {
@@ -11,6 +12,8 @@ public class SongInfo : Singleton<SongInfo>
     private float nextBeatTime = 0.0f;
     private uint measureCounter = 0u;
 
+    public UnityEvent onBeat = new();
+    public UnityEvent onMeasure = new();
 
     private void Start()
     {
@@ -31,25 +34,15 @@ public class SongInfo : Singleton<SongInfo>
         if (Time.time > nextBeatTime)
         {
             nextBeatTime += secondsPerBeat;
-            onBeat();
+            onBeat?.Invoke();
             measureCounter += 1;
 
             // Enough beats for a measure
             if (measureCounter >= beatsPerMeasure)
             {
-                onMeasure();
+                onMeasure?.Invoke();
             }
         }
-    }
-
-    private void onBeat()
-    {
-        // Call Station onBeat() Functions
-    }
-
-    private void onMeasure()
-    {
-        // Call Station onMeasure() Functions
     }
 
     // Returns a range (-0.5f, 0.5f] that will determine how far away or close to a beat this function was called.
