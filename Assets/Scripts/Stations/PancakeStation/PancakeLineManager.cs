@@ -65,7 +65,7 @@ public class PancakeLineManager : MonoBehaviour
         {
             accumulatedTime += Time.deltaTime;
 
-            float beatsPassed = Mathf.Floor(accumulatedTime / beatDuration);
+            int beatsPassed = Mathf.FloorToInt(accumulatedTime / beatDuration);
 
 
 
