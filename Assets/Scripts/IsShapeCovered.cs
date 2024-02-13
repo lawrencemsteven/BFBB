@@ -6,21 +6,16 @@ public class IsShapeCovered : MonoBehaviour
 {
     public GameObject shape;
     public GameObject pancake;
-    private List<GameObject> points = new List<GameObject>();
-    // Start is called before the first frame update
-    void Start()
+    public List<GameObject> points = new List<GameObject>();
+
+
+    public void SetupColliders()
     {
         for (int i = 0; i < shape.transform.childCount; i++)
         {
             Transform point = shape.transform.GetChild(i);
             points.Add(point.gameObject);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public int GetNumOfColliders()

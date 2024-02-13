@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Composer : MonoBehaviour
+public class Composer : Singleton<Composer>
 {
     private float countdownTimer = 10f;
     public bool debugTimer = true;
@@ -11,6 +11,10 @@ public class Composer : MonoBehaviour
     public int isFade = 0;  //Replacement for isFading, I did not touch isFading since you needed it to work, so please implement this when possible, I have it right now so the states change but nothing happens
     private float newTime;
     private ComposerInterpreter composerInterpreter;
+    public static float MAX_PITCH = 1.0f;
+    public static float MIN_PITCH = 0.0f;
+    public static float DEF_PITCH = 0.33f;
+    [SerializeField] private HiHatFmod hiHatFmod;
 
 
     void Start()
@@ -67,6 +71,37 @@ public class Composer : MonoBehaviour
                 composerInterpreter.stopBatter();
             }
         }
+    }
+
+    /*public void VolumeChange(int track, float volume)
+    {
+        volume -= 1;
+        if (volume >= 0.0f)
+        {
+            composerInterpreter.setVolume(track, Mathf.Lerp(DEF_VOLUME, MAX_VOLUME, volume));
+        }
+        else
+        {
+            composerInterpreter.setVolume(track, Mathf.Lerp(DEF_VOLUME, MIN_VOLUME, -volume));
+        }
+    }*/
+
+    public void PitchChange(float pitch)
+    {
+        pitch = Mathf.Clamp(pitch, -1.0f, 1.0f);
+        if(pitch >= 0.0f)
+        {
+            composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MAX_PITCH, pitch));
+        }
+        else
+        {
+            composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MIN_PITCH, -pitch));
+        }
+    }
+
+    public void PlayHiHat()
+    {
+        hiHatFmod.PlayHiHat();
     }
 
 }

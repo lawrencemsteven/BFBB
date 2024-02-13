@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{d6848dd2-3b5d-4dbf-bcb9-75de851e3524}">
+		<property name="name">
+			<value>EQF 2</value>
+		</property>
+		<relationship name="folder">
+			<destination>{467718f6-d863-49cb-9d7b-9a40f63964f8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{70e84f86-fdcb-487d-955e-6d5f28aee04c}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{70e84f86-fdcb-487d-955e-6d5f28aee04c}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

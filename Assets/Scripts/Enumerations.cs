@@ -3,7 +3,7 @@ namespace Enumerations
     public enum StationType
     {
         DISH,
-        WAFFLE_PANCAKE,
+        PANCAKE,
         COFFEE,
         PREP,
         OVERHEAD_VIEW
