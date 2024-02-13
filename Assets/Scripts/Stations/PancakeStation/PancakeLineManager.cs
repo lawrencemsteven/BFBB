@@ -54,18 +54,51 @@ public class PancakeLineManager : MonoBehaviour
         int fullBeats = totalBeats - halfBeats;
         int index = 0;
         float accumulatedTime = 0F;
+        float lastBeatTime = 0F;
+        float beatProgress = 0F;
 
         marker = GameObject.Instantiate(markerPrefab, transform);
 
-        while (index < totalBeats)
+        float beatDuration = SongInfo.Instance.getSecondsPerBeat();
+
+        while (accumulatedTime < (beatDuration * SongInfo.Instance.getBeatsPerMeasure()))
         {
             accumulatedTime += Time.deltaTime;
+
+            float beatsPassed = Mathf.Floor(accumulatedTime / beatDuration);
+
+
+
+            /*lastBeatTime = beatProgress;
+            beatProgress = SongInfo.Instance.getBeatProgress();
+            if (beatProgress < lastBeatTime)
+            {
+                index++;
+                if (index >= fullBeats)
+                {
+                    index++;
+                }
+            }
+
             if (index < fullBeats)
             {
                 Vector3 previous = lineRenderer.GetPosition(index);
                 Vector3 next = lineRenderer.GetPosition(index + 1);
-                marker.transform.localPosition = Vector2.Lerp(previous, next, SongInfo.Instance.getBeatProgress());
-            }
+                marker.transform.localPosition = Vector2.Lerp(previous, next, beatProgress);
+            } else
+            {
+                if (beatProgress < 0.5)
+                {
+                    Vector3 previous = lineRenderer.GetPosition(index);
+                    Vector3 next = lineRenderer.GetPosition(index + 1);
+                    marker.transform.localPosition = Vector2.Lerp(previous, next, beatProgress * 2);
+                } else
+                {
+                    Vector3 previous = lineRenderer.GetPosition(index + 1);
+                    Vector3 next = lineRenderer.GetPosition(index + 2);
+                    marker.transform.localPosition = Vector2.Lerp(previous, next, (beatProgress - 0.5F) * 2);
+                }
+            }*/
             yield return null;
         }
 

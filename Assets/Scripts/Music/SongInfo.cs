@@ -58,7 +58,7 @@ public class SongInfo : Singleton<SongInfo>
     }
 
     // Returns the time in seconds for each beat
-    private float getSecondsPerBeat()
+    public float getSecondsPerBeat()
     {
         return secondsPerBeat;
     }
