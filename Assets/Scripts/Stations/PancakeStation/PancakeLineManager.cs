@@ -68,6 +68,10 @@ public class PancakeLineManager : MonoBehaviour
             beatProgress = SongInfo.Instance.getBeatProgress();
 
             int beatsPassed = (int)SongInfo.Instance.getBeatsPassed();
+            if (beatsPassed >= SongInfo.Instance.getBeatsPerMeasure())
+            {
+                beatsPassed = 0;
+            }
 
             if (beatsPassed < fullBeats)
             {
