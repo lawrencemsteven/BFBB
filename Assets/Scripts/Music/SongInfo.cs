@@ -23,7 +23,7 @@ public class SongInfo : Singleton<SongInfo>
         // NEED TO GET beatsPerMeasure
         // beatsPerMeasure = ???
 
-        secondsPerBeat = bpm / 60.0f;
+        secondsPerBeat = 60.0F / bpm;
 
         nextBeatTime = Time.time + secondsPerBeat;
     }
@@ -41,6 +41,7 @@ public class SongInfo : Singleton<SongInfo>
             if (measureCounter >= beatsPerMeasure)
             {
                 onMeasure?.Invoke();
+                measureCounter = 0;
             }
         }
     }
@@ -71,5 +72,10 @@ public class SongInfo : Singleton<SongInfo>
     public float getBeatProgress()
     {
         return (nextBeatTime - Time.time) / secondsPerBeat;
+    }
+
+    public uint getBeatsPassed()
+    {
+        return measureCounter;
     }
 }

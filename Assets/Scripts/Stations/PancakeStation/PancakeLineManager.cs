@@ -60,45 +60,36 @@ public class PancakeLineManager : MonoBehaviour
         marker = GameObject.Instantiate(markerPrefab, transform);
 
         float beatDuration = SongInfo.Instance.getSecondsPerBeat();
+        List<CoordinateCollider> points = coordinateGenerator.GetColliders();
 
         while (accumulatedTime < (beatDuration * SongInfo.Instance.getBeatsPerMeasure()))
         {
             accumulatedTime += Time.deltaTime;
-
-            int beatsPassed = Mathf.FloorToInt(accumulatedTime / beatDuration);
-
-
-
-            /*lastBeatTime = beatProgress;
             beatProgress = SongInfo.Instance.getBeatProgress();
-            if (beatProgress < lastBeatTime)
+
+            int beatsPassed = (int)SongInfo.Instance.getBeatsPassed();
+
+            if (beatsPassed < fullBeats)
             {
-                index++;
-                if (index >= fullBeats)
+                beatProgress = SongInfo.Instance.getBeatProgress();
+                Vector3 previous = points[beatsPassed].transform.position;
+                Vector3 next = points[beatsPassed+1].transform.position;
+                marker.transform.position = Vector3.Lerp(next, previous, beatProgress);
+            } else
+            {
+                if (beatProgress > 0.5)
                 {
-                    index++;
+                    Vector3 previous = points[beatsPassed].transform.position;
+                    Vector3 next = points[beatsPassed+1].transform.position;
+                    marker.transform.position = Vector3.Lerp(next, previous, (beatProgress - 0.5F) * 2);
+                } else
+                {
+                    Vector3 previous = points[beatsPassed+1].transform.position;
+                    Vector3 next = points[beatsPassed+2].transform.position;
+                    marker.transform.position = Vector3.Lerp(next, previous, beatProgress * 2);
                 }
             }
 
-            if (index < fullBeats)
-            {
-                Vector3 previous = lineRenderer.GetPosition(index);
-                Vector3 next = lineRenderer.GetPosition(index + 1);
-                marker.transform.localPosition = Vector2.Lerp(previous, next, beatProgress);
-            } else
-            {
-                if (beatProgress < 0.5)
-                {
-                    Vector3 previous = lineRenderer.GetPosition(index);
-                    Vector3 next = lineRenderer.GetPosition(index + 1);
-                    marker.transform.localPosition = Vector2.Lerp(previous, next, beatProgress * 2);
-                } else
-                {
-                    Vector3 previous = lineRenderer.GetPosition(index + 1);
-                    Vector3 next = lineRenderer.GetPosition(index + 2);
-                    marker.transform.localPosition = Vector2.Lerp(previous, next, (beatProgress - 0.5F) * 2);
-                }
-            }*/
             yield return null;
         }
 
