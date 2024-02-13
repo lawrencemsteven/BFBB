@@ -50,7 +50,7 @@ public class PancakeLineManager : MonoBehaviour
     private IEnumerator FollowBeat()
     {
         int totalBeats = lineRenderer.positionCount - 1;
-        int halfBeats = 2;// * (totalBeats - SongInfo.Instance.getBeatsPerMeasure());
+        int halfBeats = 2 * (totalBeats - SongInfo.Instance.getBeatsPerMeasure());
         int fullBeats = totalBeats - halfBeats;
         int index = 0;
         float accumulatedTime = 0F;
@@ -64,7 +64,7 @@ public class PancakeLineManager : MonoBehaviour
             {
                 Vector3 previous = lineRenderer.GetPosition(index);
                 Vector3 next = lineRenderer.GetPosition(index + 1);
-              //  marker.transform.localPosition = Vector2.Lerp(previous, next, beatProgress);
+                marker.transform.localPosition = Vector2.Lerp(previous, next, SongInfo.Instance.getBeatProgress());
             }
             yield return null;
         }

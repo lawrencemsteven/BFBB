@@ -67,4 +67,9 @@ public class SongInfo : Singleton<SongInfo>
     {
         return beatsPerMeasure;
     }
+
+    public float getBeatProgress()
+    {
+        return (nextBeatTime - Time.time) / secondsPerBeat;
+    }
 }
