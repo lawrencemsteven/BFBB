@@ -73,6 +73,19 @@ public class Composer : Singleton<Composer>
         }
     }
 
+    /*public void VolumeChange(int track, float volume)
+    {
+        volume -= 1;
+        if (volume >= 0.0f)
+        {
+            composerInterpreter.setVolume(track, Mathf.Lerp(DEF_VOLUME, MAX_VOLUME, volume));
+        }
+        else
+        {
+            composerInterpreter.setVolume(track, Mathf.Lerp(DEF_VOLUME, MIN_VOLUME, -volume));
+        }
+    }*/
+
     public void PitchChange(float pitch)
     {
         pitch = Mathf.Clamp(pitch, -1.0f, 1.0f);

@@ -7,10 +7,12 @@ public class CoordinateCollider : MonoBehaviour
     public string targetTag;
     public int index;
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
+        Debug.Log("ASODKAHOSDS");
         if (other.gameObject.CompareTag(targetTag))
         {
+            Debug.Log("collid");
             Station.HandlePointCollision(index);
         }
     }
