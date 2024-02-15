@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ParticleSpawner : MonoBehaviour
 {
     [SerializeField] protected GameObject particle;
-    [SerializeField] protected float spawnDistance;
+    [SerializeField] protected float spawnHeight;
     [SerializeField] protected float spawnCooldown;
     protected float currentSpawnCooldown;
     protected ParticleObject particleObject;
@@ -26,7 +26,7 @@ public abstract class ParticleSpawner : MonoBehaviour
         if (active && currentSpawnCooldown <= 0)
         {
             Ray rayCast = Camera.main.ScreenPointToRay(Input.mousePosition);
-            GameObject spawnedParticle = Instantiate(particle, rayCast.GetPoint(spawnDistance), Quaternion.identity);
+            GameObject spawnedParticle = Instantiate(particle, new Vector3(rayCast.GetPoint(1).x, spawnHeight, rayCast.GetPoint(1).z), Quaternion.identity);
             particleObject.AddToParticles(spawnedParticle.GetComponent<Particle>());
             currentSpawnCooldown = spawnCooldown;
         }

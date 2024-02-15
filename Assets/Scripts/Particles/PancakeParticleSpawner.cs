@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PancakeParticleSpawner : ParticleSpawner
 {
+    
+    [SerializeField] private float griddleX;
+    [SerializeField] private float griddleZ;
     [SerializeField] private Color rawColor;
     [SerializeField] private Color burntColor;
     private PancakeParticleObject pancake;
@@ -13,6 +16,7 @@ public class PancakeParticleSpawner : ParticleSpawner
         if (!ParticleObjectExists())
         {
             GameObject obj = new GameObject();
+            obj.transform.position = new Vector3(griddleX, spawnHeight, griddleZ);
             particleObject = obj.AddComponent<PancakeParticleObject>(); 
             pancake = particleObject as PancakeParticleObject;
         }
@@ -28,7 +32,6 @@ public class PancakeParticleSpawner : ParticleSpawner
     {       
         if (ParticleObjectExists() && pancake.IsCooking())
         {
-            Debug.Log("updating side colors");
             pancake.UpdateSideColors(rawColor, burntColor);
         }        
     }

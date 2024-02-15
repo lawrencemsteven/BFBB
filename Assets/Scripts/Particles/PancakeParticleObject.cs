@@ -6,7 +6,7 @@ public class PancakeParticleObject : ParticleObject
     private int flipping = 0;
     private float flipAngle = 0;
     private float cookAmountTop, cookAmountBottom = 0.0f;
-    private bool cooking = false;
+    private bool cooking = true;
     private float cookSpeed = 0.1f;
     
     
@@ -14,7 +14,6 @@ public class PancakeParticleObject : ParticleObject
     {
         if (cooking)
         {
-            Debug.Log($"Top: {cookAmountTop}, Bottom: {cookAmountBottom}");
             if (cookingSide == 0)
             {
                 cookAmountBottom += cookSpeed * Time.deltaTime;
@@ -24,44 +23,13 @@ public class PancakeParticleObject : ParticleObject
                 cookAmountTop += cookSpeed * Time.deltaTime;
             }
         }
-
-        if (flipping != 0)
-        {
-            Debug.Log("FLIPPING");
-            if (flipping == 1)
-            {
-                Debug.Log("upside down");
-                flipAngle += 10f;
-                if (flipAngle >= 180)
-                {
-                    Debug.Log("upside down complete");
-                    flipAngle = 180;
-                    flipping = 0;
-                }
-                transform.rotation = Quaternion.Euler( flipAngle, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-            }
-            if (flipping == -1)
-            {
-                Debug.Log("right side up");
-                flipAngle -= 10f;
-                if (flipAngle <= 0)
-                {
-                    Debug.Log("right side up compelte");
-                    flipAngle = 0;
-                    flipping = 0;
-                }
-                transform.rotation = Quaternion.Euler( flipAngle, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-            }
-        }
     }
     
     public void UpdateSideColors(Color color1, Color color2)
     {
         foreach (Particle storedParticle in particles)
         {
-            Debug.Log("iterating");
             PancakeParticle particle = storedParticle as PancakeParticle;
-            Debug.Log(particle);
             particle.GetOuterBottom().GetComponent<Renderer>().material.color = Color.Lerp(color1, color2, cookAmountBottom);
             particle.GetOuterTop().GetComponent<Renderer>().material.color = Color.Lerp(color1, color2, cookAmountTop);
         }
@@ -82,12 +50,18 @@ public class PancakeParticleObject : ParticleObject
         if (cookingSide == 0)
         {
             cookingSide = 1;
-            flipping = 1;
+            foreach (Particle particle in particles)
+            {
+                particle.transform.rotation = Quaternion.Euler(180, particle.transform.rotation.y, particle.transform.rotation.z);
+            }
         }
         else if (cookingSide == 1)
         {
             cookingSide = 0;
-            flipping = -1;
+            foreach (Particle particle in particles)
+            {
+                particle.transform.rotation = Quaternion.Euler(0, particle.transform.rotation.y, particle.transform.rotation.z);
+            }
         }
     }
 }

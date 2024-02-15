@@ -8,11 +8,12 @@ public class PancakeStation : Station
 
     public Animator waffleMakerAnim, pancakeAnim;
     public float bpm = 135f;
-    public GameObject pancake, waffle, waffleBatter;
+    public GameObject waffle, waffleBatter;
     private int flashCount = 1, countdownNum  = 4;
     private float timeToStartWaffles, elapsedTime, totalElapsed, timeToFlash, timeToFlipPancake, timeToFlipWaffle, timeToFinishPancake, timeToFinishWaffle;
     private bool waffleMakerOpen = false, circleIsVisible = false, pancakeFlipped = false, waffleFlipped = false, flipWaffleTimerStarted = false, flipPancakeTimerStarted = false, finishWaffleTimerStarted = false, finishPancakeTimerStarted = false;
     public TextMeshProUGUI countdown, pancakeCountdown;
+    private PancakeParticleObject pancakeParticleObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,25 +72,13 @@ public class PancakeStation : Station
             StartCoroutine(CountBeatsToWaffleFinish());
         }
 
-        if ((Input.GetKeyDown(KeyCode.F) && (!pancakeFlipped)))
+        if (Input.GetKeyDown(KeyCode.F) && (!pancakeFlipped))
         {
-            pancakeFlipped = true;
-            pancakeAnim.SetTrigger("FlipTrigger");
-            pancakeAnim.SetBool("isFlipped", pancakeFlipped);
-            if (Mathf.Abs(totalElapsed - timeToFlipPancake) < .4)
-            {
-                GlobalVariables.score += 1;
-            }
+            pancakeParticleObject.Flip();
         }
-        else if ((Input.GetKeyDown(KeyCode.F)) && ((pancakeFlipped)))
+        else if (Input.GetKeyDown(KeyCode.F) && pancakeFlipped)
         {
-            pancakeFlipped = false;
-            pancakeAnim.SetTrigger("FlipTrigger");
-            pancakeAnim.SetBool("isFlipped", pancakeFlipped);
-            if (Mathf.Abs(totalElapsed - timeToFinishPancake) < .4)
-            {
-                GlobalVariables.score += 1;
-            }
+            pancakeParticleObject.Flip();
         }
         if ((Input.GetKeyDown(KeyCode.Space) && (!waffleFlipped)))
         {
@@ -176,4 +165,7 @@ public class PancakeStation : Station
         }
 
     }
+
+    public PancakeParticleObject GetPancakeParticleObject() { return pancakeParticleObject; }
+    public void SetPancakeParticleObject(PancakeParticleObject ppo) { pancakeParticleObject = ppo; }
 }

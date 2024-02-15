@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PancakeStationCursor : MonoBehaviour
 {
-    public ParticleSystem batter;
     public Material squeezed, unsqueezed;
+    private PancakeParticleSpawner pancakeParticleSpawner;
     private float offset = 0.70f;
     private Renderer bottleRenderer;
 
@@ -13,9 +13,8 @@ public class PancakeStationCursor : MonoBehaviour
     void Start()
     {
         GameObject bottle = transform.GetChild(0).gameObject;
-
         bottleRenderer = bottle.GetComponent<Renderer>();
-
+        pancakeParticleSpawner = GetComponent<PancakeParticleSpawner>();
     }
 
     // Update is called once per frame
@@ -26,18 +25,18 @@ public class PancakeStationCursor : MonoBehaviour
             return;
         }
         
-        var emissionBatter = batter.emission;
         Ray ray = Stations.Pancake.GetAssociatedCamera().ScreenPointToRay(Input.mousePosition);
         Vector3 targetPosition = ray.GetPoint(offset);
         transform.position = new Vector3(targetPosition.x, targetPosition.y, targetPosition.z);
         if (Input.GetMouseButtonDown(0))
         {
+            pancakeParticleSpawner.Activate();
+            Stations.Pancake.SetPancakeParticleObject(pancakeParticleSpawner.GetParticleObject() as PancakeParticleObject);
             bottleRenderer.material = squeezed;
-            emissionBatter.enabled = true;
         }
         if (Input.GetMouseButtonUp(0))
         {
-            emissionBatter.enabled = false;
+            pancakeParticleSpawner.Deactivate();
             bottleRenderer.material = unsqueezed;
         }
     }
