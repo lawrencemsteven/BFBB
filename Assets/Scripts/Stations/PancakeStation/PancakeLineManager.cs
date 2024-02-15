@@ -12,17 +12,30 @@ public class PancakeLineManager : MonoBehaviour
     private LineRenderer lineRenderer;
     private GameObject marker;
     private Coroutine beatFollower;
+    private bool readyForNewMeasure = true;
 
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         coordinateGenerator = GetComponent<CoordinateGenerator>();
-        SongInfo.Instance.onMeasure.AddListener(DrawLine);
+        SongInfo.Instance.onMeasure.AddListener(NewMeasure);
     }
 
     void Start()
     {
         lineRenderer.useWorldSpace = false;
+    }
+
+    public void NewMeasure()
+    {
+        if (readyForNewMeasure)
+        {
+            readyForNewMeasure = false;
+            DrawLine();
+        } else
+        {
+            readyForNewMeasure = true;
+        }
     }
 
     public void DrawLine()
