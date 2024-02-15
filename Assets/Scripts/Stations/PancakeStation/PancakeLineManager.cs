@@ -136,13 +136,19 @@ public class PancakeLineManager : MonoBehaviour
             frontDistance *= -1;
         }
         float leftDistance = leftProjection.magnitude;
-        if (Vector3.Angle(leftProjection, tangentVector) > 90)
+        if (Vector3.Angle(leftProjection, leftTangent) > 90)
         {
             leftDistance *= -1;
         }
 
-        debugMarker.transform.position = marker.transform.position + new Vector3(-leftDistance, 0, frontDistance);
+        Vector2 markerSpace = new Vector2(frontDistance, -leftDistance);
+        if (markerSpace.magnitude > maxDistance)
+        {
+            markerSpace = maxDistance * markerSpace.normalized;
+        }
 
-        Station.HandlePathUpdate(new Vector2(frontDistance, -leftDistance));
+        debugMarker.transform.position = marker.transform.position + new Vector3(-markerSpace.y, 0, -markerSpace.x);
+
+        Station.HandlePathUpdate(markerSpace);
     }
 }
