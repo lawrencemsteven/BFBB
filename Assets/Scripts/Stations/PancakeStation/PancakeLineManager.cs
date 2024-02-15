@@ -10,8 +10,6 @@ public class PancakeLineManager : MonoBehaviour
     [SerializeField] private GameObject pourTool;
     [SerializeField] private float maxDistance = 0.3F;
 
-    public GameObject debugMarker;
-
     private CoordinateGenerator coordinateGenerator;
     private LineRenderer lineRenderer;
     private GameObject marker;
@@ -146,8 +144,6 @@ public class PancakeLineManager : MonoBehaviour
         {
             markerSpace = maxDistance * markerSpace.normalized;
         }
-
-        debugMarker.transform.position = marker.transform.position + new Vector3(-markerSpace.y, 0, -markerSpace.x);
 
         Station.HandlePathUpdate(markerSpace);
     }
