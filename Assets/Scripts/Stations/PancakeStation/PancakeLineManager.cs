@@ -24,6 +24,7 @@ public class PancakeLineManager : MonoBehaviour
     void Start()
     {
         lineRenderer.useWorldSpace = false;
+        NewMeasure();
     }
 
     public void NewMeasure()
