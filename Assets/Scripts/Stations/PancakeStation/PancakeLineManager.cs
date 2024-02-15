@@ -7,6 +7,8 @@ using UnityEngine;
 public class PancakeLineManager : MonoBehaviour
 {
     [SerializeField] private GameObject markerPrefab;
+    [SerializeField] private GameObject pourTool;
+    [SerializeField] private float maxDistance = 0.3F;
 
     private CoordinateGenerator coordinateGenerator;
     private LineRenderer lineRenderer;
@@ -86,30 +88,50 @@ public class PancakeLineManager : MonoBehaviour
                 beatsPassed = 0;
             }
 
+            Vector3 previous, next;
             if (beatsPassed < fullBeats)
             {
-                Vector3 previous = points[beatsPassed].transform.position;
-                Vector3 next = points[beatsPassed+1].transform.position;
+                previous = points[beatsPassed].transform.position;
+                next = points[beatsPassed+1].transform.position;
                 marker.transform.position = Vector3.Lerp(previous, next, beatProgress);
             } else
             {
                 if (beatProgress > 0.5)
                 {
-                    Vector3 previous = points[beatsPassed+1].transform.position;
-                    Vector3 next = points[beatsPassed+2].transform.position;
+                    previous = points[beatsPassed+1].transform.position;
+                    next = points[beatsPassed+2].transform.position;
                     marker.transform.position = Vector3.Lerp(previous, next, (beatProgress - 0.5F) * 2);
                 } else
                 {
-                    Vector3 previous = points[beatsPassed].transform.position;
-                    Vector3 next = points[beatsPassed+1].transform.position;
+                    previous = points[beatsPassed].transform.position;
+                    next = points[beatsPassed+1].transform.position;
                     marker.transform.position = Vector3.Lerp(previous, next, beatProgress * 2);
                 }
             }
+
+            PassLineInfo(previous, next);
 
             yield return null;
         }
 
         GameObject.Destroy(marker);
         marker = null;
+    }
+
+    private void PassLineInfo(Vector3 previous, Vector3 next)
+    {
+        Vector3 mouseLocation = new Vector3(pourTool.transform.position.x, previous.y, pourTool.transform.position.z);
+        Vector3 mouseOffset = mouseLocation - marker.transform.position;
+        Vector3 tangentVector = Vector3.Normalize(next - previous);
+        float angle = Vector3.SignedAngle(mouseOffset, tangentVector, Vector3.up);
+
+        mouseOffset = Quaternion.Euler(0, angle, 0) * mouseOffset;
+
+        if (Vector3.Magnitude(mouseOffset) > maxDistance)
+        {
+            mouseOffset = maxDistance * Vector3.Normalize(mouseOffset);
+        }
+
+        Station.HandlePathUpdate(new Vector2(mouseOffset.x, mouseOffset.z));
     }
 }
