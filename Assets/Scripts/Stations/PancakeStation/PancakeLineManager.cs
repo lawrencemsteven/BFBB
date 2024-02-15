@@ -82,7 +82,7 @@ public class PancakeLineManager : MonoBehaviour
         while (accumulatedTime < (beatDuration * SongInfo.Instance.getBeatsPerMeasure()))
         {
             accumulatedTime += Time.deltaTime;
-            beatProgress = accumulatedTime % beatDuration;
+            beatProgress = (accumulatedTime % beatDuration) / beatDuration;
 
             int beatsPassed = Mathf.FloorToInt(accumulatedTime / beatDuration);
             if (beatsPassed >= SongInfo.Instance.getBeatsPerMeasure())
