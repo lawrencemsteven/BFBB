@@ -123,15 +123,22 @@ public class PancakeLineManager : MonoBehaviour
         Vector3 mouseLocation = new Vector3(pourTool.transform.position.x, previous.y, pourTool.transform.position.z);
         Vector3 mouseOffset = mouseLocation - marker.transform.position;
         Vector3 tangentVector = Vector3.Normalize(next - previous);
-        float angle = Vector3.SignedAngle(mouseOffset, tangentVector, Vector3.up);
+        Vector3 leftTangent = Vector3.Cross(tangentVector, Vector3.up);
 
-        mouseOffset = Quaternion.Euler(0, angle, 0) * mouseOffset;
+        Vector3 frontProjection = Vector3.Project(mouseOffset, tangentVector);
+        Vector3 leftProjection = Vector3.Project(mouseOffset, leftTangent);
 
-        if (Vector3.Magnitude(mouseOffset) > maxDistance)
+        float frontDistance = frontProjection.magnitude;
+        if (Vector3.Angle(frontProjection, tangentVector) > 90)
         {
-            mouseOffset = maxDistance * Vector3.Normalize(mouseOffset);
+            frontDistance *= -1;
+        }
+        float leftDistance = leftProjection.magnitude;
+        if (Vector3.Angle(leftProjection, tangentVector) > 90)
+        {
+            leftDistance *= -1;
         }
 
-        Station.HandlePathUpdate(new Vector2(mouseOffset.x, mouseOffset.z));
+        Station.HandlePathUpdate(new Vector2(frontDistance, -leftDistance));
     }
 }
