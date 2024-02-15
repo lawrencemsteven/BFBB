@@ -17,7 +17,7 @@ public class PancakeLineManager : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         coordinateGenerator = GetComponent<CoordinateGenerator>();
-        coordinateGenerator.afterShapeGenerated.AddListener(DrawLine);
+        SongInfo.Instance.onMeasure.AddListener(DrawLine);
     }
 
     void Start()
@@ -27,6 +27,7 @@ public class PancakeLineManager : MonoBehaviour
 
     public void DrawLine()
     {
+        coordinateGenerator.GenerateShape();
         GameObject.Destroy(marker);
         marker = null;
         if (beatFollower != null)
