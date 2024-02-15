@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PancakeParticle : MonoBehaviour
+public class PancakeParticle : Particle
 {
     public GameObject GetOuterBottom()
     {

@@ -1,0 +1,43 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public abstract class ParticleSpawner : MonoBehaviour
+{
+    [SerializeField] protected GameObject particle;
+    [SerializeField] protected float spawnDistance;
+    [SerializeField] protected float spawnCooldown;
+    protected float currentSpawnCooldown;
+    protected ParticleObject particleObject;
+    protected bool active = false;
+    
+    public abstract void Activate();
+    public abstract void Deactivate();
+    public ParticleObject GetParticleObject() { return particleObject; }
+    public void DestroyParticleObject()
+    {
+        Destroy(particleObject.gameObject);
+    }
+
+    public void Update()
+    {
+        currentSpawnCooldown -= Time.deltaTime;
+
+        if (active && currentSpawnCooldown <= 0)
+        {
+            Ray rayCast = Camera.main.ScreenPointToRay(Input.mousePosition);
+            GameObject spawnedParticle = Instantiate(particle, rayCast.GetPoint(spawnDistance), Quaternion.identity);
+            particleObject.AddToParticles(spawnedParticle.GetComponent<Particle>());
+            currentSpawnCooldown = spawnCooldown;
+        }
+
+        ParticleUpdate();
+    }
+
+    public bool ParticleObjectExists()
+    {
+        return particleObject is not null && !particleObject.IsDestroyed();
+    }
+
+    public abstract void ParticleUpdate();
+}

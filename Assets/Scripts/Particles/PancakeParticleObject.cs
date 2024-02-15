@@ -1,18 +1,15 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Pancake : MonoBehaviour
+public class PancakeParticleObject : ParticleObject
 {
-    private List<GameObject> particles = new List<GameObject>();
-
-    //0 = bottom; 1 = top
     private int cookingSide = 0;
     private int flipping = 0;
     private float flipAngle = 0;
     private float cookAmountTop, cookAmountBottom = 0.0f;
     private bool cooking = false;
     private float cookSpeed = 0.1f;
-
+    
+    
     public void Update()
     {
         if (cooking)
@@ -57,18 +54,14 @@ public class Pancake : MonoBehaviour
             }
         }
     }
-
-    public void AddToParticles(GameObject particle)
-    {
-        particle.transform.SetParent(transform);
-        particles.Add(particle);
-    }
-
+    
     public void UpdateSideColors(Color color1, Color color2)
     {
-        foreach (GameObject storedParticle in particles)
+        foreach (Particle storedParticle in particles)
         {
-            PancakeParticle particle = storedParticle.GetComponent<PancakeParticle>();
+            Debug.Log("iterating");
+            PancakeParticle particle = storedParticle as PancakeParticle;
+            Debug.Log(particle);
             particle.GetOuterBottom().GetComponent<Renderer>().material.color = Color.Lerp(color1, color2, cookAmountBottom);
             particle.GetOuterTop().GetComponent<Renderer>().material.color = Color.Lerp(color1, color2, cookAmountTop);
         }
@@ -89,12 +82,12 @@ public class Pancake : MonoBehaviour
         if (cookingSide == 0)
         {
             cookingSide = 1;
-            //flipping = 1;
+            flipping = 1;
         }
         else if (cookingSide == 1)
         {
             cookingSide = 0;
-            //flipping = -1;
+            flipping = -1;
         }
     }
 }
