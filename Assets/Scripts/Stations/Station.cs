@@ -33,6 +33,11 @@ public abstract class Station : MonoBehaviour
         //Composer.Instance.PitchChange(pitch);
     }
 
+    public static void HandlePathUpdate(Vector2 offset)
+    {
+        // TODO: this.
+    }
+
     public Camera GetAssociatedCamera() { return associatedCamera; }
     public bool IsRunning() { return running; }
 }

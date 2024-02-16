@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12072261, g: 0.12473124, b: 0.10821977, a: 1}
+  m_IndirectSpecularColor: {r: 0.12072234, g: 0.12473106, b: 0.1082197, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8873,6 +8873,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   markerPrefab: {fileID: 9023931458948383125, guid: 0de7616eb2174e54a8c8df6932f25d4e, type: 3}
+  pourTool: {fileID: 3452001473514026278}
+  maxDistance: 0.3
 --- !u!65 &1859468965
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33093,6 +33095,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f9cafb5da9e6e254db4a3469dfac5879, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
+--- !u!1 &3452001473514026278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3452001473513494095, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
+  m_PrefabInstance: {fileID: 3452001473514026277}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3488850841514040821
 GameObject:
   m_ObjectHideFlags: 0

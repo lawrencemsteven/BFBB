@@ -12,11 +12,6 @@ public class CoordinateGenerator : MonoBehaviour
 
     public UnityEvent afterShapeGenerated = new();
 
-    void Awake()
-    {
-        SongInfo.Instance.onMeasure.AddListener(GenerateShape);
-    }
-
     void Start()
     {
         GenerateShape();
