@@ -19,15 +19,20 @@ public abstract class ParticleSpawner : MonoBehaviour
         Destroy(particleObject.gameObject);
     }
 
+    public void SpawnSingleParticle(Vector3 position)
+    {
+        Ray rayCast = Camera.main.ScreenPointToRay(position);
+        GameObject spawnedParticle = Instantiate(particle, new Vector3(rayCast.GetPoint(1).x, spawnHeight, rayCast.GetPoint(1).z), Quaternion.identity);
+        particleObject.AddToParticles(spawnedParticle.GetComponent<Particle>());
+    }
+
     public void Update()
     {
         currentSpawnCooldown -= Time.deltaTime;
 
         if (active && currentSpawnCooldown <= 0)
         {
-            Ray rayCast = Camera.main.ScreenPointToRay(Input.mousePosition);
-            GameObject spawnedParticle = Instantiate(particle, new Vector3(rayCast.GetPoint(1).x, spawnHeight, rayCast.GetPoint(1).z), Quaternion.identity);
-            particleObject.AddToParticles(spawnedParticle.GetComponent<Particle>());
+            SpawnSingleParticle(Input.mousePosition);
             currentSpawnCooldown = spawnCooldown;
         }
 

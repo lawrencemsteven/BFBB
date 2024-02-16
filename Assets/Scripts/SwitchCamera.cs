@@ -99,8 +99,6 @@ public class SwitchCamera : MonoBehaviour
             selectedStation.Deactivate();
         }
 
-        Debug.Log($"Deactivating {selectedStation}");
-
         if (station is null)
         {
             overheadCamera.SetActive(true);
@@ -109,8 +107,6 @@ public class SwitchCamera : MonoBehaviour
         {
             station.Activate();
         }
-
-        Debug.Log($"Activating {station}");
         
         selectedStationType = stationType;
     }

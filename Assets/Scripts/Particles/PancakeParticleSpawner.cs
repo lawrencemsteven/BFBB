@@ -11,7 +11,7 @@ public class PancakeParticleSpawner : ParticleSpawner
     [SerializeField] private Color burntColor;
     private PancakeParticleObject pancake;
 
-    public override void Activate()
+    public void Initialize()
     {
         if (!ParticleObjectExists())
         {
@@ -20,6 +20,11 @@ public class PancakeParticleSpawner : ParticleSpawner
             particleObject = obj.AddComponent<PancakeParticleObject>(); 
             pancake = particleObject as PancakeParticleObject;
         }
+    }
+
+    public override void Activate()
+    {
+        Initialize();
         active = true;
     }
 

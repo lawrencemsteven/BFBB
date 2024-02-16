@@ -1,8 +1,11 @@
+using System.Reflection;
 using UnityEngine;
 
 public class PourPancakeParticles : MonoBehaviour
 {
+    [SerializeField] private float distanceThreshold = 10.0f;
     private PancakeParticleSpawner pancakeParticleSystem;
+    private Vector3? storedMousePosition;
 
     public void Start()
     {
@@ -12,14 +15,9 @@ public class PourPancakeParticles : MonoBehaviour
     public void Update()
     {
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            pancakeParticleSystem.Activate();
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            pancakeParticleSystem.Deactivate();
+            trySpawnParticle();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -36,5 +34,32 @@ public class PourPancakeParticles : MonoBehaviour
         {
             pancakeParticleSystem.SavePancake();
         }
+    }
+
+    private void trySpawnParticle()
+    {
+        if (storedMousePosition is null)
+        {
+            pancakeParticleSystem.SpawnSingleParticle(Input.mousePosition);
+            storedMousePosition = Input.mousePosition;
+            return;
+        }
+
+        float distanceTraveled = Vector3.Distance(Input.mousePosition, (Vector3)storedMousePosition);
+        
+        while (distanceTraveled > distanceThreshold)
+        {
+            distanceTraveled -= distanceThreshold;
+            
+            Vector3 angleVector = (Input.mousePosition - (Vector3)storedMousePosition).normalized;
+
+            Vector3 midpointVector = (Vector3)storedMousePosition + (distanceThreshold * angleVector);
+
+            pancakeParticleSystem.SpawnSingleParticle(midpointVector);
+
+            storedMousePosition = midpointVector;
+        }
+
+        storedMousePosition = Input.mousePosition;
     }
 }
