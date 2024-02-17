@@ -1699,7 +1699,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.37362862, y: 0.05437541, z: 0.32716513}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &363326363
 Transform:
@@ -1708,8 +1708,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363326359}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8116286, y: 2.1759539, z: -5.999683}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.8116, y: 2.163, z: -5.819}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4928,6 +4928,7 @@ MonoBehaviour:
   isFading: 0
   eqEffect: 0
   isFade: 0
+  composerInterpreter: {fileID: 1171260587}
   hiHatFmod: {fileID: 2066864611}
 --- !u!114 &1171260587
 MonoBehaviour:
@@ -32922,10 +32923,6 @@ PrefabInstance:
       propertyPath: waffleCamera
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 3452001473513494100, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
-      propertyPath: distanceThreshold
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3452001473513494101, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -33046,6 +33043,10 @@ PrefabInstance:
       propertyPath: spawnDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8058614789190814316, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
+      propertyPath: objectSpawnParent
+      value: 
+      objectReference: {fileID: 363326363}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
 --- !u!1 &3452001473514026278 stripped

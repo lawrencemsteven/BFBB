@@ -3,8 +3,6 @@ using UnityEngine;
 public class PancakeParticleObject : ParticleObject
 {
     private int cookingSide = 0;
-    private int flipping = 0;
-    private float flipAngle = 0;
     private float cookAmountTop, cookAmountBottom = 0.0f;
     private bool cooking = true;
     private float cookSpeed = 0.1f;
@@ -49,26 +47,11 @@ public class PancakeParticleObject : ParticleObject
     public int GetCookingSide() { return cookingSide; }
     public void Flip()
     { 
-        if (flipping != 0 )
+        if (transform.parent is not null)
         {
-            return;
+            transform.parent.gameObject.GetComponent<Animator>().SetTrigger("FlipTrigger");
         }
 
-        if (cookingSide == 0)
-        {
-            cookingSide = 1;
-            foreach (Particle particle in particles)
-            {
-                particle.transform.rotation = Quaternion.Euler(180, particle.transform.rotation.y, particle.transform.rotation.z);
-            }
-        }
-        else if (cookingSide == 1)
-        {
-            cookingSide = 0;
-            foreach (Particle particle in particles)
-            {
-                particle.transform.rotation = Quaternion.Euler(0, particle.transform.rotation.y, particle.transform.rotation.z);
-            }
-        }
+        cookingSide = cookingSide == 1 ? 0 : 1;
     }
 }

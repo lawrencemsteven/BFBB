@@ -88,11 +88,7 @@ public class SpiralGenerator : MonoBehaviour
                     pancake.SetActive(true);
                     
                 }
-                else
-                {
-
-                    Debug.Log(isShapeCovered.GetNumOfColliders());
-                }
+                
                 marker.SetActive(false);
                 gameObject.SetActive(false);
             }
@@ -118,10 +114,8 @@ public class SpiralGenerator : MonoBehaviour
                 pancakeCountdown.text = "";
             }
             
-            Debug.Log($"Beat {count}");
             yield return new WaitForSeconds(beatInterval);
         }
 
-        Debug.Log("Counting finished!");
     }
 }

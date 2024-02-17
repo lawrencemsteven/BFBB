@@ -21,10 +21,6 @@ public class WaffleBatterPour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (elapsedTime >= timeToPourBatter)
-        {
-            //Debug.Log("NOWWW");
-        }
         if (isPouring)
         {
             batterFill.transform.position += Vector3.up * speedOfBatterPour * Time.deltaTime;

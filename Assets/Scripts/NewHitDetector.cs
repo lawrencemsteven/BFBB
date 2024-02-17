@@ -26,7 +26,6 @@ public class NewHitDetector : MonoBehaviour
             GlobalVariables.streak += 1;
             GlobalVariables.notesHit += 1;
             collision.gameObject.SetActive(false);
-            Debug.Log("Hit!!");
         }
 
     }

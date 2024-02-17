@@ -99,7 +99,6 @@ public class ComposerInterpreter : MonoBehaviour
         if (countdownTimer > 0f && toggleTimer == true)
         {
             countdownTimer -= Time.deltaTime;
-            //Debug.Log("Time is " + countdownTimer);
         }
     }
 
@@ -124,17 +123,14 @@ public class ComposerInterpreter : MonoBehaviour
 
     public void spongeOnPlate() //This function is called from "SpongeAsCursor" and only triggers on collision stay and if the mouse is moving.
     {
-        //Debug.Log("Sponge is on Plate");
     }
 
     public void pourBatter() //implement fmod sound here
     {
-        Debug.Log("Pouring Batter");
     }
 
     public void stopBatter()  //left this if you need another call to stop fmod sound
     {
-        Debug.Log("Stopped Pouring Batter");
     }
 
     public void setPitch(float newPitch)

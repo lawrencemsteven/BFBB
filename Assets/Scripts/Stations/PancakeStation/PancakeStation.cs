@@ -115,11 +115,8 @@ public class PancakeStation : Station
                 {
                     countdown.text = "";
                 }
-                Debug.Log($"Beat {count}");
                 yield return new WaitForSeconds(beatInterval);
             }
-
-            Debug.Log("Counting finished!");
         }
 
         IEnumerator CountBeatsToWaffleFinish()
@@ -136,11 +133,8 @@ public class PancakeStation : Station
                 {
                     countdown.text = "";
                 }
-                Debug.Log($"Beat {count}");
                 yield return new WaitForSeconds(beatInterval);
             }
-
-            Debug.Log("Counting finished!");
         }
 
         IEnumerator CountBeatsPancake()
@@ -157,11 +151,8 @@ public class PancakeStation : Station
                 {
                     pancakeCountdown.text = "";
                 }
-                Debug.Log($"Beat {count}");
                 yield return new WaitForSeconds(beatInterval);
             }
-
-            Debug.Log("Counting finished!");
         }
 
     }
