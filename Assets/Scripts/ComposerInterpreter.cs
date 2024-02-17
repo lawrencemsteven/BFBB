@@ -26,12 +26,10 @@ public class ComposerInterpreter : MonoBehaviour
     {
         //All effect functions are called every frame
         //Logic is handled within the functions
-        VolumeFader();
-        EQ();
+        //VolumeFader();
+        //EQ();
         timerDecrement();
-
-        if(Input.GetKeyDown(KeyCode.Space))
-            Initialize();
+        Initialize();
 
     }
 
