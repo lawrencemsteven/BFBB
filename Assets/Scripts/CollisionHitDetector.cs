@@ -76,7 +76,6 @@ public class CollisionHitDetector : MonoBehaviour
         GlobalVariables.missCounter += 1;
         GlobalVariables.notesMissed += 1;
         GlobalVariables.streak = 0;
-        Debug.Log("Miss!");
     }
 
     private void SetSmudgeInvisible(int index)

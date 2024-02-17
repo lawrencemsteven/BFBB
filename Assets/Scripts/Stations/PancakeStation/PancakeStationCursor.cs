@@ -10,7 +10,7 @@ public class PancakeStationCursor : MonoBehaviour
     private float offset = 0.70f;
     private Renderer bottleRenderer;
     private Vector3? storedMousePosition;
-    [SerializeField] private float distanceThreshold;
+    [SerializeField] private float distanceThreshold = 20f;
 
     // Start is called before the first frame update
     void Start()

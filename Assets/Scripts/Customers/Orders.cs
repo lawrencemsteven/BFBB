@@ -129,19 +129,16 @@ namespace Orders
 
             if (order1.mainCourse != order2.mainCourse)
             {
-                Debug.Log("main courses unequal");
                 return false;
             }
 
             if (order1.mainCourseCount != order2.mainCourseCount)
             {
-                Debug.Log("main course count unequal");
                 return false;
             }
 
             if (!new HashSet<Topping>(order1.toppings).SetEquals(order2.toppings))
             {
-                Debug.Log("toppings unequal");
                 return false;
             }
 

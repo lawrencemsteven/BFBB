@@ -18,7 +18,8 @@ public class ComposerInterpreter : MonoBehaviour
     void Start()
     {
         composer = this.transform.GetComponent<Composer>();
-        WaitToInitialize();
+        //WaitToInitialize();
+        Initialize();
     }
 
     // Update is called once per frame
@@ -26,12 +27,9 @@ public class ComposerInterpreter : MonoBehaviour
     {
         //All effect functions are called every frame
         //Logic is handled within the functions
-        VolumeFader();
-        EQ();
+        //VolumeFader();
+        //EQ();
         timerDecrement();
-
-        if(Input.GetKeyDown(KeyCode.Space))
-            Initialize();
 
     }
 
@@ -73,7 +71,7 @@ public class ComposerInterpreter : MonoBehaviour
         }
     }
 
-    void setVolume(float volume, int track)
+    public void setVolume(float volume, int track)
     {
         string parameter = "Volume " + track;
 
@@ -101,7 +99,6 @@ public class ComposerInterpreter : MonoBehaviour
         if (countdownTimer > 0f && toggleTimer == true)
         {
             countdownTimer -= Time.deltaTime;
-            //Debug.Log("Time is " + countdownTimer);
         }
     }
 
@@ -126,17 +123,14 @@ public class ComposerInterpreter : MonoBehaviour
 
     public void spongeOnPlate() //This function is called from "SpongeAsCursor" and only triggers on collision stay and if the mouse is moving.
     {
-        //Debug.Log("Sponge is on Plate");
     }
 
     public void pourBatter() //implement fmod sound here
     {
-        Debug.Log("Pouring Batter");
     }
 
     public void stopBatter()  //left this if you need another call to stop fmod sound
     {
-        Debug.Log("Stopped Pouring Batter");
     }
 
     public void setPitch(float newPitch)

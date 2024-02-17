@@ -7,6 +7,7 @@ public abstract class ParticleSpawner : MonoBehaviour
     [SerializeField] protected GameObject particle;
     [SerializeField] protected float spawnHeight;
     [SerializeField] protected float spawnCooldown;
+    [SerializeField] protected Transform objectSpawnParent;
     protected float currentSpawnCooldown;
     protected ParticleObject particleObject;
     protected bool active = false;

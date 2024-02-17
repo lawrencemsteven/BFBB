@@ -11,7 +11,7 @@ public class CoordinateCollider : MonoBehaviour
     {
         if (other.gameObject.CompareTag(targetTag))
         {
-            Station.HandlePointCollision(index);
+            Station.HandlePointCollision();
         }
     }
 }

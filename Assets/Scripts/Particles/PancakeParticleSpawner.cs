@@ -17,7 +17,8 @@ public class PancakeParticleSpawner : ParticleSpawner
         {
             GameObject obj = new GameObject();
             obj.transform.position = new Vector3(griddleX, spawnHeight, griddleZ);
-            particleObject = obj.AddComponent<PancakeParticleObject>(); 
+            particleObject = obj.AddComponent<PancakeParticleObject>();
+            particleObject.transform.SetParent(objectSpawnParent); 
             pancake = particleObject as PancakeParticleObject;
         }
     }

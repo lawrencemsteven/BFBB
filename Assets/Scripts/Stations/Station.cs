@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Station : MonoBehaviour
 {
     [SerializeField] protected Camera associatedCamera;
+    [SerializeField] protected static float distanceMinimum = 0.12f;
     protected bool running = false;
 
     public static Station activeStation;
@@ -20,22 +21,22 @@ public abstract class Station : MonoBehaviour
         running = false;
     }
 
-    public static void HandlePointCollision(int index)
+    public static void HandlePointCollision()
     {
-        Debug.Log($"Point {index} collided");
-
         Composer.Instance.PlayHiHat();
-
-        //float volume = (distanceVector.x + 0.3f) / 0.6f;
-        //float pitch = ((distanceVector.y + 0.3f) / 0.3f) - 1;
-
-        //Composer.Instance.VolumeChange(volume);
-        //Composer.Instance.PitchChange(pitch);
     }
 
     public static void HandlePathUpdate(Vector2 offset)
     {
-        // TODO: this.
+        float distance = offset.magnitude;
+
+        if (distance < distanceMinimum)
+        {
+            distance = 0;
+        }
+
+        //Composer.Instance.VolumeChange(1, volume);
+        Composer.Instance.PitchChange(-distance);
     }
 
     public Camera GetAssociatedCamera() { return associatedCamera; }
