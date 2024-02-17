@@ -71,7 +71,7 @@ public class ComposerInterpreter : MonoBehaviour
         }
     }
 
-    void setVolume(float volume, int track)
+    public void setVolume(float volume, int track)
     {
         string parameter = "Volume " + track;
 
