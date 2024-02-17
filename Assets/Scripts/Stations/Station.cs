@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Station : MonoBehaviour
 {
     [SerializeField] protected Camera associatedCamera;
+    [SerializeField] protected static float distanceMinimum = 0.12f;
     protected bool running = false;
 
     public static Station activeStation;
@@ -27,11 +28,15 @@ public abstract class Station : MonoBehaviour
 
     public static void HandlePathUpdate(Vector2 offset)
     {
-        float volume = (offset.x + 0.3f) / 0.6f;
-        float pitch = ((offset.y + 0.3f) / 0.3f) - 1;
+        float distance = offset.magnitude;
 
-        Composer.Instance.VolumeChange(1, volume);
-        Composer.Instance.PitchChange(pitch);
+        if (distance < distanceMinimum)
+        {
+            distance = 0;
+        }
+
+        //Composer.Instance.VolumeChange(1, volume);
+        Composer.Instance.PitchChange(-distance);
     }
 
     public Camera GetAssociatedCamera() { return associatedCamera; }

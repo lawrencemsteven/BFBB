@@ -18,7 +18,8 @@ public class ComposerInterpreter : MonoBehaviour
     void Start()
     {
         composer = this.transform.GetComponent<Composer>();
-        WaitToInitialize();
+        //WaitToInitialize();
+        Initialize();
     }
 
     // Update is called once per frame
@@ -29,7 +30,6 @@ public class ComposerInterpreter : MonoBehaviour
         //VolumeFader();
         //EQ();
         timerDecrement();
-        Initialize();
 
     }
 
