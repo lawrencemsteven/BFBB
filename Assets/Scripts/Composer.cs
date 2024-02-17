@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ComposerInterpreter))]
 public class Composer : Singleton<Composer>
 {
     private float countdownTimer = 10f;
@@ -10,7 +11,7 @@ public class Composer : Singleton<Composer>
     public bool eqEffect = false;
     public int isFade = 0;  //Replacement for isFading, I did not touch isFading since you needed it to work, so please implement this when possible, I have it right now so the states change but nothing happens
     private float newTime;
-    [SerializeField] private ComposerInterpreter composerInterpreter;
+    private ComposerInterpreter composerInterpreter;
     public static float MAX_PITCH = 1.0f;
     public static float MIN_PITCH = 0.0f;
     public static float DEF_PITCH = 0.33f;
@@ -18,6 +19,11 @@ public class Composer : Singleton<Composer>
     public static float MIN_VOLUME = 0.0f;
     public static float DEF_VOLUME = 1f;
     [SerializeField] private HiHatFmod hiHatFmod;
+
+    void Awake()
+    {
+        composerInterpreter = GetComponent<ComposerInterpreter>();
+    }
 
     // Update is called once per frame
     void Update()
