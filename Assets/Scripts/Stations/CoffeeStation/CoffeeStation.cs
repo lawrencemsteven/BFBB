@@ -100,34 +100,22 @@ public class CoffeeStation : Station
 
                     if (coffeePourPercentage >= 90)
                     {
-                        Debug.Log("perfect pour!");
                         pointTotal += 4;
                     }
                     else if (coffeePourPercentage >= 80)
                     {
-                        Debug.Log("decent pour!");
                         pointTotal += 2;
-                    }
-                    else
-                    {
-                        Debug.Log("Bad Pour");
                     }
 
                     creamPourPercentage = 100 - System.Math.Abs(1 - (creamPourTime / idealCreamPourTime)) * 100;
 
                     if (creamPourPercentage >= 90)
                     {
-                        Debug.Log("so creamy nice!");
                         pointTotal += 3;
                     }
                     else if (creamPourPercentage >= 80)
                     {
-                        Debug.Log("sorta creamy sorta nice");
                         pointTotal += 1;
-                    }
-                    else
-                    {
-                        Debug.Log("abject failure not nearly creamy enough");
                     }
 
                     customerMugMoving = false;
@@ -158,7 +146,6 @@ public class CoffeeStation : Station
 
         if (current == 2)
         {
-            //Debug.Log("coffee pot should move");
             coffeeMousePos = Input.mousePosition;
             coffeePot.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(coffeeMousePos.x, coffeeMousePos.y, 2f));
 
@@ -240,7 +227,6 @@ public class CoffeeStation : Station
         {
             if (!customerMugMoving)
             {
-                Debug.Log("mug moving");
                 customerMugMoving = true;
                 sugarEnabled = true;
 
@@ -258,19 +244,28 @@ public class CoffeeStation : Station
                 instructions.SetActive(true);
 
             }
-            else if(current == 2 || current == 4) 
-            {
-                iniMousePos = Input.mousePosition;
-            }
         }
 
-        if (Input.GetMouseButtonUp(0)) 
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            if((current == 2 || current ==4) && Input.mousePosition.y > iniMousePos.y + .25f)
+            //pouring starts
+            if (current == 2 || current == 4)
             {
                 pouring = true;
             }
         }
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            //pouring stops
+            if (current == 2 || current == 4)
+            {
+                pouring = false;
+                coffeePot.GetComponentInChildren<ParticleSystem>().Stop();
+                cream.GetComponentInChildren<ParticleSystem>().Stop();
+            }
+        }
+
+
 
 
         if (Input.GetKeyDown(KeyCode.Space) && sugarEnabled && customerMugMoving)
@@ -282,15 +277,10 @@ public class CoffeeStation : Station
             if (sugarDistanceFromMug <= .1)
             {
                 pointTotal += 3;
-                Debug.Log("Ive never seen a better sugar pour!");
             }
             else if (sugarDistanceFromMug < .25)
             {
                 pointTotal += 1;
-                Debug.Log("Almost! keep practicing high five");
-            }
-            else {
-                Debug.Log("No sugar even got in you worthless failure");
             }
         }
     }

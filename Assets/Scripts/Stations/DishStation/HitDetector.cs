@@ -102,7 +102,6 @@ public class HitDetector : MonoBehaviour
                 GlobalVariables.notesMissed += 1;
                 GlobalVariables.streak = 0;
                 string missText = "Miss: " + lastSmudgeIndex.ToString();
-                Debug.Log("Miss!");
             }
             lastSmudgeIndex = closestSmudgeIndex;
         }
@@ -121,7 +120,6 @@ public class HitDetector : MonoBehaviour
                 //{
                     //GlobalVariables.missCounter += 1;
                     //GlobalVariables.notesMissed += 1;
-                    //Debug.Log(GlobalVariables.missCounter);
                 //}
 
                 if (!smudges[i].transform.GetChild(0).GetComponent<Renderer>().enabled)
@@ -160,7 +158,6 @@ public class HitDetector : MonoBehaviour
 
     public ReservoirPlate CreateReservoirPlate()
     {
-        Debug.Log(smudgesRemaining);
         float quality = 1.0f - (smudgesRemaining * smudgeQualityCost);
         return new ReservoirPlate(quality);
     }

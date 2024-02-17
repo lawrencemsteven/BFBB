@@ -18,6 +18,8 @@ public class ComposerInterpreter : MonoBehaviour
     void Start()
     {
         composer = this.transform.GetComponent<Composer>();
+        //WaitToInitialize();
+        Initialize();
     }
 
     // Update is called once per frame
@@ -25,10 +27,33 @@ public class ComposerInterpreter : MonoBehaviour
     {
         //All effect functions are called every frame
         //Logic is handled within the functions
-        VolumeFader();
-        EQ();
+        //VolumeFader();
+        //EQ();
         timerDecrement();
 
+    }
+
+    void Initialize()
+    {
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 1", 1);
+
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 2", 1);
+
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 3", 1);
+
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 4", 1);
+
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 1", 1);
+
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 2", 1);
+
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 3", 1);
+
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 4", 1);
+
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Master", 0.33f);
+
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", 0.33f);
     }
 
     void VolumeFader()
@@ -45,6 +70,14 @@ public class ComposerInterpreter : MonoBehaviour
             GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume", volumeParameter + fadeRate * Time.deltaTime);
         }
     }
+
+    public void setVolume(float volume, int track)
+    {
+        string parameter = "Volume " + track;
+
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName(parameter, volume);
+    }
+
     
     void EQ()
     {
@@ -66,7 +99,6 @@ public class ComposerInterpreter : MonoBehaviour
         if (countdownTimer > 0f && toggleTimer == true)
         {
             countdownTimer -= Time.deltaTime;
-            //Debug.Log("Time is " + countdownTimer);
         }
     }
 
@@ -91,17 +123,25 @@ public class ComposerInterpreter : MonoBehaviour
 
     public void spongeOnPlate() //This function is called from "SpongeAsCursor" and only triggers on collision stay and if the mouse is moving.
     {
-        //Debug.Log("Sponge is on Plate");
     }
 
     public void pourBatter() //implement fmod sound here
     {
-        Debug.Log("Pouring Batter");
     }
 
     public void stopBatter()  //left this if you need another call to stop fmod sound
     {
-        Debug.Log("Stopped Pouring Batter");
+    }
+
+    public void setPitch(float newPitch)
+    {
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", newPitch);
+    }
+
+    IEnumerator WaitToInitialize()
+    {
+        yield return new WaitForSeconds(3f);
+        Initialize();
     }
 
     
