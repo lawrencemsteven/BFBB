@@ -258,19 +258,28 @@ public class CoffeeStation : Station
                 instructions.SetActive(true);
 
             }
-            else if(current == 2 || current == 4) 
-            {
-                iniMousePos = Input.mousePosition;
-            }
         }
 
-        if (Input.GetMouseButtonUp(0)) 
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            if((current == 2 || current ==4) && Input.mousePosition.y > iniMousePos.y + .25f)
+            //pouring starts
+            if (current == 2 || current == 4)
             {
                 pouring = true;
             }
         }
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            //pouring stops
+            if (current == 2 || current == 4)
+            {
+                pouring = false;
+                coffeePot.GetComponentInChildren<ParticleSystem>().Stop();
+                cream.GetComponentInChildren<ParticleSystem>().Stop();
+            }
+        }
+
+
 
 
         if (Input.GetKeyDown(KeyCode.Space) && sugarEnabled && customerMugMoving)
