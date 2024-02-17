@@ -4,11 +4,17 @@ using UnityEngine;
 
 public abstract class ParticleObject : MonoBehaviour
 {
-    protected List<Particle> particles = new List<Particle>();
+    protected Queue<Particle> particles = new Queue<Particle>();
+    protected abstract int particleLimit { get; }
 
     public void AddToParticles(Particle particle)
     {
         particle.transform.SetParent(transform);
-        particles.Add(particle);
+        if (particles.Count >= particleLimit)
+        {
+            Particle toDestroy = particles.Dequeue();
+            Destroy(toDestroy.gameObject);
+        }
+        particles.Enqueue(particle);
     }
 }
