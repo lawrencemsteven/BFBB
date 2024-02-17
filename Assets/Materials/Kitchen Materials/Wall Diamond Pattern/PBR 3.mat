@@ -22,8 +22,6 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PBR 3
   m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _HALFTONESHAPE_DOT
   - _OUTLINE
@@ -38,7 +36,6 @@ Material:
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
-  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -212,7 +209,7 @@ Material:
     - _ZWrite: 1
     - _brushScale: 8
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.6839622, b: 0.83146596, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
