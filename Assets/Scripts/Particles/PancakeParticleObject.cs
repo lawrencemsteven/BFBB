@@ -8,8 +8,15 @@ public class PancakeParticleObject : ParticleObject
     private float cookAmountTop, cookAmountBottom = 0.0f;
     private bool cooking = true;
     private float cookSpeed = 0.1f;
-    
-    
+    protected override int particleLimit
+    {
+        get
+        {
+            return 64;
+        }
+    }
+
+
     public void Update()
     {
         if (cooking)
