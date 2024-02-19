@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using System;
 
 public class fmodTimer : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class fmodTimer : MonoBehaviour
         }
         */
         timeline = GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().timelineInfo;
+        previousBeat = beat;
     }
 
     // Update is called once per frame
@@ -57,7 +59,7 @@ public class fmodTimer : MonoBehaviour
         
         beat = GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().timelineInfo.currentBeat;
         bar  = GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().timelineInfo.currentBar;
-        if (bar != previousBeat)
+        if (beat != previousBeat)
         {
             beatChange = true;
         }
@@ -65,6 +67,7 @@ public class fmodTimer : MonoBehaviour
         {
             beatChange = false;
         }
+        previousBeat = beat;
         
         //if(Input.GetKeyDown(KeyCode.0)) 
         //    print(eventRef.getTimelinePosition());
