@@ -19,11 +19,7 @@ public class CoordinateGenerator : MonoBehaviour
 
     public void GenerateShape()
     {
-        foreach (CoordinateCollider point in points)
-        {
-            GameObject.Destroy(point.gameObject);
-        }
-        points = new List<CoordinateCollider>();
+        RemoveShape();
 
         int i = 0;
         foreach (Vector2 point in coordinates)
@@ -38,6 +34,15 @@ public class CoordinateGenerator : MonoBehaviour
         }
 
         afterShapeGenerated?.Invoke();
+    }
+
+    public void RemoveShape()
+    {
+        foreach (CoordinateCollider point in points)
+        {
+            GameObject.Destroy(point.gameObject);
+        }
+        points = new List<CoordinateCollider>();
     }
 
     public List<CoordinateCollider> GetColliders()

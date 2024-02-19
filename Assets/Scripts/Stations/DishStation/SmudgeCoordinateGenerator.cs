@@ -34,4 +34,9 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
 
         coordinateGenerator.GenerateShape();
     }
+
+    public void ClearPlate()
+    {
+        coordinateGenerator.RemoveShape();
+    }
 }
