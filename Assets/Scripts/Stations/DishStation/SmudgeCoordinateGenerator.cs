@@ -27,7 +27,7 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
             float radius = Mathf.Sqrt(Random.Range(0, Mathf.Pow(maxRadius, 2)));
             float angle = Random.Range(0F, 360F);
 
-            Vector3 target3 = Quaternion.Euler(0, 0, angle) * Vector3.up;
+            Vector3 target3 = Quaternion.Euler(0, 0, angle) * (radius * Vector3.up);
             Vector2 target = new Vector2(target3.x, target3.y);
             coordinateGenerator.coordinates.Add(target);
         }
