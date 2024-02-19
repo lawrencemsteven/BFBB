@@ -4,11 +4,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(CoordinateGenerator))]
 [RequireComponent(typeof(LineRenderer))]
-public class PancakeLineManager : MonoBehaviour
+public class LineManager : MonoBehaviour
 {
     [SerializeField] private GameObject markerPrefab;
     [SerializeField] private GameObject pourTool;
     [SerializeField] private float maxDistance = 0.3F;
+    [SerializeField] private bool drawLine;
+    [SerializeField] private bool lerpToPoint;
+    [SerializeField] private int measuresPerShape;
 
     private CoordinateGenerator coordinateGenerator;
     private LineRenderer lineRenderer;
@@ -35,7 +38,8 @@ public class PancakeLineManager : MonoBehaviour
         {
             readyForNewMeasure = false;
             DrawLine();
-        } else
+        }
+        else
         {
             readyForNewMeasure = true;
         }
@@ -43,6 +47,8 @@ public class PancakeLineManager : MonoBehaviour
 
     public void DrawLine()
     {
+        lineRenderer.enabled = drawLine;
+
         coordinateGenerator.GenerateShape();
         GameObject.Destroy(marker);
         marker = null;
@@ -74,7 +80,7 @@ public class PancakeLineManager : MonoBehaviour
 
         marker = GameObject.Instantiate(markerPrefab, transform);
 
-        float beatDuration = SongInfo.Instance.getSecondsPerBeat() * 2;
+        float beatDuration = SongInfo.Instance.getSecondsPerBeat() * measuresPerShape;
         List<CoordinateCollider> points = coordinateGenerator.GetColliders();
 
         while (accumulatedTime < (beatDuration * SongInfo.Instance.getBeatsPerMeasure()))
@@ -93,19 +99,46 @@ public class PancakeLineManager : MonoBehaviour
             {
                 previous = points[beatsPassed].transform.position;
                 next = points[beatsPassed+1].transform.position;
-                marker.transform.position = Vector3.Lerp(previous, next, beatProgress);
-            } else
+
+                if (lerpToPoint)
+                {
+                    marker.transform.position = Vector3.Lerp(previous, next, beatProgress);
+                }
+                else
+                {
+                    marker.transform.position = previous;
+                }
+            }
+            else
             {
                 if (beatProgress > 0.5)
                 {
                     previous = points[beatsPassed+1].transform.position;
                     next = points[beatsPassed+2].transform.position;
-                    marker.transform.position = Vector3.Lerp(previous, next, (beatProgress - 0.5F) * 2);
-                } else
+                    
+                    if (lerpToPoint)
+                    {
+                        marker.transform.position = Vector3.Lerp(previous, next, (beatProgress - 0.5F) * measuresPerShape);
+                    }
+                    else
+                    {
+                        marker.transform.position = previous;
+                    }
+
+                }
+                else
                 {
                     previous = points[beatsPassed].transform.position;
                     next = points[beatsPassed+1].transform.position;
-                    marker.transform.position = Vector3.Lerp(previous, next, beatProgress * 2);
+
+                    if (lerpToPoint)
+                    {
+                        marker.transform.position = Vector3.Lerp(previous, next, beatProgress * measuresPerShape);
+                    }
+                    else
+                    {
+                        marker.transform.position = previous;
+                    }
                 }
             }
 
