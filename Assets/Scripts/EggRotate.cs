@@ -11,11 +11,11 @@ public class EggRotate : MonoBehaviour
 
         if (coffeeCamActive && anim.GetBool("CamActive"))
         {
-            anim.SetBool("CamActive", false);
+            //anim.SetBool("CamActive", false);
         }
         else if (!coffeeCamActive && !anim.GetBool("CamActive"))
         {
-            anim.SetBool("CamActive", true);
+            //anim.SetBool("CamActive", true);
         }
     }
 
