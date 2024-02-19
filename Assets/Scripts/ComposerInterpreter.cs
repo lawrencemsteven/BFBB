@@ -135,7 +135,7 @@ public class ComposerInterpreter : MonoBehaviour
 
     public void setPitch(float newPitch)
     {
-        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", newPitch);
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Master", newPitch);
     }
 
     IEnumerator WaitToInitialize()
