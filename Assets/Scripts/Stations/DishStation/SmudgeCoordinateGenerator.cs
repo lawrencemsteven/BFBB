@@ -13,7 +13,6 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
     void Awake()
     {
         coordinateGenerator = GetComponent<CoordinateGenerator>();
-        SongInfo.Instance.onMeasure.AddListener(NewPlate);
     }
 
     public void NewPlate()
@@ -31,8 +30,6 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
             Vector2 target = new Vector2(target3.x, target3.y);
             coordinateGenerator.coordinates.Add(target);
         }
-
-        coordinateGenerator.GenerateShape();
     }
 
     public void ClearPlate()

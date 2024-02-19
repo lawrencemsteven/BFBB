@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DishStation : Station
 {
+    [SerializeField] private LineManager lineManager;
+    [SerializeField] private SmudgeCoordinateGenerator smudgeCoordinateGenerator;
+
     private List<GameObject> rhythms = new List<GameObject>();
     private GameObject plate;
     private GameObject bar;
@@ -35,6 +38,13 @@ public class DishStation : Station
 
         intitialScale = plate.transform.localScale;
         initialPos = plate.transform.position;
+        SongInfo.Instance.onMeasure.AddListener(NewMeasure);
+    }
+
+    public void NewMeasure()
+    {
+        smudgeCoordinateGenerator.NewPlate();
+        lineManager.DrawLine();
     }
 
     // Update is called once per frame

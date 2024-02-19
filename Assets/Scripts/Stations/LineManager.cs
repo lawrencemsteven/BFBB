@@ -23,26 +23,11 @@ public class LineManager : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         coordinateGenerator = GetComponent<CoordinateGenerator>();
-        SongInfo.Instance.onMeasure.AddListener(NewMeasure);
     }
 
     void Start()
     {
         lineRenderer.useWorldSpace = false;
-        NewMeasure();
-    }
-
-    public void NewMeasure()
-    {
-        if (readyForNewMeasure)
-        {
-            readyForNewMeasure = false;
-            DrawLine();
-        }
-        else
-        {
-            readyForNewMeasure = true;
-        }
     }
 
     public void DrawLine()

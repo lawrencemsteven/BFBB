@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12072234, g: 0.124731, b: 0.10821967, a: 1}
+  m_IndirectSpecularColor: {r: 0.12072234, g: 0.12473106, b: 0.1082197, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8766,6 +8766,7 @@ MonoBehaviour:
   waffleBatter: {fileID: 118078430}
   countdown: {fileID: 914347482}
   pancakeCountdown: {fileID: 1575860860}
+  lineManager: {fileID: 1859468964}
 --- !u!1 &1579153534
 GameObject:
   m_ObjectHideFlags: 0
@@ -18970,6 +18971,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   associatedCamera: {fileID: 1862202497}
+  lineManager: {fileID: 2088419841}
+  smudgeCoordinateGenerator: {fileID: 2088419839}
   sponge: {fileID: 183062006}
   randPlateSprite: {fileID: 1672053731}
   scale: 1
