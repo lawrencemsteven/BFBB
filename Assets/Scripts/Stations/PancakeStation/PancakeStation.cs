@@ -177,6 +177,25 @@ public class PancakeStation : Station
 
     }
 
+    public override void pathUpdate(Vector2 offset)
+    {
+        float distance = offset.magnitude;
+
+        if (distance < distanceMinimum)
+        {
+            distance = 0;
+        }
+
+        //Composer.Instance.VolumeChange(1, volume);
+        Composer.Instance.PitchChange(-distance);
+    }
+
+    void Deactivate()
+    {
+        base.Deactivate();
+        Composer.Instance.PitchChange(0);
+    }
+
     public PancakeParticleObject GetPancakeParticleObject() { return pancakeParticleObject; }
     public void SetPancakeParticleObject(PancakeParticleObject ppo) { pancakeParticleObject = ppo; }
 }

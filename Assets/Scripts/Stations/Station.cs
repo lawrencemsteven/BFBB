@@ -38,15 +38,7 @@ public abstract class Station : MonoBehaviour
 
     public virtual void pathUpdate(Vector2 offset)
     {
-        float distance = offset.magnitude;
-
-        if (distance < distanceMinimum)
-        {
-            distance = 0;
-        }
-
-        //Composer.Instance.VolumeChange(1, volume);
-        Composer.Instance.PitchChange(-distance);
+        return;
     }
 
     public Camera GetAssociatedCamera() { return associatedCamera; }
