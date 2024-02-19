@@ -23,10 +23,20 @@ public abstract class Station : MonoBehaviour
 
     public static void HandlePointCollision()
     {
+        activeStation?.pointCollision();
+    }
+
+    protected virtual void pointCollision()
+    {
         Composer.Instance.PlayHiHat();
     }
 
     public static void HandlePathUpdate(Vector2 offset)
+    {
+        activeStation?.pathUpdate(offset);
+    }
+
+    public virtual void pathUpdate(Vector2 offset)
     {
         float distance = offset.magnitude;
 
