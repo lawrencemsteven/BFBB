@@ -83,7 +83,15 @@ public class LineManager : MonoBehaviour
             if (beatsPassed < fullBeats)
             {
                 previous = points[beatsPassed].transform.position;
-                next = points[beatsPassed+1].transform.position;
+
+                if (beatsPassed + 1 < points.Count )
+                {
+                    next = points[beatsPassed+1].transform.position;
+                }
+                else
+                {
+                    next = points[beatsPassed].transform.position;
+                }
 
                 if (lerpToPoint)
                 {
@@ -99,7 +107,14 @@ public class LineManager : MonoBehaviour
                 if (beatProgress > 0.5)
                 {
                     previous = points[beatsPassed+1].transform.position;
-                    next = points[beatsPassed+2].transform.position;
+                    if (beatsPassed + 2 < points.Count )
+                    {
+                        next = points[beatsPassed+2].transform.position;
+                    }
+                    else
+                    {
+                        next = points[beatsPassed].transform.position;
+                    }
                     
                     if (lerpToPoint)
                     {
@@ -114,7 +129,14 @@ public class LineManager : MonoBehaviour
                 else
                 {
                     previous = points[beatsPassed].transform.position;
-                    next = points[beatsPassed+1].transform.position;
+                    if (beatsPassed + 1 < points.Count )
+                    {
+                        next = points[beatsPassed+1].transform.position;
+                    }
+                    else
+                    {
+                        next = points[beatsPassed].transform.position;
+                    }
 
                     if (lerpToPoint)
                     {
