@@ -17,8 +17,11 @@ public class fmodTimer : MonoBehaviour
     public ScriptUsageTimeline.TimelineInfo timeline;
     public int beat;
     public int bar;
+    private int previousBeat;
+    private bool beatChange = false;
+
     //public FMOD.Studio.TIMELINE_BEAT_PROPERTIES beatProperties;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,13 +54,25 @@ public class fmodTimer : MonoBehaviour
             bar = timeline.currentBar;
         }
         */
-
+        
         beat = GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().timelineInfo.currentBeat;
         bar  = GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().timelineInfo.currentBar;
-
-
+        if (bar != previousBeat)
+        {
+            beatChange = true;
+        }
+        else
+        {
+            beatChange = false;
+        }
+        
         //if(Input.GetKeyDown(KeyCode.0)) 
         //    print(eventRef.getTimelinePosition());
         //eventInstance.getTimelinePosition(out timelinePos);
+    }
+
+    public bool BeatChange()
+    {
+        return beatChange;
     }
 }
