@@ -11,6 +11,7 @@ public class LineManager : MonoBehaviour
     [SerializeField] private float maxDistance = 0.3F;
     [SerializeField] private bool drawLine;
     [SerializeField] private bool lerpToPoint;
+    [SerializeField] private int measuresPerShape;
 
     private CoordinateGenerator coordinateGenerator;
     private LineRenderer lineRenderer;
@@ -79,7 +80,7 @@ public class LineManager : MonoBehaviour
 
         marker = GameObject.Instantiate(markerPrefab, transform);
 
-        float beatDuration = SongInfo.Instance.getSecondsPerBeat() * 2;
+        float beatDuration = SongInfo.Instance.getSecondsPerBeat() * measuresPerShape;
         List<CoordinateCollider> points = coordinateGenerator.GetColliders();
 
         while (accumulatedTime < (beatDuration * SongInfo.Instance.getBeatsPerMeasure()))
@@ -117,7 +118,7 @@ public class LineManager : MonoBehaviour
                     
                     if (lerpToPoint)
                     {
-                        marker.transform.position = Vector3.Lerp(previous, next, (beatProgress - 0.5F) * 2);
+                        marker.transform.position = Vector3.Lerp(previous, next, (beatProgress - 0.5F) * measuresPerShape);
                     }
                     else
                     {
@@ -132,7 +133,7 @@ public class LineManager : MonoBehaviour
 
                     if (lerpToPoint)
                     {
-                        marker.transform.position = Vector3.Lerp(previous, next, beatProgress * 2);
+                        marker.transform.position = Vector3.Lerp(previous, next, beatProgress * measuresPerShape);
                     }
                     else
                     {
