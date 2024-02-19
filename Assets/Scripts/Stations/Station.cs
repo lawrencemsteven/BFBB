@@ -21,12 +21,12 @@ public abstract class Station : MonoBehaviour
         running = false;
     }
 
-    public static void HandlePointCollision()
+    public static void HandlePointCollision(int index)
     {
-        activeStation?.pointCollision();
+        activeStation?.pointCollision(index);
     }
 
-    protected virtual void pointCollision()
+    protected virtual void pointCollision(int index)
     {
         Composer.Instance.PlayHiHat();
     }
