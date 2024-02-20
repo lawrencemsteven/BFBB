@@ -102,5 +102,15 @@ public class Composer : Singleton<Composer>
     {
         hiHatFmod.PlayHiHat();
     }
+    public void PlayEarlyHit()
+    {
+        hiHatFmod.PlaySqueak();
+    }
+
+    public void PlayLateHit()
+    {
+        hiHatFmod.PlayScrape();
+    }
+
 
 }
