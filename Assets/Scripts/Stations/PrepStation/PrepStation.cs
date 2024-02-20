@@ -7,9 +7,15 @@ public class PrepStation : Station
 {
     [SerializeField] private GameObject prepStationUI;
     [SerializeField] private GameObject orderPrefab;
+    [SerializeField] private GameObject syrupLiquid;
+    [SerializeField] private GameObject syrupContainer;
+
+    private Vector3 syrupPosition;
+
     private Transform orderList;
     private Order preppedOrder;
     private TextMeshProUGUI orderLabel;
+
 
 
     public void Start()
@@ -18,6 +24,8 @@ public class PrepStation : Station
         orderLabel = prepStationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         prepStationUI.SetActive(false);
         preppedOrder = null;
+
+        syrupLiquid.SetActive(false);
 
         //Test code
         ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
@@ -32,6 +40,20 @@ public class PrepStation : Station
         {
             orderLabel.text = preppedOrder.ToString();
         }
+
+        if (Input.GetMouseButton(0))
+        {
+            
+            syrupLiquid.SetActive(true);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            syrupLiquid.SetActive(false);
+        }
+
+        syrupPosition = Input.mousePosition;
+        syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(syrupPosition.x, syrupPosition.y, 1.3f));
     }
 
     public void UpdateCustomerOrders()
