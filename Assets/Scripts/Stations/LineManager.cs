@@ -11,13 +11,19 @@ public class LineManager : MonoBehaviour
     [SerializeField] private float maxDistance = 0.3F;
     [SerializeField] private bool drawLine;
     [SerializeField] private bool lerpToPoint;
+    [SerializeField] private bool colorChange;
     [SerializeField] private int measuresPerShape;
+    [SerializeField] private float markerMinScale;
+    [SerializeField] private float markerMaxScale;
+    [SerializeField] private float earlyThreshold;
 
     private CoordinateGenerator coordinateGenerator;
     private LineRenderer lineRenderer;
     private GameObject marker;
     private Coroutine beatFollower;
     private bool readyForNewMeasure = true;
+    private int currentBeat = 1;
+    private Vector3 defaultMarkerScale;
 
     void Awake()
     {
@@ -35,7 +41,7 @@ public class LineManager : MonoBehaviour
         lineRenderer.enabled = drawLine;
 
         coordinateGenerator.GenerateShape();
-        GameObject.Destroy(marker);
+        Destroy(marker);
         marker = null;
         if (beatFollower != null)
         {
@@ -64,6 +70,7 @@ public class LineManager : MonoBehaviour
         float beatProgress = 0F;
 
         marker = GameObject.Instantiate(markerPrefab, transform);
+        defaultMarkerScale = marker.transform.localScale;
 
         float beatDuration = SongInfo.Instance.getSecondsPerBeat() * measuresPerShape;
         List<CoordinateCollider> points = coordinateGenerator.GetColliders();
@@ -80,6 +87,16 @@ public class LineManager : MonoBehaviour
             }
 
             Vector3 previous, next;
+
+            if (colorChange && beatProgress >= earlyThreshold)
+            {
+                marker.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
+            } 
+            else
+            {
+                marker.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
+            }
+
             if (beatsPassed < fullBeats)
             {
                 previous = points[beatsPassed].transform.position;
@@ -100,6 +117,7 @@ public class LineManager : MonoBehaviour
                 else
                 {
                     marker.transform.position = previous;
+                    marker.transform.localScale = defaultMarkerScale * Mathf.Lerp(markerMaxScale, markerMinScale, beatProgress * measuresPerShape);
                 }
             }
             else
@@ -123,6 +141,7 @@ public class LineManager : MonoBehaviour
                     else
                     {
                         marker.transform.position = previous;
+                        marker.transform.localScale = defaultMarkerScale * Mathf.Lerp(markerMaxScale, markerMinScale, beatProgress * measuresPerShape);
                     }
 
                 }
@@ -145,16 +164,19 @@ public class LineManager : MonoBehaviour
                     else
                     {
                         marker.transform.position = previous;
+                        marker.transform.localScale = defaultMarkerScale * Mathf.Lerp(markerMaxScale, markerMinScale, beatProgress * measuresPerShape);
                     }
                 }
             }
 
             PassLineInfo(previous, next);
 
+            currentBeat = beatsPassed;
+
             yield return null;
         }
 
-        GameObject.Destroy(marker);
+        Destroy(marker);
         marker = null;
     }
 
@@ -187,4 +209,6 @@ public class LineManager : MonoBehaviour
 
         Station.HandlePathUpdate(markerSpace);
     }
+
+    public int GetCurrentBeat() { return currentBeat; }
 }

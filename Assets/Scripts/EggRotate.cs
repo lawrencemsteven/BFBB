@@ -9,14 +9,14 @@ public class EggRotate : MonoBehaviour
     {
         bool coffeeCamActive = Stations.Coffee.GetAssociatedCamera().gameObject.activeSelf;
 
-        if (coffeeCamActive && anim.GetBool("CamActive"))
+        /*if (coffeeCamActive && anim.GetBool("CamActive"))
         {
-            //anim.SetBool("CamActive", false);
+            anim.SetBool("CamActive", false);
         }
         else if (!coffeeCamActive && !anim.GetBool("CamActive"))
         {
-            //anim.SetBool("CamActive", true);
-        }
+            anim.SetBool("CamActive", true);
+        }*/
     }
 
 }

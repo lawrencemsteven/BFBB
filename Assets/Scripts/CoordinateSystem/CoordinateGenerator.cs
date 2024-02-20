@@ -24,7 +24,7 @@ public class CoordinateGenerator : MonoBehaviour
         int i = 0;
         foreach (Vector2 point in coordinates)
         {
-            GameObject newPoint = GameObject.Instantiate(pointPrefab, transform);
+            GameObject newPoint = Instantiate(pointPrefab, transform);
             Vector3 position = extent * new Vector3(-point.x, 0, point.y);
             newPoint.transform.localPosition = position;
             CoordinateCollider coordCollider = newPoint.GetComponent<CoordinateCollider>();
@@ -40,7 +40,7 @@ public class CoordinateGenerator : MonoBehaviour
     {
         foreach (CoordinateCollider point in points)
         {
-            GameObject.Destroy(point.gameObject);
+            Destroy(point.gameObject);
         }
         points = new List<CoordinateCollider>();
     }
