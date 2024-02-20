@@ -37,23 +37,23 @@ public class ComposerInterpreter : MonoBehaviour
     {
         GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 1", 1);
 
-        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 2", 1);
+        //GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 2", 1);
 
-        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 3", 1);
+        //GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 3", 1);
 
-        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 4", 1);
+        //GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 4", 1);
 
         GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 1", 1);
 
-        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 2", 1);
+        //GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 2", 1);
 
-        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 3", 1);
+        //GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 3", 1);
 
-        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 4", 1);
+        //GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 4", 1);
 
         GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Master", 0.33f);
 
-        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", 0.33f);
+        //GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", 0.33f);
     }
 
     void VolumeFader()
@@ -135,7 +135,7 @@ public class ComposerInterpreter : MonoBehaviour
 
     public void setPitch(float newPitch)
     {
-        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", newPitch);
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Master", newPitch);
     }
 
     IEnumerator WaitToInitialize()
