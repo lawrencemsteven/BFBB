@@ -19,6 +19,16 @@ public class HiHatFmod : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShotAttached(hihat, gameObject);
     }
 
+    public void PlaySqueak()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached("event:/EarlyDish", gameObject);
+    }
+
+    public void PlayScrape()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached("event:/LateDish", gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {

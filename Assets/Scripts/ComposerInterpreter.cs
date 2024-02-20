@@ -14,9 +14,11 @@ public class ComposerInterpreter : MonoBehaviour
     public float maxTime = 10f; //maximum time the timer can have, we can change this whenever
     public bool toggleTimer = true;
     public int mouseSpeed;
+    public HiHatFmod audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
+        audioPlayer = GameObject.Find("HiHat").GetComponent<HiHatFmod>();
         composer = this.transform.GetComponent<Composer>();
         //WaitToInitialize();
         Initialize();
@@ -137,7 +139,6 @@ public class ComposerInterpreter : MonoBehaviour
     {
         GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Master", newPitch);
     }
-
     IEnumerator WaitToInitialize()
     {
         yield return new WaitForSeconds(3f);
