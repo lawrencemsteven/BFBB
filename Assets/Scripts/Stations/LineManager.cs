@@ -4,47 +4,45 @@ using UnityEngine;
 
 [RequireComponent(typeof(CoordinateGenerator))]
 [RequireComponent(typeof(LineRenderer))]
-public class PancakeLineManager : MonoBehaviour
+public class LineManager : MonoBehaviour
 {
     [SerializeField] private GameObject markerPrefab;
     [SerializeField] private GameObject pourTool;
     [SerializeField] private float maxDistance = 0.3F;
+    [SerializeField] private bool drawLine;
+    [SerializeField] private bool lerpToPoint;
+    [SerializeField] private bool colorChange;
+    [SerializeField] private int measuresPerShape;
+    [SerializeField] private float markerMinScale;
+    [SerializeField] private float markerMaxScale;
+    [SerializeField] private float earlyThreshold;
 
     private CoordinateGenerator coordinateGenerator;
     private LineRenderer lineRenderer;
     private GameObject marker;
     private Coroutine beatFollower;
     private bool readyForNewMeasure = true;
+    private int currentBeat = 0;
+    private Vector3 defaultMarkerScale;
+    private float beatProgress;
 
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         coordinateGenerator = GetComponent<CoordinateGenerator>();
-        SongInfo.Instance.onMeasure.AddListener(NewMeasure);
     }
 
     void Start()
     {
         lineRenderer.useWorldSpace = false;
-        NewMeasure();
-    }
-
-    public void NewMeasure()
-    {
-        if (readyForNewMeasure)
-        {
-            readyForNewMeasure = false;
-            DrawLine();
-        } else
-        {
-            readyForNewMeasure = true;
-        }
     }
 
     public void DrawLine()
     {
+        lineRenderer.enabled = drawLine;
+
         coordinateGenerator.GenerateShape();
-        GameObject.Destroy(marker);
+        Destroy(marker);
         marker = null;
         if (beatFollower != null)
         {
@@ -70,11 +68,12 @@ public class PancakeLineManager : MonoBehaviour
         int halfBeats = 2 * (totalBeats - (int)SongInfo.Instance.getBeatsPerMeasure());
         int fullBeats = totalBeats - halfBeats;
         float accumulatedTime = 0F;
-        float beatProgress = 0F;
+        beatProgress = 0F;
 
         marker = GameObject.Instantiate(markerPrefab, transform);
+        defaultMarkerScale = marker.transform.localScale;
 
-        float beatDuration = SongInfo.Instance.getSecondsPerBeat() * 2;
+        float beatDuration = SongInfo.Instance.getSecondsPerBeat() * measuresPerShape;
         List<CoordinateCollider> points = coordinateGenerator.GetColliders();
 
         while (accumulatedTime < (beatDuration * SongInfo.Instance.getBeatsPerMeasure()))
@@ -89,32 +88,96 @@ public class PancakeLineManager : MonoBehaviour
             }
 
             Vector3 previous, next;
+
+            if (colorChange && !IsEarly())
+            {
+                marker.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
+            } 
+            else
+            {
+                marker.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
+            }
+
             if (beatsPassed < fullBeats)
             {
                 previous = points[beatsPassed].transform.position;
-                next = points[beatsPassed+1].transform.position;
-                marker.transform.position = Vector3.Lerp(previous, next, beatProgress);
-            } else
+
+                if (beatsPassed + 1 < points.Count )
+                {
+                    next = points[beatsPassed+1].transform.position;
+                }
+                else
+                {
+                    next = points[beatsPassed].transform.position;
+                }
+
+                if (lerpToPoint)
+                {
+                    marker.transform.position = Vector3.Lerp(previous, next, beatProgress);
+                }
+                else
+                {
+                    marker.transform.position = previous;
+                    marker.transform.localScale = defaultMarkerScale * Mathf.Lerp(markerMaxScale, markerMinScale, beatProgress * measuresPerShape);
+                }
+            }
+            else
             {
                 if (beatProgress > 0.5)
                 {
                     previous = points[beatsPassed+1].transform.position;
-                    next = points[beatsPassed+2].transform.position;
-                    marker.transform.position = Vector3.Lerp(previous, next, (beatProgress - 0.5F) * 2);
-                } else
+                    if (beatsPassed + 2 < points.Count )
+                    {
+                        next = points[beatsPassed+2].transform.position;
+                    }
+                    else
+                    {
+                        next = points[beatsPassed].transform.position;
+                    }
+                    
+                    if (lerpToPoint)
+                    {
+                        marker.transform.position = Vector3.Lerp(previous, next, (beatProgress - 0.5F) * measuresPerShape);
+                    }
+                    else
+                    {
+                        marker.transform.position = previous;
+                        marker.transform.localScale = defaultMarkerScale * Mathf.Lerp(markerMaxScale, markerMinScale, beatProgress * measuresPerShape);
+                    }
+
+                }
+                else
                 {
                     previous = points[beatsPassed].transform.position;
-                    next = points[beatsPassed+1].transform.position;
-                    marker.transform.position = Vector3.Lerp(previous, next, beatProgress * 2);
+                    if (beatsPassed + 1 < points.Count )
+                    {
+                        next = points[beatsPassed+1].transform.position;
+                    }
+                    else
+                    {
+                        next = points[beatsPassed].transform.position;
+                    }
+
+                    if (lerpToPoint)
+                    {
+                        marker.transform.position = Vector3.Lerp(previous, next, beatProgress * measuresPerShape);
+                    }
+                    else
+                    {
+                        marker.transform.position = previous;
+                        marker.transform.localScale = defaultMarkerScale * Mathf.Lerp(markerMaxScale, markerMinScale, beatProgress * measuresPerShape);
+                    }
                 }
             }
 
             PassLineInfo(previous, next);
 
+            currentBeat = beatsPassed;
+
             yield return null;
         }
 
-        GameObject.Destroy(marker);
+        Destroy(marker);
         marker = null;
     }
 
@@ -147,4 +210,8 @@ public class PancakeLineManager : MonoBehaviour
 
         Station.HandlePathUpdate(markerSpace);
     }
+
+    public int GetCurrentBeat() { return currentBeat; }
+
+    public bool IsEarly() { return beatProgress < earlyThreshold; }    
 }

@@ -21,22 +21,24 @@ public abstract class Station : MonoBehaviour
         running = false;
     }
 
-    public static void HandlePointCollision()
+    public static void HandlePointCollision(int index)
+    {
+        activeStation?.pointCollision(index);
+    }
+
+    protected virtual void pointCollision(int index)
     {
         Composer.Instance.PlayHiHat();
     }
 
     public static void HandlePathUpdate(Vector2 offset)
     {
-        float distance = offset.magnitude;
+        activeStation?.pathUpdate(offset);
+    }
 
-        if (distance < distanceMinimum)
-        {
-            distance = 0;
-        }
-
-        //Composer.Instance.VolumeChange(1, volume);
-        Composer.Instance.PitchChange(-distance);
+    public virtual void pathUpdate(Vector2 offset)
+    {
+        return;
     }
 
     public Camera GetAssociatedCamera() { return associatedCamera; }
