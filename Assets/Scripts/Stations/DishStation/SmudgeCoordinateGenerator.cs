@@ -8,6 +8,8 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
     [SerializeField] private int minSmudges, maxSmudges;
     [SerializeField] private float maxRadius;
     [SerializeField] private float smudgeQualityCost;
+    [SerializeField] private List<Material> smearMaterials;
+    [SerializeField] private List<Material> scrapeMaterials;
     private int smudgesRemaining;
     private List<bool> collidedSmudges = new List<bool>();
 
@@ -38,11 +40,20 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
         }
     }
 
-    public void HandleCollision(int index)
+    public void HandleCollision(int index, bool early)
     {
         if (!collidedSmudges[index])
         {
-            setSmudgeInvisible(index);
+            if (early)
+            {
+                setSmudgeAsSmear(index);
+                Composer.Instance.PlayEarlyHit();
+            }
+            else
+            {
+                setSmudgeInvisible(index);
+                Composer.Instance.PlayHiHat();
+            }
             collidedSmudges[index] = true;
         }
     }
@@ -50,6 +61,21 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
     private void setSmudgeInvisible(int index)
     {
         GetCollider(index).transform.GetChild(0).GetComponent<Renderer>().enabled = false;
+    }
+
+    private void setSmudgeAsSmear(int index)
+    {
+        GetCollider(index).transform.GetChild(0).GetComponent<Renderer>().material = smearMaterials[Random.Range(0,smearMaterials.Count)];
+    }
+
+    public void SetSmudgeAsScrape(int index)
+    {
+        if (!collidedSmudges[index])
+        {
+            GetCollider(index).transform.GetChild(0).GetComponent<Renderer>().material = scrapeMaterials[Random.Range(0,scrapeMaterials.Count)];
+            Composer.Instance.PlayLateHit();
+            collidedSmudges[index] = true;
+        }
     }
 
     public void SetAllSmudgesVisibleAndActive()

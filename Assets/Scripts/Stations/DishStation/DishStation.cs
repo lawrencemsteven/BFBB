@@ -39,7 +39,11 @@ public class DishStation : Station
     {
         if (lineManager.GetCurrentBeat() == index)
         {
-            smudgeCoordinateGenerator.HandleCollision(index);
+            smudgeCoordinateGenerator.HandleCollision(index, lineManager.IsEarly());
+        }
+        else if (lineManager.GetCurrentBeat() > index)
+        {
+            smudgeCoordinateGenerator.SetSmudgeAsScrape(index);
         }
     }
 

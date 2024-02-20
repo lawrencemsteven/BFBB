@@ -22,8 +22,9 @@ public class LineManager : MonoBehaviour
     private GameObject marker;
     private Coroutine beatFollower;
     private bool readyForNewMeasure = true;
-    private int currentBeat = 1;
+    private int currentBeat = 0;
     private Vector3 defaultMarkerScale;
+    private float beatProgress;
 
     void Awake()
     {
@@ -67,7 +68,7 @@ public class LineManager : MonoBehaviour
         int halfBeats = 2 * (totalBeats - (int)SongInfo.Instance.getBeatsPerMeasure());
         int fullBeats = totalBeats - halfBeats;
         float accumulatedTime = 0F;
-        float beatProgress = 0F;
+        beatProgress = 0F;
 
         marker = GameObject.Instantiate(markerPrefab, transform);
         defaultMarkerScale = marker.transform.localScale;
@@ -88,7 +89,7 @@ public class LineManager : MonoBehaviour
 
             Vector3 previous, next;
 
-            if (colorChange && beatProgress >= earlyThreshold)
+            if (colorChange && !IsEarly())
             {
                 marker.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
             } 
@@ -211,4 +212,6 @@ public class LineManager : MonoBehaviour
     }
 
     public int GetCurrentBeat() { return currentBeat; }
+
+    public bool IsEarly() { return beatProgress < earlyThreshold; }    
 }
