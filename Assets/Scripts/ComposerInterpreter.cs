@@ -16,12 +16,17 @@ public class ComposerInterpreter : MonoBehaviour
     public int mouseSpeed;
     public HiHatFmod audioPlayer;
     // Start is called before the first frame update
+
+    void awake()
+    {
+        Initialize();
+    }
     void Start()
     {
         audioPlayer = GameObject.Find("HiHat").GetComponent<HiHatFmod>();
         composer = this.transform.GetComponent<Composer>();
         //WaitToInitialize();
-        Initialize();
+        
     }
 
     // Update is called once per frame
