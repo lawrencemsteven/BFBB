@@ -6,7 +6,7 @@ public class AssetSwapper : MonoBehaviour
 {
     public string assetName;
 
-    private Dictionary<string, AssetVariant> variantOptions;
+    private Dictionary<string, AssetVariant> variantOptions = new();
     [SerializeField] private AssetVariant defaultVariant;
     [SerializeField] private MeshFilter meshFilter;
     [SerializeField] private MeshRenderer meshRenderer;

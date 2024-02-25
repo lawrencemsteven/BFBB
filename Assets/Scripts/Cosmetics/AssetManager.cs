@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class AssetManager
 {
-    private static Dictionary<string, List<AssetSwapper>> assets;
+    private static Dictionary<string, List<AssetSwapper>> assets = new();
 
     public static void RegisterAsset(AssetSwapper asset) {
         string id = asset.assetName;
