@@ -88,13 +88,21 @@ public class Composer : Singleton<Composer>
     {
         pitch = Mathf.Clamp(pitch, -1.0f, 1.0f);
 
-        if(pitch >= 0.0f)
+        if (GlobalVariables.camState == 1)
         {
-            composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MAX_PITCH, pitch));
+
+            if (pitch >= 0.0f)
+            {
+                composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MAX_PITCH, pitch));
+            }
+            else
+            {
+                composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MIN_PITCH, -pitch));
+            }
         }
         else
         {
-            composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MIN_PITCH, -pitch));
+            composerInterpreter.setPitch(0f);
         }
     }
 
