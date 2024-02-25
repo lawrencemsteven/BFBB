@@ -22,6 +22,11 @@ public class AssetSwapper : MonoBehaviour
         AssetManager.RegisterAsset(this);
     }
 
+    void Start()
+    {
+        defaultVariant.Apply();
+    }
+
     public ICollection<string> GetVariantOptionNames() {
         return variantOptions.Keys;
     }
