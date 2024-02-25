@@ -18,7 +18,7 @@ public class AssetVariant : MonoBehaviour
         meshRenderer = renderer;
     }
 
-    void Apply()
+    public void Apply()
     {
         meshFilter.mesh = mesh;
         meshRenderer.material = material;
