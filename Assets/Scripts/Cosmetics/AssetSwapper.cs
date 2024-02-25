@@ -13,9 +13,10 @@ public class AssetSwapper : MonoBehaviour
 
     void Awake()
     {
-        foreach (AssetVariant variant in variantOptions.Values)
+        foreach (AssetVariant variant in GetComponents<AssetVariant>())
         {
             variant.SetFilterAndRenderer(meshFilter, meshRenderer);
+            variantOptions.Add(variant.name, variant);
         }
 
         AssetManager.RegisterAsset(this);
