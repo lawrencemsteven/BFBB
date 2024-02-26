@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 
-public class PlaySoundByte : MonoBehaviour
+public class SoundBytePlayer : MonoBehaviour
 {   
     private enum PlayMode
     {

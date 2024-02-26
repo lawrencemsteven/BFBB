@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DishStation : Station
 {
-    [SerializeField] private LineManager lineManager;
-    [SerializeField] private SmudgeCoordinateGenerator smudgeCoordinateGenerator;
-    private GameObject plate;
     [SerializeField] private GameObject sponge;
-    public randomPlateSprite randPlateSprite;
     [SerializeField] private float scale = 1;
-    private int i = 0;
-    private Vector3 intitialScale, initialPos;
+
+    public randomPlateSprite randPlateSprite;
     public GameObject ready;
+
+    private GameObject plate;
+    private Vector3 intitialScale, initialPos;
     private Animator plateAnimator;
+    private SmudgeCoordinateGenerator smudgeCoordinateGenerator;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,8 @@ public class DishStation : Station
         plate = transform.Find("Plate").gameObject;
 
         plateAnimator = plate.GetComponent<Animator>();
+
+        smudgeCoordinateGenerator = coordinateGenerator as SmudgeCoordinateGenerator;
 
         intitialScale = plate.transform.localScale;
         initialPos = plate.transform.position;
