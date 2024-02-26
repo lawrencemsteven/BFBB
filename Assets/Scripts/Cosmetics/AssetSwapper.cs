@@ -8,8 +8,7 @@ public class AssetSwapper : MonoBehaviour
 
     private Dictionary<string, AssetVariant> variantOptions = new();
     [SerializeField] private AssetVariant defaultVariant;
-    [SerializeField] private MeshFilter meshFilter;
-    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private GameObject placeholderChild;
     private string currentSwap;
 
     void Awake()
@@ -17,7 +16,6 @@ public class AssetSwapper : MonoBehaviour
         currentSwap = defaultVariant.name;
         foreach (AssetVariant variant in GetComponents<AssetVariant>())
         {
-            variant.SetFilterAndRenderer(meshFilter, meshRenderer);
             variantOptions.Add(variant.name, variant);
         }
 
@@ -26,6 +24,10 @@ public class AssetSwapper : MonoBehaviour
 
     void Start()
     {
+        if (placeholderChild != null)
+        {
+            Destroy(placeholderChild);
+        }
         defaultVariant.Apply();
     }
 

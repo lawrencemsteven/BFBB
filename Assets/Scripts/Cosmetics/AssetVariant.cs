@@ -6,26 +6,19 @@ using UnityEngine;
 public class AssetVariant : MonoBehaviour
 {
     public string name;
-    public Mesh mesh;
-    public Material material;
-
-    private MeshFilter meshFilter;
-    private MeshRenderer meshRenderer;
-
-    public void SetFilterAndRenderer(MeshFilter filter, MeshRenderer renderer)
-    {
-        meshFilter = filter;
-        meshRenderer = renderer;
-    }
+    public GameObject prefab;
+    private GameObject instantiated;
 
     public virtual void Apply()
     {
-        meshFilter.mesh = mesh;
-        meshRenderer.material = material;
+        instantiated = Instantiate(prefab, transform);
     }
 
     public virtual void Unapply()
     {
-        return;
+        if (instantiated != null)
+        {
+            Destroy(instantiated);
+        }
     }
 }
