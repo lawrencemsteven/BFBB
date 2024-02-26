@@ -7,7 +7,7 @@ public class CoordinateGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject pointPrefab;
     [SerializeField] private float extent;
-    private List<CoordinateCollider> points = new List<CoordinateCollider>();
+    protected List<CoordinateCollider> points = new List<CoordinateCollider>();
     public List<Vector2> coordinates;
 
     public UnityEvent afterShapeGenerated = new();
@@ -48,5 +48,10 @@ public class CoordinateGenerator : MonoBehaviour
     public List<CoordinateCollider> GetColliders()
     {
         return points;
+    }
+
+    public CoordinateCollider GetCollider(int index)
+    {
+        return points[index];
     }
 }

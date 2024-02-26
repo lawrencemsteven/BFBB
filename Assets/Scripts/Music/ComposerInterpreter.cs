@@ -17,10 +17,11 @@ public class ComposerInterpreter : MonoBehaviour
     public HiHatFmod audioPlayer;
     // Start is called before the first frame update
 
-    void awake()
+    void Awake()
     {
         Initialize();
     }
+    
     void Start()
     {
         audioPlayer = GameObject.Find("HiHat").GetComponent<HiHatFmod>();

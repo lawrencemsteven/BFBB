@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CoordinateGenerator))]
-public class SmudgeCoordinateGenerator : MonoBehaviour
+public class SmudgeCoordinateGenerator : CoordinateGenerator
 {
     [SerializeField] private int minSmudges, maxSmudges;
     [SerializeField] private float maxRadius;
@@ -13,17 +12,10 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
     private int smudgesRemaining;
     private List<bool> collidedSmudges = new List<bool>();
 
-    private CoordinateGenerator coordinateGenerator;
-
-    void Awake()
-    {
-        coordinateGenerator = GetComponent<CoordinateGenerator>();
-    }
-
     public void NewPlate()
     {
         int smudgeCount = Random.Range(minSmudges, maxSmudges + 1);
-        coordinateGenerator.coordinates = new List<Vector2>();
+        coordinates = new List<Vector2>();
         collidedSmudges.Clear();
 
         for (int i = 0; i < smudgeCount; i++)
@@ -34,7 +26,7 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
 
             Vector3 target3 = Quaternion.Euler(0, 0, angle) * (radius * Vector3.up);
             Vector2 target = new Vector2(target3.x, target3.y);
-            coordinateGenerator.coordinates.Add(target);
+            coordinates.Add(target);
 
             collidedSmudges.Add(false);
         }
@@ -60,19 +52,19 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
 
     private void setSmudgeInvisible(int index)
     {
-        GetCollider(index).transform.GetChild(0).GetComponent<Renderer>().enabled = false;
+        points[index].transform.GetChild(0).GetComponent<Renderer>().enabled = false;
     }
 
     private void setSmudgeAsSmear(int index)
     {
-        GetCollider(index).transform.GetChild(0).GetComponent<Renderer>().material = smearMaterials[Random.Range(0,smearMaterials.Count)];
+        points[index].transform.GetChild(0).GetComponent<Renderer>().material = smearMaterials[Random.Range(0,smearMaterials.Count)];
     }
 
     public void SetSmudgeAsScrape(int index)
     {
         if (!collidedSmudges[index])
         {
-            GetCollider(index).transform.GetChild(0).GetComponent<Renderer>().material = scrapeMaterials[Random.Range(0,scrapeMaterials.Count)];
+            points[index].transform.GetChild(0).GetComponent<Renderer>().material = scrapeMaterials[Random.Range(0,scrapeMaterials.Count)];
             Composer.Instance.PlayLateHit();
             collidedSmudges[index] = true;
         }
@@ -80,33 +72,18 @@ public class SmudgeCoordinateGenerator : MonoBehaviour
 
     public void SetAllSmudgesVisibleAndActive()
     {
-        for (int i = 0; i < GetColliders().Count; i++)
+        for (int i = 0; i < points.Count; i++)
         {
-            GetCollider(i).transform.GetChild(0).GetComponent<Renderer>().enabled = true;
+            points[i].transform.GetChild(0).GetComponent<Renderer>().enabled = true;
             
         }
 
-        smudgesRemaining = GetColliders().Count;
+        smudgesRemaining = points.Count;
     }
 
     public ReservoirPlate CreateReservoirPlate()
     {
         float quality = 1.0f - (smudgesRemaining * smudgeQualityCost);
         return new ReservoirPlate(quality);
-    }
-
-    public void ClearPlate()
-    {
-        coordinateGenerator.RemoveShape();
-    }
-
-    public CoordinateCollider GetCollider(int index)
-    {
-        return coordinateGenerator.GetColliders()[index];
-    }
-
-    public List<CoordinateCollider> GetColliders()
-    {
-        return coordinateGenerator.GetColliders();
     }
 }

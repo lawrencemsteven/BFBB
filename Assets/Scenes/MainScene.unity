@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12072261, g: 0.12473124, b: 0.10821977, a: 1}
+  m_IndirectSpecularColor: {r: 0.12072234, g: 0.124731, b: 0.10821967, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11492,7 +11492,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2088419838}
-  - component: {fileID: 2088419840}
   - component: {fileID: 2088419839}
   - component: {fileID: 2088419842}
   - component: {fileID: 2088419841}
@@ -11530,6 +11529,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4884c2c73f3211d449c2f3d2aff1ab4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointPrefab: {fileID: 7713697457560765894, guid: 23b5476cf2e11544fb7ad25e81eb6661, type: 3}
+  extent: 0.35
+  coordinates: []
+  afterShapeGenerated:
+    m_PersistentCalls:
+      m_Calls: []
   minSmudges: 4
   maxSmudges: 4
   maxRadius: 1
@@ -11544,24 +11549,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c122a9fec962b474c958c0e72ed8495e, type: 2}
   - {fileID: 2100000, guid: 366099b27f4db634cb1efe69052fa93d, type: 2}
   - {fileID: 2100000, guid: 032ed3dc060ccd24696f1385c7a13c25, type: 2}
---- !u!114 &2088419840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2088419837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7af91b987ae36bf40b72ec05d54b8488, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointPrefab: {fileID: 7713697457560765894, guid: 23b5476cf2e11544fb7ad25e81eb6661, type: 3}
-  extent: 0.35
-  coordinates: []
-  afterShapeGenerated:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2088419841
 MonoBehaviour:
   m_ObjectHideFlags: 0
