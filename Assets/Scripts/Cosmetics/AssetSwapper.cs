@@ -14,6 +14,7 @@ public class AssetSwapper : MonoBehaviour
 
     void Awake()
     {
+        currentSwap = defaultVariant.name;
         foreach (AssetVariant variant in GetComponents<AssetVariant>())
         {
             variant.SetFilterAndRenderer(meshFilter, meshRenderer);
@@ -26,7 +27,6 @@ public class AssetSwapper : MonoBehaviour
     void Start()
     {
         defaultVariant.Apply();
-        currentSwap = defaultVariant.name;
     }
 
     public ICollection<string> GetVariantOptionNames() {

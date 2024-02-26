@@ -5,6 +5,7 @@ using UnityEngine;
 public class TestAssetSwapping : MonoBehaviour
 {
     [SerializeField] private string testTarget;
+    [SerializeField] private float swapTimer = 2.0F;
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class TestAssetSwapping : MonoBehaviour
         {
             foreach (string swap in swaps) {
                 AssetManager.ApplyAssetSwap(asset, swap);
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(swapTimer);
             }
         }
     }
