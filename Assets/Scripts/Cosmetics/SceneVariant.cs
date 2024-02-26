@@ -6,35 +6,36 @@ using UnityEngine.SceneManagement;
 public class SceneVariant : AssetVariant
 {
     [SerializeField] private string targetScene;
-    private string previousScene;
 
-    public void Apply()
+    public override void Apply()
     {
-        StartCoroutine(swapScene());
+        StartCoroutine(loadScene());
     }
 
-    private IEnumerator swapScene()
+    public override void Unapply()
     {
-        AsyncOperation asyncLoad;
+        StartCoroutine(unloadScene());
+    }
 
-        if (previousScene != null)
+    private IEnumerator unloadScene()
+    {
+        Debug.Log("Unloading...");
+        AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(targetScene);
+        while (!asyncLoad.isDone)
         {
-            Debug.Log("Unloading...");
-            asyncLoad = SceneManager.UnloadSceneAsync(previousScene);
-            while (!asyncLoad.isDone)
-            {
-                yield return null;
-            }
-            Debug.Log("Unload complete!");
+            yield return null;
         }
+        Debug.Log("Unload complete!");
+    }
 
+    private IEnumerator loadScene()
+    {
         Debug.Log("Loading...");
-        asyncLoad = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
         Debug.Log("Load complete!");
-        previousScene = targetScene;
     }
 }

@@ -18,9 +18,14 @@ public class AssetVariant : MonoBehaviour
         meshRenderer = renderer;
     }
 
-    public void Apply()
+    public virtual void Apply()
     {
         meshFilter.mesh = mesh;
         meshRenderer.material = material;
+    }
+
+    public virtual void Unapply()
+    {
+        return;
     }
 }

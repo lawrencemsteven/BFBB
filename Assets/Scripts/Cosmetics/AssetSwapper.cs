@@ -10,6 +10,7 @@ public class AssetSwapper : MonoBehaviour
     [SerializeField] private AssetVariant defaultVariant;
     [SerializeField] private MeshFilter meshFilter;
     [SerializeField] private MeshRenderer meshRenderer;
+    private string currentSwap;
 
     void Awake()
     {
@@ -25,6 +26,7 @@ public class AssetSwapper : MonoBehaviour
     void Start()
     {
         defaultVariant.Apply();
+        currentSwap = defaultVariant.name;
     }
 
     public ICollection<string> GetVariantOptionNames() {
@@ -33,6 +35,8 @@ public class AssetSwapper : MonoBehaviour
 
     public void ApplyVariant(string swapName)
     {
+        variantOptions[currentSwap].Unapply();
         variantOptions[swapName].Apply();
+        currentSwap = swapName;
     }
 }
