@@ -19,18 +19,22 @@ public class SceneVariant : AssetVariant
 
         if (previousScene != null)
         {
+            Debug.Log("Unloading...");
             asyncLoad = SceneManager.UnloadSceneAsync(previousScene);
             while (!asyncLoad.isDone)
             {
                 yield return null;
             }
+            Debug.Log("Unload complete!");
         }
 
+        Debug.Log("Loading...");
         asyncLoad = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
+        Debug.Log("Load complete!");
         previousScene = targetScene;
     }
 }

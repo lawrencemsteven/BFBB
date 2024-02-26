@@ -15,7 +15,6 @@ public class TestAssetSwapping : MonoBehaviour
     {
         string asset = testTarget;
         ICollection<string> swaps = AssetManager.GetAvailableSwapsForAsset(asset);
-        int i = 0;
 
         while (true)
         {
