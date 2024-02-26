@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneVariant : AssetVariant
 {
     [SerializeField] private string targetScene;
+    private bool loaded = false;
 
     public override void Apply()
     {
@@ -19,23 +20,26 @@ public class SceneVariant : AssetVariant
 
     private IEnumerator unloadScene()
     {
-        Debug.Log("Unloading...");
+        if (!loaded)
+        {
+            Debug.Log("Already unloaded. Not unloading again.");
+            yield break;
+        }
         AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(targetScene);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
-        Debug.Log("Unload complete!");
+        loaded = false;
     }
 
     private IEnumerator loadScene()
     {
-        Debug.Log("Loading...");
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
-        Debug.Log("Load complete!");
+        loaded = true;
     }
 }

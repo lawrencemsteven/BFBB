@@ -19,9 +19,10 @@ public class TestAssetSwapping : MonoBehaviour
 
         while (true)
         {
-            foreach (string swap in swaps) {
-                AssetManager.ApplyAssetSwap(asset, swap);
+            foreach (string swap in swaps)
+            {
                 yield return new WaitForSeconds(swapTimer);
+                AssetManager.ApplyAssetSwap(asset, swap);
             }
         }
     }
