@@ -9,14 +9,13 @@ public class CoordinateGenerator : MonoBehaviour
     [SerializeField] private float extent;
     protected List<CoordinateCollider> points = new List<CoordinateCollider>();
     public List<Vector2> coordinates;
-    protected Transform pointSpawnArea;
+    [SerializeField] protected Transform pointSpawnArea;
 
     public UnityEvent afterShapeGenerated = new();
 
     void Start()
     {
         GenerateShape();
-        pointSpawnArea = transform;
     }
 
     public void GenerateShape()

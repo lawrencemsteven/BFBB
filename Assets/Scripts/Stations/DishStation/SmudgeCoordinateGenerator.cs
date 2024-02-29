@@ -17,7 +17,6 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
         int smudgeCount = Random.Range(minSmudges, maxSmudges + 1);
         coordinates = new List<Vector2>();
         collidedSmudges.Clear();
-        pointSpawnArea = Stations.Dish.GetSmudgesSpawnZone().transform;
 
         for (int i = 0; i < smudgeCount; i++)
         {
