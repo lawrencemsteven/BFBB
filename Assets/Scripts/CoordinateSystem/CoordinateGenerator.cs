@@ -9,12 +9,14 @@ public class CoordinateGenerator : MonoBehaviour
     [SerializeField] private float extent;
     protected List<CoordinateCollider> points = new List<CoordinateCollider>();
     public List<Vector2> coordinates;
+    protected Transform pointSpawnArea;
 
     public UnityEvent afterShapeGenerated = new();
 
     void Start()
     {
         GenerateShape();
+        pointSpawnArea = transform;
     }
 
     public void GenerateShape()
@@ -24,7 +26,7 @@ public class CoordinateGenerator : MonoBehaviour
         int i = 0;
         foreach (Vector2 point in coordinates)
         {
-            GameObject newPoint = Instantiate(pointPrefab, transform);
+            GameObject newPoint = Instantiate(pointPrefab, pointSpawnArea);
             Vector3 position = extent * new Vector3(-point.x, 0, point.y);
             newPoint.transform.localPosition = position;
             CoordinateCollider coordCollider = newPoint.GetComponent<CoordinateCollider>();

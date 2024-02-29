@@ -16,11 +16,11 @@ public class SoundBytePlayer : MonoBehaviour
     private string onTimeSound;
     private string lateSound;
 
-    public void SetSounds(string early, string ontime, string late)
+    public void SetSounds(string early, string onTime, string late)
     {
-        earlySound = early;
-        onTimeSound = ontime;
-        lateSound = late;
+        earlySound = $"event:/{early}";
+        onTimeSound = $"event:/{onTime}";
+        lateSound = $"event:/{late}";
     }
 
 

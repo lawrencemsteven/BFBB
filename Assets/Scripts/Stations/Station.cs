@@ -49,4 +49,9 @@ public abstract class Station : MonoBehaviour
 
     public Camera GetAssociatedCamera() { return associatedCamera; }
     public bool IsRunning() { return running; }
+
+    public LineManager GetLineManager() { return lineManager; }
+    public CoordinateGenerator GetCoordinateGenerator() { return coordinateGenerator; }
+    public LineRenderer GetLineRenderer() { return lineRenderer; }
+    public SoundBytePlayer GetSoundBytePlayer() { return soundBytePlayer; }
 }

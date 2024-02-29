@@ -11,6 +11,7 @@ public class DishStation : Station
     public GameObject ready;
 
     private GameObject plate;
+    private GameObject smudgesSpawnZone;
     private Vector3 intitialScale, initialPos;
     private Animator plateAnimator;
     private SmudgeCoordinateGenerator smudgeCoordinateGenerator;
@@ -19,10 +20,13 @@ public class DishStation : Station
     void Start()
     {
         plate = transform.Find("Plate").gameObject;
+        smudgesSpawnZone = transform.Find("Smudges").gameObject;
 
         plateAnimator = plate.GetComponent<Animator>();
 
         smudgeCoordinateGenerator = coordinateGenerator as SmudgeCoordinateGenerator;
+
+        soundBytePlayer.SetSounds("EarlyDish", "HiHat", "LateDish");
 
         intitialScale = plate.transform.localScale;
         initialPos = plate.transform.position;
@@ -74,6 +78,7 @@ public class DishStation : Station
 
     public GameObject GetPlate() { return plate; }
     public GameObject GetSponge() { return sponge; }
+    public GameObject GetSmudgesSpawnZone() { return smudgesSpawnZone; }
     public float GetScale() { return scale; }
     public void SetScale(float scale) { this.scale = scale; }
 }

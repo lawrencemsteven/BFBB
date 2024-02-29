@@ -17,6 +17,7 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
         int smudgeCount = Random.Range(minSmudges, maxSmudges + 1);
         coordinates = new List<Vector2>();
         collidedSmudges.Clear();
+        pointSpawnArea = Stations.Dish.GetSmudgesSpawnZone().transform;
 
         for (int i = 0; i < smudgeCount; i++)
         {
@@ -39,12 +40,12 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
             if (early)
             {
                 setSmudgeAsSmear(index);
-                Composer.Instance.PlayEarlyHit();
+                Stations.Dish.GetSoundBytePlayer().PlayEarly();
             }
             else
             {
                 setSmudgeInvisible(index);
-                Composer.Instance.PlayHiHat();
+                Stations.Dish.GetSoundBytePlayer().PlayOnTime();
             }
             collidedSmudges[index] = true;
         }
@@ -65,7 +66,7 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
         if (!collidedSmudges[index])
         {
             points[index].transform.GetChild(0).GetComponent<Renderer>().material = scrapeMaterials[Random.Range(0,scrapeMaterials.Count)];
-            Composer.Instance.PlayLateHit();
+            Stations.Dish.GetSoundBytePlayer().PlayLate();
             collidedSmudges[index] = true;
         }
     }
