@@ -5,7 +5,7 @@ using FMODUnity;
 
 public class SoundBytePlayer : MonoBehaviour
 {   
-    private enum PlayMode
+    public enum PlayMode
     {
         NONE,
         THREE_SOUNDS,
@@ -22,6 +22,8 @@ public class SoundBytePlayer : MonoBehaviour
         onTimeSound = $"event:/{onTime}";
         lateSound = $"event:/{late}";
     }
+
+    public void SetPlayMode(PlayMode playMode) { this.playMode = playMode; }
 
 
     public void PlayOnTime()

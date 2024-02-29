@@ -27,6 +27,7 @@ public class DishStation : Station
         smudgeCoordinateGenerator = coordinateGenerator as SmudgeCoordinateGenerator;
 
         soundBytePlayer.SetSounds("EarlyDish", "HiHat", "LateDish");
+        soundBytePlayer.SetPlayMode(SoundBytePlayer.PlayMode.THREE_SOUNDS);
 
         intitialScale = plate.transform.localScale;
         initialPos = plate.transform.position;
