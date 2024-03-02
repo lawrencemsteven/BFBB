@@ -22,7 +22,7 @@ public class ScriptUsageTimeline : MonoBehaviour
     
     public FMOD.Studio.EventInstance musicInstance;
 
-    public string eventLocation;
+    private string eventLocation = GlobalVariables.songChoice;
 
     void Start()
     {
