@@ -17,7 +17,7 @@ public class PrepStation : Station
     private bool setWaffle;
 
     [SerializeField] private GameObject syrupContainer;
-    [SerializeField] private GameObject butter;
+    //[SerializeField] private GameObject butter;
     [SerializeField] private GameObject whipCream;
     [SerializeField] private GameObject chocolateChip;
 
@@ -43,11 +43,9 @@ public class PrepStation : Station
         prepStationUI.SetActive(false);
         preppedOrder = null;
 
-        SongInfor.Instance.onBeat.
-
         initialSyrupPosition = syrupContainer.transform.position;
-        initialButterPosition = syrupContainer.transform.position;
-        initialWhipPosition = syrupContainer.transform.position;
+        //initialButterPosition = syrupContainer.transform.position;
+        initialWhipPosition = whipCream.transform.position;
         initialChocoPosition = chocolateChip.transform.position;
 
         //Test code
@@ -75,56 +73,9 @@ public class PrepStation : Station
             else if(setWaffle == true){ AddWaffle(); }
         }
 
-        //Butter
-        if (Input.GetKey(KeyCode.W))
-        {
-            butter.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+        ToppingsControl();
+        ToppingsRelease();
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                //check if on beat
-                ToggleTopping(Topping.BUTTER);
-
-                
-            }
-        }
-
-        //Syrup
-        else if (Input.GetKey(KeyCode.A))
-        {
-            syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
-
-            if (Input.GetMouseButton(0))
-            {
-                ToggleTopping(Topping.SYRUP_OLD_FASHIONED);
-                //activate pour effect   
-            }
-        }
-
-        //Choccy Chippos
-        else if (Input.GetKey(KeyCode.S))
-        {
-            chocolateChip.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
-
-            //set cursor and choccies to follow mouse movement
-            if (Input.GetMouseButton(0))
-            {
-                Debug.Log("Mouse button hold successful");
-                ToggleTopping(Topping.CHOCOLATE_CHIP);
-            }
-        }
-
-        //Whip
-        else if (Input.GetKey(KeyCode.D))
-        {
-            whipCream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
-
-            //cursor and strawbs should follow mouse
-            if (Input.GetMouseButton(0))
-            {
-                ToggleTopping(Topping.WHIPPED_CREAM);
-            }
-        }
     }
 
     public void UpdateCustomerOrders()
@@ -179,16 +130,17 @@ public class PrepStation : Station
 
         /*else if(String.Equals(topping.ToString(), "BUTTER"))
         {
+        if butter == 3 return, else add butter
 
         }*/
 
+        if (preppedOrder.GetToppings().Contains(topping))
+        {
+            return;
+        }
+
         else
         {
-            //change this to timer timer
-            //count seconds pouring
-            //compare to ideal time
-            //like the garbage work from the coffee station
-            //change topping stuff to have a time random time value
             preppedOrder.AddTopping(topping);
         }
     }
@@ -217,4 +169,80 @@ public class PrepStation : Station
     }
     public Order GetPreppedOrder() { return preppedOrder; }
     public void SetRunning(bool running) { this.running = running; }
+
+    public void ToppingsControl()
+    {
+        //Butter
+        if (Input.GetKey(KeyCode.W))
+        {
+            //butter.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                //check if on beat
+                ToggleTopping(Topping.BUTTER);
+
+
+            }
+        }
+
+        //Syrup
+        else if (Input.GetKey(KeyCode.A))
+        {
+            syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+
+            if (Input.GetMouseButton(0))
+            {
+                ToggleTopping(Topping.SYRUP_OLD_FASHIONED);
+                //activate pour effect   
+            }
+        }
+
+        //Choccy Chippos
+        else if (Input.GetKey(KeyCode.S))
+        {
+            chocolateChip.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+
+            //set cursor and choccies to follow mouse movement
+            if (Input.GetMouseButton(0))
+            {
+                Debug.Log("Mouse button hold successful");
+                ToggleTopping(Topping.CHOCOLATE_CHIP);
+            }
+        }
+
+        //Whip
+        else if (Input.GetKey(KeyCode.D))
+        {
+            whipCream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+
+            //cursor and strawbs should follow mouse
+            if (Input.GetMouseButton(0))
+            {
+                ToggleTopping(Topping.WHIPPED_CREAM);
+            }
+        }
+    }
+
+    public void ToppingsRelease()
+    {
+        if (Input.GetKeyUp(KeyCode.W)){
+            //butter.transform.position = initialButterPosition
+        }
+
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            syrupContainer.transform.position = initialSyrupPosition;
+        }
+
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            chocolateChip.transform.position = initialChocoPosition;
+        }
+
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            whipCream.transform.position = initialWhipPosition;
+        }
+    }
 }
