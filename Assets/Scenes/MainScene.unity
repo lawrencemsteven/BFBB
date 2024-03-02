@@ -5500,6 +5500,10 @@ MonoBehaviour:
   associatedCamera: {fileID: 1076731135}
   prepStationUI: {fileID: 1767271053}
   orderPrefab: {fileID: 2682037045175693351, guid: 58a789364af40de4d8bc7ed3532beb0d, type: 3}
+  syrupContainer: {fileID: 1540232113}
+  butter: {fileID: 0}
+  whipCream: {fileID: 919132147787329870}
+  chocolateChip: {fileID: 6240482843150947458}
 --- !u!4 &428102778
 Transform:
   m_ObjectHideFlags: 0
@@ -9013,8 +9017,8 @@ Transform:
   - {fileID: 6760315054989430328}
   - {fileID: 1381136937}
   - {fileID: 1648612587}
-  - {fileID: 270952992}
   - {fileID: 9058093183018864108}
+  - {fileID: 270952992}
   - {fileID: 9058093183918357804}
   m_Father: {fileID: 543450653637632527}
   m_RootOrder: 4
@@ -14731,8 +14735,8 @@ Transform:
   - {fileID: 659344660}
   - {fileID: 330120130}
   - {fileID: 332454514}
-  - {fileID: 588776138}
   - {fileID: 2803797393894503453}
+  - {fileID: 588776138}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17727,6 +17731,11 @@ Transform:
   m_Father: {fileID: 278534698}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1540232113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 63ed3a6727d82fa479839b5d186d98a2, type: 3}
+  m_PrefabInstance: {fileID: 307345632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1541360652
 GameObject:
   m_ObjectHideFlags: 0
@@ -18021,8 +18030,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 428102777}
-        m_TargetAssemblyTypeName: PrepStationManager, Assembly-CSharp
-        m_MethodName: AddPancake
+        m_TargetAssemblyTypeName: PrepStation, Assembly-CSharp
+        m_MethodName: SelectPancake
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19611,8 +19620,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 428102777}
-        m_TargetAssemblyTypeName: PrepStationManager, Assembly-CSharp
-        m_MethodName: AddWaffle
+        m_TargetAssemblyTypeName: PrepStation, Assembly-CSharp
+        m_MethodName: SelectWaffle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28306,7 +28315,7 @@ Transform:
   - {fileID: 1088293198}
   - {fileID: 1144339515}
   m_Father: {fileID: 1304963243}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2803797394161678565
 GameObject:
@@ -33915,7 +33924,7 @@ Transform:
   - {fileID: 3644009678308258191}
   - {fileID: 4809017274117674748}
   m_Father: {fileID: 758384870}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 76.163, z: 0}
 --- !u!4 &9058093183501678615 stripped
 Transform:

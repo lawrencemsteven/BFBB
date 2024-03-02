@@ -5,11 +5,35 @@ using System.Collections.Generic;
 
 public class PrepStation : Station
 {
+    [SerializeField] private LineManager lineManager;
+    [SerializeField] private CoordinateGenerator coordinateGenerator;
     [SerializeField] private GameObject prepStationUI;
     [SerializeField] private GameObject orderPrefab;
     private Transform orderList;
     private Order preppedOrder;
     private TextMeshProUGUI orderLabel;
+
+    private bool setPancake;
+    private bool setWaffle;
+
+    [SerializeField] private GameObject syrupContainer;
+    [SerializeField] private GameObject butter;
+    [SerializeField] private GameObject whipCream;
+    [SerializeField] private GameObject chocolateChip;
+
+    private Vector3 initialSyrupPosition;
+    private Vector3 initialButterPosition;
+    private Vector3 initialWhipPosition;
+    private Vector3 initialChocoPosition;
+
+    private Vector3 containerPos;
+
+    
+    //protected bool running = false;
+
+    //butter is hold button down and click to drop
+    //all other toppings are hold button down and click and hold
+    //requirements for how long pour lasts are time based around beat? not following pattern
 
 
     public void Start()
@@ -19,6 +43,13 @@ public class PrepStation : Station
         prepStationUI.SetActive(false);
         preppedOrder = null;
 
+        SongInfor.Instance.onBeat.
+
+        initialSyrupPosition = syrupContainer.transform.position;
+        initialButterPosition = syrupContainer.transform.position;
+        initialWhipPosition = syrupContainer.transform.position;
+        initialChocoPosition = chocolateChip.transform.position;
+
         //Test code
         ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
         ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
@@ -27,10 +58,72 @@ public class PrepStation : Station
 
     public void Update()
     {
+        //if(running == false) {return;}
+
+        containerPos = Input.mousePosition;
+
         prepStationUI.SetActive(running);
         if (running && preppedOrder is not null)
         {
             orderLabel.text = preppedOrder.ToString();
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if(setPancake == true){ AddPancake(); }
+            
+            else if(setWaffle == true){ AddWaffle(); }
+        }
+
+        //Butter
+        if (Input.GetKey(KeyCode.W))
+        {
+            butter.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                //check if on beat
+                ToggleTopping(Topping.BUTTER);
+
+                
+            }
+        }
+
+        //Syrup
+        else if (Input.GetKey(KeyCode.A))
+        {
+            syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+
+            if (Input.GetMouseButton(0))
+            {
+                ToggleTopping(Topping.SYRUP_OLD_FASHIONED);
+                //activate pour effect   
+            }
+        }
+
+        //Choccy Chippos
+        else if (Input.GetKey(KeyCode.S))
+        {
+            chocolateChip.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+
+            //set cursor and choccies to follow mouse movement
+            if (Input.GetMouseButton(0))
+            {
+                Debug.Log("Mouse button hold successful");
+                ToggleTopping(Topping.CHOCOLATE_CHIP);
+            }
+        }
+
+        //Whip
+        else if (Input.GetKey(KeyCode.D))
+        {
+            whipCream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+
+            //cursor and strawbs should follow mouse
+            if (Input.GetMouseButton(0))
+            {
+                ToggleTopping(Topping.WHIPPED_CREAM);
+            }
         }
     }
 
@@ -72,6 +165,7 @@ public class PrepStation : Station
             mainCourse == MainCourse.WAFFLE && ReservoirManager.GetWaffles().Count() >= preppedOrder.GetMainCourseCount() + 1)
             {
                 preppedOrder.AddMainCourseAmount(1);
+                
             }
         }
     }
@@ -83,20 +177,38 @@ public class PrepStation : Station
             return;
         }
 
-        else if (preppedOrder.GetToppings().Contains(topping))
+        /*else if(String.Equals(topping.ToString(), "BUTTER"))
         {
-            preppedOrder.RemoveTopping(topping);
-        }
+
+        }*/
 
         else
         {
+            //change this to timer timer
+            //count seconds pouring
+            //compare to ideal time
+            //like the garbage work from the coffee station
+            //change topping stuff to have a time random time value
             preppedOrder.AddTopping(topping);
         }
     }
 
     public void AddPancake() { SelectMainCourse(MainCourse.PANCAKE); }
     public void AddWaffle() { SelectMainCourse(MainCourse.WAFFLE); }
-    public void ToggleChocolateChips() { ToggleTopping(Topping.CHOCOLATE_CHIP); }
+    public void ToggleChocolateChips() {ToggleTopping(Topping.CHOCOLATE_CHIP);}
+
+
+    public void SelectPancake()
+    {
+        setWaffle = false;
+        setPancake = true;
+    }
+
+    public void SelectWaffle()
+    {
+        setPancake = false;
+        setWaffle = true;
+    }
 
     public void NullifyPreppedOrder()
     {

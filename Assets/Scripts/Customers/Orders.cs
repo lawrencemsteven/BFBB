@@ -67,6 +67,9 @@ namespace Orders
                 if (UnityEngine.Random.Range(0, 4) == 1)
                 {
                     toppings.Add((Topping) i);
+                    //randomly select a time? or for butter a number of globs?
+                    //change toppings to dict?
+
                 }
             }
 
