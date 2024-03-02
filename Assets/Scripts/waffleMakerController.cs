@@ -10,10 +10,14 @@ public class waffleMakerController : MonoBehaviour
     public GameObject camera1;
     public bool isOpen;
     public bool isClose;
+
+    // amount that the user is allowed to miss the beat by and still score a point;
+    public float acceptableOffset;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        acceptableOffset = 0.2f;
     }
 
     //&& (waffleLid.transform.rotation.eulerAngles.x == 0)
@@ -37,20 +41,30 @@ public class waffleMakerController : MonoBehaviour
             }
         }
         */
-        if (Input.GetKeyDown(KeyCode.W) && !isOpen) {
+        if (Input.GetKeyDown(KeyCode.W)) {
                 anim.Play("DisconnectedWaffleMakerOpen");
-                //isOpen = true;
-                //isClose = false;
+                onPress();
         }
-        else if (Input.GetKeyDown(KeyCode.S) && !isClose) {
-                anim.Play("NewWaffleIronClose");
-                //isOpen = false;
+        else if (Input.GetKeyDown(KeyCode.S)) {
+                anim.Play("DisconnectedWaffleMakerClose");
+                onPress();
         }
         else if (Input.GetKeyDown(KeyCode.A) && true) {
                 anim.Play("NewWaffleFlip");
+                onPress();
         }
         else if (Input.GetKeyDown(KeyCode.D) && true) {
                 anim.Play("NewWaffleFlipBack");
+                onPress();
+        }
+    }
+
+    private void onPress() {
+        if (SongInfo.Instance.testInput(acceptableOffset)) {
+                    Debug.Log("Waffle Iron on beat");
+                }
+        else {
+            Debug.Log("Waffle Iron off beat");
         }
     }
 }

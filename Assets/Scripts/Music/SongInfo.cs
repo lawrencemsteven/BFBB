@@ -58,6 +58,22 @@ public class SongInfo : Singleton<SongInfo>
         return -beatTimeRatio;
     }
 
+    // Returns true if when called the beat is less than or equal to the provided acceptable offset
+
+    public bool testInput(float offset) {
+        float beatError = Mathf.Abs(onBeatCheck());
+        Debug.Log(beatError);
+        Debug.Log(offset);
+        if (beatError <= offset) {
+            return true;
+            Debug.Log("True");
+        }
+        else {
+            return false;
+            Debug.Log("False");
+        }
+    }
+
     // Returns the time in seconds for each beat
     public float getSecondsPerBeat()
     {
