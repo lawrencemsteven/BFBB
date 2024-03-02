@@ -20,8 +20,8 @@ public class PrepStation : Station
         preppedOrder = null;
 
         //Test code
-        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
-        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
+        //ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
+        //ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
         ReservoirManager.GetWaffles().Add(new ReservoirWaffle(1));
     }
 

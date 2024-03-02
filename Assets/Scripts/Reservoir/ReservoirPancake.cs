@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class ReservoirPancake : ReservoirItem
 {
-    public ReservoirPancake(float newQuality) : base(newQuality)
+    private GameObject pancake;
+
+    public ReservoirPancake(float newQuality, GameObject inputPancake) : base(newQuality)
     {
-        return;
+        pancake = inputPancake;
+        inputPancake.SetActive(false);
+    }
+
+    public GameObject GetPancake()
+    {
+        return pancake;
     }
 }

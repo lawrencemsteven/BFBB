@@ -22,4 +22,10 @@ public class PancakeReservoirDisplay : ReservoirDisplay
         }
         return output;
     }
+
+    protected override void setupDisplay(GameObject item, ReservoirItem itemStats)
+    {
+        ReservoirPancake reservoirPancake = itemStats as ReservoirPancake;
+        Instantiate(reservoirPancake.GetPancake(), item.transform);
+    }
 }
