@@ -60,8 +60,7 @@ public class PancakeParticleObject : ParticleObject
 
         if (cookingSide == 1)
         {
-            float score = 1; // TODO: Calculate score.
-            ReservoirManager.GetPancakes().Add(new ReservoirPancake(score, gameObject));
+            ReservoirManager.GetPancakes().Add(new ReservoirPancake(GetQuality(), gameObject));
 
             // Reset for new pancake
 
@@ -78,5 +77,13 @@ public class PancakeParticleObject : ParticleObject
             cookingSide = 0;
             return;
         }
+    }
+
+    public float GetQuality()
+    {
+        float quality = 1;
+        quality -= Mathf.Abs(Mathf.Min(cookAmountTop, 1.0f) - 0.5f);
+        quality -= Mathf.Abs(Mathf.Min(cookAmountBottom, 1.0f) - 0.5f);
+        return quality;
     }
 }
