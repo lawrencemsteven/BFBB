@@ -5419,6 +5419,10 @@ MonoBehaviour:
   soundBytePlayer: {fileID: 0}
   prepStationUI: {fileID: 1767271053}
   orderPrefab: {fileID: 2682037045175693351, guid: 58a789364af40de4d8bc7ed3532beb0d, type: 3}
+  syrupContainer: {fileID: 1540232113}
+  butter: {fileID: 0}
+  whipCream: {fileID: 919132147787329870}
+  chocolateChip: {fileID: 6240482843150947458}
 --- !u!4 &428102778
 Transform:
   m_ObjectHideFlags: 0
@@ -17753,6 +17757,11 @@ Transform:
   m_Father: {fileID: 278534698}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1540232113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 63ed3a6727d82fa479839b5d186d98a2, type: 3}
+  m_PrefabInstance: {fileID: 307345632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1541360652
 GameObject:
   m_ObjectHideFlags: 0
@@ -18047,8 +18056,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 428102777}
-        m_TargetAssemblyTypeName: PrepStationManager, Assembly-CSharp
-        m_MethodName: AddPancake
+        m_TargetAssemblyTypeName: PrepStation, Assembly-CSharp
+        m_MethodName: SelectPancake
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19653,8 +19662,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 428102777}
-        m_TargetAssemblyTypeName: PrepStationManager, Assembly-CSharp
-        m_MethodName: AddWaffle
+        m_TargetAssemblyTypeName: PrepStation, Assembly-CSharp
+        m_MethodName: SelectWaffle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
