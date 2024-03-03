@@ -1,26 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DishStation : Station
 {
-    [SerializeField] private LineManager lineManager;
-    [SerializeField] private SmudgeCoordinateGenerator smudgeCoordinateGenerator;
-    private GameObject plate;
     [SerializeField] private GameObject sponge;
-    public randomPlateSprite randPlateSprite;
     [SerializeField] private float scale = 1;
-    private int i = 0;
-    private Vector3 intitialScale, initialPos;
+
+    public randomPlateSprite randPlateSprite;
     public GameObject ready;
+
+    private GameObject plate;
+    private GameObject smudgesSpawnZone;
+    private Vector3 intitialScale, initialPos;
     private Animator plateAnimator;
+    private SmudgeCoordinateGenerator smudgeCoordinateGenerator;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().name != "MainScene")
+        {
+            return;
+        }
+
         plate = transform.Find("Plate").gameObject;
+        smudgesSpawnZone = transform.Find("Smudges").gameObject;
 
         plateAnimator = plate.GetComponent<Animator>();
+
+        smudgeCoordinateGenerator = coordinateGenerator as SmudgeCoordinateGenerator;
+
+        soundBytePlayer.SetSounds("EarlyDish", "HiHat", "LateDish");
+        soundBytePlayer.SetPlayMode(SoundBytePlayer.PlayMode.THREE_SOUNDS);
 
         intitialScale = plate.transform.localScale;
         initialPos = plate.transform.position;
@@ -72,6 +85,7 @@ public class DishStation : Station
 
     public GameObject GetPlate() { return plate; }
     public GameObject GetSponge() { return sponge; }
+    public GameObject GetSmudgesSpawnZone() { return smudgesSpawnZone; }
     public float GetScale() { return scale; }
     public void SetScale(float scale) { this.scale = scale; }
 }

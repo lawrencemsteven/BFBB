@@ -15,7 +15,6 @@ public class PancakeStation : Station
     public TextMeshProUGUI countdown, pancakeCountdown;
     private PancakeParticleObject pancakeParticleObject;
 
-    [SerializeField] private LineManager lineManager;
     private bool readyForNewMeasure;
 
     // Start is called before the first frame update
@@ -190,7 +189,7 @@ public class PancakeStation : Station
         Composer.Instance.PitchChange(-distance);
     }
 
-    void Deactivate()
+    public override void Deactivate()
     {
         base.Deactivate();
         Composer.Instance.PitchChange(0);
