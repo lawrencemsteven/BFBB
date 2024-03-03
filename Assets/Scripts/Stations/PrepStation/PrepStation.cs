@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class PrepStation : Station
 {
-    [SerializeField] private LineManager lineManager;
-    [SerializeField] private CoordinateGenerator coordinateGenerator;
     [SerializeField] private GameObject prepStationUI;
     [SerializeField] private GameObject orderPrefab;
     private Transform orderList;
