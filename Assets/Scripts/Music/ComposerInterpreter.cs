@@ -15,7 +15,6 @@ public class ComposerInterpreter : MonoBehaviour
     public bool toggleTimer = true;
     public int mouseSpeed;
     private string song;
-
     
     void Start()
     {
@@ -41,13 +40,15 @@ public class ComposerInterpreter : MonoBehaviour
     {
         if (song == "event:/BoogieSong")
         {
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 1", 1);
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume", 0.75f);
 
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 2", 1);
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 1", 0.75f);
 
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 3", 1);
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 2", 0.75f);
 
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 4", 1);
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 3", 0.75f);
+
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 4", 0.75f);
 
             GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 1", 1);
 
@@ -57,9 +58,8 @@ public class ComposerInterpreter : MonoBehaviour
 
             GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 4", 1);
 
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Master", 0.33f);
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", 0.5f);
 
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", 0.33f);
         }
         else if (song == "event:/60BPM")
         {
@@ -67,15 +67,18 @@ public class ComposerInterpreter : MonoBehaviour
 
             GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 1", 1);
 
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Master", 0.33f);
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Master", 0.5f);
         }
-        else if (song == "event:/60BPM")
+        else if (song == "event:/BoogieRock")
         {
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 1", 1);
 
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 2", 1);
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume", 0.75f);
 
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 3", 1);
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 1", 0.75f);
+
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 2", 0.75f);
+
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Volume 3", 0.75f);
 
             GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 1", 1);
 
@@ -83,9 +86,7 @@ public class ComposerInterpreter : MonoBehaviour
 
             GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("EQF 3", 1);
 
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Master", 0.33f);
-
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", 0.33f);
+            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", 0.5f);
         }
     }
 
@@ -168,7 +169,7 @@ public class ComposerInterpreter : MonoBehaviour
 
     public void setPitch(float newPitch)
     {
-        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Master", newPitch);
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", newPitch);
     }
     IEnumerator WaitToInitialize()
     {

@@ -14,7 +14,7 @@ public class Composer : Singleton<Composer>
     private ComposerInterpreter composerInterpreter;
     public static float MAX_PITCH = 1.0f;
     public static float MIN_PITCH = 0.0f;
-    public static float DEF_PITCH = 0.33f;
+    public static float DEF_PITCH = 0.5f;
     public static float MAX_VOLUME = 1.0f;
     public static float MIN_VOLUME = 0.0f;
     public static float DEF_VOLUME = 1f;
