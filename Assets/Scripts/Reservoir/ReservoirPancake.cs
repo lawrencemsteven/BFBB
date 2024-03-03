@@ -8,8 +8,8 @@ public class ReservoirPancake : ReservoirItem
 
     public ReservoirPancake(float newQuality, GameObject inputPancake) : base(newQuality)
     {
-        pancake = inputPancake;
-        inputPancake.SetActive(false);
+        pancake = GameObject.Instantiate(inputPancake);
+        pancake.SetActive(false);
     }
 
     public GameObject GetPancake()

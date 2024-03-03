@@ -26,6 +26,6 @@ public class PancakeReservoirDisplay : ReservoirDisplay
     protected override void setupDisplay(GameObject item, ReservoirItem itemStats)
     {
         ReservoirPancake reservoirPancake = itemStats as ReservoirPancake;
-        Instantiate(reservoirPancake.GetPancake(), item.transform);
+        Instantiate(reservoirPancake.GetPancake(), item.transform).SetActive(true);
     }
 }
