@@ -73,6 +73,11 @@ public class PrepStation : Station
             else if(setWaffle == true){ AddWaffle(); }
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ScrapOrder();
+        }
+
         ToppingsControl();
         ToppingsRelease();
 
@@ -245,4 +250,10 @@ public class PrepStation : Station
             whipCream.transform.position = initialWhipPosition;
         }
     }
+
+    public void ScrapOrder()
+    {
+        preppedOrder.ClearOrder();
+    }
+
 }

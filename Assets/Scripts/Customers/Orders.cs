@@ -67,8 +67,6 @@ namespace Orders
                 if (UnityEngine.Random.Range(0, 4) == 1)
                 {
                     toppings.Add((Topping) i);
-                    //randomly select a time? or for butter a number of globs?
-                    //change toppings to dict?
 
                 }
             }
@@ -78,6 +76,11 @@ namespace Orders
         }
         public override string ToString()
         {
+            if(mainCourseCount == 0)
+            {
+                return "";
+            }
+
             return $"{mainCourseCount} {mainCourse}s with {string.Join(", ", toppings)}";
         }
 
@@ -112,9 +115,26 @@ namespace Orders
             toppings.Remove(topping);
         }
 
+        public void ClearOrder()
+        {
+            mainCourseCount = 0;
+
+            foreach(Topping t in Enum.GetValues(typeof(Topping)))
+            {
+                if (this.toppings.Contains(t))
+                {
+                    RemoveTopping(t);
+                }
+            }
+
+
+
+        }
+
         public MainCourse GetMainCourse() { return mainCourse; }
         public int GetMainCourseCount() { return mainCourseCount; }
         public List<Topping> GetToppings() { return toppings; }
+
 
         public static bool Equals(Order order1, Order order2)
         {
