@@ -20,8 +20,9 @@ public class Composer : Singleton<Composer>
     public static float DEF_VOLUME = 1f;
     [SerializeField] private HiHatFmod hiHatFmod;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         composerInterpreter = GetComponent<ComposerInterpreter>();
     }
 
