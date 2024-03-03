@@ -49,8 +49,8 @@ public class PrepStation : Station
         initialChocoPosition = chocolateChip.transform.position;
 
         //Test code
-        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
-        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
+        //ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
+        //ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
         ReservoirManager.GetWaffles().Add(new ReservoirWaffle(1));
     }
 
