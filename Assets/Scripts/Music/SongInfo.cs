@@ -19,10 +19,26 @@ public class SongInfo : Singleton<SongInfo>
     public string onTimeSound;
     public string lateSound;
 
+    public new static SongInfo Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<SongInfo>();
+                if (_instance == null)
+                {
+                    _instance = new GameObject("SongInfo").AddComponent<SongInfo>();
+                }
+            }
+            return _instance;
+        }
+    }
+
     private new void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
         base.Awake();
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
