@@ -15,9 +15,9 @@ public class SongInfo : Singleton<SongInfo>
     public UnityEvent onBeat = new();
     public UnityEvent onMeasure = new();
 
-    public string earlySound;
-    public string onTimeSound;
-    public string lateSound;
+    public string earlySound = "EarlyDish";
+    public string onTimeSound = "HiHat";
+    public string lateSound = "LateDish";
 
     public new static SongInfo Instance
     {
