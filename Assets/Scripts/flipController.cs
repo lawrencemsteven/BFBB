@@ -31,7 +31,6 @@ public class flipController : MonoBehaviour
 
     public void FlipPancake()
     {
-        Debug.Log(startFlip);
         flipped = !flipped;
         anim.SetTrigger("FlipTrigger");
         anim.SetBool("isFlipped", flipped);
