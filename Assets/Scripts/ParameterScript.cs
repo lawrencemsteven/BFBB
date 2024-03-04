@@ -13,7 +13,6 @@ public class ParameterScript : MonoBehaviour
     public UpDownMovement upDownMovement3;
 
     public MusicController musicController;
-    public FreeSpongeMovement sponge1;
     private float newVol;
 
     // Update is called once per frame
@@ -45,11 +44,6 @@ public class ParameterScript : MonoBehaviour
         audioMixer.SetFloat("Volume", newVol);
         PlayerPrefs.SetFloat("Volume", newVol);
         PlayerPrefs.Save();
-    }
-
-    public void changeMove(float moveNum)
-    {
-        sponge1.moveSpeed = moveNum;
     }
 
     public void changeBPM(float bpmValue)
