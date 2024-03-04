@@ -13,10 +13,10 @@ public class AssetSwapper : MonoBehaviour
 
     void Awake()
     {
-        currentSwap = defaultVariant.name;
+        currentSwap = defaultVariant.variantName;
         foreach (AssetVariant variant in GetComponents<AssetVariant>())
         {
-            variantOptions.Add(variant.name, variant);
+            variantOptions.Add(variant.variantName, variant);
         }
 
         AssetManager.RegisterAsset(this);
