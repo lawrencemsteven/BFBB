@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnableBatterArea : MonoBehaviour
 {
     public PancakeParticleSpawner particleSpawner;
-    private GameObject currentPancakeArea;
+    public GameObject currentPancakeArea, previousPancakeArea;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +17,6 @@ public class EnableBatterArea : MonoBehaviour
     {
         
     }
-    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "AreaDetector")
@@ -35,10 +34,9 @@ public class EnableBatterArea : MonoBehaviour
         if (other.gameObject.tag.Equals("AreaDetector"))
         {
 
-            particleSpawner.SavePancake(other.gameObject.transform.GetChild(0).transform);
+            // particleSpawner.SavePancake(other.gameObject.transform.GetChild(0).transform);
             Debug.Log(currentPancakeArea.transform.GetChild(0).gameObject.name + " OFF");
-            currentPancakeArea.transform.GetChild(0).gameObject.SetActive(false);
+            
         }
     }
-    */
 }

@@ -11,11 +11,14 @@ public class PancakeStationCursor : MonoBehaviour
     private float offset = 0.70f;
     private Renderer bottleRenderer;
     private Vector3? storedMousePosition;
+    private EnableBatterArea eba;
+    private GameObject lastPancakeArea;
     [SerializeField] private float distanceThreshold = 20f;
 
     // Start is called before the first frame update
     void Start()
     {
+        //eba = gameObject.transform.GetComponentInChildren<EnableBatterArea>();
         GameObject bottle = transform.GetChild(0).gameObject;
         bottleRenderer = bottle.GetComponent<Renderer>();
         pancakeParticleSpawner = GetComponent<PancakeParticleSpawner>();
@@ -51,6 +54,13 @@ public class PancakeStationCursor : MonoBehaviour
             }
             if (Input.GetMouseButton(0))
             {
+            /*
+                if ((lastPancakeArea != eba.currentPancakeArea) && lastPancakeArea != null)
+            {
+                eba.currentPancakeArea.transform.GetChild(-1).gameObject.SetActive(false);
+            }
+                lastPancakeArea = eba.currentPancakeArea;
+            */
                 trySpawnParticle();
             }
             if (Input.GetMouseButtonUp(0))

@@ -8,15 +8,9 @@ public class HitDetector : MonoBehaviour
     private List<GameObject> smudges = new List<GameObject>(); // A list to hold all the smudge objects
     public AudioSource hihat;
     public float smudgeQualityCost = 0.2f;
-
-    private GameObject plate;
-    private GameObject bar;
     private GameObject sponge;
     private float spongeX;
     private float spongeY;
-    private float barY;
-    private Bounds plateBounds;
-    private Vector3 topPosition;
     private bool[] smudgeHitStatus; // An array to keep track of whether each smudge has been hit
     private int closestSmudgeIndex;
     private float previousMouseX;
@@ -32,8 +26,6 @@ public class HitDetector : MonoBehaviour
             hihatFmod = GameObject.Find("HiHat").GetComponent<HiHatFmod>();
         }
 
-        plate = Stations.Dish.GetPlate();
-        bar = Stations.Dish.GetBar();
         sponge = Stations.Dish.GetSponge();
         
         foreach (Transform smudge in transform)
@@ -42,8 +34,6 @@ public class HitDetector : MonoBehaviour
         }
 
         smudgeHitStatus = new bool[smudges.Count];
-        plateBounds = plate.GetComponent<Renderer>().bounds;
-        topPosition = plateBounds.max;
         previousMouseX = Input.mousePosition.x;
         lastSmudgeIndex = 0;
         closestSmudgeIndex = 0;
@@ -59,10 +49,8 @@ public class HitDetector : MonoBehaviour
     {
         spongeX = sponge.transform.position.x;
         spongeY = sponge.transform.position.y;
-        barY = bar.transform.position.y;
         float currentMouseX = Input.mousePosition.x;
         float mouseXDelta = currentMouseX - previousMouseX;
-        float previousScore = GlobalVariables.score;
         bool isHit = false;
 
         for (int i = 0; i < smudges.Count; i++)
@@ -71,14 +59,11 @@ public class HitDetector : MonoBehaviour
             Collider smudgeCollider = smudges[i].GetComponent<Collider>();
             Bounds smudgeBounds = smudgeCollider.bounds;
 
-            if (barY >= smudgeBounds.min.y && barY <= smudgeBounds.max.y)
+            if ((spongeX >= smudgeBounds.min.x && spongeX <= smudgeBounds.max.x) && (spongeY >= smudgeBounds.min.y && spongeY <= smudgeBounds.max.y) &&
+                smudgeRenderer.enabled && !smudgeHitStatus[i])
             {
-                if ((spongeX >= smudgeBounds.min.x && spongeX <= smudgeBounds.max.x) && (spongeY >= smudgeBounds.min.y && spongeY <= smudgeBounds.max.y) &&
-                    smudgeRenderer.enabled && !smudgeHitStatus[i])
-                {
-                    closestSmudgeIndex = i;
-                    isHit = true;
-                }
+                closestSmudgeIndex = i;
+                isHit = true;
             }
         }
 
@@ -91,8 +76,7 @@ public class HitDetector : MonoBehaviour
             GlobalVariables.streak += 1;
             GlobalVariables.notesHit += 1;
             smudgeHitStatus[closestSmudgeIndex] = true; 
-            SetSmudgeInvisible(closestSmudgeIndex);
-            isHit = false;
+            //SetSmudgeInvisible(closestSmudgeIndex);
             smudgesRemaining -= 1;
         }
 
@@ -101,7 +85,6 @@ public class HitDetector : MonoBehaviour
                 GlobalVariables.missCounter += 1;
                 GlobalVariables.notesMissed += 1;
                 GlobalVariables.streak = 0;
-                string missText = "Miss: " + lastSmudgeIndex.ToString();
             }
             lastSmudgeIndex = closestSmudgeIndex;
         }
@@ -133,32 +116,5 @@ public class HitDetector : MonoBehaviour
         }*/
         
         previousMouseX = currentMouseX;
-    }
-
-    private void SetSmudgeInvisible(int index)
-    {
-        smudges[index].transform.GetChild(0).GetComponent<Renderer>().enabled = false;
-    }
-
-    private void SetSmudgeVisible(int index)
-    {
-        smudges[index].transform.GetChild(0).GetComponent<Renderer>().enabled = true;
-    }
-
-    public void SetAllSmudgesVisibleAndActive()
-    {
-        for (int i = 0; i < smudges.Count; i++)
-        {
-            smudgeHitStatus[i] = false; 
-            smudges[i].transform.GetChild(0).GetComponent<Renderer>().enabled = true;
-            
-        }
-        smudgesRemaining = smudges.Count;
-    }
-
-    public ReservoirPlate CreateReservoirPlate()
-    {
-        float quality = 1.0f - (smudgesRemaining * smudgeQualityCost);
-        return new ReservoirPlate(quality);
     }
 }
