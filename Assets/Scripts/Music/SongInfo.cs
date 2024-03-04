@@ -15,6 +15,12 @@ public class SongInfo : Singleton<SongInfo>
     public UnityEvent onBeat = new();
     public UnityEvent onMeasure = new();
 
+    private new void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+        base.Awake();
+    }
+
     private void Start()
     {
         // NEED TO GET bpm
