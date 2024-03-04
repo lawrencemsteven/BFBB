@@ -15,6 +15,9 @@ public class PancakeStation : Station
     private bool waffleMakerOpen = false, circleIsVisible = false, pancakeFlipped = false, waffleFlipped = false, flipWaffleTimerStarted = false, flipPancakeTimerStarted = false, finishWaffleTimerStarted = false, finishPancakeTimerStarted = false;
     public TextMeshProUGUI countdown, pancakeCountdown;
     private PancakeParticleObject pancakeParticleObject;
+
+    private bool readyForNewMeasure;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,22 @@ public class PancakeStation : Station
         timeToFinishPancake = (34 / bpm) * 60;
         timeToFinishWaffle = (38 / bpm) * 60;
         timeToFlash = (1 / (bpm)) * 60;
+
+        SongInfo.Instance.onMeasure.AddListener(NewMeasure);
+        NewMeasure();
+    }
+
+    public void NewMeasure()
+    {
+        if (readyForNewMeasure)
+        {
+            readyForNewMeasure = false;
+            lineManager.DrawLine();
+        }
+        else
+        {
+            readyForNewMeasure = true;
+        }
     }
 
     // Update is called once per frame
@@ -176,6 +195,25 @@ public class PancakeStation : Station
             }
         }
 
+    }
+
+    public override void pathUpdate(Vector2 offset)
+    {
+        float distance = offset.magnitude;
+
+        if (distance < distanceMinimum)
+        {
+            distance = 0;
+        }
+
+        //Composer.Instance.VolumeChange(1, volume);
+        Composer.Instance.PitchChange(-distance);
+    }
+
+    public override void Deactivate()
+    {
+        base.Deactivate();
+        Composer.Instance.PitchChange(0);
     }
 
     public PancakeParticleObject GetPancakeParticleObject() { return pancakeParticleObject; }

@@ -7,8 +7,9 @@ public class CoordinateGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject pointPrefab;
     [SerializeField] private float extent;
-    private List<CoordinateCollider> points = new List<CoordinateCollider>();
+    protected List<CoordinateCollider> points = new List<CoordinateCollider>();
     public List<Vector2> coordinates;
+    [SerializeField] protected Transform pointSpawnArea;
 
     public UnityEvent afterShapeGenerated = new();
 
@@ -19,16 +20,12 @@ public class CoordinateGenerator : MonoBehaviour
 
     public void GenerateShape()
     {
-        foreach (CoordinateCollider point in points)
-        {
-            GameObject.Destroy(point.gameObject);
-        }
-        points = new List<CoordinateCollider>();
+        RemoveShape();
 
         int i = 0;
         foreach (Vector2 point in coordinates)
         {
-            GameObject newPoint = GameObject.Instantiate(pointPrefab, transform);
+            GameObject newPoint = Instantiate(pointPrefab, pointSpawnArea);
             Vector3 position = extent * new Vector3(-point.x, 0, point.y);
             newPoint.transform.localPosition = position;
             CoordinateCollider coordCollider = newPoint.GetComponent<CoordinateCollider>();
@@ -40,8 +37,22 @@ public class CoordinateGenerator : MonoBehaviour
         afterShapeGenerated?.Invoke();
     }
 
+    public void RemoveShape()
+    {
+        foreach (CoordinateCollider point in points)
+        {
+            Destroy(point.gameObject);
+        }
+        points = new List<CoordinateCollider>();
+    }
+
     public List<CoordinateCollider> GetColliders()
     {
         return points;
+    }
+
+    public CoordinateCollider GetCollider(int index)
+    {
+        return points[index];
     }
 }
