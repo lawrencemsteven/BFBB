@@ -15,6 +15,10 @@ public class SongInfo : Singleton<SongInfo>
     public UnityEvent onBeat = new();
     public UnityEvent onMeasure = new();
 
+    public string earlySound;
+    public string onTimeSound;
+    public string lateSound;
+
     private new void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -83,5 +87,12 @@ public class SongInfo : Singleton<SongInfo>
     public uint getBeatsPassed()
     {
         return measureCounter;
+    }
+
+    public void setDishSounds(string early, string onTime, string late)
+    {
+        earlySound = early;
+        onTimeSound = onTime;
+        lateSound = late;
     }
 }
