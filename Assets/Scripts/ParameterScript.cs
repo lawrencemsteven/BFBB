@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class ParameterScript : MonoBehaviour
     public UpDownMovement upDownMovement1;
     public UpDownMovement upDownMovement2;
     public UpDownMovement upDownMovement3;
+    public PancakeStationCursor pancakeStationCursor;
 
     public MusicController musicController;
     public FreeSpongeMovement sponge1;
@@ -19,8 +21,17 @@ public class ParameterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+
+
+        if ((Input.GetKeyDown(KeyCode.P)) && pancakeStationCursor.paused)
         {
+            pancakeStationCursor.paused = false;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            pancakeStationCursor.paused = true;
+
             if (ParameterScreenOn == false)
             {
                 AudioListener.pause = true;
@@ -37,6 +48,7 @@ public class ParameterScript : MonoBehaviour
 
             }
         }
+
     }
 
     public void setAudio(float volumeNum)
