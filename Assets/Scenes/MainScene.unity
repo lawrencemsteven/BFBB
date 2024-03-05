@@ -26548,9 +26548,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1953161294363504816, guid: edfab8a8f185bff4e81347e74a32493d, type: 3}
+      propertyPath: m_Mesh1
+      value: 
+      objectReference: {fileID: -4590584184553515355, guid: 163fd23b47bc7a54e93deedcd4cc95ec, type: 3}
+    - target: {fileID: 1953161294363504816, guid: edfab8a8f185bff4e81347e74a32493d, type: 3}
+      propertyPath: m_Mesh2
+      value: 
+      objectReference: {fileID: 356571905005652207, guid: 1ee677472ca516640a4f9182ed088791, type: 3}
+    - target: {fileID: 1953161294363504816, guid: edfab8a8f185bff4e81347e74a32493d, type: 3}
+      propertyPath: m_Mesh3
+      value: 
+      objectReference: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 1953161294363504817, guid: edfab8a8f185bff4e81347e74a32493d, type: 3}
       propertyPath: m_Name
       value: Confetti
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953161294363504817, guid: edfab8a8f185bff4e81347e74a32493d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1953161294363504818, guid: edfab8a8f185bff4e81347e74a32493d, type: 3}
       propertyPath: m_RootOrder
