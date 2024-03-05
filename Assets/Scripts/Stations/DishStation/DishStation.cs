@@ -34,7 +34,7 @@ public class DishStation : Station
 
         smudgeCoordinateGenerator = coordinateGenerator as SmudgeCoordinateGenerator;
 
-        soundBytePlayer.SetSounds(SongInfo.Instance.earlySound, SongInfo.Instance.onTimeSound, SongInfo.Instance.lateSound);
+        //soundBytePlayer.SetSounds(SongInfo.Instance.earlySound, SongInfo.Instance.onTimeSound, SongInfo.Instance.lateSound);
         soundBytePlayer.SetPlayMode(SoundBytePlayer.PlayMode.THREE_SOUNDS);
 
         intitialScale = plate.transform.localScale;
