@@ -121,5 +121,4 @@ public class Composer : Singleton<Composer>
         hiHatFmod.PlayScrape();
     }
 
-
 }

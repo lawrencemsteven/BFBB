@@ -7,6 +7,10 @@ public class PauseMenuScript : MonoBehaviour
     public GameObject menuScreen;
     bool MenuScreenOn = false;
 
+    void Start()
+    {
+    }
+
     // Update is called once per frame
     void Update()
     {

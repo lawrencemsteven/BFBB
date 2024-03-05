@@ -32,7 +32,7 @@ public class SetSong : MonoBehaviour
     {
         GlobalVariables.songChoice = "event:/BoogieSong";
 
-        GlobalVariables.bpm = 60u;
+        GlobalVariables.bpm = 120u;
 
         SongInfo.Instance.setDishSounds("EarlyDish", "HiHat", "LateDish");
     }
@@ -41,7 +41,7 @@ public class SetSong : MonoBehaviour
     {
         GlobalVariables.songChoice = "event:/BoogieRock";
 
-        GlobalVariables.bpm = 90u;
+        GlobalVariables.bpm = 180u;
 
         SongInfo.Instance.setDishSounds("EarlyDish", "HiHat", "LateDish");
     }
