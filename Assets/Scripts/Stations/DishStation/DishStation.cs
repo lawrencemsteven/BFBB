@@ -34,12 +34,12 @@ public class DishStation : Station
 
         smudgeCoordinateGenerator = coordinateGenerator as SmudgeCoordinateGenerator;
 
-        soundBytePlayer.SetSounds(SongInfo.Instance.earlySound, SongInfo.Instance.onTimeSound, SongInfo.Instance.lateSound);
+        soundBytePlayer.SetSounds(GameInfoManager.Instance.Dish.earlySound, GameInfoManager.Instance.Dish.onTimeSound, GameInfoManager.Instance.Dish.lateSound);
         soundBytePlayer.SetPlayMode(SoundBytePlayer.PlayMode.THREE_SOUNDS);
 
         intitialScale = plate.transform.localScale;
         initialPos = plate.transform.position;
-        SongInfo.Instance.onMeasure.AddListener(NewMeasure);
+        Composer.Instance.onMeasure.AddListener(NewMeasure);
     }
 
     public void NewMeasure()

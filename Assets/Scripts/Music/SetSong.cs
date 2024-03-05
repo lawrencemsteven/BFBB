@@ -15,8 +15,10 @@ public class SetSong : MonoBehaviour
 
 
     public void startGame()
-    {
+    {        
+        GameInfoManager.Instance.ReadFile();
         SceneManager.LoadScene(scene);
+        //GameInfoManager.Instance.WriteFile();
     }
 
     public void song60BPM()
@@ -25,7 +27,6 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.bpm = 60u;
 
-        SongInfo.Instance.setDishSounds("EarlyDish", "HiHat", "LateDish");
     }
 
     public void songBoogie()
@@ -33,8 +34,6 @@ public class SetSong : MonoBehaviour
         GlobalVariables.songChoice = "event:/BoogieSong";
 
         GlobalVariables.bpm = 120u;
-
-        SongInfo.Instance.setDishSounds("EarlyDish", "HiHat", "LateDish");
     }
 
     public void songRock()
@@ -42,7 +41,5 @@ public class SetSong : MonoBehaviour
         GlobalVariables.songChoice = "event:/BoogieRock";
 
         GlobalVariables.bpm = 180u;
-
-        SongInfo.Instance.setDishSounds("EarlyDish", "HiHat", "LateDish");
     }
 }

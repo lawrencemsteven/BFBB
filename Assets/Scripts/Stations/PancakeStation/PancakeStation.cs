@@ -27,7 +27,7 @@ public class PancakeStation : Station
         timeToFinishWaffle = (38 / bpm) * 60;
         timeToFlash = (1 / (bpm)) * 60;
 
-        SongInfo.Instance.onMeasure.AddListener(NewMeasure);
+        Composer.Instance.onMeasure.AddListener(NewMeasure);
         NewMeasure();
     }
 
