@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class SongInfo : Singleton<SongInfo>
 {
-    private uint bpm = 60u;
+    private uint bpm = GlobalVariables.bpm;
     private uint beatsPerMeasure = 4u;
 
     private float secondsPerBeat;
