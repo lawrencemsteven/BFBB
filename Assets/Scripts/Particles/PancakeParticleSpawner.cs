@@ -9,6 +9,7 @@ public class PancakeParticleSpawner : ParticleSpawner
     [SerializeField] private float griddleZ;
     [SerializeField] private Color rawColor;
     [SerializeField] private Color burntColor;
+    public GameObject pancakeArea;
     private PancakeParticleObject pancake;
 
     public void Initialize()
@@ -18,7 +19,7 @@ public class PancakeParticleSpawner : ParticleSpawner
             GameObject obj = new GameObject();
             obj.transform.position = new Vector3(griddleX, spawnHeight, griddleZ);
             particleObject = obj.AddComponent<PancakeParticleObject>();
-            particleObject.transform.SetParent(objectSpawnParent); 
+            particleObject.transform.SetParent(pancakeArea.transform); 
             pancake = particleObject as PancakeParticleObject;
         }
     }
@@ -52,11 +53,11 @@ public class PancakeParticleSpawner : ParticleSpawner
         pancake.Flip();
     }
 
-    public void SavePancake()
+    public void SavePancake(Transform pancakeTransform)
     {
         if (ParticleObjectExists())
         {
-            Instantiate(particleObject as PancakeParticleObject, new Vector3(5,0,0), Quaternion.identity);
+            Instantiate(particleObject as PancakeParticleObject, pancakeTransform.position, Quaternion.identity);
             DestroyParticleObject();
         }
     }
