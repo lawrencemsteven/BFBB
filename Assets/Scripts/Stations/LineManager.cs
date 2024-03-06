@@ -21,7 +21,6 @@ public class LineManager : MonoBehaviour
     private LineRenderer lineRenderer;
     private GameObject marker;
     private Coroutine beatFollower;
-    private bool readyForNewMeasure = true;
     private int currentBeat = 0;
     private Vector3 defaultMarkerScale;
     private float beatProgress;
