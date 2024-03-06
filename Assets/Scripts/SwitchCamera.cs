@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 using Enumerations;
 
 public class SwitchCamera : MonoBehaviour
@@ -16,6 +17,8 @@ public class SwitchCamera : MonoBehaviour
     private string eventObjectName;
     private StationType switchToStation;
     private StationType selectedStationType;
+    private Image transitionScreen;
+    private AudioSource audioSource;
 
     void Start()
     {
@@ -23,6 +26,8 @@ public class SwitchCamera : MonoBehaviour
         
         countdown1.SetActive(false);
         countdown2.SetActive(false);
+        transitionScreen = GetComponent<Image>();
+        audioSource = GetComponent<AudioSource>();
 
         switchCamera(StationType.DISH);
 
@@ -76,13 +81,20 @@ public class SwitchCamera : MonoBehaviour
             switchToStation = StationType.OVERHEAD_VIEW;
         }
 
+        bool value = Random.Range(0, 100) == 0;
+        if (value)
+        {
+            audioSource.pitch = Random.Range(0.5f, 1.5f);
+            audioSource.Play();
+        }
+        transitionScreen.enabled = value;
+
         if(waitingToSwitch && timer.bar != switchReqBar)
         {
             waitingToSwitch = false;
             GlobalVariables.camState = (int)switchToStation;
             switchCamera(switchToStation);
         }
-
     }
 
     private void switchCamera(StationType stationType)

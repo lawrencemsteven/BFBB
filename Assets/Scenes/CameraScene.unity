@@ -4600,7 +4600,6 @@ GameObject:
   - component: {fileID: 782332693}
   - component: {fileID: 782332692}
   - component: {fileID: 782332695}
-  - component: {fileID: 782332696}
   - component: {fileID: 782332697}
   m_Layer: 0
   m_Name: Marker
@@ -4708,19 +4707,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &782332696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782332689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcf5b786ea4d58a4588e64fc50b289e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hihat: {fileID: 496068801}
 --- !u!54 &782332697
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18020,8 +18006,8 @@ MonoBehaviour:
   upDownMovement1: {fileID: 0}
   upDownMovement2: {fileID: 0}
   upDownMovement3: {fileID: 0}
+  pancakeStationCursor: {fileID: 0}
   musicController: {fileID: 482994500}
-  sponge1: {fileID: 0}
 --- !u!1 &1076731133
 GameObject:
   m_ObjectHideFlags: 0
@@ -22370,6 +22356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera1: {fileID: 963194225}
+  startFlip: 0
 --- !u!95 &2085735035
 Animator:
   serializedVersion: 5
@@ -22592,7 +22579,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2145966856}
   - component: {fileID: 2145966855}
-  - component: {fileID: 2145966854}
   m_Layer: 3
   m_Name: Spiral
   m_TagString: Untagged
@@ -22600,28 +22586,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &2145966854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145966853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 482d535cb80a31d4a838382feea8e948, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  segments: 100
-  radiusIncrease: 0.0013
-  rotationSpeed: 5
-  colliderRadius: 0.01
-  markerPrefab: {fileID: 0}
-  pancake: {fileID: 0}
-  trail: {fileID: 0}
-  markerSize: 0.1
-  bpm: 135
-  pancakeCountdown: {fileID: 0}
 --- !u!120 &2145966855
 LineRenderer:
   m_ObjectHideFlags: 0
