@@ -14,6 +14,7 @@ namespace Orders
 
     public enum Topping
     {
+        NONE,
         CHOCOLATE_CHIP,
         PECAN,
         MARSHMALLOW,
@@ -28,8 +29,7 @@ namespace Orders
         JELLY,
         NUTELLA,
         BUTTER,
-        CREAM_CHEESE,
-        NUM_TOPPINGS
+        CREAM_CHEESE
     }
 
     public class Order
@@ -62,7 +62,7 @@ namespace Orders
             int mainCourseCount = UnityEngine.Random.Range(1, mainCourseMaximums[mainCourse] + 1);
             List<Topping> toppings = new List<Topping>();
 
-            for (int i = 0; i < (int)Topping.NUM_TOPPINGS; i++)
+            for (int i = 0; i < Enum.GetNames(typeof(Topping)).Length; i++)
             {
                 if (UnityEngine.Random.Range(0, 4) == 1)
                 {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Orders;
 
 [RequireComponent(typeof(CoordinateGenerator))]
 [RequireComponent(typeof(LineRenderer))]
@@ -24,6 +25,7 @@ public class LineManager : MonoBehaviour
     private int currentBeat = 0;
     private Vector3 defaultMarkerScale;
     private float beatProgress;
+    private CoordinateCollider currentPoint;
 
     void Awake()
     {
@@ -172,6 +174,7 @@ public class LineManager : MonoBehaviour
             PassLineInfo(previous, next);
 
             currentBeat = beatsPassed;
+            currentPoint = points[currentBeat];
 
             yield return null;
         }
@@ -208,6 +211,18 @@ public class LineManager : MonoBehaviour
         }
 
         Station.HandlePathUpdate(markerSpace);
+    }
+
+    public Topping GetCurrentTopping()
+    {
+        if (currentPoint as ToppingCoordinateCollider is null)
+        {
+            return Topping.NONE;
+        }
+        else
+        {
+            return (currentPoint as ToppingCoordinateCollider).topping;
+        }
     }
 
     public int GetCurrentBeat() { return currentBeat; }

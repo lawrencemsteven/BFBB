@@ -130,9 +130,8 @@ public class Composer : Singleton<Composer>
     {
         pitch = Mathf.Clamp(pitch, -1.0f, 1.0f);
 
-        if (GlobalVariables.camState == 1)
+        if (GlobalVariables.camState == 1 || GlobalVariables.camState == 3)
         {
-
             if (pitch >= 0.0f)
             {
                 composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MAX_PITCH, pitch));
