@@ -7,6 +7,15 @@ public static class Stations
     private static CoffeeStation coffee;
     private static PrepStation prep;
 
+    //YEAH THIS FUCKIN BLOWS WE GOT TWO WEEKS LEFT CRY ABOUT IT
+    public static void InitializeStations()
+    {
+        dish = null;
+        pancake = null;
+        coffee = null;
+        prep = null;
+    }
+
     public static DishStation Dish
     {
         get

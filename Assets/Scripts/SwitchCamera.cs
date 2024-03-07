@@ -18,7 +18,7 @@ public class SwitchCamera : MonoBehaviour
     private StationType selectedStationType;
 
     void Start()
-    {
+    {       
         if (eventObjectName == null || eventObjectName == "") eventObjectName = "FMOD Music Event";
         
         countdown1.SetActive(false);
