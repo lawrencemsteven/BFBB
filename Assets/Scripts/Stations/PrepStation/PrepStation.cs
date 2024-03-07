@@ -56,8 +56,6 @@ public class PrepStation : Station
 
         Composer.Instance.onMeasure.AddListener(NewMeasure);
 
-        distanceMinimum = 0.2f;
-
         //Test code
         ReservoirManager.GetPancakes().Add(new ReservoirPancake(1, new GameObject()));
         ReservoirManager.GetPancakes().Add(new ReservoirPancake(1, new GameObject()));
@@ -114,7 +112,7 @@ public class PrepStation : Station
     {
         float distance = offset.magnitude;
 
-        if (distance < distanceMinimum && selectedTopping == lineManager.GetCurrentTopping())
+        if ((distance < distanceMinimum || distance > 0.25F) && selectedTopping == lineManager.GetCurrentTopping())
         {
             Composer.Instance.PitchChange(0);
         }
