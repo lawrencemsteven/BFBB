@@ -64,7 +64,7 @@ public class LineManager : MonoBehaviour
     private IEnumerator FollowBeat()
     {
         int totalBeats = lineRenderer.positionCount - 1;
-        int halfBeats = 2 * (totalBeats - (int)SongInfo.Instance.getBeatsPerMeasure());
+        int halfBeats = 2 * (totalBeats - (int)GameInfoManager.Instance.Song.GetBeatsPerMeasure());
         int fullBeats = totalBeats - halfBeats;
         float accumulatedTime = 0F;
         beatProgress = 0F;
@@ -72,16 +72,16 @@ public class LineManager : MonoBehaviour
         marker = GameObject.Instantiate(markerPrefab, transform);
         defaultMarkerScale = marker.transform.localScale;
 
-        float beatDuration = SongInfo.Instance.getSecondsPerBeat() * measuresPerShape;
+        float beatDuration =GameInfoManager.Instance.Song.GetSecondsPerBeat() * measuresPerShape;
         List<CoordinateCollider> points = coordinateGenerator.GetColliders();
 
-        while (accumulatedTime < (beatDuration * SongInfo.Instance.getBeatsPerMeasure()))
+        while (accumulatedTime < (beatDuration * GameInfoManager.Instance.Song.GetBeatsPerMeasure()))
         {
             accumulatedTime += Time.deltaTime;
             beatProgress = (accumulatedTime % beatDuration) / beatDuration;
 
             int beatsPassed = Mathf.FloorToInt(accumulatedTime / beatDuration);
-            if (beatsPassed >= SongInfo.Instance.getBeatsPerMeasure())
+            if (beatsPassed >= GameInfoManager.Instance.Song.GetBeatsPerMeasure())
             {
                 beatsPassed = 0;
             }

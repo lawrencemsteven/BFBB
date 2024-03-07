@@ -22,6 +22,8 @@ public class ScriptUsageTimeline : MonoBehaviour
     
     public FMOD.Studio.EventInstance musicInstance;
 
+    private bool isPaused = false;
+
     private string eventLocation = GlobalVariables.songChoice;
 
     void Start()
@@ -41,6 +43,20 @@ public class ScriptUsageTimeline : MonoBehaviour
 
         musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT /*| FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER*/);
         musicInstance.start();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        {
+            musicInstance.setPaused(true);
+            isPaused = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        {
+            musicInstance.setPaused(false);
+            isPaused = false;
+        }
     }
 
     void OnDestroy()
@@ -103,5 +119,5 @@ public class ScriptUsageTimeline : MonoBehaviour
         
     }
 
-    
+
 }
