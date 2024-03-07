@@ -6,7 +6,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(ComposerInterpreter))]
 public class Composer : Singleton<Composer>
 {
-    private float countdownTimer = 10f;
     public bool debugTimer = true;
     public bool isFading = false;  //Meant to mean is fading out, will be replaced by isFade
     public bool eqEffect = false;
