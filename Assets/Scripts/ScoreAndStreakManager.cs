@@ -24,7 +24,7 @@ public class ScoreAndStreakManager : MonoBehaviour
         GlobalVariables.streak += 1;
         Composer.Instance.PlayDishStreak1();
         if (GlobalVariables.streak == 3) {
-            switch (GlobalVaraibles.streak) {
+            switch (GlobalVariables.currentStation) {
                 case "Dish":
                     Composer.Instance.PlayDishStreak1();
                     break;
@@ -40,7 +40,7 @@ public class ScoreAndStreakManager : MonoBehaviour
             }
         }
         else if (GlobalVariables.streak == 6) {
-            switch (GlobalVaraibles.streak) {
+            switch (GlobalVariables.currentStation) {
                 case "Dish":
                     Composer.Instance.PlayDishStreak2();
                     break;
@@ -56,7 +56,7 @@ public class ScoreAndStreakManager : MonoBehaviour
             }
         }
         else if (GlobalVariables.streak == 3) {
-            switch (GlobalVaraibles.streak) {
+            switch (GlobalVariables.currentStation) {
                 case "Dish":
                     Composer.Instance.PlayDishStreak3();
                     break;
