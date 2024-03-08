@@ -162,6 +162,68 @@ public class Composer : Singleton<Composer>
         hiHatFmod.PlayScrape();
     }
 
+    //Streak Voiceline play functions
+
+    public void PlayDishStreak1()
+    {
+        hiHatFmod.DishStreak1();
+    }
+
+    public void PlayDishStreak2()
+    {
+        hiHatFmod.DishStreak2();
+    }
+
+    public void PlayDishStreak3()
+    {
+        hiHatFmod.DishStreak3();
+    }
+
+    public void PlayPancakeStreak1()
+    {
+        hiHatFmod.PancakeStreak1();
+    }
+
+    public void PlayPancakeStreak2()
+    {
+        hiHatFmod.PancakeStreak2();
+    }
+
+    public void PlayPancakeStreak3()
+    {
+        hiHatFmod.PancakeStreak3();
+    }
+
+    public void PlayCoffeeStreak1()
+    {
+        hiHatFmod.CoffeeStreak1();
+    }
+
+    public void PlayCoffeeStreak2()
+    {
+        hiHatFmod.CoffeeStreak2();
+    }
+
+    public void PlayCoffeeStreak3()
+    {
+        hiHatFmod.CoffeeStreak3();
+    }
+
+    public void PlayWaffleStreak1()
+    {
+        hiHatFmod.WaffleStreak1();
+    }
+
+    public void PlayWaffleStreak2()
+    {
+        hiHatFmod.WaffleStreak2();
+    }
+
+    public void PlayWaffleStreak3()
+    {
+        hiHatFmod.WaffleStreak3();
+    }
+
     public float GetBeatProgress()
     {
         return (nextBeatTime - Time.time) / GameInfoManager.Instance.Song.GetSecondsPerBeat();
