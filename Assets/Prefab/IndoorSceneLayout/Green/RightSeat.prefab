@@ -53,8 +53,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
       propertyPath: m_Name
-      value: Booth_SeatRight
+      value: RightSeat
       objectReference: {fileID: 0}
+    - target: {fileID: 8740239413651876088, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 889df0a5f2fb84d4eb82a99c201ffb49, type: 2}
+    - target: {fileID: 8740239413651876088, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1cd37795f07759b43b164b5a228747c6, type: 2}
     - target: {fileID: 8880182971492407139, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
       propertyPath: m_Name
       value: SeatRight_Asset
