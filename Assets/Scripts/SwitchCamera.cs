@@ -25,6 +25,9 @@ public class SwitchCamera : MonoBehaviour
         countdown2.SetActive(false);
 
         switchCamera(StationType.DISH);
+        getStationByEnum(StationType.PANCAKE).Deactivate();
+        getStationByEnum(StationType.PREP).Deactivate();
+        getStationByEnum(StationType.COFFEE).Deactivate();
 
         GlobalVariables.camState = 0;
     }
