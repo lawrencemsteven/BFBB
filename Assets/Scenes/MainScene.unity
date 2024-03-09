@@ -3325,6 +3325,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 239029098}
+  - component: {fileID: 239029100}
+  - component: {fileID: 239029099}
   m_Layer: 0
   m_Name: Table_Script
   m_TagString: Untagged
@@ -3348,6 +3350,33 @@ Transform:
   m_Father: {fileID: 520538044}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239029099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239029097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3838383996015271941, guid: 9a478c78856193b47b4868201e7188e9, type: 3}
+--- !u!114 &239029100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239029097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Tables
 --- !u!1 &242647032
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,6 +3386,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 242647033}
+  - component: {fileID: 242647035}
+  - component: {fileID: 242647034}
   m_Layer: 0
   m_Name: Stool_OriginalScript
   m_TagString: Untagged
@@ -3380,6 +3411,33 @@ Transform:
   m_Father: {fileID: 1542180462}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &242647034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242647032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3890503450421692988, guid: 3381d886f70e1584e855f084a5e2dc2c, type: 3}
+--- !u!114 &242647035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242647032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Stools
 --- !u!1 &244168388
 GameObject:
   m_ObjectHideFlags: 0
@@ -5283,6 +5341,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 373595345}
+  - component: {fileID: 373595347}
+  - component: {fileID: 373595346}
   m_Layer: 0
   m_Name: Stool_OriginalScript
   m_TagString: Untagged
@@ -5306,6 +5366,33 @@ Transform:
   m_Father: {fileID: 1024120839}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373595346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373595344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3890503450421692988, guid: 3381d886f70e1584e855f084a5e2dc2c, type: 3}
+--- !u!114 &373595347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373595344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Stools
 --- !u!1001 &384688622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5708,6 +5795,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 404092671}
+  - component: {fileID: 404092673}
+  - component: {fileID: 404092672}
   m_Layer: 0
   m_Name: Stool_OriginalScript
   m_TagString: Untagged
@@ -5731,6 +5820,33 @@ Transform:
   m_Father: {fileID: 1416408152}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &404092672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404092670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3890503450421692988, guid: 3381d886f70e1584e855f084a5e2dc2c, type: 3}
+--- !u!114 &404092673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404092670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Stools
 --- !u!1001 &414359081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7815,6 +7931,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 558971907}
+  - component: {fileID: 558971909}
+  - component: {fileID: 558971908}
   m_Layer: 0
   m_Name: Stool_OriginalScript
   m_TagString: Untagged
@@ -7838,6 +7956,33 @@ Transform:
   m_Father: {fileID: 213238740}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &558971908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558971906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3890503450421692988, guid: 3381d886f70e1584e855f084a5e2dc2c, type: 3}
+--- !u!114 &558971909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558971906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Stools
 --- !u!1 &559172919
 GameObject:
   m_ObjectHideFlags: 0
@@ -9054,6 +9199,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 680954687}
+  - component: {fileID: 680954689}
+  - component: {fileID: 680954688}
   m_Layer: 0
   m_Name: Table_Script
   m_TagString: Untagged
@@ -9077,6 +9224,33 @@ Transform:
   m_Father: {fileID: 1569509209}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &680954688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680954686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3838383996015271941, guid: 9a478c78856193b47b4868201e7188e9, type: 3}
+--- !u!114 &680954689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680954686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Tables
 --- !u!1001 &693949130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9586,6 +9760,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 737196128}
+  - component: {fileID: 737196130}
+  - component: {fileID: 737196129}
   m_Layer: 0
   m_Name: Stool_OriginalScript
   m_TagString: Untagged
@@ -9609,6 +9785,33 @@ Transform:
   m_Father: {fileID: 941093229}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &737196129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737196127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3890503450421692988, guid: 3381d886f70e1584e855f084a5e2dc2c, type: 3}
+--- !u!114 &737196130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737196127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Stools
 --- !u!4 &757500903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2076373412640554731, guid: 671da3eb1888a734bb28af4da6c9eb99, type: 3}
@@ -12367,6 +12570,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 992686776}
+  - component: {fileID: 992686778}
+  - component: {fileID: 992686777}
   m_Layer: 0
   m_Name: Stool_OriginalScript
   m_TagString: Untagged
@@ -12390,6 +12595,33 @@ Transform:
   m_Father: {fileID: 1957192506}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &992686777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992686775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3890503450421692988, guid: 3381d886f70e1584e855f084a5e2dc2c, type: 3}
+--- !u!114 &992686778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992686775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Stools
 --- !u!1 &1001639479
 GameObject:
   m_ObjectHideFlags: 0
@@ -13781,6 +14013,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1133314127}
+  - component: {fileID: 1133314129}
+  - component: {fileID: 1133314128}
   m_Layer: 0
   m_Name: Stool_OriginalScript
   m_TagString: Untagged
@@ -13804,6 +14038,33 @@ Transform:
   m_Father: {fileID: 1001639480}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1133314128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133314126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3890503450421692988, guid: 3381d886f70e1584e855f084a5e2dc2c, type: 3}
+--- !u!114 &1133314129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133314126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Stools
 --- !u!1001 &1137049229
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15078,6 +15339,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1252820517}
+  - component: {fileID: 1252820519}
+  - component: {fileID: 1252820518}
   m_Layer: 0
   m_Name: Table_Script
   m_TagString: Untagged
@@ -15101,6 +15364,33 @@ Transform:
   m_Father: {fileID: 1650403863}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1252820518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252820516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3838383996015271941, guid: 9a478c78856193b47b4868201e7188e9, type: 3}
+--- !u!114 &1252820519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252820516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Tables
 --- !u!1 &1263336749
 GameObject:
   m_ObjectHideFlags: 0
@@ -15366,6 +15656,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1282153952}
+  - component: {fileID: 1282153954}
+  - component: {fileID: 1282153953}
   m_Layer: 0
   m_Name: Table_Script
   m_TagString: Untagged
@@ -15389,6 +15681,33 @@ Transform:
   m_Father: {fileID: 571549714}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1282153953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282153951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3838383996015271941, guid: 9a478c78856193b47b4868201e7188e9, type: 3}
+--- !u!114 &1282153954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282153951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Tables
 --- !u!1 &1289769221
 GameObject:
   m_ObjectHideFlags: 0
@@ -16285,6 +16604,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1340859645}
+  - component: {fileID: 1340859647}
+  - component: {fileID: 1340859646}
   m_Layer: 0
   m_Name: Table_Script
   m_TagString: Untagged
@@ -16308,6 +16629,33 @@ Transform:
   m_Father: {fileID: 228830868}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1340859646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340859644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3838383996015271941, guid: 9a478c78856193b47b4868201e7188e9, type: 3}
+--- !u!114 &1340859647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340859644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Tables
 --- !u!1 &1351320540
 GameObject:
   m_ObjectHideFlags: 0
@@ -21388,6 +21736,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1796649778}
+  - component: {fileID: 1796649780}
+  - component: {fileID: 1796649779}
   m_Layer: 0
   m_Name: Table_Script
   m_TagString: Untagged
@@ -21411,6 +21761,33 @@ Transform:
   m_Father: {fileID: 1984373245}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1796649779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796649777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 3838383996015271941, guid: 9a478c78856193b47b4868201e7188e9, type: 3}
+--- !u!114 &1796649780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796649777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Tables
 --- !u!1 &1798246627
 GameObject:
   m_ObjectHideFlags: 0
@@ -23708,6 +24085,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2012698657}
+  - component: {fileID: 2012698659}
+  - component: {fileID: 2012698658}
   m_Layer: 0
   m_Name: Counter_OriginalScript
   m_TagString: Untagged
@@ -23731,6 +24110,33 @@ Transform:
   m_Father: {fileID: 252911829}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2012698658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012698656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 7846258277084194050, guid: d947cd66d8ffbe24982d049f2dc4f854, type: 3}
+--- !u!114 &2012698659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012698656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Counter
 --- !u!1 &2020826106
 GameObject:
   m_ObjectHideFlags: 0
