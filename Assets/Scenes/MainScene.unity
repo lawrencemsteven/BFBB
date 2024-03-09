@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12072261, g: 0.12473124, b: 0.10821977, a: 1}
+  m_IndirectSpecularColor: {r: 0.12072234, g: 0.12473106, b: 0.1082197, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -290,6 +290,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 17167751}
+  - component: {fileID: 17167753}
+  - component: {fileID: 17167752}
   m_Layer: 0
   m_Name: RightSeat_Script
   m_TagString: Untagged
@@ -313,6 +315,35 @@ Transform:
   m_Father: {fileID: 571549714}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &17167752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17167750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+--- !u!114 &17167753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17167750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 17167752}
+  placeholderChild: {fileID: 1610272221}
 --- !u!1 &17872274
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +893,11 @@ Transform:
   m_Father: {fileID: 849085289}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &77755001 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+  m_PrefabInstance: {fileID: 1652361074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &78984230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,6 +1184,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1216797388368036328, guid: ea977e6ed5e685d4ab2e41429879ac29, type: 3}
   m_PrefabInstance: {fileID: 107346014}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &110573813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+  m_PrefabInstance: {fileID: 1504146143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &111840312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1251,6 +1292,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 113702951}
+  - component: {fileID: 113702953}
+  - component: {fileID: 113702952}
   m_Layer: 0
   m_Name: LeftSeat_script
   m_TagString: Untagged
@@ -1274,6 +1317,35 @@ Transform:
   m_Father: {fileID: 228830868}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &113702952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113702950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+--- !u!114 &113702953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113702950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 113702952}
+  placeholderChild: {fileID: 1932884476}
 --- !u!1 &118078430
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,6 +2083,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 175701985}
+  - component: {fileID: 175701987}
+  - component: {fileID: 175701986}
   m_Layer: 0
   m_Name: RightSeat_Script
   m_TagString: Untagged
@@ -2034,6 +2108,35 @@ Transform:
   m_Father: {fileID: 1984373245}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &175701986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175701984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+--- !u!114 &175701987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175701984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 17167752}
+  placeholderChild: {fileID: 572980282}
 --- !u!1 &179184605
 GameObject:
   m_ObjectHideFlags: 0
@@ -3474,6 +3577,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256400770}
+  - component: {fileID: 256400772}
+  - component: {fileID: 256400771}
   m_Layer: 0
   m_Name: RightSeat_Script
   m_TagString: Untagged
@@ -3497,6 +3602,35 @@ Transform:
   m_Father: {fileID: 1650403863}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &256400771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256400769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+--- !u!114 &256400772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256400769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 17167752}
+  placeholderChild: {fileID: 110573813}
 --- !u!4 &259281989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2076373412640554731, guid: 671da3eb1888a734bb28af4da6c9eb99, type: 3}
@@ -3836,6 +3970,11 @@ Transform:
   m_Father: {fileID: 1887833369}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &276196827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+  m_PrefabInstance: {fileID: 1551583686199570793}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &278534697
 GameObject:
   m_ObjectHideFlags: 0
@@ -4129,6 +4268,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 302728229}
+  - component: {fileID: 302728231}
+  - component: {fileID: 302728230}
   m_Layer: 0
   m_Name: LeftSeat_script
   m_TagString: Untagged
@@ -4152,6 +4293,35 @@ Transform:
   m_Father: {fileID: 1569509209}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &302728230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302728228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+--- !u!114 &302728231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302728228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 302728230}
+  placeholderChild: {fileID: 276196827}
 --- !u!1001 &307345632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5218,6 +5388,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 671da3eb1888a734bb28af4da6c9eb99, type: 3}
+--- !u!1 &384763418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+  m_PrefabInstance: {fileID: 418127354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &385380781
 GameObject:
   m_ObjectHideFlags: 0
@@ -6926,6 +7101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txt: {fileID: 212303844}
+--- !u!1 &516714390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+  m_PrefabInstance: {fileID: 1335804779}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &517238505
 GameObject:
   m_ObjectHideFlags: 0
@@ -7200,6 +7380,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 537069421}
+  - component: {fileID: 537069423}
+  - component: {fileID: 537069422}
   m_Layer: 0
   m_Name: LeftSeat_script
   m_TagString: Untagged
@@ -7223,6 +7405,35 @@ Transform:
   m_Father: {fileID: 1650403863}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &537069422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537069420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+--- !u!114 &537069423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537069420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 113702952}
+  placeholderChild: {fileID: 1666837540}
 --- !u!1001 &538263973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7326,6 +7537,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 548943598}
+  - component: {fileID: 548943600}
+  - component: {fileID: 548943599}
   m_Layer: 0
   m_Name: RightSeat_Script
   m_TagString: Untagged
@@ -7349,6 +7562,35 @@ Transform:
   m_Father: {fileID: 520538044}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &548943599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548943597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+--- !u!114 &548943600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548943597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 17167752}
+  placeholderChild: {fileID: 1401419343}
 --- !u!1 &552336679
 GameObject:
   m_ObjectHideFlags: 0
@@ -7983,6 +8225,11 @@ Transform:
   m_Father: {fileID: 1268479064}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &572980282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+  m_PrefabInstance: {fileID: 301119860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &582415201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10839,6 +11086,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 888942742}
+  - component: {fileID: 888942744}
+  - component: {fileID: 888942743}
   m_Layer: 0
   m_Name: LeftSeat_script
   m_TagString: Untagged
@@ -10862,6 +11111,35 @@ Transform:
   m_Father: {fileID: 520538044}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &888942743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888942741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+--- !u!114 &888942744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888942741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 113702952}
+  placeholderChild: {fileID: 1036496385}
 --- !u!1 &891194323
 GameObject:
   m_ObjectHideFlags: 0
@@ -11779,6 +12057,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 965061294}
+  - component: {fileID: 965061296}
+  - component: {fileID: 965061295}
   m_Layer: 0
   m_Name: LeftSeat_script
   m_TagString: Untagged
@@ -11802,6 +12082,35 @@ Transform:
   m_Father: {fileID: 571549714}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &965061295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965061293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+--- !u!114 &965061296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965061293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 113702952}
+  placeholderChild: {fileID: 384763418}
 --- !u!1 &967672943
 GameObject:
   m_ObjectHideFlags: 0
@@ -12444,6 +12753,11 @@ Transform:
   m_Father: {fileID: 332454514}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1036496385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+  m_PrefabInstance: {fileID: 210278406}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1045099825
 GameObject:
   m_ObjectHideFlags: 0
@@ -12816,6 +13130,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065017658}
+  - component: {fileID: 1065017660}
+  - component: {fileID: 1065017659}
   m_Layer: 0
   m_Name: RightSeat_Script
   m_TagString: Untagged
@@ -12839,6 +13155,35 @@ Transform:
   m_Father: {fileID: 228830868}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1065017659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065017657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+--- !u!114 &1065017660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065017657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 17167752}
+  placeholderChild: {fileID: 516714390}
 --- !u!1 &1070455406
 GameObject:
   m_ObjectHideFlags: 0
@@ -16713,6 +17058,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6828870794207962731, guid: c500ad89d7cadd24d8d20280f25b4172, type: 3}
   m_PrefabInstance: {fileID: 1396746475}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1401419343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+  m_PrefabInstance: {fileID: 192876648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1401612849
 GameObject:
   m_ObjectHideFlags: 0
@@ -17678,6 +18028,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 546126642635773772, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
   m_PrefabInstance: {fileID: 1504146143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1518703565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+  m_PrefabInstance: {fileID: 8907681920199904081}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1524581914
 PrefabInstance:
@@ -18782,6 +19137,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1607798435}
+  - component: {fileID: 1607798437}
+  - component: {fileID: 1607798436}
   m_Layer: 0
   m_Name: LeftSeat_script
   m_TagString: Untagged
@@ -18805,6 +19162,40 @@ Transform:
   m_Father: {fileID: 1984373245}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1607798436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607798434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+--- !u!114 &1607798437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607798434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 113702952}
+  placeholderChild: {fileID: 77755001}
+--- !u!1 &1610272221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+  m_PrefabInstance: {fileID: 2050992616}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1615304123
 GameObject:
   m_ObjectHideFlags: 0
@@ -19543,6 +19934,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8667927294357972059, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
   m_PrefabInstance: {fileID: 1666561575}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1666837540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+  m_PrefabInstance: {fileID: 1666561575}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1671043048
 GameObject:
   m_ObjectHideFlags: 0
@@ -20138,6 +20534,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1700587060}
+  - component: {fileID: 1700587062}
+  - component: {fileID: 1700587061}
   m_Layer: 0
   m_Name: RightSeat_Script
   m_TagString: Untagged
@@ -20161,6 +20559,35 @@ Transform:
   m_Father: {fileID: 1569509209}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1700587061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700587059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 2062333690482796650, guid: bc42055a00b48854a982e8f5f1653b57, type: 3}
+--- !u!114 &1700587062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700587059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Seats
+  defaultVariant: {fileID: 1700587061}
+  placeholderChild: {fileID: 1518703565}
 --- !u!1001 &1700609943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22841,6 +23268,11 @@ Transform:
   m_Father: {fileID: 2145211720}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1932884476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+  m_PrefabInstance: {fileID: 1877774421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1932916306
 PrefabInstance:
   m_ObjectHideFlags: 0
