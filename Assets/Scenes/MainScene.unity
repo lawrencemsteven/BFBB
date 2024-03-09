@@ -17225,9 +17225,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.46099973
       objectReference: {fileID: 0}
-    - target: {fileID: 5514860167342838361, guid: 3c18b1aac40249f48b17d688a7a7ad47, type: 3}
+    - target: {fileID: 5975192288953624447, guid: 3c18b1aac40249f48b17d688a7a7ad47, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.163
+      value: 0.032
       objectReference: {fileID: 0}
     - target: {fileID: 7779178091465873196, guid: 3c18b1aac40249f48b17d688a7a7ad47, type: 3}
       propertyPath: m_Name
@@ -20479,6 +20479,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assetName: Condiments
+--- !u!1 &1618511588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6460401665543224773, guid: 3c18b1aac40249f48b17d688a7a7ad47, type: 3}
+  m_PrefabInstance: {fileID: 1339167940}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1618511590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618511588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 5723512176294551458, guid: aaeaf12864608ff45900b684c9fc86fc, type: 3}
+--- !u!114 &1618511591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618511588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Griddle Station
 --- !u!1 &1621553703
 GameObject:
   m_ObjectHideFlags: 0
