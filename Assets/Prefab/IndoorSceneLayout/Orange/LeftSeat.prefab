@@ -11,9 +11,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SeatLeft_Asset
       objectReference: {fileID: 0}
+    - target: {fileID: 2753613987892554055, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 396fa61e08b9ad242985245b6590ba16, type: 2}
+    - target: {fileID: 2753613987892554055, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ca1c86e7d1a52f49a973acf705c3e76, type: 2}
     - target: {fileID: 6292126492566974669, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
       propertyPath: m_Name
-      value: Booth_SeatLeft
+      value: LeftSeat
       objectReference: {fileID: 0}
     - target: {fileID: 8667927294357972059, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
       propertyPath: m_RootOrder
