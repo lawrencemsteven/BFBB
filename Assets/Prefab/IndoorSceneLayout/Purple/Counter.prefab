@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5114443959516350001, guid: d947cd66d8ffbe24982d049f2dc4f854, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f08dce0917aa98d44ae16878fb865eb4, type: 2}
+    - target: {fileID: 5114443959516350001, guid: d947cd66d8ffbe24982d049f2dc4f854, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 100e23c256a92ea4fa49ab881b586ef3, type: 2}
     - target: {fileID: 5938111467419180117, guid: d947cd66d8ffbe24982d049f2dc4f854, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7846258277084194050, guid: d947cd66d8ffbe24982d049f2dc4f854, type: 3}
       propertyPath: m_Name
-      value: Counter_Original
+      value: Counter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d947cd66d8ffbe24982d049f2dc4f854, type: 3}
