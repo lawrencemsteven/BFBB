@@ -60,7 +60,7 @@ public class waffleMakerController : MonoBehaviour
     }
 
     private void onPress() {
-        if (SongInfo.Instance.testInput(acceptableOffset)) {
+        if (Composer.Instance.testInput(acceptableOffset)) {
                     Debug.Log("Waffle Iron on beat");
                 }
         else {

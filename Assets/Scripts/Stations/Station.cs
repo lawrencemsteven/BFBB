@@ -1,21 +1,33 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Station : MonoBehaviour
 {
     [SerializeField] protected Camera associatedCamera;
+    [SerializeField] protected LineManager lineManager;
+    [SerializeField] protected CoordinateGenerator coordinateGenerator;
+    [SerializeField] protected LineRenderer lineRenderer;
+    [SerializeField] protected SoundBytePlayer soundBytePlayer;
+
     [SerializeField] protected static float distanceMinimum = 0.12f;
+
     protected bool running = false;
 
     public static Station activeStation;
     
-    public void Activate()
+    public void Awake()
+    {
+        Stations.InitializeStations();
+    }
+
+    public virtual void Activate()
     {
         associatedCamera.gameObject.SetActive(true);
         running = true;
         activeStation = this;
     }
 
-    public void Deactivate()
+    public virtual void Deactivate()
     {
         associatedCamera.gameObject.SetActive(false);
         running = false;
@@ -43,4 +55,9 @@ public abstract class Station : MonoBehaviour
 
     public Camera GetAssociatedCamera() { return associatedCamera; }
     public bool IsRunning() { return running; }
+
+    public LineManager GetLineManager() { return lineManager; }
+    public CoordinateGenerator GetCoordinateGenerator() { return coordinateGenerator; }
+    public LineRenderer GetLineRenderer() { return lineRenderer; }
+    public SoundBytePlayer GetSoundBytePlayer() { return soundBytePlayer; }
 }
