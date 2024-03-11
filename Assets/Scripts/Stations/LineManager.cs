@@ -93,7 +93,7 @@ public class LineManager : MonoBehaviour
             if (colorChange && !IsEarly())
             {
                 marker.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
-            } 
+            }
             else
             {
                 marker.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
@@ -103,9 +103,9 @@ public class LineManager : MonoBehaviour
             {
                 previous = points[beatsPassed].transform.position;
 
-                if (beatsPassed + 1 < points.Count )
+                if (beatsPassed + 1 < points.Count)
                 {
-                    next = points[beatsPassed+1].transform.position;
+                    next = points[beatsPassed + 1].transform.position;
                 }
                 else
                 {
@@ -126,16 +126,16 @@ public class LineManager : MonoBehaviour
             {
                 if (beatProgress > 0.5)
                 {
-                    previous = points[beatsPassed+1].transform.position;
-                    if (beatsPassed + 2 < points.Count )
+                    previous = points[beatsPassed + 1].transform.position;
+                    if (beatsPassed + 2 < points.Count)
                     {
-                        next = points[beatsPassed+2].transform.position;
+                        next = points[beatsPassed + 2].transform.position;
                     }
                     else
                     {
                         next = points[beatsPassed].transform.position;
                     }
-                    
+
                     if (lerpToPoint)
                     {
                         marker.transform.position = Vector3.Lerp(previous, next, (beatProgress - 0.5F) * measuresPerShape);
@@ -150,9 +150,9 @@ public class LineManager : MonoBehaviour
                 else
                 {
                     previous = points[beatsPassed].transform.position;
-                    if (beatsPassed + 1 < points.Count )
+                    if (beatsPassed + 1 < points.Count)
                     {
-                        next = points[beatsPassed+1].transform.position;
+                        next = points[beatsPassed + 1].transform.position;
                     }
                     else
                     {
@@ -228,5 +228,5 @@ public class LineManager : MonoBehaviour
 
     public int GetCurrentBeat() { return currentBeat; }
 
-    public bool IsEarly() { return beatProgress < earlyThreshold; }    
+    public bool IsEarly() { return beatProgress < earlyThreshold; }
 }
