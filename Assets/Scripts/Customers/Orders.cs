@@ -19,6 +19,7 @@ namespace Orders
         PECAN,
         MARSHMALLOW,
         BACON_BIT,
+        MIXED_FRUIT,
         BANANA_SLICE,
         BLUEBERRY,
         STRAWBERRY,

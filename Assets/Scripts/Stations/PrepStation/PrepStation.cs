@@ -17,11 +17,12 @@ public class PrepStation : Station
 
     [SerializeField] private GameObject syrupContainer;
     //[SerializeField] private GameObject butter;
+    [SerializeField] private GameObject fruitTongs;
     [SerializeField] private GameObject whipCream;
     [SerializeField] private GameObject chocolateChip;
 
     private Vector3 initialSyrupPosition;
-    private Vector3 initialButterPosition;
+    private Vector3 initialTongsPosition;
     private Vector3 initialWhipPosition;
     private Vector3 initialChocoPosition;
 
@@ -48,7 +49,7 @@ public class PrepStation : Station
         preppedOrder = null;
 
         initialSyrupPosition = syrupContainer.transform.position;
-        //initialButterPosition = syrupContainer.transform.position;
+        initialTongsPosition = fruitTongs.transform.position;
         initialWhipPosition = whipCream.transform.position;
         initialChocoPosition = chocolateChip.transform.position;
 
@@ -64,8 +65,6 @@ public class PrepStation : Station
 
     public void Update()
     {
-        //if(running == false) {return;}
-
         containerPos = Input.mousePosition;
 
         prepStationUI.SetActive(running);
@@ -82,7 +81,7 @@ public class PrepStation : Station
             else if(setWaffle == true){ AddWaffle(); }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && preppedOrder is not null)
         {
             ScrapOrder();
         }
@@ -172,11 +171,6 @@ public class PrepStation : Station
             return;
         }
 
-        /*else if(String.Equals(topping.ToString(), "BUTTER"))
-        {
-        if butter == 3 return, else add butter
-
-        }*/
 
         if (preppedOrder.GetToppings().Contains(topping))
         {
@@ -216,20 +210,19 @@ public class PrepStation : Station
 
     public void ToppingsControl()
     {
-        //Butter
+        //Mixed Fruit
         if (Input.GetKey(KeyCode.W))
         {
-            if (selectedTopping == Topping.NONE || selectedTopping == Topping.BUTTER)
+            if (selectedTopping == Topping.NONE || selectedTopping == Topping.MIXED_FRUIT)
             {
-                //butter.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+                fruitTongs.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, .8f));
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButton(0))
                 {
-                    //check if on beat
-                    ToggleTopping(Topping.BUTTER);
+                    ToggleTopping(Topping.MIXED_FRUIT);
                 }
             }
-            selectedTopping = Topping.BUTTER;
+            selectedTopping = Topping.MIXED_FRUIT;
         }
 
         //Syrup
@@ -238,6 +231,7 @@ public class PrepStation : Station
             if (selectedTopping == Topping.NONE || selectedTopping == Topping.SYRUP_OLD_FASHIONED)
             {
                 syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+                syrupContainer.transform.eulerAngles = new Vector3(0f, 0f, 45f);
 
                 if (Input.GetMouseButton(0))
                 {
@@ -254,6 +248,7 @@ public class PrepStation : Station
             if (selectedTopping == Topping.NONE || selectedTopping == Topping.CHOCOLATE_CHIP)
             {
                 chocolateChip.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+                chocolateChip.transform.eulerAngles = new Vector3(45f, 0f, 0f);
 
                 //set cursor and choccies to follow mouse movement
                 if (Input.GetMouseButton(0))
@@ -270,8 +265,8 @@ public class PrepStation : Station
             if (selectedTopping == Topping.NONE || selectedTopping == Topping.WHIPPED_CREAM)
             {
                 whipCream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+                whipCream.transform.eulerAngles = new Vector3(135f, 0f, 0f);
 
-                //cursor and strawbs should follow mouse
                 if (Input.GetMouseButton(0))
                 {
                     ToggleTopping(Topping.WHIPPED_CREAM);
@@ -281,6 +276,7 @@ public class PrepStation : Station
         }
 
         //FUCK you i dont care anymore
+        //dude same
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
         {
             selectedTopping = Topping.NONE;
@@ -290,22 +286,26 @@ public class PrepStation : Station
     public void ToppingsRelease()
     {
         if (Input.GetKeyUp(KeyCode.W)){
-            //butter.transform.position = initialButterPosition
+            fruitTongs.transform.position = initialTongsPosition;
         }
 
         if (Input.GetKeyUp(KeyCode.A))
         {
             syrupContainer.transform.position = initialSyrupPosition;
+            syrupContainer.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+
         }
 
         if (Input.GetKeyUp(KeyCode.S))
         {
             chocolateChip.transform.position = initialChocoPosition;
+            chocolateChip.transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
 
         if (Input.GetKeyUp(KeyCode.D))
         {
             whipCream.transform.position = initialWhipPosition;
+            whipCream.transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
     }
 
