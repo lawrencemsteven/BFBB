@@ -32,8 +32,7 @@ public class PourPancakeParticles : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Debug.Log("SAVED");
-           // pancakeParticleSystem.SavePancake();
+            pancakeParticleSystem.SavePancake();
         }
     }
 

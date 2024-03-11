@@ -9,8 +9,7 @@ public class PrepStation : Station
     [SerializeField] private GameObject orderPrefab;
     private Transform orderList;
     private Order preppedOrder;
-    private TextMeshProUGUI selectedToppingLabel;
-    private TextMeshProUGUI requiredToppingLabel;
+    private TextMeshProUGUI orderLabel;
 
     private bool setPancake;
     private bool setWaffle;
@@ -27,10 +26,6 @@ public class PrepStation : Station
 
     private Vector3 containerPos;
 
-    private ToppingCoordinateGenerator toppingCoordinateGenerator;
-    private bool even = false;
-    private Topping selectedTopping = Topping.NONE;
-
     
     //protected bool running = false;
 
@@ -42,8 +37,7 @@ public class PrepStation : Station
     public void Start()
     {
         orderList = prepStationUI.transform.GetChild(0);
-        selectedToppingLabel = prepStationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        requiredToppingLabel = prepStationUI.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        orderLabel = prepStationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         prepStationUI.SetActive(false);
         preppedOrder = null;
 
@@ -52,13 +46,9 @@ public class PrepStation : Station
         initialWhipPosition = whipCream.transform.position;
         initialChocoPosition = chocolateChip.transform.position;
 
-        toppingCoordinateGenerator = coordinateGenerator as ToppingCoordinateGenerator;
-
-        Composer.Instance.onMeasure.AddListener(NewMeasure);
-
         //Test code
-        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1, new GameObject()));
-        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1, new GameObject()));
+        //ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
+        //ReservoirManager.GetPancakes().Add(new ReservoirPancake(1));
         ReservoirManager.GetWaffles().Add(new ReservoirWaffle(1));
     }
 
@@ -69,10 +59,9 @@ public class PrepStation : Station
         containerPos = Input.mousePosition;
 
         prepStationUI.SetActive(running);
-        if (running)
+        if (running && preppedOrder is not null)
         {
-            requiredToppingLabel.text = lineManager.GetCurrentTopping().ToString();
-            selectedToppingLabel.text = selectedTopping.ToString();
+            orderLabel.text = preppedOrder.ToString();
         }
 
         if (Input.GetKey(KeyCode.Space))
@@ -90,36 +79,6 @@ public class PrepStation : Station
         ToppingsControl();
         ToppingsRelease();
 
-    }
-
-    public void NewMeasure()
-    {
-        if (even)
-        {
-            toppingCoordinateGenerator.NewPlate();
-            lineManager.DrawLine();
-            even = false;
-        }
-        else
-        {
-            even = true;
-        }
-
-        selectedTopping = Topping.NONE;
-    }
-
-    public override void pathUpdate(Vector2 offset)
-    {
-        float distance = offset.magnitude;
-
-        if ((distance < distanceMinimum || distance > 0.25F) && selectedTopping == lineManager.GetCurrentTopping())
-        {
-            Composer.Instance.PitchChange(0);
-        }
-        else
-        {
-            Composer.Instance.PitchChange(-1);
-        }
     }
 
     public void UpdateCustomerOrders()
@@ -209,7 +168,7 @@ public class PrepStation : Station
     public void NullifyPreppedOrder()
     {
         preppedOrder = null;
-        selectedToppingLabel.text = "";
+        orderLabel.text = "";
     }
     public Order GetPreppedOrder() { return preppedOrder; }
     public void SetRunning(bool running) { this.running = running; }
@@ -219,71 +178,52 @@ public class PrepStation : Station
         //Butter
         if (Input.GetKey(KeyCode.W))
         {
-            if (selectedTopping == Topping.NONE || selectedTopping == Topping.BUTTER)
-            {
-                //butter.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+            //butter.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
 
-                if (Input.GetMouseButtonDown(0))
-                {
-                    //check if on beat
-                    ToggleTopping(Topping.BUTTER);
-                }
+            if (Input.GetMouseButtonDown(0))
+            {
+                //check if on beat
+                ToggleTopping(Topping.BUTTER);
+
+
             }
-            selectedTopping = Topping.BUTTER;
         }
 
         //Syrup
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
-            if (selectedTopping == Topping.NONE || selectedTopping == Topping.SYRUP_OLD_FASHIONED)
-            {
-                syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+            syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
 
-                if (Input.GetMouseButton(0))
-                {
-                    ToggleTopping(Topping.SYRUP_OLD_FASHIONED);
-                    //activate pour effect   
-                }
+            if (Input.GetMouseButton(0))
+            {
+                ToggleTopping(Topping.SYRUP_OLD_FASHIONED);
+                //activate pour effect   
             }
-            selectedTopping = Topping.SYRUP_OLD_FASHIONED;
         }
 
         //Choccy Chippos
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
-            if (selectedTopping == Topping.NONE || selectedTopping == Topping.CHOCOLATE_CHIP)
-            {
-                chocolateChip.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+            chocolateChip.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
 
-                //set cursor and choccies to follow mouse movement
-                if (Input.GetMouseButton(0))
-                {
-                    ToggleTopping(Topping.CHOCOLATE_CHIP);
-                }
+            //set cursor and choccies to follow mouse movement
+            if (Input.GetMouseButton(0))
+            {
+                Debug.Log("Mouse button hold successful");
+                ToggleTopping(Topping.CHOCOLATE_CHIP);
             }
-            selectedTopping = Topping.CHOCOLATE_CHIP;
         }
 
         //Whip
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            if (selectedTopping == Topping.NONE || selectedTopping == Topping.WHIPPED_CREAM)
+            whipCream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+
+            //cursor and strawbs should follow mouse
+            if (Input.GetMouseButton(0))
             {
-                whipCream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
-
-                //cursor and strawbs should follow mouse
-                if (Input.GetMouseButton(0))
-                {
-                    ToggleTopping(Topping.WHIPPED_CREAM);
-                }
+                ToggleTopping(Topping.WHIPPED_CREAM);
             }
-            selectedTopping = Topping.WHIPPED_CREAM;
-        }
-
-        //FUCK you i dont care anymore
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-        {
-            selectedTopping = Topping.NONE;
         }
     }
 

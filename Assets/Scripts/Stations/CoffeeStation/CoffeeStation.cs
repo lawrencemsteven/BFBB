@@ -55,6 +55,7 @@ public class CoffeeStation : Station
     // Start is called before the first frame update
     void Start()
     {
+
         time = 8f / (bpm / 60f);
         travelDistance = Vector3.Distance(waypoints[0].transform.position, waypoints[waypoints.Length - 1].transform.position);
         baseMoveSpeed = travelDistance / time;

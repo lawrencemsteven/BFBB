@@ -7,14 +7,16 @@ public class AssetSwapper : MonoBehaviour
     public string assetName;
 
     private Dictionary<string, AssetVariant> variantOptions = new();
+    [SerializeField] private AssetVariant defaultVariant;
+    [SerializeField] private GameObject placeholderChild;
     private string currentSwap;
 
     void Awake()
     {
-        currentSwap = "Default";
+        currentSwap = defaultVariant.name;
         foreach (AssetVariant variant in GetComponents<AssetVariant>())
         {
-            variantOptions.Add(variant.variantName, variant);
+            variantOptions.Add(variant.name, variant);
         }
 
         AssetManager.RegisterAsset(this);
@@ -22,12 +24,11 @@ public class AssetSwapper : MonoBehaviour
 
     void Start()
     {
-        foreach (Transform child in transform)
+        if (placeholderChild != null)
         {
-            Destroy(child.gameObject);
+            Destroy(placeholderChild);
         }
-
-        ApplyVariant("Default");
+        defaultVariant.Apply();
     }
 
     public ICollection<string> GetVariantOptionNames() {

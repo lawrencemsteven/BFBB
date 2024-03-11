@@ -14,10 +14,10 @@ public class metronome : MonoBehaviour
 
     void Update()
     {
-        if ((((int)Composer.Instance.GetBeatsPassed()) == 1) && (!beatTimeInit))
+        if ((((int)SongInfo.Instance.getBeatsPassed()) == 1) && (!beatTimeInit))
         {
             beatTimeInit=true;
-            nextBeatTime = (float)GameInfoManager.Instance.Song.GetSecondsPerBeat();
+            nextBeatTime = ((float)SongInfo.Instance.getSecondsPerBeat());
             beatDuration = nextBeatTime;
         }
         if (Time.time >= nextBeatTime)

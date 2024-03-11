@@ -17,8 +17,6 @@ public class DishStation : Station
     private Animator plateAnimator;
     private SmudgeCoordinateGenerator smudgeCoordinateGenerator;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -34,12 +32,12 @@ public class DishStation : Station
 
         smudgeCoordinateGenerator = coordinateGenerator as SmudgeCoordinateGenerator;
 
-        soundBytePlayer.SetSounds(GameInfoManager.Instance.Dish.earlySound, GameInfoManager.Instance.Dish.onTimeSound, GameInfoManager.Instance.Dish.lateSound);
+        soundBytePlayer.SetSounds("EarlyDish", "HiHat", "LateDish");
         soundBytePlayer.SetPlayMode(SoundBytePlayer.PlayMode.THREE_SOUNDS);
 
         intitialScale = plate.transform.localScale;
         initialPos = plate.transform.position;
-        Composer.Instance.onMeasure.AddListener(NewMeasure);
+        SongInfo.Instance.onMeasure.AddListener(NewMeasure);
     }
 
     public void NewMeasure()

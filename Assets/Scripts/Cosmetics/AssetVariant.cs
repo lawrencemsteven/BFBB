@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AssetSwapper))]
 public class AssetVariant : MonoBehaviour
 {
-    public string variantName;
+    public string name;
     public GameObject prefab;
     private GameObject instantiated;
 

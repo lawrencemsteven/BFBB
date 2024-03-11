@@ -4,35 +4,33 @@ using UnityEngine;
 
 public class flipController : MonoBehaviour
 {
+    
     public GameObject camera1;
-    public bool startFlip = false;
     private Animator anim;
-    private bool flipped = false;
-
+    private bool upsideDown = false;
+    // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (camera1.activeSelf)
         {
-            /*
-            // Check for right click and swipe up
-            if (Input.GetMouseButton(1) && Input.GetAxis("Mouse Y") > .5)
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 GlobalVariables.score += 1;
                 FlipPancake();
             }
-            */
         }
     }
-
-    public void FlipPancake()
+    void FlipPancake()
     {
-        flipped = !flipped;
+        upsideDown = !upsideDown;
         anim.SetTrigger("FlipTrigger");
-        anim.SetBool("isFlipped", flipped);
+        anim.SetBool("isFlipped", upsideDown);
     }
+
 }

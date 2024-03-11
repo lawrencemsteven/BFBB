@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Station : MonoBehaviour
@@ -15,11 +14,6 @@ public abstract class Station : MonoBehaviour
 
     public static Station activeStation;
     
-    public void Awake()
-    {
-        Stations.InitializeStations();
-    }
-
     public virtual void Activate()
     {
         associatedCamera.gameObject.SetActive(true);
