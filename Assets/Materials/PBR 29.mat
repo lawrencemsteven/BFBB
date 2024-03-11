@@ -20,12 +20,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PBR 17
+  m_Name: PBR 29
   m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
   m_ValidKeywords:
   - _HALFTONESHAPE_DOT
   - _OUTLINE
   - _RIMLIGHTING_ON
+  - _SPECULAR_SETUP
   - _TOON_SHADING_ON
   m_InvalidKeywords:
   - _STEPVIARAMPTEXTURE_ON
@@ -40,9 +41,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 40ca5e430ff4cbb4d964c05cd2589963, type: 3}
-        m_Scale: {x: 0.93, y: 0.11}
-        m_Offset: {x: 1.83, y: 1.76}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -88,9 +89,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 40ca5e430ff4cbb4d964c05cd2589963, type: 3}
-        m_Scale: {x: 0.93, y: 0.11}
-        m_Offset: {x: 1.83, y: 1.76}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -104,7 +105,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RampTex:
-        m_Texture: {fileID: 2800000, guid: 54b038724b9945a4ba952cc534e77c93, type: 3}
+        m_Texture: {fileID: 2800000, guid: ad1634685bad1894b946220d64f2815e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -140,7 +141,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DiffuseStep: 0.14
+    - _DiffuseStep: 0.12
     - _DitherTexelSize: 1
     - _DitherThreshold: 1
     - _DstBlend: 0
@@ -173,43 +174,43 @@ Material:
     - _HatchingSmoothness: 0.1
     - _LightContribution: 1
     - _LightFalloffSize: 1
-    - _Metallic: 0
+    - _Metallic: 0.179
     - _NoiseScale: 1
     - _NoiseStrength: 0.1
     - _OcclusionStrength: 1
     - _OutlineEnabled: 1
     - _OutlineMode: 0
-    - _OutlineWidth: 8.21
+    - _OutlineWidth: 8.75
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimEnabled: 1
     - _RimLightAlign: 0.5
     - _RimLightSmoothness: 0.122
-    - _RimPower: 0.439
+    - _RimPower: 0.297
     - _SizeFalloff: 0
-    - _Smoothness: 0
+    - _Smoothness: 0.696
     - _SmoothnessTextureChannel: 0
     - _SpecClipMaskScale: 1
     - _SpecShadowStrength: 1
     - _SpecularClipStrength: 0
     - _SpecularFalloff: 0
     - _SpecularHighlights: 1
-    - _SpecularSize: 0.275
+    - _SpecularSize: 0.063
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
     - _StencilComp: 0
     - _StencilRef: 0
     - _StepViaRampTexture: 1
     - _Surface: 0
-    - _ToonBlending: 0.608
+    - _ToonBlending: 0.371
     - _ToonEnabled: 1
     - _UseRampColor: 0
-    - _WorkflowMode: 1
+    - _WorkflowMode: 0
     - _ZWrite: 1
     - _brushScale: 8
     m_Colors:
-    - _BaseColor: {r: 0.3301887, g: 0.3286312, b: 0.3286312, a: 1}
+    - _BaseColor: {r: 0.6132076, g: 0.56156176, b: 0.26900142, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
@@ -217,7 +218,7 @@ Material:
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0.18560876, g: 0.60285383, b: 0.9150943, a: 1}
+    - _OutlineColor: {r: 0, g: 0.6545739, b: 1, a: 1}
     - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}

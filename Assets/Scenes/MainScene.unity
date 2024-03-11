@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5299,7 +5299,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1551583686199570794}
+  - {fileID: 7909161897040663858}
   m_Father: {fileID: 1569509209}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32080,11 +32080,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
---- !u!4 &1551583686199570794 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8667927294357972059, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
-  m_PrefabInstance: {fileID: 1551583686199570793}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1588195528127821472
 GameObject:
   m_ObjectHideFlags: 0
@@ -34251,7 +34246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2803797393894503453}
   m_Layer: 0
-  m_Name: OrignialLights
+  m_Name: OriginalLights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37737,6 +37732,11 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &7909161897040663858 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8667927294357972059, guid: c8b6da2160101d243a2565534417ce0b, type: 3}
+  m_PrefabInstance: {fileID: 1551583686199570793}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7918513399365995213
 PrefabInstance:
   m_ObjectHideFlags: 0
