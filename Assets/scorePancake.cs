@@ -5,6 +5,7 @@ using UnityEngine;
 public class scorePancake : MonoBehaviour
 {
     // Start is called before the first frame update
+    public PancakeParticleSpawner spawner;
     void Start()
     {
         
@@ -20,8 +21,7 @@ public class scorePancake : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("PancakeAnchor"))
         {
-            Destroy(other.gameObject.transform.GetChild(0).gameObject);
-            GlobalVariables.score += 1;
+            spawner.SavePancake(other.transform.GetChild(0).gameObject);
         }
     }
 }
