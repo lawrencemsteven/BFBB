@@ -5,26 +5,22 @@ using UnityEngine;
 public class EnableBatterArea : MonoBehaviour
 {
     public PancakeParticleSpawner particleSpawner;
-    public GameObject currentPancakeArea, previousPancakeArea;
+    private GameObject currentPancakeArea, previousPancakeArea;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject getCurrentPancakeArea() { return currentPancakeArea; }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "AreaDetector")
         {
 
             currentPancakeArea = other.gameObject;
-            Debug.Log(currentPancakeArea.transform.GetChild(0).gameObject.name);
-            currentPancakeArea.transform.GetChild(0).gameObject.SetActive(true);
+            Debug.Log("entered " + other.gameObject);
+            // currentPancakeArea.transform.GetChild(0).gameObject.SetActive(true);
         }
 
     }
@@ -35,8 +31,7 @@ public class EnableBatterArea : MonoBehaviour
         {
 
             // particleSpawner.SavePancake(other.gameObject.transform.GetChild(0).transform);
-            Debug.Log(currentPancakeArea.transform.GetChild(0).gameObject.name + " OFF");
-            
+
         }
     }
 }
