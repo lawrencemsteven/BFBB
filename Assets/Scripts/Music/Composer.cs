@@ -28,6 +28,7 @@ public class Composer : Singleton<Composer>
     {
         base.Awake();
         composerInterpreter = GetComponent<ComposerInterpreter>();
+        GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish, GlobalVariables.lateDish);
     }
     
     private void Start()
