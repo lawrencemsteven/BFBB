@@ -8,6 +8,7 @@ public class PancakeStation : Station
 
     public Animator waffleMakerAnim, pancakeAnim;
     public float bpm = 135f;
+    public Vector3 mousePosition;
     public GameObject waffle, waffleBatter;
     private int flashCount = 1, countdownNum  = 4;
     private float timeToStartWaffles, elapsedTime, totalElapsed, timeToFlash, timeToFlipPancake, timeToFlipWaffle, timeToFinishPancake, timeToFinishWaffle;
@@ -27,7 +28,7 @@ public class PancakeStation : Station
         timeToFinishWaffle = (38 / bpm) * 60;
         timeToFlash = (1 / (bpm)) * 60;
 
-        SongInfo.Instance.onMeasure.AddListener(NewMeasure);
+        Composer.Instance.onMeasure.AddListener(NewMeasure);
         NewMeasure();
     }
 
@@ -47,6 +48,10 @@ public class PancakeStation : Station
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            mousePosition = Input.mousePosition;
+        }
         elapsedTime += Time.deltaTime;
         totalElapsed += Time.deltaTime;
         if ((elapsedTime >= timeToStartWaffles) && (!waffleMakerOpen))
@@ -91,13 +96,28 @@ public class PancakeStation : Station
             StartCoroutine(CountBeatsToWaffleFinish());
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && (!pancakeFlipped))
+        if (Input.GetMouseButtonDown(1) && (!pancakeFlipped))
         {
-            pancakeParticleObject.Flip();
+            Vector3 currentMousePosition = Input.mousePosition;
+            float swipeDistance = currentMousePosition.y - mousePosition.y;
+
+            // Check if the swipe is upwards
+            if (swipeDistance > 1)
+            {
+
+                pancakeParticleObject.Flip();
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.F) && pancakeFlipped)
+        else if (Input.GetMouseButtonDown(1) && pancakeFlipped)
         {
-            pancakeParticleObject.Flip();
+            Vector3 currentMousePosition = Input.mousePosition;
+            float swipeDistance = currentMousePosition.y - mousePosition.y;
+            Debug.Log(swipeDistance);
+            // Check if the swipe is upwards
+            if (swipeDistance > 1)
+            {
+                pancakeParticleObject.Flip();
+            }
         }
         if ((Input.GetKeyDown(KeyCode.Space) && (!waffleFlipped)))
         {
@@ -110,6 +130,7 @@ public class PancakeStation : Station
         }
         else if ((Input.GetKeyDown(KeyCode.Space)) && (waffleFlipped))
         {
+            
             waffleBatter.SetActive(false);
             waffle.SetActive(true);
             waffleFlipped = false;
@@ -128,11 +149,11 @@ public class PancakeStation : Station
             {
                 if ((4 - count) > 0)
                 {
-                    countdown.text = $"SPACE {count}";
+                    //countdown.text = $"SPACE {count}";
                 }
                 else
                 {
-                    countdown.text = "";
+                    //countdown.text = "";
                 }
                 yield return new WaitForSeconds(beatInterval);
             }
@@ -146,11 +167,11 @@ public class PancakeStation : Station
             {
                 if ((4 - count) > 0)
                 {
-                    countdown.text = $"SPACE {count}";
+                    //countdown.text = $"SPACE {count}";
                 }
                 else
                 {
-                    countdown.text = "";
+                    //countdown.text = "";
                 }
                 yield return new WaitForSeconds(beatInterval);
             }
@@ -164,11 +185,11 @@ public class PancakeStation : Station
             {
                 if ((4 - count) > 0)
                 {
-                    pancakeCountdown.text = $"F {count}";
+                    //pancakeCountdown.text = $"F {count}";
                 }
                 else
                 {
-                    pancakeCountdown.text = "";
+                    //pancakeCountdown.text = "";
                 }
                 yield return new WaitForSeconds(beatInterval);
             }

@@ -18,13 +18,16 @@ public class SwitchCamera : MonoBehaviour
     private StationType selectedStationType;
 
     void Start()
-    {
+    {       
         if (eventObjectName == null || eventObjectName == "") eventObjectName = "FMOD Music Event";
         
         countdown1.SetActive(false);
         countdown2.SetActive(false);
 
         switchCamera(StationType.DISH);
+        getStationByEnum(StationType.PANCAKE).Deactivate();
+        getStationByEnum(StationType.PREP).Deactivate();
+        getStationByEnum(StationType.COFFEE).Deactivate();
 
         GlobalVariables.camState = 0;
     }

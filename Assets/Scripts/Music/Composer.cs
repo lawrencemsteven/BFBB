@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(ComposerInterpreter))]
 public class Composer : Singleton<Composer>
 {
-    private float countdownTimer = 10f;
     public bool debugTimer = true;
     public bool isFading = false;  //Meant to mean is fading out, will be replaced by isFade
     public bool eqEffect = false;
@@ -19,16 +19,45 @@ public class Composer : Singleton<Composer>
     public static float MIN_VOLUME = 0.0f;
     public static float DEF_VOLUME = 1f;
     [SerializeField] private HiHatFmod hiHatFmod;
+    private float nextBeatTime = 0.0f;
+    private uint measureCounter = 0u;
+    public UnityEvent onBeat = new();
+    public UnityEvent onMeasure = new();
 
     protected override void Awake()
     {
         base.Awake();
         composerInterpreter = GetComponent<ComposerInterpreter>();
     }
+    
+    private void Start()
+    {
+        // NEED TO GET bpm
+        // bpm = ???
+
+        // NEED TO GET beatsPerMeasure
+        // beatsPerMeasure = ???
+
+        nextBeatTime = Time.time + GameInfoManager.Instance.Song.GetSecondsPerBeat();
+    }
 
     // Update is called once per frame
     void Update()
     {
+        // Time passing for each beat
+        if (Time.time > nextBeatTime)
+        {
+            nextBeatTime += GameInfoManager.Instance.Song.GetSecondsPerBeat();
+            onBeat?.Invoke();
+            measureCounter += 1;
+
+            // Enough beats for a measure
+            if (measureCounter >= GameInfoManager.Instance.Song.GetBeatsPerMeasure())
+            {
+                onMeasure?.Invoke();
+                measureCounter = 0;
+            }
+        }
 
         newTime = composerInterpreter.getTime();
         //Simulates event triggers for music fade in/fade out
@@ -72,6 +101,18 @@ public class Composer : Singleton<Composer>
         }
     }
 
+    // Returns a range (-0.5f, 0.5f] that will determine how far away or close to a beat this function was called.
+    private float onBeatCheck()
+    {
+        float beatTimeDifference = nextBeatTime - Time.time;
+        float beatTimeRatio = beatTimeDifference / GameInfoManager.Instance.Song.GetSecondsPerBeat();
+        if (beatTimeRatio > 0.5f)
+        {
+            return 1.0f - beatTimeRatio;
+        }
+        return -beatTimeRatio;
+    }
+
     public void VolumeChange(int track, float volume)
     {
         volume -= 1;
@@ -89,9 +130,8 @@ public class Composer : Singleton<Composer>
     {
         pitch = Mathf.Clamp(pitch, -1.0f, 1.0f);
 
-        if (GlobalVariables.camState == 1)
+        if (GlobalVariables.camState == 1 || GlobalVariables.camState == 3)
         {
-
             if (pitch >= 0.0f)
             {
                 composerInterpreter.setPitch(Mathf.Lerp(DEF_PITCH, MAX_PITCH, pitch));
@@ -121,5 +161,13 @@ public class Composer : Singleton<Composer>
         hiHatFmod.PlayScrape();
     }
 
+    public float GetBeatProgress()
+    {
+        return (nextBeatTime - Time.time) / GameInfoManager.Instance.Song.GetSecondsPerBeat();
+    }
 
+    public uint GetBeatsPassed()
+    {
+        return measureCounter;
+    }
 }

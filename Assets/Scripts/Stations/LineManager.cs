@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Orders;
 
 [RequireComponent(typeof(CoordinateGenerator))]
 [RequireComponent(typeof(LineRenderer))]
@@ -21,10 +22,10 @@ public class LineManager : MonoBehaviour
     private LineRenderer lineRenderer;
     private GameObject marker;
     private Coroutine beatFollower;
-    private bool readyForNewMeasure = true;
     private int currentBeat = 0;
     private Vector3 defaultMarkerScale;
     private float beatProgress;
+    private CoordinateCollider currentPoint;
 
     void Awake()
     {
@@ -65,7 +66,7 @@ public class LineManager : MonoBehaviour
     private IEnumerator FollowBeat()
     {
         int totalBeats = lineRenderer.positionCount - 1;
-        int halfBeats = 2 * (totalBeats - (int)SongInfo.Instance.getBeatsPerMeasure());
+        int halfBeats = 2 * (totalBeats - (int)GameInfoManager.Instance.Song.GetBeatsPerMeasure());
         int fullBeats = totalBeats - halfBeats;
         float accumulatedTime = 0F;
         beatProgress = 0F;
@@ -73,16 +74,16 @@ public class LineManager : MonoBehaviour
         marker = GameObject.Instantiate(markerPrefab, transform);
         defaultMarkerScale = marker.transform.localScale;
 
-        float beatDuration = SongInfo.Instance.getSecondsPerBeat() * measuresPerShape;
+        float beatDuration = GameInfoManager.Instance.Song.GetSecondsPerBeat() * measuresPerShape;
         List<CoordinateCollider> points = coordinateGenerator.GetColliders();
 
-        while (accumulatedTime < (beatDuration * SongInfo.Instance.getBeatsPerMeasure()))
+        while (accumulatedTime < (beatDuration * GameInfoManager.Instance.Song.GetBeatsPerMeasure()))
         {
             accumulatedTime += Time.deltaTime;
             beatProgress = (accumulatedTime % beatDuration) / beatDuration;
 
             int beatsPassed = Mathf.FloorToInt(accumulatedTime / beatDuration);
-            if (beatsPassed >= SongInfo.Instance.getBeatsPerMeasure())
+            if (beatsPassed >= GameInfoManager.Instance.Song.GetBeatsPerMeasure())
             {
                 beatsPassed = 0;
             }
@@ -173,6 +174,7 @@ public class LineManager : MonoBehaviour
             PassLineInfo(previous, next);
 
             currentBeat = beatsPassed;
+            currentPoint = points[currentBeat];
 
             yield return null;
         }
@@ -183,6 +185,7 @@ public class LineManager : MonoBehaviour
 
     private void PassLineInfo(Vector3 previous, Vector3 next)
     {
+        //Debug.Log($"{previous} -> {next}");
         Vector3 mouseLocation = new Vector3(pourTool.transform.position.x, previous.y, pourTool.transform.position.z);
         Vector3 mouseOffset = mouseLocation - marker.transform.position;
         Vector3 tangentVector = Vector3.Normalize(next - previous);
@@ -209,6 +212,18 @@ public class LineManager : MonoBehaviour
         }
 
         Station.HandlePathUpdate(markerSpace);
+    }
+
+    public Topping GetCurrentTopping()
+    {
+        if (currentPoint as ToppingCoordinateCollider is null)
+        {
+            return Topping.NONE;
+        }
+        else
+        {
+            return (currentPoint as ToppingCoordinateCollider).topping;
+        }
     }
 
     public int GetCurrentBeat() { return currentBeat; }
