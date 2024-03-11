@@ -99,7 +99,6 @@ public class LineManager : MonoBehaviour
                 marker.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
             }
 
-            Debug.Log($"{beatsPassed}: {fullBeats}");
             if (beatsPassed < fullBeats)
             {
                 previous = points[beatsPassed].transform.position;
