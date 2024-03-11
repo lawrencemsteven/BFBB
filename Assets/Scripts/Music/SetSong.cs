@@ -27,6 +27,12 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.bpm = 60u;
 
+        GlobalVariables.earlyDish = "EarlyDish";
+
+        GlobalVariables.onTimeDish = "HiHat";
+
+        GlobalVariables.lateDish = "LateDish";
+
     }
 
     public void songBoogie()
@@ -34,6 +40,12 @@ public class SetSong : MonoBehaviour
         GlobalVariables.songChoice = "event:/BoogieSong";
 
         GlobalVariables.bpm = 120u;
+
+        GlobalVariables.earlyDish = "EarlyDish";
+
+        GlobalVariables.onTimeDish = "HiHat";
+
+        GlobalVariables.lateDish = "LateDish";
     }
 
     public void songRock()
@@ -41,5 +53,11 @@ public class SetSong : MonoBehaviour
         GlobalVariables.songChoice = "event:/BoogieRock";
 
         GlobalVariables.bpm = 180u;
+
+        GlobalVariables.earlyDish = "EarlyDish";
+
+        GlobalVariables.onTimeDish = "HiHat";
+
+        GlobalVariables.lateDish = "LateDish";
     }
 }
