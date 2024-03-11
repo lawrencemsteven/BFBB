@@ -17,8 +17,11 @@ public class SwitchCamera : MonoBehaviour
     private StationType switchToStation;
     private StationType selectedStationType;
 
+    private ScoreAndStreakManager streakReset;
+
     void Start()
     {       
+        streakReset = GetComponent<ScoreAndStreakManager>();
         if (eventObjectName == null || eventObjectName == "") eventObjectName = "FMOD Music Event";
         
         countdown1.SetActive(false);
@@ -83,6 +86,7 @@ public class SwitchCamera : MonoBehaviour
         {
             waitingToSwitch = false;
             GlobalVariables.camState = (int)switchToStation;
+            streakReset.resetStreak();
             switchCamera(switchToStation);
         }
 
