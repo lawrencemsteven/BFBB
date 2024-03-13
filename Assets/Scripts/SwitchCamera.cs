@@ -16,18 +16,19 @@ public class SwitchCamera : MonoBehaviour
     private string eventObjectName;
     private StationType switchToStation;
     private StationType selectedStationType;
+    public CameraController cameraController;
 
     private ScoreAndStreakManager streakReset;
 
     void Start()
-    {       
+    {
         streakReset = GetComponent<ScoreAndStreakManager>();
         if (eventObjectName == null || eventObjectName == "") eventObjectName = "FMOD Music Event";
-        
+
         countdown1.SetActive(false);
         countdown2.SetActive(false);
 
-        switchCamera(StationType.DISH);
+        getStationByEnum(StationType.DISH).Deactivate();
         getStationByEnum(StationType.PANCAKE).Deactivate();
         getStationByEnum(StationType.PREP).Deactivate();
         getStationByEnum(StationType.COFFEE).Deactivate();
@@ -38,6 +39,11 @@ public class SwitchCamera : MonoBehaviour
 
     void Update()
     {
+        if (!cameraController.useGameCameras())
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1) && GlobalVariables.camState != 0)
         {
             countdown1.SetActive(false);
@@ -82,7 +88,7 @@ public class SwitchCamera : MonoBehaviour
             switchToStation = StationType.OVERHEAD_VIEW;
         }
 
-        if(waitingToSwitch && timer.bar != switchReqBar)
+        if (waitingToSwitch && timer.bar != switchReqBar)
         {
             waitingToSwitch = false;
             GlobalVariables.camState = (int)switchToStation;
@@ -114,7 +120,7 @@ public class SwitchCamera : MonoBehaviour
         {
             station.Activate();
         }
-        
+
         selectedStationType = stationType;
     }
 
@@ -124,7 +130,7 @@ public class SwitchCamera : MonoBehaviour
         {
             case StationType.DISH:
                 return Stations.Dish;
-            
+
             case StationType.PANCAKE:
                 return Stations.Pancake;
 
@@ -133,7 +139,7 @@ public class SwitchCamera : MonoBehaviour
 
             case StationType.PREP:
                 return Stations.Prep;
-            
+
             default:
                 return null;
         }
