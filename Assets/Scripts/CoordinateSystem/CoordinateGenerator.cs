@@ -21,7 +21,6 @@ public class CoordinateGenerator : MonoBehaviour
     public void GenerateShape()
     {
         RemoveShape();
-
         int i = 0;
         foreach (Vector2 point in coordinates)
         {
