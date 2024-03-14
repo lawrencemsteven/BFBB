@@ -9,30 +9,28 @@ public class PrepStation : Station
     [SerializeField] private GameObject orderPrefab;
     private Transform orderList;
     private Order preppedOrder;
+    private Order selectedOrder;
     private TextMeshProUGUI selectedToppingLabel;
     private TextMeshProUGUI requiredToppingLabel;
 
-    private bool setPancake;
-    private bool setWaffle;
-
     [SerializeField] private GameObject syrupContainer;
-    //[SerializeField] private GameObject butter;
     [SerializeField] private GameObject whipCream;
     [SerializeField] private GameObject chocolateChip;
 
     private Vector3 initialSyrupPosition;
-    private Vector3 initialButterPosition;
     private Vector3 initialWhipPosition;
     private Vector3 initialChocoPosition;
 
     private Vector3 containerPos;
 
     private ToppingCoordinateGenerator toppingCoordinateGenerator;
-    private bool even = false;
+    private bool evenMeasure = false;
+    private bool evenBeat = false;
+    private int currentBeat = 0;
     private Topping selectedTopping = Topping.NONE;
-
-    
-    //protected bool running = false;
+    private Topping requiredTopping;
+    private bool makingOrder = false;
+    private int orderProgress = 0;
 
     //butter is hold button down and click to drop
     //all other toppings are hold button down and click and hold
@@ -48,12 +46,12 @@ public class PrepStation : Station
         preppedOrder = null;
 
         initialSyrupPosition = syrupContainer.transform.position;
-        //initialButterPosition = syrupContainer.transform.position;
         initialWhipPosition = whipCream.transform.position;
         initialChocoPosition = chocolateChip.transform.position;
 
         toppingCoordinateGenerator = coordinateGenerator as ToppingCoordinateGenerator;
 
+        Composer.Instance.onBeat.AddListener(NewBeat);
         Composer.Instance.onMeasure.AddListener(NewMeasure);
 
         //Test code
@@ -64,27 +62,19 @@ public class PrepStation : Station
 
     public void Update()
     {
-        //if(running == false) {return;}
+        if (running == false)
+        {
+            return;
+        }
 
         containerPos = Input.mousePosition;
 
         prepStationUI.SetActive(running);
+
         if (running)
         {
-            requiredToppingLabel.text = lineManager.GetCurrentTopping().ToString();
+            requiredToppingLabel.text = requiredTopping.ToString();
             selectedToppingLabel.text = selectedTopping.ToString();
-        }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            if(setPancake == true){ AddPancake(); }
-            
-            else if(setWaffle == true){ AddWaffle(); }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ScrapOrder();
         }
 
         ToppingsControl();
@@ -92,17 +82,56 @@ public class PrepStation : Station
 
     }
 
-    public void NewMeasure()
+    public void NewBeat()
     {
-        if (even)
+        if (evenBeat)
         {
-            toppingCoordinateGenerator.NewPlate();
-            lineManager.DrawLine();
-            even = false;
+            if (currentBeat > 3)
+            {
+                currentBeat = 0;
+            }
+            if (selectedOrder is not null)
+            {
+                requiredTopping = selectedOrder.GetToppings()[currentBeat]; 
+            }
+            currentBeat++;
+            evenBeat = false;
         }
         else
         {
-            even = true;
+            evenBeat = true;
+        }
+    }
+
+    public void NewMeasure()
+    {
+        if (!makingOrder && IsOrderSelected())
+        {
+            makingOrder = true;
+            evenMeasure = true;
+            orderProgress = 0;
+        }
+
+        if (makingOrder)
+        {
+            if (evenMeasure)
+            {
+                if (orderProgress < selectedOrder.GetMainCourseCount())
+                {
+                    toppingCoordinateGenerator.NewPlate();
+                    lineManager.DrawLine();
+                    evenMeasure = false;
+                }
+                else
+                {
+                    selectedOrder.ClearOrder();
+                    selectedOrder = null;
+                }
+            }
+            else
+            {
+                evenMeasure = true;
+            }
         }
 
         selectedTopping = Topping.NONE;
@@ -112,7 +141,7 @@ public class PrepStation : Station
     {
         float distance = offset.magnitude;
 
-        if ((distance < distanceMinimum || distance > 0.25F) && selectedTopping == lineManager.GetCurrentTopping())
+        if ((distance < distanceMinimum || distance > 0.25F) && selectedTopping == requiredTopping)
         {
             Composer.Instance.PitchChange(0);
         }
@@ -129,13 +158,17 @@ public class PrepStation : Station
             Destroy(child.gameObject);
         }
 
+        int i = 0;
+
         foreach (KeyValuePair<Order, CustomerBehavior> kvp in CustomerManager.Instance.GetAllActiveOrders())
         {
             GameObject newOrder = Instantiate(orderPrefab, orderList);
             OrderButton newOrderButton = newOrder.GetComponentInChildren<OrderButton>();
             newOrderButton.SetAssociatedOrder(kvp.Key);
             newOrderButton.SetAssociatedCustomer(kvp.Value);
+            newOrderButton.SetKeyCodeByIndex(i);
             newOrder.GetComponentInChildren<TextMeshProUGUI>().text = kvp.Key.ToString();
+            i++;
         }
     }
 
@@ -172,12 +205,6 @@ public class PrepStation : Station
             return;
         }
 
-        /*else if(String.Equals(topping.ToString(), "BUTTER"))
-        {
-        if butter == 3 return, else add butter
-
-        }*/
-
         if (preppedOrder.GetToppings().Contains(topping))
         {
             return;
@@ -193,19 +220,6 @@ public class PrepStation : Station
     public void AddWaffle() { SelectMainCourse(MainCourse.WAFFLE); }
     public void ToggleChocolateChips() {ToggleTopping(Topping.CHOCOLATE_CHIP);}
 
-
-    public void SelectPancake()
-    {
-        setWaffle = false;
-        setPancake = true;
-    }
-
-    public void SelectWaffle()
-    {
-        setPancake = false;
-        setWaffle = true;
-    }
-
     public void NullifyPreppedOrder()
     {
         preppedOrder = null;
@@ -216,22 +230,6 @@ public class PrepStation : Station
 
     public void ToppingsControl()
     {
-        //Butter
-        if (Input.GetKey(KeyCode.W))
-        {
-            if (selectedTopping == Topping.NONE || selectedTopping == Topping.BUTTER)
-            {
-                //butter.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
-
-                if (Input.GetMouseButtonDown(0))
-                {
-                    //check if on beat
-                    ToggleTopping(Topping.BUTTER);
-                }
-            }
-            selectedTopping = Topping.BUTTER;
-        }
-
         //Syrup
         if (Input.GetKey(KeyCode.A))
         {
@@ -281,7 +279,7 @@ public class PrepStation : Station
         }
 
         //FUCK you i dont care anymore
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
         {
             selectedTopping = Topping.NONE;
         }
@@ -289,10 +287,6 @@ public class PrepStation : Station
 
     public void ToppingsRelease()
     {
-        if (Input.GetKeyUp(KeyCode.W)){
-            //butter.transform.position = initialButterPosition
-        }
-
         if (Input.GetKeyUp(KeyCode.A))
         {
             syrupContainer.transform.position = initialSyrupPosition;
@@ -313,5 +307,8 @@ public class PrepStation : Station
     {
         preppedOrder.ClearOrder();
     }
+
+    public bool IsOrderSelected() { return selectedOrder != null; }
+    public void SetSelectedOrder(Order selectedOrder) { this.selectedOrder = selectedOrder; }
 
 }

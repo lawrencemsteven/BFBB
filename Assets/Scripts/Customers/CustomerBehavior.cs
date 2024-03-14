@@ -5,7 +5,7 @@ using TMPro;
 
 public class CustomerBehavior : MonoBehaviour
 {
-    private float patienceTimer = 15f;
+    private float patienceTimer = 60f;
     private float currentPatienceTimer;
     private bool active = false;
     private CustomerManager customerManager;

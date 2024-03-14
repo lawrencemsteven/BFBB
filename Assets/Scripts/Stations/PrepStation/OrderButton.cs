@@ -1,31 +1,54 @@
 using UnityEngine;
 using Orders;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
 
 public class OrderButton : MonoBehaviour
 {
     private Order associatedOrder;
     private CustomerBehavior associatedCustomer;
+    private KeyCode keyCode;
+    private List<KeyCode> keyCodesByIndex = new List<KeyCode>
+    {
+        KeyCode.Z,
+        KeyCode.X,
+        KeyCode.C,
+        KeyCode.V,
+        KeyCode.B
+    };
+    private bool selected = false;
+    private TextMeshProUGUI selectionKeyUI;
     
     public void SetAssociatedOrder(Order order) { associatedOrder = order; }
     public void SetAssociatedCustomer(CustomerBehavior customerBehavior) { associatedCustomer = customerBehavior; }
-
-    public void CheckOrder()
-    {
-        if (Order.Equals(Stations.Prep.GetPreppedOrder(), associatedOrder))
+    public void SetKeyCode(KeyCode keyCode)
+    { 
+        if (selectionKeyUI is null)
         {
-            associatedCustomer.DeactivateCustomer();
-            Stations.Prep.NullifyPreppedOrder();
-            Stations.Prep.UpdateCustomerOrders();
-            if (associatedOrder.GetMainCourse() == MainCourse.PANCAKE)
-            {
-                ReservoirManager.GetPancakes().PopMany(associatedOrder.GetMainCourseCount());
-            }
-            
-            if (associatedOrder.GetMainCourse() == MainCourse.WAFFLE)
-            {
-                ReservoirManager.GetWaffles().PopMany(associatedOrder.GetMainCourseCount());
-            }
-            Destroy(this);
+            selectionKeyUI = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+        }
+
+        this.keyCode = keyCode;
+        selectionKeyUI.text = keyCode.ToString();
+    }
+    public void SetKeyCodeByIndex(int index) { SetKeyCode(keyCodesByIndex[index]); }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(keyCode))
+        {
+            SelectOrder();
+        }
+    }
+
+    public void SelectOrder()
+    {
+        if (!Stations.Prep.IsOrderSelected())
+        {
+            Stations.Prep.SetSelectedOrder(associatedOrder);
+            selected = true;
+            transform.GetChild(0).GetComponent<Image>().color = Color.yellow;
         }
     }
 }

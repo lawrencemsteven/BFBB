@@ -7,7 +7,7 @@ public class CustomerManager : Singleton<CustomerManager>
 {
     [SerializeField] private List<Material> moodMaterials = new List<Material>();
     private List<CustomerBehavior> customers = new List<CustomerBehavior>();
-    private float customerActivationTimer = 5f;
+    private float customerActivationTimer = 15f;
     private float currentCustomerActivationTimer;
 
     private void Start()
@@ -21,7 +21,7 @@ public class CustomerManager : Singleton<CustomerManager>
             }
         }
 
-        currentCustomerActivationTimer = customerActivationTimer;
+        currentCustomerActivationTimer = 0;
     }
 
     private void Update()

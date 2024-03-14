@@ -185,7 +185,6 @@ public class LineManager : MonoBehaviour
 
     private void PassLineInfo(Vector3 previous, Vector3 next)
     {
-        //Debug.Log($"{previous} -> {next}");
         Vector3 mouseLocation = new Vector3(pourTool.transform.position.x, previous.y, pourTool.transform.position.z);
         Vector3 mouseOffset = mouseLocation - marker.transform.position;
         Vector3 tangentVector = Vector3.Normalize(next - previous);
@@ -212,18 +211,6 @@ public class LineManager : MonoBehaviour
         }
 
         Station.HandlePathUpdate(markerSpace);
-    }
-
-    public Topping GetCurrentTopping()
-    {
-        if (currentPoint as ToppingCoordinateCollider is null)
-        {
-            return Topping.NONE;
-        }
-        else
-        {
-            return (currentPoint as ToppingCoordinateCollider).topping;
-        }
     }
 
     public int GetCurrentBeat() { return currentBeat; }

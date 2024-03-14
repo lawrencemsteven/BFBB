@@ -16,20 +16,9 @@ namespace Orders
     {
         NONE,
         CHOCOLATE_CHIP,
-        PECAN,
-        MARSHMALLOW,
-        BACON_BIT,
-        BANANA_SLICE,
-        BLUEBERRY,
-        STRAWBERRY,
         WHIPPED_CREAM,
         SYRUP_OLD_FASHIONED,
-        SYRUP_BLUEBERRY,
-        SYRUP_STRAWBERRY,
-        JELLY,
-        NUTELLA,
-        BUTTER,
-        CREAM_CHEESE
+        FRUIT
     }
 
     public class Order
@@ -39,8 +28,8 @@ namespace Orders
         List<Topping> toppings;        
         static Dictionary<MainCourse, int> mainCourseMaximums = new Dictionary<MainCourse, int>
         {
-            {MainCourse.PANCAKE, 8},
-            {MainCourse.WAFFLE, 3}
+            {MainCourse.PANCAKE, 4},
+            {MainCourse.WAFFLE, 2}
         };
         public Order(MainCourse mainCourse, int mainCourseCount, List<Topping> toppings)
         {
@@ -53,7 +42,7 @@ namespace Orders
         {
             mainCourse = MainCourse.PANCAKE;
             mainCourseCount = 1;
-            toppings = new List<Topping> { Topping.CHOCOLATE_CHIP };
+            toppings = new List<Topping> { Topping.CHOCOLATE_CHIP, Topping.CHOCOLATE_CHIP, Topping.CHOCOLATE_CHIP, Topping.CHOCOLATE_CHIP };
         }
 
         public static Order GenerateOrder()
@@ -62,17 +51,12 @@ namespace Orders
             int mainCourseCount = UnityEngine.Random.Range(1, mainCourseMaximums[mainCourse] + 1);
             List<Topping> toppings = new List<Topping>();
 
-            for (int i = 0; i < Enum.GetNames(typeof(Topping)).Length; i++)
+            for (int i = 0; i < 4; i++)
             {
-                if (UnityEngine.Random.Range(0, 4) == 1)
-                {
-                    toppings.Add((Topping) i);
-
-                }
+                toppings.Add((Topping) UnityEngine.Random.Range(1,5));
             }
 
-            // temporary for prep station testing
-            return new Order();
+            return new Order(mainCourse, mainCourseCount, toppings);
         }
         public override string ToString()
         {
@@ -126,9 +110,6 @@ namespace Orders
                     RemoveTopping(t);
                 }
             }
-
-
-
         }
 
         public MainCourse GetMainCourse() { return mainCourse; }

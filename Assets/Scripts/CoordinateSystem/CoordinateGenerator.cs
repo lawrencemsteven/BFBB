@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class CoordinateGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject pointPrefab;
-    [SerializeField] private float extent;
+    [SerializeField] protected GameObject pointPrefab;
+    [SerializeField] protected float extent;
     protected List<CoordinateCollider> points = new List<CoordinateCollider>();
     public List<Vector2> coordinates;
     [SerializeField] protected Transform pointSpawnArea;
@@ -18,7 +18,7 @@ public class CoordinateGenerator : MonoBehaviour
         GenerateShape();
     }
 
-    public void GenerateShape()
+    public virtual void GenerateShape()
     {
         RemoveShape();
         int i = 0;

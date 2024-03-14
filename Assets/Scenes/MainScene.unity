@@ -7042,6 +7042,22 @@ PrefabInstance:
       propertyPath: overheadCamera
       value: 
       objectReference: {fileID: 1235620010}
+    - target: {fileID: 3680708365278029208, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680708365278029211, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.83808
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680708365278029211, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -481
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680708365278029211, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3680708365575494104, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
       propertyPath: anim
       value: 
@@ -7656,6 +7672,10 @@ PrefabInstance:
     - target: {fileID: 5924742934797616669, guid: e997f8bf1f437194fbd8edbb9cc292a2, type: 3}
       propertyPath: m_Name
       value: Customers
+      objectReference: {fileID: 0}
+    - target: {fileID: 5924742934797616669, guid: e997f8bf1f437194fbd8edbb9cc292a2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e997f8bf1f437194fbd8edbb9cc292a2, type: 3}
