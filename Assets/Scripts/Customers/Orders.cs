@@ -17,7 +17,7 @@ namespace Orders
         NONE,
         CHOCOLATE_CHIP,
         WHIPPED_CREAM,
-        SYRUP_OLD_FASHIONED,
+        SYRUP,
         FRUIT
     }
 
@@ -57,7 +57,7 @@ namespace Orders
                 toppings.Add((Topping) UnityEngine.Random.Range(1,5));
             }
 
-            return new Order(mainCourse, mainCourseCount, new List<Topping> { Topping.CHOCOLATE_CHIP, Topping.WHIPPED_CREAM, Topping.SYRUP_OLD_FASHIONED, Topping.FRUIT });
+            return new Order(mainCourse, mainCourseCount, toppings);
         }
         public override string ToString()
         {
@@ -116,6 +116,7 @@ namespace Orders
         public MainCourse GetMainCourse() { return mainCourse; }
         public int GetMainCourseCount() { return mainCourseCount; }
         public List<Topping> GetToppings() { return toppings; }
+        public Topping GetTopping(int index) { return toppings[index]; }
         public bool IsSelected() { return selected; }
         public void SetSelected(bool selected) { this.selected = selected; }
 

@@ -38,6 +38,19 @@ public class LineManager : MonoBehaviour
         lineRenderer.useWorldSpace = false;
     }
 
+    public void UpdateLine()
+    {
+        List<CoordinateCollider> points = coordinateGenerator.GetColliders();
+        lineRenderer.positionCount = points.Count;
+        int i = 0;
+        foreach (CoordinateCollider point in points)
+        {
+            Vector3 position = point.transform.localPosition;
+            lineRenderer.SetPosition(i, position);
+            i++;
+        }
+    }
+
     public void DrawLine()
     {
         lineRenderer.enabled = drawLine;
@@ -50,15 +63,7 @@ public class LineManager : MonoBehaviour
             StopCoroutine(beatFollower);
         }
 
-        List<CoordinateCollider> points = coordinateGenerator.GetColliders();
-        lineRenderer.positionCount = points.Count;
-        int i = 0;
-        foreach (CoordinateCollider point in points)
-        {
-            Vector3 position = point.transform.localPosition;
-            lineRenderer.SetPosition(i, position);
-            i++;
-        }
+        UpdateLine();
 
         beatFollower = StartCoroutine(FollowBeat());
     }

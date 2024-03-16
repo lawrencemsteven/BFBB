@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -40,7 +41,10 @@ public class CoordinateGenerator : MonoBehaviour
     {
         foreach (CoordinateCollider point in points)
         {
-            Destroy(point.gameObject);
+            if (!point.IsDestroyed())
+            {
+                Destroy(point.gameObject);
+            }
         }
         points = new List<CoordinateCollider>();
     }

@@ -91,7 +91,6 @@ public class CustomerBehavior : MonoBehaviour
     private void GenerateOrder()
     {
         order = Order.GenerateOrder();
-        Debug.Log(Stations.Prep);
         Stations.Prep.AddOrder(order, this);
     }
 

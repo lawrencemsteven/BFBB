@@ -40,9 +40,6 @@ public class SwitchCamera : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && GlobalVariables.camState != 0)
         {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
-
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.DISH;
@@ -53,13 +50,9 @@ public class SwitchCamera : MonoBehaviour
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.PANCAKE;
-            countdown1.SetActive(true);
-            countdown2.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && GlobalVariables.camState != 2)
         {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.COFFEE;
@@ -67,16 +60,12 @@ public class SwitchCamera : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4) && GlobalVariables.camState != 3)
         {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.PREP;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5) && GlobalVariables.camState != 4)
         {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.OVERHEAD_VIEW;

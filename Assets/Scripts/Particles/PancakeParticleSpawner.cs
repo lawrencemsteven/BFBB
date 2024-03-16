@@ -26,7 +26,6 @@ public class PancakeParticleSpawner : ParticleSpawner
 
     public void Initialize(GameObject area)
     {
-        Debug.Log(area.gameObject.name);
         if ((!ParticleObjectExists()) || (area != prevArea))
         {
             GameObject obj = new GameObject();
@@ -69,8 +68,6 @@ public class PancakeParticleSpawner : ParticleSpawner
 
     public void SavePancake(GameObject pancakeObject)
     {
-        Debug.Log(pancakeObject.gameObject.transform.parent.gameObject.name);
-        Debug.Log(pancake.GetQuality());
         ReservoirManager.GetPancakes().Add(new ReservoirPancake(pancake.GetQuality(), pancakeObject));
         Destroy(pancakeObject.gameObject);
     }

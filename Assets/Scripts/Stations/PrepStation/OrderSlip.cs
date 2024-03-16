@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 
-public class OrderButton : MonoBehaviour
+public class OrderSlip : MonoBehaviour
 {
+    [SerializeField] private List<Sprite> toppingSprites = new List<Sprite>();
     private Order associatedOrder;
     private CustomerBehavior associatedCustomer;
     private KeyCode keyCode;
@@ -19,8 +20,15 @@ public class OrderButton : MonoBehaviour
     };
     private TextMeshProUGUI selectionKeyUI;
     private Slider patienceMeter;
+    private float insufficientTimer = 0.5f;
+    private float currentInsufficientTimer;
     
-    public void SetAssociatedOrder(Order order) { associatedOrder = order; }
+
+    public void SetAssociatedOrder(Order order)
+    {
+        associatedOrder = order;
+        UpdateSlipVisual();
+    }
     public void SetAssociatedCustomer(CustomerBehavior customerBehavior) { associatedCustomer = customerBehavior; }
     public void SetKeyCode(KeyCode keyCode)
     { 
@@ -55,27 +63,54 @@ public class OrderButton : MonoBehaviour
             transform.GetChild(0).GetComponent<Image>().color = Color.white;
         }
 
-        patienceMeter.value = associatedCustomer.GetPatiencePercent();
-        Color meterColor = new Color(1 - associatedCustomer.GetPatiencePercent(), associatedCustomer.GetPatiencePercent(), 0);
-        patienceMeter.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = meterColor;
+        if (currentInsufficientTimer > 0)
+        {
+            transform.GetChild(0).GetComponent<Image>().color = Color.red;
+            currentInsufficientTimer -= Time.deltaTime;
+            if (currentInsufficientTimer <= 0)
+            {
+                transform.GetChild(0).GetComponent<Image>().color = Color.white;
+            }
+        }
+
+        if (associatedCustomer is not null)
+        {
+            patienceMeter.value = associatedCustomer.GetPatiencePercent();
+            Color meterColor = new Color(1 - associatedCustomer.GetPatiencePercent(), associatedCustomer.GetPatiencePercent(), 0);
+            patienceMeter.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = meterColor;
+        }
+    }
+
+    public void UpdateSlipVisual()
+    {
+        if (associatedOrder is null)
+        {
+            return;
+        }
+
+        TextMeshProUGUI pancakeAmountText = transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+        pancakeAmountText.text = $"x{associatedOrder.GetMainCourseCount()}";
+
+        Transform toppingDisplay = transform.GetChild(0).GetChild(2);
+        for (int i = 0; i < associatedOrder.GetToppings().Count; i++)
+        {
+            toppingDisplay.GetChild(i).GetComponent<Image>().sprite = toppingSprites[(int)associatedOrder.GetTopping(i) - 1];
+        }
     }
 
     public void SelectOrder()
     {
         if (!Stations.Prep.IsOrderSelected())
         {
-            Debug.Log(ReservoirManager.GetPlates().Count());
-            Debug.Log(ReservoirManager.GetPancakes().Count());
-
             if (ReservoirManager.GetPlates().Count() < 1)
             {
-                Debug.Log($"Need a clean plate in reservoir");
+                currentInsufficientTimer = insufficientTimer;
                 return;
             }
             
             if (ReservoirManager.GetPancakes().Count() < associatedOrder.GetMainCourseCount())
             {
-                Debug.Log($"Need {associatedOrder.GetMainCourseCount() - ReservoirManager.GetPancakes().Count()} more pancakes in reservoir");
+                currentInsufficientTimer = insufficientTimer;
                 return;
             }
 

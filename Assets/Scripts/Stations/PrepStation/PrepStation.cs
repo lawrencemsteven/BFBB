@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Orders;
 using TMPro;
-using System.Collections.Generic;
 
 public class PrepStation : Station
 {
@@ -15,10 +16,12 @@ public class PrepStation : Station
     private TextMeshProUGUI selectedToppingLabel;
     private TextMeshProUGUI requiredToppingLabel;
 
+    [SerializeField] private GameObject fruitTongs;
     [SerializeField] private GameObject syrupContainer;
     [SerializeField] private GameObject whipCream;
     [SerializeField] private GameObject chocolateChip;
 
+    private Vector3 initialFruitPosition;
     private Vector3 initialSyrupPosition;
     private Vector3 initialWhipPosition;
     private Vector3 initialChocoPosition;
@@ -34,6 +37,7 @@ public class PrepStation : Station
     private CustomerBehavior selectedCustomer;
     private bool makingOrder = false;
     private int orderProgress = 0;
+    [SerializeField] private List<Sprite> toppingIcons = new List<Sprite>();
 
     //butter is hold button down and click to drop
     //all other toppings are hold button down and click and hold
@@ -42,11 +46,10 @@ public class PrepStation : Station
     public void Start()
     {
         orderDisplay = prepStationUI.transform.GetChild(0);
-        selectedToppingLabel = prepStationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        requiredToppingLabel = prepStationUI.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         prepStationUI.SetActive(false);
         preppedOrder = null;
 
+        initialFruitPosition = fruitTongs.transform.position;
         initialSyrupPosition = syrupContainer.transform.position;
         initialWhipPosition = whipCream.transform.position;
         initialChocoPosition = chocolateChip.transform.position;
@@ -59,6 +62,8 @@ public class PrepStation : Station
 
     public void Update()
     {
+        prepStationUI.SetActive(running);
+
         if (running == false)
         {
             return;
@@ -66,16 +71,15 @@ public class PrepStation : Station
 
         containerPos = Input.mousePosition;
 
-        prepStationUI.SetActive(running);
-
-        if (running)
+        if (!makingOrder && requiredTopping != Topping.NONE)
         {
-            selectedToppingLabel.text = selectedTopping.ToString();
+            requiredTopping = Topping.NONE;
         }
+
+        prepStationUI.transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = toppingIcons[(int)requiredTopping];
 
         ToppingsControl();
         ToppingsRelease();
-
     }
 
     public void NewBeat()
@@ -90,7 +94,7 @@ public class PrepStation : Station
             if (selectedOrder is not null && makingOrder)
             {
                 requiredTopping = selectedOrder.GetToppings()[currentBeat]; 
-                requiredToppingLabel.text = requiredTopping.ToString();
+                prepStationUI.transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = toppingIcons[(int)requiredTopping];
             }
             evenBeat = false;
         }
@@ -132,7 +136,6 @@ public class PrepStation : Station
                     orderProgress++;
                     
                     requiredTopping = selectedOrder.GetToppings()[currentBeat]; 
-                    requiredToppingLabel.text = requiredTopping.ToString();
                 }
                 else
                 {
@@ -154,15 +157,13 @@ public class PrepStation : Station
                 evenMeasure = true;
             }
         }
-
-        selectedTopping = Topping.NONE;
     }
 
     public override void pathUpdate(Vector2 offset)
     {
         float distance = offset.magnitude;
 
-        if ((distance < distanceMinimum || distance > 0.25F) && selectedTopping == requiredTopping)
+        if (!makingOrder || ((distance < distanceMinimum || distance > 0.25F) && selectedTopping == requiredTopping))
         {
             Composer.Instance.PitchChange(0);
         }
@@ -184,6 +185,23 @@ public class PrepStation : Station
             return;
         }
 
+        if (selectedOrder == order)
+        {
+            selectedCustomer = null;
+            selectedOrder = null;
+            makingOrder = false;
+
+            toppingCoordinateGenerator.RemoveShape();
+            lineManager.UpdateLine();
+
+            foreach (Transform child in lineManager.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            UpdateCustomerOrders();
+        }
+
         orders.Remove(order);
     }
 
@@ -199,11 +217,10 @@ public class PrepStation : Station
         foreach (KeyValuePair<Order, CustomerBehavior> kvp in orders)
         {
             GameObject newOrder = Instantiate(orderPrefab, orderDisplay);
-            OrderButton newOrderButton = newOrder.GetComponentInChildren<OrderButton>();
-            newOrderButton.SetAssociatedOrder(kvp.Key);
-            newOrderButton.SetAssociatedCustomer(kvp.Value);
-            newOrderButton.SetKeyCodeByIndex(i);
-            newOrder.GetComponentInChildren<TextMeshProUGUI>().text = kvp.Key.ToString();
+            OrderSlip newOrderSlip = newOrder.GetComponentInChildren<OrderSlip>();
+            newOrderSlip.SetAssociatedOrder(kvp.Key);
+            newOrderSlip.SetAssociatedCustomer(kvp.Value);
+            newOrderSlip.SetKeyCodeByIndex(i);
             i++;
         }
     }
@@ -256,20 +273,36 @@ public class PrepStation : Station
 
     public void ToppingsControl()
     {
+        //foot
+        if (Input.GetKey(KeyCode.W))
+        {
+            if (selectedTopping == Topping.NONE || selectedTopping == Topping.FRUIT)
+            {
+                fruitTongs.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+
+                if (Input.GetMouseButton(0))
+                {
+                    ToggleTopping(Topping.FRUIT);
+                    //activate pour effect   
+                }
+            }
+            selectedTopping = Topping.FRUIT;
+        }
+
         //Syrup
         if (Input.GetKey(KeyCode.A))
         {
-            if (selectedTopping == Topping.NONE || selectedTopping == Topping.SYRUP_OLD_FASHIONED)
+            if (selectedTopping == Topping.NONE || selectedTopping == Topping.SYRUP)
             {
                 syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
 
                 if (Input.GetMouseButton(0))
                 {
-                    ToggleTopping(Topping.SYRUP_OLD_FASHIONED);
+                    ToggleTopping(Topping.SYRUP);
                     //activate pour effect   
                 }
             }
-            selectedTopping = Topping.SYRUP_OLD_FASHIONED;
+            selectedTopping = Topping.SYRUP;
         }
 
         //Choccy Chippos
@@ -305,7 +338,7 @@ public class PrepStation : Station
         }
 
         //FUCK you i dont care anymore
-        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
         {
             selectedTopping = Topping.NONE;
         }
@@ -313,6 +346,11 @@ public class PrepStation : Station
 
     public void ToppingsRelease()
     {
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            fruitTongs.transform.position = initialFruitPosition;
+        }
+
         if (Input.GetKeyUp(KeyCode.A))
         {
             syrupContainer.transform.position = initialSyrupPosition;
@@ -327,6 +365,7 @@ public class PrepStation : Station
         {
             whipCream.transform.position = initialWhipPosition;
         }
+        
     }
 
     public void ScrapOrder()
