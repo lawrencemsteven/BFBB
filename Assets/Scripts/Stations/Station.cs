@@ -40,7 +40,7 @@ public abstract class Station : MonoBehaviour
 
     protected virtual void pointCollision(int index)
     {
-        Composer.Instance.PlayHiHat();
+        //Composer.Instance.PlayHiHat();
     }
 
     public static void HandlePathUpdate(Vector2 offset)

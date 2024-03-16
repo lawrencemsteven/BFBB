@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity;
-using Unity.VisualScripting;
+using UnityEngine.UI;
 using Enumerations;
 
 public class SwitchCamera : MonoBehaviour
@@ -12,11 +9,12 @@ public class SwitchCamera : MonoBehaviour
     [SerializeField] private GameObject overheadCamera;
     private bool waitingToSwitch;
     private int switchReqBar;
+    private Image transitionScreen;
+    private AudioSource audioSource;
     private FMOD.Studio.EventInstance eventInstance;
     private string eventObjectName;
     private StationType switchToStation;
     private StationType selectedStationType;
-
     private ScoreAndStreakManager streakReset;
 
     void Start()
@@ -31,6 +29,9 @@ public class SwitchCamera : MonoBehaviour
         getStationByEnum(StationType.PANCAKE).Deactivate();
         getStationByEnum(StationType.PREP).Deactivate();
         getStationByEnum(StationType.COFFEE).Deactivate();
+        
+        transitionScreen = GetComponent<Image>();
+        audioSource = GetComponent<AudioSource>();
 
         GlobalVariables.camState = 0;
     }
@@ -40,9 +41,6 @@ public class SwitchCamera : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && GlobalVariables.camState != 0)
         {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
-
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.DISH;
@@ -53,13 +51,9 @@ public class SwitchCamera : MonoBehaviour
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.PANCAKE;
-            countdown1.SetActive(true);
-            countdown2.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && GlobalVariables.camState != 2)
         {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.COFFEE;
@@ -67,20 +61,24 @@ public class SwitchCamera : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4) && GlobalVariables.camState != 3)
         {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.PREP;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5) && GlobalVariables.camState != 4)
         {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.OVERHEAD_VIEW;
         }
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            audioSource.pitch = Random.Range(0.5f, 1.5f);
+            audioSource.Play();
+        }
+
+        transitionScreen.enabled = Input.GetKey(KeyCode.Backspace);
 
         if(waitingToSwitch && timer.bar != switchReqBar)
         {
