@@ -7,7 +7,9 @@ public class PrepStation : Station
 {
     [SerializeField] private GameObject prepStationUI;
     [SerializeField] private GameObject orderPrefab;
-    private Transform orderList;
+    [SerializeField] private GameObject platePrefab;
+    private Transform orderDisplay;
+    private Dictionary<Order, CustomerBehavior> orders = new Dictionary<Order, CustomerBehavior>();
     private Order preppedOrder;
     private Order selectedOrder;
     private TextMeshProUGUI selectedToppingLabel;
@@ -29,6 +31,7 @@ public class PrepStation : Station
     private int currentBeat = 0;
     private Topping selectedTopping = Topping.NONE;
     private Topping requiredTopping;
+    private CustomerBehavior selectedCustomer;
     private bool makingOrder = false;
     private int orderProgress = 0;
 
@@ -36,10 +39,9 @@ public class PrepStation : Station
     //all other toppings are hold button down and click and hold
     //requirements for how long pour lasts are time based around beat? not following pattern
 
-
     public void Start()
     {
-        orderList = prepStationUI.transform.GetChild(0);
+        orderDisplay = prepStationUI.transform.GetChild(0);
         selectedToppingLabel = prepStationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         requiredToppingLabel = prepStationUI.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         prepStationUI.SetActive(false);
@@ -53,11 +55,6 @@ public class PrepStation : Station
 
         Composer.Instance.onBeat.AddListener(NewBeat);
         Composer.Instance.onMeasure.AddListener(NewMeasure);
-
-        //Test code
-        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1, new GameObject()));
-        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1, new GameObject()));
-        ReservoirManager.GetWaffles().Add(new ReservoirWaffle(1));
     }
 
     public void Update()
@@ -73,7 +70,6 @@ public class PrepStation : Station
 
         if (running)
         {
-            requiredToppingLabel.text = requiredTopping.ToString();
             selectedToppingLabel.text = selectedTopping.ToString();
         }
 
@@ -86,15 +82,16 @@ public class PrepStation : Station
     {
         if (evenBeat)
         {
+            currentBeat++;
             if (currentBeat > 3)
             {
                 currentBeat = 0;
             }
-            if (selectedOrder is not null)
+            if (selectedOrder is not null && makingOrder)
             {
                 requiredTopping = selectedOrder.GetToppings()[currentBeat]; 
+                requiredToppingLabel.text = requiredTopping.ToString();
             }
-            currentBeat++;
             evenBeat = false;
         }
         else
@@ -110,6 +107,9 @@ public class PrepStation : Station
             makingOrder = true;
             evenMeasure = true;
             orderProgress = 0;
+            ReservoirManager.GetPlates().Pop();
+            Transform spawnedPlate = Instantiate(platePrefab, lineManager.transform).transform;
+            spawnedPlate.localPosition = new Vector3(0.014f, -0.35f, 0.01f);
         }
 
         if (makingOrder)
@@ -121,11 +121,32 @@ public class PrepStation : Station
                     toppingCoordinateGenerator.NewPlate();
                     lineManager.DrawLine();
                     evenMeasure = false;
+                    currentBeat = 0;
+
+                    float height = (selectedOrder.GetMainCourseCount() - orderProgress) * -0.01f;
+                    ReservoirPancake pancake = ReservoirManager.GetPancakes().Pop();
+                    Transform spawnedPancake = Instantiate(pancake.GetPancake(), lineManager.transform).transform;
+                    spawnedPancake.localPosition = new Vector3(-0.2f, height, 0.15f);
+                    spawnedPancake.gameObject.SetActive(true);
+
+                    orderProgress++;
+                    
+                    requiredTopping = selectedOrder.GetToppings()[currentBeat]; 
+                    requiredToppingLabel.text = requiredTopping.ToString();
                 }
                 else
                 {
-                    selectedOrder.ClearOrder();
+                    selectedCustomer.DeactivateCustomer();
+                    selectedCustomer = null;
                     selectedOrder = null;
+                    makingOrder = false;
+
+                    foreach (Transform child in lineManager.transform)
+                    {
+                        Destroy(child.gameObject);
+                    }
+
+                    UpdateCustomerOrders();
                 }
             }
             else
@@ -151,18 +172,33 @@ public class PrepStation : Station
         }
     }
 
+    public void AddOrder(Order order, CustomerBehavior customer)
+    {
+        orders.Add(order, customer);
+    }
+
+    public void RemoveOrder(Order order)
+    {
+        if (order is null)
+        {
+            return;
+        }
+
+        orders.Remove(order);
+    }
+
     public void UpdateCustomerOrders()
     {
-        foreach (Transform child in orderList)
+        foreach (Transform child in orderDisplay)
         {
             Destroy(child.gameObject);
         }
 
         int i = 0;
 
-        foreach (KeyValuePair<Order, CustomerBehavior> kvp in CustomerManager.Instance.GetAllActiveOrders())
+        foreach (KeyValuePair<Order, CustomerBehavior> kvp in orders)
         {
-            GameObject newOrder = Instantiate(orderPrefab, orderList);
+            GameObject newOrder = Instantiate(orderPrefab, orderDisplay);
             OrderButton newOrderButton = newOrder.GetComponentInChildren<OrderButton>();
             newOrderButton.SetAssociatedOrder(kvp.Key);
             newOrderButton.SetAssociatedCustomer(kvp.Value);
@@ -216,16 +252,6 @@ public class PrepStation : Station
         }
     }
 
-    public void AddPancake() { SelectMainCourse(MainCourse.PANCAKE); }
-    public void AddWaffle() { SelectMainCourse(MainCourse.WAFFLE); }
-    public void ToggleChocolateChips() {ToggleTopping(Topping.CHOCOLATE_CHIP);}
-
-    public void NullifyPreppedOrder()
-    {
-        preppedOrder = null;
-        selectedToppingLabel.text = "";
-    }
-    public Order GetPreppedOrder() { return preppedOrder; }
     public void SetRunning(bool running) { this.running = running; }
 
     public void ToppingsControl()
@@ -309,6 +335,10 @@ public class PrepStation : Station
     }
 
     public bool IsOrderSelected() { return selectedOrder != null; }
-    public void SetSelectedOrder(Order selectedOrder) { this.selectedOrder = selectedOrder; }
+    public void SetSelectedOrderAndCustomer(Order selectedOrder, CustomerBehavior selectedCustomer)
+    {
+        this.selectedOrder = selectedOrder;
+        this.selectedCustomer = selectedCustomer;
+    }
 
 }

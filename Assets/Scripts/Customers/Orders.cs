@@ -25,7 +25,8 @@ namespace Orders
     {
         MainCourse mainCourse;
         int mainCourseCount;
-        List<Topping> toppings;        
+        List<Topping> toppings;  
+        bool selected = false;      
         static Dictionary<MainCourse, int> mainCourseMaximums = new Dictionary<MainCourse, int>
         {
             {MainCourse.PANCAKE, 4},
@@ -47,7 +48,7 @@ namespace Orders
 
         public static Order GenerateOrder()
         {
-            MainCourse mainCourse = (MainCourse)UnityEngine.Random.Range(0, (int)MainCourse.NUM_COURSES);
+            MainCourse mainCourse = MainCourse.PANCAKE;//(MainCourse)UnityEngine.Random.Range(0, (int)MainCourse.NUM_COURSES);
             int mainCourseCount = UnityEngine.Random.Range(1, mainCourseMaximums[mainCourse] + 1);
             List<Topping> toppings = new List<Topping>();
 
@@ -56,7 +57,7 @@ namespace Orders
                 toppings.Add((Topping) UnityEngine.Random.Range(1,5));
             }
 
-            return new Order(mainCourse, mainCourseCount, toppings);
+            return new Order(mainCourse, mainCourseCount, new List<Topping> { Topping.CHOCOLATE_CHIP, Topping.WHIPPED_CREAM, Topping.SYRUP_OLD_FASHIONED, Topping.FRUIT });
         }
         public override string ToString()
         {
@@ -115,7 +116,8 @@ namespace Orders
         public MainCourse GetMainCourse() { return mainCourse; }
         public int GetMainCourseCount() { return mainCourseCount; }
         public List<Topping> GetToppings() { return toppings; }
-
+        public bool IsSelected() { return selected; }
+        public void SetSelected(bool selected) { this.selected = selected; }
 
         public static bool Equals(Order order1, Order order2)
         {

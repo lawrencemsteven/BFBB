@@ -17,8 +17,8 @@ public class OrderButton : MonoBehaviour
         KeyCode.V,
         KeyCode.B
     };
-    private bool selected = false;
     private TextMeshProUGUI selectionKeyUI;
+    private Slider patienceMeter;
     
     public void SetAssociatedOrder(Order order) { associatedOrder = order; }
     public void SetAssociatedCustomer(CustomerBehavior customerBehavior) { associatedCustomer = customerBehavior; }
@@ -26,7 +26,7 @@ public class OrderButton : MonoBehaviour
     { 
         if (selectionKeyUI is null)
         {
-            selectionKeyUI = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+            selectionKeyUI = transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
         }
 
         this.keyCode = keyCode;
@@ -34,21 +34,53 @@ public class OrderButton : MonoBehaviour
     }
     public void SetKeyCodeByIndex(int index) { SetKeyCode(keyCodesByIndex[index]); }
 
+    public void Start()
+    {
+        patienceMeter = transform.GetChild(1).GetComponent<Slider>();
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(keyCode))
         {
             SelectOrder();
         }
+
+        if (associatedOrder is not null && associatedOrder.IsSelected())
+        {
+            transform.GetChild(0).GetComponent<Image>().color = Color.yellow;
+        }
+        else
+        {
+            transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
+
+        patienceMeter.value = associatedCustomer.GetPatiencePercent();
+        Color meterColor = new Color(1 - associatedCustomer.GetPatiencePercent(), associatedCustomer.GetPatiencePercent(), 0);
+        patienceMeter.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = meterColor;
     }
 
     public void SelectOrder()
     {
         if (!Stations.Prep.IsOrderSelected())
         {
-            Stations.Prep.SetSelectedOrder(associatedOrder);
-            selected = true;
-            transform.GetChild(0).GetComponent<Image>().color = Color.yellow;
+            Debug.Log(ReservoirManager.GetPlates().Count());
+            Debug.Log(ReservoirManager.GetPancakes().Count());
+
+            if (ReservoirManager.GetPlates().Count() < 1)
+            {
+                Debug.Log($"Need a clean plate in reservoir");
+                return;
+            }
+            
+            if (ReservoirManager.GetPancakes().Count() < associatedOrder.GetMainCourseCount())
+            {
+                Debug.Log($"Need {associatedOrder.GetMainCourseCount() - ReservoirManager.GetPancakes().Count()} more pancakes in reservoir");
+                return;
+            }
+
+            Stations.Prep.SetSelectedOrderAndCustomer(associatedOrder, associatedCustomer);
+            associatedOrder.SetSelected(true);
         }
     }
 }

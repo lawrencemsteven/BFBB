@@ -60,6 +60,7 @@ public class CustomerBehavior : MonoBehaviour
     {
         customerMesh.SetActive(false);
         active = false;
+        Stations.Prep.RemoveOrder(order);
     }
 
     private void UpdateMood()
@@ -90,9 +91,11 @@ public class CustomerBehavior : MonoBehaviour
     private void GenerateOrder()
     {
         order = Order.GenerateOrder();
+        Debug.Log(Stations.Prep);
+        Stations.Prep.AddOrder(order, this);
     }
 
     public bool IsActive() { return active; }
-
     public Order GetOrder() { return order; }
+    public float GetPatiencePercent() { return currentPatienceTimer / patienceTimer; }
 }
