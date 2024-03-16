@@ -15,4 +15,9 @@ public class SpawnSecondaryMarker : MonoBehaviour
     {
         Destroy(secondaryMarker);
     }
+
+    void Update()
+    {
+        secondaryMarker.transform.position = transform.position;
+    }
 }
