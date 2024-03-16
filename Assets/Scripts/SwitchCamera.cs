@@ -18,16 +18,17 @@ public class SwitchCamera : MonoBehaviour
     private StationType selectedStationType;
 
     private ScoreAndStreakManager streakReset;
+    public CameraController cameraController;
 
     void Start()
-    {       
+    {
         streakReset = GetComponent<ScoreAndStreakManager>();
         if (eventObjectName == null || eventObjectName == "") eventObjectName = "FMOD Music Event";
-        
+
         countdown1.SetActive(false);
         countdown2.SetActive(false);
 
-        switchCamera(StationType.DISH);
+        getStationByEnum(StationType.DISH).Deactivate();
         getStationByEnum(StationType.PANCAKE).Deactivate();
         getStationByEnum(StationType.PREP).Deactivate();
         getStationByEnum(StationType.COFFEE).Deactivate();
@@ -38,51 +39,53 @@ public class SwitchCamera : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && GlobalVariables.camState != 0)
-        {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
+        if (!cameraController.useGameCameras())
 
-            switchReqBar = timer.bar;
-            waitingToSwitch = true;
-            switchToStation = StationType.DISH;
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("SongSection", 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && GlobalVariables.camState != 1)
-        {
-            switchReqBar = timer.bar;
-            waitingToSwitch = true;
-            switchToStation = StationType.PANCAKE;
-            countdown1.SetActive(true);
-            countdown2.SetActive(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && GlobalVariables.camState != 2)
-        {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
-            switchReqBar = timer.bar;
-            waitingToSwitch = true;
-            switchToStation = StationType.COFFEE;
-            GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("SongSection", 0);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4) && GlobalVariables.camState != 3)
-        {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
-            switchReqBar = timer.bar;
-            waitingToSwitch = true;
-            switchToStation = StationType.PREP;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5) && GlobalVariables.camState != 4)
-        {
-            countdown1.SetActive(false);
-            countdown2.SetActive(false);
-            switchReqBar = timer.bar;
-            waitingToSwitch = true;
-            switchToStation = StationType.OVERHEAD_VIEW;
-        }
+            if (Input.GetKeyDown(KeyCode.Alpha1) && GlobalVariables.camState != 0)
+            {
+                countdown1.SetActive(false);
+                countdown2.SetActive(false);
 
-        if(waitingToSwitch && timer.bar != switchReqBar)
+                switchReqBar = timer.bar;
+                waitingToSwitch = true;
+                switchToStation = StationType.DISH;
+                GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("SongSection", 1);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && GlobalVariables.camState != 1)
+            {
+                switchReqBar = timer.bar;
+                waitingToSwitch = true;
+                switchToStation = StationType.PANCAKE;
+                countdown1.SetActive(true);
+                countdown2.SetActive(true);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && GlobalVariables.camState != 2)
+            {
+                countdown1.SetActive(false);
+                countdown2.SetActive(false);
+                switchReqBar = timer.bar;
+                waitingToSwitch = true;
+                switchToStation = StationType.COFFEE;
+                GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("SongSection", 0);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && GlobalVariables.camState != 3)
+            {
+                countdown1.SetActive(false);
+                countdown2.SetActive(false);
+                switchReqBar = timer.bar;
+                waitingToSwitch = true;
+                switchToStation = StationType.PREP;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha5) && GlobalVariables.camState != 4)
+            {
+                countdown1.SetActive(false);
+                countdown2.SetActive(false);
+                switchReqBar = timer.bar;
+                waitingToSwitch = true;
+                switchToStation = StationType.OVERHEAD_VIEW;
+            }
+
+        if (waitingToSwitch && timer.bar != switchReqBar)
         {
             waitingToSwitch = false;
             GlobalVariables.camState = (int)switchToStation;
@@ -114,7 +117,7 @@ public class SwitchCamera : MonoBehaviour
         {
             station.Activate();
         }
-        
+
         selectedStationType = stationType;
     }
 
@@ -124,7 +127,7 @@ public class SwitchCamera : MonoBehaviour
         {
             case StationType.DISH:
                 return Stations.Dish;
-            
+
             case StationType.PANCAKE:
                 return Stations.Pancake;
 
@@ -133,7 +136,7 @@ public class SwitchCamera : MonoBehaviour
 
             case StationType.PREP:
                 return Stations.Prep;
-            
+
             default:
                 return null;
         }
