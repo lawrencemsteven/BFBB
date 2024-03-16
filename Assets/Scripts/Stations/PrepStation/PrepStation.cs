@@ -16,10 +16,15 @@ public class PrepStation : Station
     private bool setWaffle;
 
     [SerializeField] private GameObject syrupContainer;
-    //[SerializeField] private GameObject butter;
+    [SerializeField] private GameObject butter;
     [SerializeField] private GameObject fruitTongs;
     [SerializeField] private GameObject whipCream;
     [SerializeField] private GameObject chocolateChip;
+
+    private ParticleSystem syrupParticle;
+    private ParticleSystem fruitParticle;
+    private ParticleSystem whipParticle;
+    private ParticleSystem chocoParticle;
 
     private Vector3 initialSyrupPosition;
     private Vector3 initialTongsPosition;
@@ -53,6 +58,18 @@ public class PrepStation : Station
         initialWhipPosition = whipCream.transform.position;
         initialChocoPosition = chocolateChip.transform.position;
 
+        butter.SetActive(false);
+
+        syrupParticle = syrupContainer.GetComponentInChildren<ParticleSystem>();
+        fruitParticle = fruitTongs.GetComponentInChildren<ParticleSystem>();
+        whipParticle = whipCream.GetComponentInChildren<ParticleSystem>();
+        chocoParticle = chocolateChip.GetComponentInChildren<ParticleSystem>();
+
+        syrupParticle.Stop();
+        fruitParticle.Stop();
+        whipParticle.Stop();
+        chocoParticle.Stop();
+
         toppingCoordinateGenerator = coordinateGenerator as ToppingCoordinateGenerator;
 
         Composer.Instance.onMeasure.AddListener(NewMeasure);
@@ -79,6 +96,13 @@ public class PrepStation : Station
             if(setPancake == true){ AddPancake(); }
             
             else if(setWaffle == true){ AddWaffle(); }
+
+            else if(setWaffle == false && setPancake == false && preppedOrder is not null)
+            {
+                butter.SetActive(true);
+                ToggleTopping(Topping.BUTTER);
+                //turn in order
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && preppedOrder is not null)
@@ -220,7 +244,10 @@ public class PrepStation : Station
                 if (Input.GetMouseButton(0))
                 {
                     ToggleTopping(Topping.MIXED_FRUIT);
+                    fruitParticle.Play();
                 }
+                
+                else if (fruitParticle.isPlaying){ fruitParticle.Pause(); }
             }
             selectedTopping = Topping.MIXED_FRUIT;
         }
@@ -236,8 +263,10 @@ public class PrepStation : Station
                 if (Input.GetMouseButton(0))
                 {
                     ToggleTopping(Topping.SYRUP_OLD_FASHIONED);
-                    //activate pour effect   
+                    syrupParticle.Play();
                 }
+
+                else if (syrupParticle.isPlaying){ syrupParticle.Pause(); }
             }
             selectedTopping = Topping.SYRUP_OLD_FASHIONED;
         }
@@ -254,7 +283,10 @@ public class PrepStation : Station
                 if (Input.GetMouseButton(0))
                 {
                     ToggleTopping(Topping.CHOCOLATE_CHIP);
+                    chocoParticle.Play();
                 }
+
+                else if (chocoParticle.isPlaying) { chocoParticle.Pause(); }
             }
             selectedTopping = Topping.CHOCOLATE_CHIP;
         }
@@ -264,13 +296,16 @@ public class PrepStation : Station
         {
             if (selectedTopping == Topping.NONE || selectedTopping == Topping.WHIPPED_CREAM)
             {
-                whipCream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
-                whipCream.transform.eulerAngles = new Vector3(135f, 0f, 0f);
+                whipCream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, .3f));
+                whipCream.transform.eulerAngles = new Vector3(110f, 100f, 0f);
 
                 if (Input.GetMouseButton(0))
                 {
                     ToggleTopping(Topping.WHIPPED_CREAM);
+                    whipParticle.Play();
                 }
+
+                else if (whipParticle.isPlaying) { whipParticle.Pause(); }
             }
             selectedTopping = Topping.WHIPPED_CREAM;
         }
@@ -287,25 +322,28 @@ public class PrepStation : Station
     {
         if (Input.GetKeyUp(KeyCode.W)){
             fruitTongs.transform.position = initialTongsPosition;
+            if(fruitParticle.isPlaying) { fruitParticle.Pause(); }
         }
 
         if (Input.GetKeyUp(KeyCode.A))
         {
             syrupContainer.transform.position = initialSyrupPosition;
             syrupContainer.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-
+            if (syrupParticle.isPlaying) { syrupParticle.Pause(); }
         }
 
         if (Input.GetKeyUp(KeyCode.S))
         {
             chocolateChip.transform.position = initialChocoPosition;
             chocolateChip.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            if (chocoParticle.isPlaying) { chocoParticle.Pause(); }
         }
 
         if (Input.GetKeyUp(KeyCode.D))
         {
             whipCream.transform.position = initialWhipPosition;
             whipCream.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            if (whipParticle.isPlaying) { whipParticle.Pause(); }
         }
     }
 
