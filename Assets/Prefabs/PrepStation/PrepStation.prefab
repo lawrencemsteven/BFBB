@@ -362,6 +362,7 @@ Transform:
   - {fileID: 7163605230426027825}
   - {fileID: 5843084830624186808}
   - {fileID: 5843084830467325787}
+  - {fileID: 2221137468097399542}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -385,6 +386,8 @@ MonoBehaviour:
   prepStationUI: {fileID: 0}
   orderPrefab: {fileID: 2682037045175693351, guid: 58a789364af40de4d8bc7ed3532beb0d, type: 3}
   syrupContainer: {fileID: 0}
+  butter: {fileID: 0}
+  fruitTongs: {fileID: 0}
   whipCream: {fileID: 0}
   chocolateChip: {fileID: 0}
 --- !u!114 &5843084831809718471
@@ -476,6 +479,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7bd5952ad8bd16b428efc8c234d07ec9, type: 3}
   m_PrefabInstance: {fileID: 5843084831156073465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6362932160800806600
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5843084831809718466}
+    m_Modifications:
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.915
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5424974
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.966
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608509274390070916, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+      propertyPath: m_Name
+      value: ButterWad
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+--- !u!4 &2221137468097399542 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5088713350715628606, guid: 5ae1c3fb1cdfb1d478e46fd1a81967e3, type: 3}
+  m_PrefabInstance: {fileID: 6362932160800806600}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8550744123368843847
 PrefabInstance:
