@@ -59,8 +59,10 @@ public class DishStation : Station
         else if (lineManager.GetCurrentBeat() > index)
         {
             smudgeCoordinateGenerator.SetSmudgeAsScrape(index);
-            Debug.Log("Streak Reset From lineManager.GetCurrentBeat");
-            scoreManager.resetStreak();
+            if (smudgeCoordinateGenerator.IsSmudgeCollided(index)) {
+                Debug.Log("Streak Reset From lineManager.GetCurrentBeat");
+                scoreManager.resetStreak();
+            }
         }
     }
 

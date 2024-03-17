@@ -200,7 +200,7 @@ public class PancakeStation : Station
             }
         }
 
-        if (pathToScore == 100) {
+        if (pathToScore == 1) {
             scoreManager.scoreUpdate(1);
             pathToScore = 0;
         }
