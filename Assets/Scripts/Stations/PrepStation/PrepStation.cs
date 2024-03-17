@@ -45,10 +45,6 @@ public class PrepStation : Station
     private int orderProgress = 0;
     [SerializeField] private List<Sprite> toppingIcons = new List<Sprite>();
 
-    //butter is hold button down and click to drop
-    //all other toppings are hold button down and click and hold
-    //requirements for how long pour lasts are time based around beat? not following pattern
-
     public void Start()
     {
         orderDisplay = prepStationUI.transform.GetChild(0);
@@ -96,16 +92,9 @@ public class PrepStation : Station
 
         if (Input.GetKey(KeyCode.Space))
         {
-            if(setPancake == true){ AddPancake(); }
-            
-            else if(setWaffle == true){ AddWaffle(); }
-
-            else if(setWaffle == false && setPancake == false && preppedOrder is not null)
-            {
-                butter.SetActive(true);
-                ToggleTopping(Topping.BUTTER);
-                //turn in order
-            }
+            butter.SetActive(true);
+            ToggleTopping(Topping.BUTTER);
+            //turn in order
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && preppedOrder is not null)
@@ -375,8 +364,8 @@ public class PrepStation : Station
         {
             if (selectedTopping == Topping.NONE || selectedTopping == Topping.WHIPPED_CREAM)
             {
-                whipCream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, .3f));
-                whipCream.transform.eulerAngles = new Vector3(110f, 100f, 0f);
+                whipCream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, .8f));
+                whipCream.transform.eulerAngles = new Vector3(0f, 154f, 100f);
 
                 if (Input.GetMouseButton(0))
                 {
