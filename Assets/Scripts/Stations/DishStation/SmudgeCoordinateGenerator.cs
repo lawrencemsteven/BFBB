@@ -95,4 +95,14 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
         float quality = 1.0f - (smudgesRemaining * smudgeQualityCost);
         return new ReservoirPlate(quality);
     }
+
+    public List<bool> GetCollidedSmudges()
+    {
+        return collidedSmudges;
+    }
+
+    public bool IsSmudgeCollided(int index)
+    {
+        return collidedSmudges[index];
+    }
 }
