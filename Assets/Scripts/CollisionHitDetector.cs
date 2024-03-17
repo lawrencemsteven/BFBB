@@ -65,8 +65,8 @@ public class CollisionHitDetector : MonoBehaviour
         //hihat.Play();
         hihatFmod.PlayHiHat();
         GlobalVariables.missCounter = 0; 
-        GlobalVariables.score += 1;
-        GlobalVariables.streak += 1;
+        //GlobalVariables.score += 1;
+        //GlobalVariables.streak += 1;
         GlobalVariables.notesHit += 1;
         SetSmudgeInvisible(i);
     }
@@ -75,7 +75,7 @@ public class CollisionHitDetector : MonoBehaviour
     {
         GlobalVariables.missCounter += 1;
         GlobalVariables.notesMissed += 1;
-        GlobalVariables.streak = 0;
+        //GlobalVariables.streak = 0;
     }
 
     private void SetSmudgeInvisible(int index)

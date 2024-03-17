@@ -16,8 +16,7 @@ public class DishStation : Station
     private Vector3 intitialScale, initialPos;
     private Animator plateAnimator;
     private SmudgeCoordinateGenerator smudgeCoordinateGenerator;
-
-
+    private ScoreAndStreakManager scoreManager;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +39,7 @@ public class DishStation : Station
         intitialScale = plate.transform.localScale;
         initialPos = plate.transform.position;
         Composer.Instance.onMeasure.AddListener(NewMeasure);
+        scoreManager = GetComponent<ScoreAndStreakManager>();
     }
 
     public void NewMeasure()
@@ -59,6 +59,8 @@ public class DishStation : Station
         else if (lineManager.GetCurrentBeat() > index)
         {
             smudgeCoordinateGenerator.SetSmudgeAsScrape(index);
+            Debug.Log("Streak Reset From lineManager.GetCurrentBeat");
+            scoreManager.resetStreak();
         }
     }
 

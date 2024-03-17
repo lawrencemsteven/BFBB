@@ -18,11 +18,10 @@ public class ScoreAndStreakManager : MonoBehaviour
         
     }
 
-    public void scoreUpdate(int Score, int multiplier = 1) {
-        int actualScoreUpdate = Score * multiplier;
-        GlobalVariables.score += actualScoreUpdate;
+    public void scoreUpdate(int Score) {
+        GlobalVariables.score += Score;
         GlobalVariables.streak += 1;
-        Composer.Instance.PlayDishStreak1();
+        Debug.Log(GlobalVariables.streak);
         if (GlobalVariables.streak == 3) {
             switch (GlobalVariables.currentStation) {
                 case "Dish":
@@ -55,7 +54,7 @@ public class ScoreAndStreakManager : MonoBehaviour
                     break;
             }
         }
-        else if (GlobalVariables.streak == 3) {
+        else if (GlobalVariables.streak == 9) {
             switch (GlobalVariables.currentStation) {
                 case "Dish":
                     Composer.Instance.PlayDishStreak3();

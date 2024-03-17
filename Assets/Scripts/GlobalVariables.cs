@@ -25,5 +25,5 @@ public class GlobalVariables : MonoBehaviour
     public static string onTimePrep;
     public static string latePrep;
 
-    public static string currentStation = "DishStation";
+    public static string currentStation = "Dish";
 }
