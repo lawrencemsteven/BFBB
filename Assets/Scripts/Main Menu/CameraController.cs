@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -84,6 +85,46 @@ public class CameraController : MonoBehaviour
         }
 
         transform.SetPositionAndRotation(animatedCameraPositions[(int)CameraPoses.MAIN], animatedCameraRotations[(int)CameraPoses.MAIN]);
+    }
+
+    private Camera[] getStationCameras(CameraPoses cameraPose)
+    {
+        // Unity UI does not support 2D arrays so this is the best solution that I could come up with.
+        // If it ain't broke, don't fix it
+        // P.S. This did cause me A LOT of pain to write - Steven
+
+        switch (cameraPose)
+        {
+            case CameraPoses.MAIN:
+                return m_mainCameras;
+            case CameraPoses.JUKEBOX:
+                return m_jukeboxCameras;
+            case CameraPoses.BOOTH:
+                return m_boothCameras;
+            case CameraPoses.TABLE:
+                return m_tableCameras;
+            case CameraPoses.COUNTER:
+                return m_counterCameras;
+            case CameraPoses.STOOLS:
+                return m_stoolCameras;
+            case CameraPoses.WALLS:
+                return m_wallCameras;
+            case CameraPoses.FLOORS:
+                return m_floorCameras;
+            case CameraPoses.DISH_STATION:
+                return m_dishStationCameras;
+            case CameraPoses.GRIDDLE_STATION:
+                return m_griddleStationCameras;
+            case CameraPoses.PREP_STATION:
+                return m_prepStationCameras;
+            case CameraPoses.TABLE_ACCESSORIES:
+                return m_tableAccessoryCameras;
+            case CameraPoses.WINDOWS:
+                return m_windowCameras;
+            case CameraPoses.LIGHTS:
+                return m_lightCameras;
+        }
+        return null;
     }
 
     public bool useGameCameras()
