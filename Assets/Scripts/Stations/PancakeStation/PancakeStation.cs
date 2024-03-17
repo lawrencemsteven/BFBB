@@ -102,11 +102,9 @@ public class PancakeStation : Station
         {
             Vector3 currentMousePosition = Input.mousePosition;
             float swipeDistance = currentMousePosition.y - mousePosition.y;
-
             // Check if the swipe is upwards
             if (swipeDistance > 1)
             {
-
                 pancakeParticleObject.Flip();
             }
         }
@@ -114,7 +112,6 @@ public class PancakeStation : Station
         {
             Vector3 currentMousePosition = Input.mousePosition;
             float swipeDistance = currentMousePosition.y - mousePosition.y;
-            Debug.Log(swipeDistance);
             // Check if the swipe is upwards
             if (swipeDistance > 1)
             {

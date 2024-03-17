@@ -32,7 +32,6 @@ public class GameInfoManager : Singleton<GameInfoManager>
         base.Awake();
         DontDestroyOnLoad(this.gameObject);
         saveFile = Application.persistentDataPath + "/gamedata.json";
-        Debug.Log(Application.persistentDataPath);
     }
 
     public void ReadFile()

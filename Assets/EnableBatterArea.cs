@@ -19,7 +19,6 @@ public class EnableBatterArea : MonoBehaviour
         {
 
             currentPancakeArea = other.gameObject;
-            Debug.Log("entered " + other.gameObject);
             // currentPancakeArea.transform.GetChild(0).gameObject.SetActive(true);
         }
 
