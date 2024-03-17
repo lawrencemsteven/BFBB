@@ -26,6 +26,7 @@ public class LineManager : MonoBehaviour
     private Vector3 defaultMarkerScale;
     private float beatProgress;
     private CoordinateCollider currentPoint;
+    private Vector2 markerSpace;
 
     void Awake()
     {
@@ -209,7 +210,7 @@ public class LineManager : MonoBehaviour
             leftDistance *= -1;
         }
 
-        Vector2 markerSpace = new Vector2(frontDistance, -leftDistance);
+        markerSpace = new Vector2(frontDistance, -leftDistance);
         if (markerSpace.magnitude > maxDistance)
         {
             markerSpace = maxDistance * markerSpace.normalized;
@@ -219,6 +220,8 @@ public class LineManager : MonoBehaviour
     }
 
     public int GetCurrentBeat() { return currentBeat; }
+
+    public Vector2 GetMarkerSpace() { return markerSpace; }
 
     public bool IsEarly() { return beatProgress < earlyThreshold; }
 }
