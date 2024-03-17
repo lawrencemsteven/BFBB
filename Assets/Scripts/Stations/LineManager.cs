@@ -38,6 +38,19 @@ public class LineManager : MonoBehaviour
         lineRenderer.useWorldSpace = false;
     }
 
+    public void UpdateLine()
+    {
+        List<CoordinateCollider> points = coordinateGenerator.GetColliders();
+        lineRenderer.positionCount = points.Count;
+        int i = 0;
+        foreach (CoordinateCollider point in points)
+        {
+            Vector3 position = point.transform.localPosition;
+            lineRenderer.SetPosition(i, position);
+            i++;
+        }
+    }
+
     public void DrawLine()
     {
         lineRenderer.enabled = drawLine;
@@ -50,15 +63,7 @@ public class LineManager : MonoBehaviour
             StopCoroutine(beatFollower);
         }
 
-        List<CoordinateCollider> points = coordinateGenerator.GetColliders();
-        lineRenderer.positionCount = points.Count;
-        int i = 0;
-        foreach (CoordinateCollider point in points)
-        {
-            Vector3 position = point.transform.localPosition;
-            lineRenderer.SetPosition(i, position);
-            i++;
-        }
+        UpdateLine();
 
         beatFollower = StartCoroutine(FollowBeat());
     }
@@ -93,7 +98,7 @@ public class LineManager : MonoBehaviour
             if (colorChange && !IsEarly())
             {
                 marker.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
-            } 
+            }
             else
             {
                 marker.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
@@ -103,9 +108,9 @@ public class LineManager : MonoBehaviour
             {
                 previous = points[beatsPassed].transform.position;
 
-                if (beatsPassed + 1 < points.Count )
+                if (beatsPassed + 1 < points.Count)
                 {
-                    next = points[beatsPassed+1].transform.position;
+                    next = points[beatsPassed + 1].transform.position;
                 }
                 else
                 {
@@ -126,16 +131,16 @@ public class LineManager : MonoBehaviour
             {
                 if (beatProgress > 0.5)
                 {
-                    previous = points[beatsPassed+1].transform.position;
-                    if (beatsPassed + 2 < points.Count )
+                    previous = points[beatsPassed + 1].transform.position;
+                    if (beatsPassed + 2 < points.Count)
                     {
-                        next = points[beatsPassed+2].transform.position;
+                        next = points[beatsPassed + 2].transform.position;
                     }
                     else
                     {
                         next = points[beatsPassed].transform.position;
                     }
-                    
+
                     if (lerpToPoint)
                     {
                         marker.transform.position = Vector3.Lerp(previous, next, (beatProgress - 0.5F) * measuresPerShape);
@@ -150,9 +155,9 @@ public class LineManager : MonoBehaviour
                 else
                 {
                     previous = points[beatsPassed].transform.position;
-                    if (beatsPassed + 1 < points.Count )
+                    if (beatsPassed + 1 < points.Count)
                     {
-                        next = points[beatsPassed+1].transform.position;
+                        next = points[beatsPassed + 1].transform.position;
                     }
                     else
                     {
@@ -185,7 +190,6 @@ public class LineManager : MonoBehaviour
 
     private void PassLineInfo(Vector3 previous, Vector3 next)
     {
-        //Debug.Log($"{previous} -> {next}");
         Vector3 mouseLocation = new Vector3(pourTool.transform.position.x, previous.y, pourTool.transform.position.z);
         Vector3 mouseOffset = mouseLocation - marker.transform.position;
         Vector3 tangentVector = Vector3.Normalize(next - previous);
@@ -214,19 +218,7 @@ public class LineManager : MonoBehaviour
         Station.HandlePathUpdate(markerSpace);
     }
 
-    public Topping GetCurrentTopping()
-    {
-        if (currentPoint as ToppingCoordinateCollider is null)
-        {
-            return Topping.NONE;
-        }
-        else
-        {
-            return (currentPoint as ToppingCoordinateCollider).topping;
-        }
-    }
-
     public int GetCurrentBeat() { return currentBeat; }
 
-    public bool IsEarly() { return beatProgress < earlyThreshold; }    
+    public bool IsEarly() { return beatProgress < earlyThreshold; }
 }
