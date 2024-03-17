@@ -33,6 +33,17 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.lateDish = "LateDish";
 
+        GlobalVariables.upPrep = "D";
+        GlobalVariables.upRightPrep = "C2";
+        GlobalVariables.upLeftPrep = "F";
+        GlobalVariables.downPrep = "Eb";
+        GlobalVariables.downRightPrep = "Ab";
+        GlobalVariables.downLeftPrep = "G";
+        GlobalVariables.rightPrep = "D";
+        GlobalVariables.leftPrep = "C";
+
+        GlobalVariables.volume = "Volume 2";
+
     }
 
     public void songBoogie()
@@ -46,6 +57,17 @@ public class SetSong : MonoBehaviour
         GlobalVariables.onTimeDish = "HiHat";
 
         GlobalVariables.lateDish = "LateDish";
+
+        GlobalVariables.upPrep = "Db";
+        GlobalVariables.upRightPrep = "Bb";
+        GlobalVariables.upLeftPrep = "F";
+        GlobalVariables.downPrep = "F";
+        GlobalVariables.downRightPrep = "A";
+        GlobalVariables.downLeftPrep = "G";
+        GlobalVariables.rightPrep = "D";
+        GlobalVariables.leftPrep = "C";
+
+        GlobalVariables.volume = "Volume 1";
     }
 
     public void songRock()
@@ -59,5 +81,17 @@ public class SetSong : MonoBehaviour
         GlobalVariables.onTimeDish = "HiHat";
 
         GlobalVariables.lateDish = "LateDish";
+
+        GlobalVariables.upPrep = "D";
+        GlobalVariables.upRightPrep = "B";
+        GlobalVariables.upLeftPrep = "E";
+        GlobalVariables.downPrep = "Gb";
+        GlobalVariables.downRightPrep = "G";
+        GlobalVariables.downLeftPrep = "E";
+        GlobalVariables.rightPrep = "A";
+        GlobalVariables.leftPrep = "D";
+
+        GlobalVariables.volume = "Volume 2";
+
     }
 }

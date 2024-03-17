@@ -171,6 +171,11 @@ public class ComposerInterpreter : MonoBehaviour
     {
         GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("Pitch Lead", newPitch);
     }
+
+    public void SetLeadVolume(float volume)
+    {
+        GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName(GlobalVariables.volume, volume);
+    }
     IEnumerator WaitToInitialize()
     {
         yield return new WaitForSeconds(3f);

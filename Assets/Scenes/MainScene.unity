@@ -7233,6 +7233,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 884138835}
     - target: {fileID: 3680708365575494107, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
+      propertyPath: prepCam
+      value: 
+      objectReference: {fileID: 5843084831700393145}
+    - target: {fileID: 3680708365575494107, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
       propertyPath: hiHatFmod
       value: 
       objectReference: {fileID: 2066864611}
@@ -7762,6 +7766,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
+--- !u!20 &5843084831700393145 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5843084830624186439, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
+  m_PrefabInstance: {fileID: 5843084831700393144}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5856076961124438072
 GameObject:
   m_ObjectHideFlags: 0
