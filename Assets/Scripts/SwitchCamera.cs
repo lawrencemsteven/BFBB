@@ -15,12 +15,12 @@ public class SwitchCamera : MonoBehaviour
     private string eventObjectName;
     private StationType switchToStation;
     private StationType selectedStationType;
-    private ScoreAndStreakManager streakReset;
+    private ScoreAndStreakManager scoreManager;
     private Station station;
 
     void Start()
     {       
-        streakReset = GetComponent<ScoreAndStreakManager>();
+        scoreManager = GetComponent<ScoreAndStreakManager>();
         if (eventObjectName == null || eventObjectName == "") eventObjectName = "FMOD Music Event";
         
         countdown1.SetActive(false);
@@ -35,6 +35,7 @@ public class SwitchCamera : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         GlobalVariables.camState = 0;
+        GlobalVariables.currentStation = "Dish";
     }
 
 
@@ -45,18 +46,22 @@ public class SwitchCamera : MonoBehaviour
             switchReqBar = timer.bar;
             waitingToSwitch = true;
             switchToStation = StationType.DISH;
+            GlobalVariables.currentStation = "Dish";
             GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("SongSection", 1);
+
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && GlobalVariables.camState != 1)
         {
             switchReqBar = timer.bar;
             waitingToSwitch = true;
+            GlobalVariables.currentStation = "Pancake";
             switchToStation = StationType.PANCAKE;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && GlobalVariables.camState != 2)
         {
             switchReqBar = timer.bar;
             waitingToSwitch = true;
+            GlobalVariables.currentStation = "Coffee";
             switchToStation = StationType.COFFEE;
             GameObject.Find(eventObjectName).GetComponent<ScriptUsageTimeline>().musicInstance.setParameterByName("SongSection", 0);
         }
@@ -64,6 +69,7 @@ public class SwitchCamera : MonoBehaviour
         {
             switchReqBar = timer.bar;
             waitingToSwitch = true;
+            GlobalVariables.currentStation = "Prep";
             switchToStation = StationType.PREP;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5) && GlobalVariables.camState != 4)
@@ -85,7 +91,7 @@ public class SwitchCamera : MonoBehaviour
         {
             waitingToSwitch = false;
             GlobalVariables.camState = (int)switchToStation;
-            streakReset.resetStreak();
+            scoreManager.resetStreak();
             switchCamera(switchToStation);
         }
 
