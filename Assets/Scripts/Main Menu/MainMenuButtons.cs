@@ -207,90 +207,105 @@ public class MainMenuButtons : MonoBehaviour
     // Shop Buttons
     public void ShopWalls()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.WALLS, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Walls);
     }
     public void ShopTable()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.TABLE, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Tables);
     }
     public void ShopBar()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.COUNTER, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Counter);
     }
     public void ShopLights()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.LIGHTS, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Lights);
     }
     public void ShopWallDiamonds()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.WALLS, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.WallDiamonds);
     }
     public void ShopDish()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.DISH_STATION, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Sink);
     }
     public void ShopGriddle()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.GRIDDLE_STATION, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.GriddleStation);
     }
     public void ShopPrep()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.PREP_STATION, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.PrepStation);
     }
     public void ShopFloors()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.FLOORS, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Floor);
     }
     public void ShopBooth()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.BOOTH, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Seats);
     }
     public void ShopStools()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.STOOLS, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Stools);
     }
     public void ShopWindow()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.WINDOWS, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Windows);
     }
     public void ShopDecor()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.WALLS, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Condiments);
     }
     public void ShopArt()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.WALLS, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.WallArt);
     }
     public void ShopExterior()
     {
+        cameraController.changeTarget(CameraController.CameraPoses.WINDOWS, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Background);
