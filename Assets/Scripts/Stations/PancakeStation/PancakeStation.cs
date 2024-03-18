@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PancakeStation : Station
@@ -17,6 +18,8 @@ public class PancakeStation : Station
     private PancakeParticleObject pancakeParticleObject;
     public LineManager lineManager2, lineManager3;
     private bool readyForNewMeasure;
+    public EnableBatterArea enableBatterArea;
+    public SwitchCamera switchCam;
 
     private int pathToScore;
     private ScoreAndStreakManager scoreManager;
@@ -144,6 +147,26 @@ public class PancakeStation : Station
             {
                 GlobalVariables.score += 1;
             }
+        }
+
+        if ((Input.GetMouseButton(0)) && (switchCam.getCurrentStation().gameObject.name == "PancakeStation"))
+        {
+            List<Vector2> markerSpaces = new List<Vector2>();
+            markerSpaces.Add(lineManager.GetMarkerSpace());
+            markerSpaces.Add(lineManager2.GetMarkerSpace());
+            markerSpaces.Add(lineManager3.GetMarkerSpace());
+            Vector2 offset;
+            string currentArea = enableBatterArea.getCurrentPancakeArea().name;
+            offset = markerSpaces[0];
+            if (currentArea == "PancakeAreaDetector2")
+            {
+                offset = markerSpaces[1];
+            }
+            else if (currentArea == "PancakeAreaDetector3")
+            {
+                offset = markerSpaces[2];
+            }
+            Station.HandlePathUpdate(offset);
         }
 
         IEnumerator CountBeatsToWaffleFlip()
