@@ -12,6 +12,11 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
     private int smudgesRemaining;
     private List<bool> collidedSmudges = new List<bool>();
 
+    private ScoreAndStreakManager scoreManager;
+
+    void Start() {
+        scoreManager = GetComponent<ScoreAndStreakManager>();
+    }
     public void NewPlate()
     {
         int smudgeCount = Random.Range(minSmudges, maxSmudges + 1);
@@ -39,11 +44,15 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
             if (early)
             {
                 setSmudgeAsSmear(index);
+                Debug.Log("streakReset from early hit");
+                scoreManager.resetStreak();
                 Stations.Dish.GetSoundBytePlayer().PlayEarly();
+
             }
             else
             {
                 setSmudgeInvisible(index);
+                scoreManager.scoreUpdate(1);
                 Stations.Dish.GetSoundBytePlayer().PlayOnTime();
             }
             collidedSmudges[index] = true;
@@ -85,5 +94,15 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
     {
         float quality = 1.0f - (smudgesRemaining * smudgeQualityCost);
         return new ReservoirPlate(quality);
+    }
+
+    public List<bool> GetCollidedSmudges()
+    {
+        return collidedSmudges;
+    }
+
+    public bool IsSmudgeCollided(int index)
+    {
+        return collidedSmudges[index];
     }
 }

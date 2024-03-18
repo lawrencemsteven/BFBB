@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9023931458948383120}
   - component: {fileID: 9023931458948383123}
   - component: {fileID: 9023931458948383133}
+  - component: {fileID: 4886679344943269901}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Marker
@@ -136,3 +137,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &4886679344943269901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9023931458948383125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d3cbc575265a84b8fdd672ac715af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

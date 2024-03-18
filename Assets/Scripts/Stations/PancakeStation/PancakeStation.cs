@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PancakeStation : Station
@@ -17,10 +18,18 @@ public class PancakeStation : Station
     private PancakeParticleObject pancakeParticleObject;
     public LineManager lineManager2, lineManager3;
     private bool readyForNewMeasure;
+    public EnableBatterArea enableBatterArea;
+    public SwitchCamera switchCam;
+
+    private int pathToScore;
+    private ScoreAndStreakManager scoreManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        scoreManager = GetComponent<ScoreAndStreakManager>();
+        pathToScore = 0;
         timeToStartWaffles = (16 / bpm) * 60;
         timeToFlipPancake = (26 / bpm) * 60;
         timeToFlipWaffle = (30 / bpm) * 60;
@@ -140,6 +149,26 @@ public class PancakeStation : Station
             }
         }
 
+        if ((Input.GetMouseButton(0)) && (switchCam.getCurrentStation().gameObject.name == "PancakeStation"))
+        {
+            List<Vector2> markerSpaces = new List<Vector2>();
+            markerSpaces.Add(lineManager.GetMarkerSpace());
+            markerSpaces.Add(lineManager2.GetMarkerSpace());
+            markerSpaces.Add(lineManager3.GetMarkerSpace());
+            Vector2 offset;
+            string currentArea = enableBatterArea.getCurrentPancakeArea().name;
+            offset = markerSpaces[0];
+            if (currentArea == "PancakeAreaDetector2")
+            {
+                offset = markerSpaces[1];
+            }
+            else if (currentArea == "PancakeAreaDetector3")
+            {
+                offset = markerSpaces[2];
+            }
+            Station.HandlePathUpdate(offset);
+        }
+
         IEnumerator CountBeatsToWaffleFlip()
         {
             float beatInterval = 60f / bpm;
@@ -194,6 +223,11 @@ public class PancakeStation : Station
             }
         }
 
+        if (pathToScore == 1) {
+            scoreManager.scoreUpdate(1);
+            pathToScore = 0;
+        }
+
     }
 
     public override void pathUpdate(Vector2 offset)
@@ -203,6 +237,11 @@ public class PancakeStation : Station
         if (distance < distanceMinimum)
         {
             distance = 0;
+            pathToScore += 1;
+        }
+        
+        else {
+            scoreManager.resetStreak();
         }
 
         //Composer.Instance.VolumeChange(1, volume);
