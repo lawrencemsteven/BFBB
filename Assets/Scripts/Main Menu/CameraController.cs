@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
 
     // Camera Posing
     private bool m_poseTransitioning = false;
-    public float m_poseTransitioningTime = 3.0f;
+    public float m_poseTransitioningTime = 2.0f;
     private float m_poseTransitioningAmount = 0.0f;
     private CameraPoses m_previousCameraPose = CameraPoses.MAIN;
     private CameraPoses m_currentCameraPose = CameraPoses.MAIN;
@@ -85,6 +85,8 @@ public class CameraController : MonoBehaviour
             Quaternion newRotation = getPoseRotation(m_currentCameraPose);
 
             float lerpAmount = m_poseTransitioningAmount / m_poseTransitioningTime;
+            lerpAmount = Stevelation.Lerp(Stevelation.StevelationSpeeds.Slow, Stevelation.StevelationSpeeds.Slow, lerpAmount);
+            lerpAmount = Math.Clamp(lerpAmount, 0.0f, 1.0f);
             newPosition = Vector3.Lerp(oldPosition, newPosition, lerpAmount);
             newRotation = Quaternion.Lerp(oldRotation, newRotation, lerpAmount);
 
@@ -113,9 +115,21 @@ public class CameraController : MonoBehaviour
         }
 
         Camera previous = stationCameras[m_previousPosition[(int)cameraPose]];
-        Camera next = stationCameras[(m_previousPosition[(int)cameraPose] + 1) % stationCameras.Length];
 
-        return Vector3.Lerp(previous.transform.position, next.transform.position, m_individualTransitionAmounts[(int)cameraPose] / m_individualTransitionTime[(int)cameraPose]);
+        Camera next;
+        if (cameraPose == CameraPoses.MAIN && (m_previousPosition[(int)cameraPose] + 1) % stationCameras.Length == 0)
+        {
+            next = stationCameras[m_numMainOutsideCameras];
+        }
+        else
+        {
+            next = stationCameras[(m_previousPosition[(int)cameraPose] + 1) % stationCameras.Length];
+        }
+
+        float lerpAmount = m_individualTransitionAmounts[(int)cameraPose] / m_individualTransitionTime[(int)cameraPose];
+        lerpAmount = Stevelation.Lerp(Stevelation.StevelationSpeeds.Slow, Stevelation.StevelationSpeeds.Slow, lerpAmount);
+        lerpAmount = Math.Clamp(lerpAmount, 0.0f, 1.0f);
+        return Vector3.Lerp(previous.transform.position, next.transform.position, lerpAmount);
     }
 
     public Quaternion getPoseRotation(CameraPoses cameraPose)
@@ -128,8 +142,20 @@ public class CameraController : MonoBehaviour
         }
 
         Camera previous = stationCameras[m_previousPosition[(int)cameraPose]];
-        Camera next = stationCameras[(m_previousPosition[(int)cameraPose] + 1) % stationCameras.Length];
 
+        Camera next;
+        if (cameraPose == CameraPoses.MAIN && (m_previousPosition[(int)cameraPose] + 1) % stationCameras.Length == 0)
+        {
+            next = stationCameras[m_numMainOutsideCameras];
+        }
+        else
+        {
+            next = stationCameras[(m_previousPosition[(int)cameraPose] + 1) % stationCameras.Length];
+        }
+
+        float lerpAmount = m_individualTransitionAmounts[(int)cameraPose] / m_individualTransitionTime[(int)cameraPose];
+        lerpAmount = Stevelation.Lerp(Stevelation.StevelationSpeeds.Slow, Stevelation.StevelationSpeeds.Slow, lerpAmount);
+        lerpAmount = Math.Clamp(lerpAmount, 0.0f, 1.0f);
         return Quaternion.Lerp(previous.transform.rotation, next.transform.rotation, m_individualTransitionAmounts[(int)cameraPose] / m_individualTransitionTime[(int)cameraPose]);
     }
 
@@ -147,11 +173,20 @@ public class CameraController : MonoBehaviour
         {
             m_individualTransitionAmounts[(int)cameraPose] %= m_individualTransitionTime[(int)cameraPose];
             m_previousPosition[(int)cameraPose] = (m_previousPosition[(int)cameraPose] + 1) % stationCameras.Length;
+            if (cameraPose == CameraPoses.MAIN && m_previousPosition[(int)cameraPose] == 0)
+            {
+                m_previousPosition[(int)cameraPose] = m_numMainOutsideCameras;
+            }
         }
     }
 
     public void changeTarget(CameraPoses newCameraPose, float time)
     {
+        if (newCameraPose == m_currentCameraPose)
+        {
+            return;
+        }
+
         m_poseTransitioning = true;
         m_poseTransitioningTime = time;
         m_poseTransitioningAmount = 0.0f;
