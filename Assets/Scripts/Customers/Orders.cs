@@ -18,7 +18,8 @@ namespace Orders
         CHOCOLATE_CHIP,
         WHIPPED_CREAM,
         SYRUP,
-        FRUIT
+        FRUIT,
+        BUTTER
     }
 
     public class Order
