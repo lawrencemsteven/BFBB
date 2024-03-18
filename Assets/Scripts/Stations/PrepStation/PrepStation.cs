@@ -43,10 +43,14 @@ public class PrepStation : Station
     private CustomerBehavior selectedCustomer;
     private bool makingOrder = false;
     private int orderProgress = 0;
+    private ScoreAndStreakManager scoreManager;
+    private int pathToScore;
+
     [SerializeField] private List<Sprite> toppingIcons = new List<Sprite>();
 
     public void Start()
     {
+        scoreManager = GetComponent<ScoreAndStreakManager>();
         orderDisplay = prepStationUI.transform.GetChild(0);
         prepStationUI.SetActive(false);
         preppedOrder = null;
@@ -106,6 +110,11 @@ public class PrepStation : Station
 
         ToppingsControl();
         ToppingsRelease();
+
+        if (pathToScore == 100) {
+            pathToScore = 0;
+            scoreManager.scoreUpdate(1);
+        }
     }
 
     public void NewBeat()
@@ -194,10 +203,12 @@ public class PrepStation : Station
         if (!makingOrder || ((distance < distanceMinimum || distance > 0.25F) && selectedTopping == requiredTopping))
         {
             Composer.Instance.PitchChange(0);
+            pathToScore += 1;
         }
         else
         {
             Composer.Instance.PitchChange(-1);
+            scoreManager.resetStreak();
         }
 
         int listLength = toppingCoordinateGenerator.GetColliders().Count;

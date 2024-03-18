@@ -24,8 +24,7 @@ public class GlobalVariables : MonoBehaviour
     public static string earlyPrep;
     public static string onTimePrep;
     public static string latePrep;
-
-    public static string currentStation = "DishStation";
+    public static string currentStation = "Dish";
 
     public static string upPrep;
     public static string downPrep;

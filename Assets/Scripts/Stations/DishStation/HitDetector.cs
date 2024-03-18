@@ -18,9 +18,11 @@ public class HitDetector : MonoBehaviour
     private int smudgesRemaining;
 
     private int lastSmudgeIndex;
+    private ScoreAndStreakManager scoreManager;
 
     private void Start()
     {
+        scoreManager = GetComponent<ScoreAndStreakManager>();
         if(GameObject.Find("HiHat").GetComponent<HiHatFmod>())
         {
             hihatFmod = GameObject.Find("HiHat").GetComponent<HiHatFmod>();
@@ -71,9 +73,7 @@ public class HitDetector : MonoBehaviour
         {
             //hihat.Play();
             hihatFmod.PlayHiHat();
-            GlobalVariables.missCounter = 0; 
-            GlobalVariables.score += 1;
-            GlobalVariables.streak += 1;
+            scoreManager.scoreUpdate(1);
             GlobalVariables.notesHit += 1;
             smudgeHitStatus[closestSmudgeIndex] = true; 
             //SetSmudgeInvisible(closestSmudgeIndex);
@@ -84,7 +84,7 @@ public class HitDetector : MonoBehaviour
             if (!smudgeHitStatus[lastSmudgeIndex]) {
                 GlobalVariables.missCounter += 1;
                 GlobalVariables.notesMissed += 1;
-                GlobalVariables.streak = 0;
+                scoreManager.resetStreak();
             }
             lastSmudgeIndex = closestSmudgeIndex;
         }

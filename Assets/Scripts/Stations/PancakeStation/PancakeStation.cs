@@ -18,9 +18,15 @@ public class PancakeStation : Station
     public LineManager lineManager2, lineManager3;
     private bool readyForNewMeasure;
 
+    private int pathToScore;
+    private ScoreAndStreakManager scoreManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        scoreManager = GetComponent<ScoreAndStreakManager>();
+        pathToScore = 0;
         timeToStartWaffles = (16 / bpm) * 60;
         timeToFlipPancake = (26 / bpm) * 60;
         timeToFlipWaffle = (30 / bpm) * 60;
@@ -194,6 +200,11 @@ public class PancakeStation : Station
             }
         }
 
+        if (pathToScore == 1) {
+            scoreManager.scoreUpdate(1);
+            pathToScore = 0;
+        }
+
     }
 
     public override void pathUpdate(Vector2 offset)
@@ -203,6 +214,11 @@ public class PancakeStation : Station
         if (distance < distanceMinimum)
         {
             distance = 0;
+            pathToScore += 1;
+        }
+        
+        else {
+            scoreManager.resetStreak();
         }
 
         //Composer.Instance.VolumeChange(1, volume);
