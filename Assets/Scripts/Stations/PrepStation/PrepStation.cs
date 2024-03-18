@@ -162,6 +162,8 @@ public class PrepStation : Station
     public override void pathUpdate(Vector2 offset)
     {
         float distance = offset.magnitude;
+        float differenceX = 0f;
+        float differenceZ = 0f;
 
         if (!makingOrder || ((distance < distanceMinimum || distance > 0.25F) && selectedTopping == requiredTopping))
         {
@@ -171,6 +173,62 @@ public class PrepStation : Station
         {
             Composer.Instance.PitchChange(-1);
         }
+
+        int listLength = toppingCoordinateGenerator.GetColliders().Count;
+        int beatIndex = lineManager.GetCurrentBeat();
+        if (beatIndex <= listLength - 2)
+        { 
+            differenceX = toppingCoordinateGenerator.GetCollider(beatIndex).transform.position.x - toppingCoordinateGenerator.GetCollider(lineManager.GetCurrentBeat() + 1).transform.position.x;
+            differenceZ = toppingCoordinateGenerator.GetCollider(beatIndex).transform.position.z - toppingCoordinateGenerator.GetCollider(lineManager.GetCurrentBeat() + 1).transform.position.z;
+        }
+
+        
+
+        if (differenceX >= 0.05f && !soundBytePlayer.isPlaying(GlobalVariables.rightPrep) && differenceZ < 0.05f && differenceZ > -0.05f && Input.GetMouseButtonDown(0))
+        {
+            soundBytePlayer.PlayRight();
+            
+        }
+        else if (differenceX <= -0.05f && !soundBytePlayer.isPlaying(GlobalVariables.leftPrep) && differenceZ < 0.05f && differenceZ > -0.05f && Input.GetMouseButtonDown(0))
+        {
+            soundBytePlayer.PlayLeft();
+            
+        }
+        else if (differenceZ >= 0.05f && !soundBytePlayer.isPlaying(GlobalVariables.upPrep) && differenceX < 0.05f && differenceX > -0.05f && Input.GetMouseButtonDown(0))
+        {
+            soundBytePlayer.PlayUp();
+            
+        }
+        else if (differenceZ <= -0.05f && !soundBytePlayer.isPlaying(GlobalVariables.downPrep) && differenceX < 0.05f && differenceX > -0.05f && Input.GetMouseButtonDown(0))
+        {
+            soundBytePlayer.PlayDown();
+            
+        }
+        else if (differenceX >= 0.05f && !soundBytePlayer.isPlaying(GlobalVariables.upRightPrep) && differenceZ >= 0.05f && Input.GetMouseButtonDown(0))
+        {
+            soundBytePlayer.PlayUpRight();
+            
+        }
+        else if (differenceX >= 0.05f && !soundBytePlayer.isPlaying(GlobalVariables.downRightPrep) && differenceZ <= -0.05f && Input.GetMouseButtonDown(0))
+        {
+            soundBytePlayer.PlayDownRight();
+            
+        }
+        else if (differenceZ >= 0.05f && !soundBytePlayer.isPlaying(GlobalVariables.upLeftPrep) && differenceX <= -0.05f && Input.GetMouseButtonDown(0))
+        {
+            soundBytePlayer.PlayUpLeft();
+            
+        }
+        else if (differenceX <= -0.05f && !soundBytePlayer.isPlaying(GlobalVariables.downLeftPrep) && differenceZ <= -0.05f && Input.GetMouseButtonDown(0))
+        {
+            soundBytePlayer.PlayDownLeft();
+            
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            GlobalVariables.instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+
     }
 
     public void AddOrder(Order order, CustomerBehavior customer)

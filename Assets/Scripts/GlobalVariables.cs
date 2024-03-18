@@ -26,4 +26,16 @@ public class GlobalVariables : MonoBehaviour
     public static string latePrep;
 
     public static string currentStation = "DishStation";
+
+    public static string upPrep;
+    public static string downPrep;
+    public static string leftPrep;
+    public static string rightPrep;
+    public static string upLeftPrep;
+    public static string upRightPrep;
+    public static string downLeftPrep;
+    public static string downRightPrep;
+
+    public static FMOD.Studio.EventInstance instance;
+    public static string volume;
 }
