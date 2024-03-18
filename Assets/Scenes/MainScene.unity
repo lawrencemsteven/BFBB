@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6338,6 +6338,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5100feae939a9e54db5629341b217051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_pinkButton: {fileID: 0}
+  m_orangeButton: {fileID: 0}
+  m_greenButton: {fileID: 0}
+  m_purpleButton: {fileID: 0}
+  m_cyberpunkButton: {fileID: 0}
+  m_spaceButton: {fileID: 0}
+  m_seaButton: {fileID: 0}
 --- !u!114 &933773295 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4582210145485656788, guid: dc3ab7ee1a378b1478321041ab270026, type: 3}
@@ -9668,6 +9675,7 @@ GameObject:
   - component: {fileID: 1424295630}
   - component: {fileID: 1424295629}
   - component: {fileID: 1424295632}
+  - component: {fileID: 1424295633}
   m_Layer: 0
   m_Name: BackgroundSwapper
   m_TagString: Untagged
@@ -9733,6 +9741,21 @@ MonoBehaviour:
   variantName: Sea
   prefab: {fileID: 0}
   targetScene: SeaBackground
+--- !u!114 &1424295633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424295628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f002f3c33f9ed3479c975230616d006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Space
+  prefab: {fileID: 0}
+  targetScene: SpaceBackground
 --- !u!1001 &1437392477
 PrefabInstance:
   m_ObjectHideFlags: 0
