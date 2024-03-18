@@ -23,7 +23,7 @@ public class Composer : Singleton<Composer>
     private uint measureCounter = 0u;
     public UnityEvent onBeat = new();
     public UnityEvent onMeasure = new();
-    public Camera prepCam;
+    public GameObject prepCam;
 
     protected override void Awake()
     {
@@ -102,7 +102,7 @@ public class Composer : Singleton<Composer>
             }
         }
 
-        if (prepCam.enabled)
+        if (prepCam.activeSelf)
         {
             composerInterpreter.SetLeadVolume(0f);
         } else
