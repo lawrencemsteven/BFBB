@@ -1896,11 +1896,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variantName: Cyberpunk
   prefab: {fileID: 7616471348591930547, guid: 4c7badfd60de5e3458c799c2b1a9877c, type: 3}
---- !u!1 &849374800 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7977248260418981509, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
-  m_PrefabInstance: {fileID: 8562384127649966092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &855836083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3654,11 +3649,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d121bdbb8721a584a98d128902344dfb, type: 3}
---- !u!1 &1540232113 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1746653013838074697, guid: 8c004392669c1ae4094e00ceb7d15bc0, type: 3}
-  m_PrefabInstance: {fileID: 1512139068114441976}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1545663799 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3680708364983787025, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
@@ -9653,7 +9643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 972776190427278481, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 972776191280922412, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9954,13 +9944,53 @@ PrefabInstance:
     - target: {fileID: 8562384129074783751, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
       propertyPath: instructions
       value: 
-      objectReference: {fileID: 849374800}
+      objectReference: {fileID: 0}
     - target: {fileID: 8562384129074783751, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
       propertyPath: UIinstructions
       value: 
-      objectReference: {fileID: 849374800}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562384129074783751, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+      propertyPath: customerMugArray.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562384129074783751, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+      propertyPath: customerMugArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 8562384127649966096}
+    - target: {fileID: 8562384129074783751, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+      propertyPath: customerMugArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 8562384127649966095}
+    - target: {fileID: 8562384129074783751, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+      propertyPath: customerMugArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 8562384127649966094}
+    - target: {fileID: 8562384129074783751, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+      propertyPath: customerMugArray.Array.data[3]
+      value: 
+      objectReference: {fileID: 8562384127649966093}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+--- !u!1 &8562384127649966093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3404667598832738477, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+  m_PrefabInstance: {fileID: 8562384127649966092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8562384127649966094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2773131630800142995, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+  m_PrefabInstance: {fileID: 8562384127649966092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8562384127649966095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7301489532445638520, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+  m_PrefabInstance: {fileID: 8562384127649966092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8562384127649966096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 447033279020824107, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+  m_PrefabInstance: {fileID: 8562384127649966092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &8567827118592169401
 MeshRenderer:
   m_ObjectHideFlags: 0

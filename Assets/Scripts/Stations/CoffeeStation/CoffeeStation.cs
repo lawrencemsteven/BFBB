@@ -19,23 +19,13 @@ public class CoffeeStation : Station
     private int beatsPerMeasure;
     private int currentBeat;
 
-    private int toppingInt;
-
     private string selected;
 
     private Vector3 containerPos;
     private Vector3 signPos;
     bool needsGenerated;
 
-
-    private float distanceFromMug;
-
-    //if lineManager.isEarly() do to early/offbeat else do success
-    //randomize number and do pick icon for what each one needs
-    //how to each thing appear in sequence
-    //after beats/measure are complete rerandomize (if lineManager.GetCurrentBeat = beats per measure?)
-
-
+    private float acceptableDistance = .1f;
 
     [SerializeField] private GameObject instructions;
 
@@ -95,7 +85,14 @@ public class CoffeeStation : Station
             if (Input.GetMouseButton(0))
             {
                 if (!coffeeParticle.isPlaying) { coffeeParticle.Play(); }
+
+                int x = RangeCheck();
+                if (x == 0 || x == 1 || x == 2 || x == 3)
+                {
+                    CorrectItemCheck(x);
+                }
             }
+
             else if (Input.GetMouseButtonUp(0))
             {
                 if (coffeeParticle.isPlaying) { coffeeParticle.Stop(); }
@@ -112,6 +109,12 @@ public class CoffeeStation : Station
             if (Input.GetMouseButton(0))
             {
                 if (!sugarParticle.isPlaying) { sugarParticle.Play(); }
+
+                int x = RangeCheck();
+                if(x == 0 || x == 1 || x == 2 || x == 3) 
+                {
+                    CorrectItemCheck(x);
+                }
             }
             else if (Input.GetMouseButtonUp(0))
             {
@@ -130,6 +133,11 @@ public class CoffeeStation : Station
             if (Input.GetMouseButton(0))
             {
                 if (!creamParticle.isPlaying) { creamParticle.Play(); }
+                int x = RangeCheck();
+                if (x == 0 || x == 1 || x == 2 || x == 3)
+                {
+                    CorrectItemCheck(x);
+                }
             }
             else if (Input.GetMouseButtonUp(0))
             {
@@ -201,6 +209,35 @@ public class CoffeeStation : Station
             needsGenerated = true;
         }
 
+    }
+
+    int RangeCheck()
+    {
+        //change this to simple if check if container is close to customerMug[currentBeat]
+        for(int i = 0;i < customerMugArray.Length; i++)
+        {
+            if (containerPos.y - customerMugArray[i].transform.position.y <= acceptableDistance && signArray[i] is not null)
+            {
+                return i;
+            }
+        }
+        return 5;
+    }
+
+    void CorrectItemCheck(int mugIndex)
+    {
+        if (needsArray[mugIndex].Equals(selected))
+        {
+            pointTotal += 1;
+            needsArray[mugIndex] = "";
+            Destroy(signArray[mugIndex]);
+        }
+
+        else
+        {
+            needsArray[mugIndex] = "";
+            Destroy(signArray[mugIndex]);
+        }
     }
 
 }
