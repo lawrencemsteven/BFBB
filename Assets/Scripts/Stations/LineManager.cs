@@ -215,8 +215,6 @@ public class LineManager : MonoBehaviour
         {
             markerSpace = maxDistance * markerSpace.normalized;
         }
-
-        Station.HandlePathUpdate(markerSpace);
     }
 
     public int GetCurrentBeat() { return currentBeat; }

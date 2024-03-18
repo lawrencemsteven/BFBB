@@ -16,6 +16,7 @@ public class SwitchCamera : MonoBehaviour
     private StationType switchToStation;
     private StationType selectedStationType;
     private ScoreAndStreakManager streakReset;
+    private Station station;
 
     void Start()
     {       
@@ -92,9 +93,8 @@ public class SwitchCamera : MonoBehaviour
 
     private void switchCamera(StationType stationType)
     {
-        Station station = getStationByEnum(stationType);
+        station = getStationByEnum(stationType);
         Station selectedStation = getStationByEnum(selectedStationType);
-
         if (selectedStation is null)
         {
             overheadCamera.SetActive(false);
@@ -135,5 +135,12 @@ public class SwitchCamera : MonoBehaviour
             default:
                 return null;
         }
+    }
+
+
+
+    public Station getCurrentStation()
+    {
+        return station;
     }
 }

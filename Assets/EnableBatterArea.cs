@@ -1,3 +1,4 @@
+using Orders;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,13 +13,14 @@ public class EnableBatterArea : MonoBehaviour
 
     }
 
-    public GameObject getCurrentPancakeArea() { return currentPancakeArea; }
+    public GameObject getCurrentPancakeArea() {
+        return currentPancakeArea; }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "AreaDetector")
         {
-
             currentPancakeArea = other.gameObject;
+            Debug.Log(other.gameObject.name);
             // currentPancakeArea.transform.GetChild(0).gameObject.SetActive(true);
         }
 

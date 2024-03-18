@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class SpatulaCursor : MonoBehaviour
 {
-    private float offset = 0.70f;
+    public float offset = -0.70f;
     private MeshRenderer mesh;
     private bool paused = false;
-    [SerializeField] private float distanceThreshold = 20f;
 
     // Start is called before the first frame update
     void Start()
