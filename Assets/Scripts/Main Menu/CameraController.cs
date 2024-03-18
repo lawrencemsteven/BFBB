@@ -84,15 +84,15 @@ public class CameraController : MonoBehaviour
             Quaternion oldRotation = getPoseRotation(m_previousCameraPose);
             Quaternion newRotation = getPoseRotation(m_currentCameraPose);
 
+            m_poseTransitioningAmount += Time.deltaTime;
             float lerpAmount = m_poseTransitioningAmount / m_poseTransitioningTime;
             lerpAmount = Stevelation.Lerp(Stevelation.StevelationSpeeds.Slow, Stevelation.StevelationSpeeds.Slow, lerpAmount);
             lerpAmount = Math.Clamp(lerpAmount, 0.0f, 1.0f);
             newPosition = Vector3.Lerp(oldPosition, newPosition, lerpAmount);
-            newRotation = Quaternion.Lerp(oldRotation, newRotation, lerpAmount);
+            newRotation = Quaternion.Slerp(oldRotation, newRotation, lerpAmount);
 
             transform.SetPositionAndRotation(newPosition, newRotation);
 
-            m_poseTransitioningAmount += Time.deltaTime;
             if (m_poseTransitioningAmount > m_poseTransitioningTime)
             {
                 m_poseTransitioning = false;
@@ -156,7 +156,7 @@ public class CameraController : MonoBehaviour
         float lerpAmount = m_individualTransitionAmounts[(int)cameraPose] / m_individualTransitionTime[(int)cameraPose];
         lerpAmount = Stevelation.Lerp(Stevelation.StevelationSpeeds.Slow, Stevelation.StevelationSpeeds.Slow, lerpAmount);
         lerpAmount = Math.Clamp(lerpAmount, 0.0f, 1.0f);
-        return Quaternion.Lerp(previous.transform.rotation, next.transform.rotation, m_individualTransitionAmounts[(int)cameraPose] / m_individualTransitionTime[(int)cameraPose]);
+        return Quaternion.Slerp(previous.transform.rotation, next.transform.rotation, lerpAmount);
     }
 
     public void updatePoseValues(CameraPoses cameraPose)

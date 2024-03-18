@@ -54,11 +54,18 @@ public class MainMenuButtons : MonoBehaviour
                 menuTransitioning = false;
                 foreach (Transform child in currentMenu)
                 {
-                    // Activate all buttons
-                    Button button = child.GetComponent<Button>();
-                    if (button != null)
+                    if (currentMenu == shopStylesParent)
                     {
-                        button.interactable = true;
+                        shopAssetManager.activateButtons();
+                    }
+                    else
+                    {
+                        // Activate all buttons
+                        Button button = child.GetComponent<Button>();
+                        if (button != null)
+                        {
+                            button.interactable = true;
+                        }
                     }
                 }
 
@@ -202,91 +209,91 @@ public class MainMenuButtons : MonoBehaviour
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Walls");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Walls);
     }
     public void ShopTable()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Table");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Tables);
     }
     public void ShopBar()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Bar");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Counter);
     }
     public void ShopLights()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Lights");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Lights);
     }
     public void ShopWallDiamonds()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Wall Diamonds");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.WallDiamonds);
     }
     public void ShopDish()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Dish");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Sink);
     }
     public void ShopGriddle()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Griddle");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.GriddleStation);
     }
     public void ShopPrep()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Prep");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.PrepStation);
     }
     public void ShopFloors()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Floors");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Floor);
     }
     public void ShopBooth()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Booth");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Seats);
     }
     public void ShopStools()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Stools");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Stools);
     }
     public void ShopWindow()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Window");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Windows);
     }
     public void ShopDecor()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Decor");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Condiments);
     }
     public void ShopArt()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Art");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.WallArt);
     }
     public void ShopExterior()
     {
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
-        Debug.Log("TODO: Exterior");
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.Background);
     }
 
 
@@ -294,30 +301,34 @@ public class MainMenuButtons : MonoBehaviour
     // Shop Styles Parent
     public void ShopStylesPink()
     {
-        Debug.Log("TODO: Pink");
+        shopAssetManager.setStyle(ShopAssetManager.ShopStyles.Pink);
     }
     public void ShopStylesOrange()
     {
-        Debug.Log("TODO: Orange");
+        shopAssetManager.setStyle(ShopAssetManager.ShopStyles.Orange);
     }
     public void ShopStylesGreen()
     {
-        Debug.Log("TODO: Green");
+        shopAssetManager.setStyle(ShopAssetManager.ShopStyles.Green);
     }
     public void ShopStylesPurple()
     {
-        Debug.Log("TODO: Purple");
+        shopAssetManager.setStyle(ShopAssetManager.ShopStyles.Purple);
+    }
+    public void ShopStylesDefault()
+    {
+        shopAssetManager.setStyle(ShopAssetManager.ShopStyles.Default);
     }
     public void ShopStylesCyberpunk()
     {
-        Debug.Log("TODO: Cyberpunk");
+        shopAssetManager.setStyle(ShopAssetManager.ShopStyles.Cyberpunk);
     }
     public void ShopStylesSpace()
     {
-        Debug.Log("TODO: Space");
+        shopAssetManager.setStyle(ShopAssetManager.ShopStyles.Space);
     }
     public void ShopStylesSea()
     {
-        Debug.Log("TODO: Sea");
+        shopAssetManager.setStyle(ShopAssetManager.ShopStyles.Sea);
     }
 }
