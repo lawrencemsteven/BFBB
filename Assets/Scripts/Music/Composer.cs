@@ -23,6 +23,7 @@ public class Composer : Singleton<Composer>
     private uint measureCounter = 0u;
     public UnityEvent onBeat = new();
     public UnityEvent onMeasure = new();
+    public Camera prepCam;
 
     protected override void Awake()
     {
@@ -99,6 +100,14 @@ public class Composer : Singleton<Composer>
             {
                 composerInterpreter.stopBatter();
             }
+        }
+
+        if (prepCam.enabled)
+        {
+            composerInterpreter.SetLeadVolume(0f);
+        } else
+        {
+            composerInterpreter.SetLeadVolume(0.75f);
         }
     }
 

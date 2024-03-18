@@ -15,6 +15,8 @@ public class SoundBytePlayer : MonoBehaviour
     private string earlySound;
     private string onTimeSound;
     private string lateSound;
+    [SerializeField]
+    private FMODUnity.StudioEventEmitter emitter;
 
     public void SetSounds(string early, string onTime, string late)
     {
@@ -53,5 +55,68 @@ public class SoundBytePlayer : MonoBehaviour
         {
             RuntimeManager.PlayOneShotAttached(onTimeSound, gameObject);
         }
+    }
+
+    public void PlayRight()
+    {
+        GlobalVariables.instance = FMODUnity.RuntimeManager.CreateInstance($"event:/{GlobalVariables.rightPrep}");
+        GlobalVariables.instance.start();
+        GlobalVariables.instance.release();
+    }
+
+    public void PlayLeft()
+    {
+        GlobalVariables.instance = FMODUnity.RuntimeManager.CreateInstance($"event:/{GlobalVariables.leftPrep}");
+        GlobalVariables.instance.start();
+        GlobalVariables.instance.release();
+    }
+
+    public void PlayUp()
+    {
+        GlobalVariables.instance = FMODUnity.RuntimeManager.CreateInstance($"event:/{GlobalVariables.upPrep}");
+        GlobalVariables.instance.start();
+        GlobalVariables.instance.release();
+    }
+
+    public void PlayDown()
+    {
+        GlobalVariables.instance = FMODUnity.RuntimeManager.CreateInstance($"event:/{GlobalVariables.downPrep}");
+        GlobalVariables.instance.start();
+        GlobalVariables.instance.release();
+    }
+
+    public void PlayUpRight()
+    {
+        GlobalVariables.instance = FMODUnity.RuntimeManager.CreateInstance($"event:/{GlobalVariables.upRightPrep}");
+        GlobalVariables.instance.start();
+        GlobalVariables.instance.release();
+    }
+
+    public void PlayUpLeft()
+    {
+        GlobalVariables.instance = FMODUnity.RuntimeManager.CreateInstance($"event:/{GlobalVariables.upLeftPrep}");
+        GlobalVariables.instance.start();
+        GlobalVariables.instance.release();
+    }
+
+    public void PlayDownRight()
+    {
+        GlobalVariables.instance = FMODUnity.RuntimeManager.CreateInstance($"event:/{GlobalVariables.downRightPrep}");
+        GlobalVariables.instance.start();
+        GlobalVariables.instance.release();
+    }
+
+    public void PlayDownLeft()
+    {
+        GlobalVariables.instance = FMODUnity.RuntimeManager.CreateInstance($"event:/{GlobalVariables.downLeftPrep}");
+        GlobalVariables.instance.start();
+        GlobalVariables.instance.release();
+    }
+
+    public bool isPlaying(string fEvent) 
+    {
+        FMOD.Studio.PLAYBACK_STATE state;
+        GlobalVariables.instance.getPlaybackState(out state);
+        return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
     }
 }
