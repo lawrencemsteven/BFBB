@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Orders;
 
 public class ToppingCoordinateGenerator : CoordinateGenerator
 {
     [SerializeField] private int lines = 4;
     [SerializeField] private float maxRadius;
-    private int pointsRemaining;
     private List<bool> collidedPoints = new List<bool>();
 
     public void NewPlate()
@@ -27,6 +27,13 @@ public class ToppingCoordinateGenerator : CoordinateGenerator
 
             collidedPoints.Add(false);
         }
+
+    }
+
+    public override void GenerateShape()
+    {
+        base.GenerateShape();
+        
     }
 
     public void HandleCollision(int index, bool early)

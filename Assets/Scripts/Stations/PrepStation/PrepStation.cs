@@ -1,113 +1,162 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Orders;
 using TMPro;
-using System.Collections.Generic;
 
 public class PrepStation : Station
 {
     [SerializeField] private GameObject prepStationUI;
     [SerializeField] private GameObject orderPrefab;
-    private Transform orderList;
+    [SerializeField] private GameObject platePrefab;
+    private Transform orderDisplay;
+    private Dictionary<Order, CustomerBehavior> orders = new Dictionary<Order, CustomerBehavior>();
     private Order preppedOrder;
+    private Order selectedOrder;
     private TextMeshProUGUI selectedToppingLabel;
     private TextMeshProUGUI requiredToppingLabel;
 
-    private bool setPancake;
-    private bool setWaffle;
-
+    [SerializeField] private GameObject fruitTongs;
     [SerializeField] private GameObject syrupContainer;
-    //[SerializeField] private GameObject butter;
     [SerializeField] private GameObject whipCream;
     [SerializeField] private GameObject chocolateChip;
 
+    private Vector3 initialFruitPosition;
     private Vector3 initialSyrupPosition;
-    private Vector3 initialButterPosition;
     private Vector3 initialWhipPosition;
     private Vector3 initialChocoPosition;
 
     private Vector3 containerPos;
 
     private ToppingCoordinateGenerator toppingCoordinateGenerator;
-    private bool even = false;
+    private bool evenMeasure = false;
+    private bool evenBeat = false;
+    private int currentBeat = 0;
     private Topping selectedTopping = Topping.NONE;
-
-    private bool playing = false;
-
-    
-    //protected bool running = false;
+    private Topping requiredTopping;
+    private CustomerBehavior selectedCustomer;
+    private bool makingOrder = false;
+    private int orderProgress = 0;
+    [SerializeField] private List<Sprite> toppingIcons = new List<Sprite>();
 
     //butter is hold button down and click to drop
     //all other toppings are hold button down and click and hold
     //requirements for how long pour lasts are time based around beat? not following pattern
 
-
     public void Start()
     {
-        orderList = prepStationUI.transform.GetChild(0);
-        selectedToppingLabel = prepStationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        requiredToppingLabel = prepStationUI.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        orderDisplay = prepStationUI.transform.GetChild(0);
         prepStationUI.SetActive(false);
         preppedOrder = null;
 
+        initialFruitPosition = fruitTongs.transform.position;
         initialSyrupPosition = syrupContainer.transform.position;
-        //initialButterPosition = syrupContainer.transform.position;
         initialWhipPosition = whipCream.transform.position;
         initialChocoPosition = chocolateChip.transform.position;
 
         toppingCoordinateGenerator = coordinateGenerator as ToppingCoordinateGenerator;
 
+        Composer.Instance.onBeat.AddListener(NewBeat);
         Composer.Instance.onMeasure.AddListener(NewMeasure);
-
-        //Test code
-        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1, new GameObject()));
-        ReservoirManager.GetPancakes().Add(new ReservoirPancake(1, new GameObject()));
-        ReservoirManager.GetWaffles().Add(new ReservoirWaffle(1));
     }
 
     public void Update()
     {
-        //if(running == false) {return;}
+        prepStationUI.SetActive(running);
+
+        if (running == false)
+        {
+            return;
+        }
 
         containerPos = Input.mousePosition;
 
-        prepStationUI.SetActive(running);
-        if (running)
+        if (!makingOrder && requiredTopping != Topping.NONE)
         {
-            requiredToppingLabel.text = lineManager.GetCurrentTopping().ToString();
-            selectedToppingLabel.text = selectedTopping.ToString();
+            requiredTopping = Topping.NONE;
         }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            if(setPancake == true){ AddPancake(); }
-            
-            else if(setWaffle == true){ AddWaffle(); }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ScrapOrder();
-        }
+        prepStationUI.transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = toppingIcons[(int)requiredTopping];
 
         ToppingsControl();
         ToppingsRelease();
+    }
 
+    public void NewBeat()
+    {
+        if (evenBeat)
+        {
+            currentBeat++;
+            if (currentBeat > 3)
+            {
+                currentBeat = 0;
+            }
+            if (selectedOrder is not null && makingOrder)
+            {
+                requiredTopping = selectedOrder.GetToppings()[currentBeat]; 
+                prepStationUI.transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = toppingIcons[(int)requiredTopping];
+            }
+            evenBeat = false;
+        }
+        else
+        {
+            evenBeat = true;
+        }
     }
 
     public void NewMeasure()
     {
-        if (even)
+        if (!makingOrder && IsOrderSelected())
         {
-            toppingCoordinateGenerator.NewPlate();
-            lineManager.DrawLine();
-            even = false;
-        }
-        else
-        {
-            even = true;
+            makingOrder = true;
+            evenMeasure = true;
+            orderProgress = 0;
+            ReservoirManager.GetPlates().Pop();
+            Transform spawnedPlate = Instantiate(platePrefab, lineManager.transform).transform;
+            spawnedPlate.localPosition = new Vector3(0.014f, -0.35f, 0.01f);
         }
 
-        selectedTopping = Topping.NONE;
+        if (makingOrder)
+        {
+            if (evenMeasure)
+            {
+                if (orderProgress < selectedOrder.GetMainCourseCount())
+                {
+                    toppingCoordinateGenerator.NewPlate();
+                    lineManager.DrawLine();
+                    evenMeasure = false;
+                    currentBeat = 0;
+
+                    float height = (selectedOrder.GetMainCourseCount() - orderProgress) * -0.01f;
+                    ReservoirPancake pancake = ReservoirManager.GetPancakes().Pop();
+                    Transform spawnedPancake = Instantiate(pancake.GetPancake(), lineManager.transform).transform;
+                    spawnedPancake.localPosition = new Vector3(-0.2f, height, 0.15f);
+                    spawnedPancake.gameObject.SetActive(true);
+
+                    orderProgress++;
+                    
+                    requiredTopping = selectedOrder.GetToppings()[currentBeat]; 
+                }
+                else
+                {
+                    selectedCustomer.DeactivateCustomer();
+                    selectedCustomer = null;
+                    selectedOrder = null;
+                    makingOrder = false;
+
+                    foreach (Transform child in lineManager.transform)
+                    {
+                        Destroy(child.gameObject);
+                    }
+
+                    UpdateCustomerOrders();
+                }
+            }
+            else
+            {
+                evenMeasure = true;
+            }
+        }
     }
 
     public override void pathUpdate(Vector2 offset)
@@ -116,7 +165,7 @@ public class PrepStation : Station
         float differenceX = 0f;
         float differenceZ = 0f;
 
-        if ((distance < distanceMinimum || distance > 0.25F) && selectedTopping == lineManager.GetCurrentTopping())
+        if (!makingOrder || ((distance < distanceMinimum || distance > 0.25F) && selectedTopping == requiredTopping))
         {
             Composer.Instance.PitchChange(0);
         }
@@ -133,47 +182,47 @@ public class PrepStation : Station
             differenceZ = toppingCoordinateGenerator.GetCollider(beatIndex).transform.position.z - toppingCoordinateGenerator.GetCollider(lineManager.GetCurrentBeat() + 1).transform.position.z;
         }
 
-        Debug.Log(differenceZ + " = Y AND " + differenceX + " = X");
+        
 
         if (differenceX >= 0.05f && !soundBytePlayer.isPlaying(GlobalVariables.rightPrep) && differenceZ < 0.05f && differenceZ > -0.05f && Input.GetMouseButtonDown(0))
         {
             soundBytePlayer.PlayRight();
-            Debug.Log("RIGHT");
+            
         }
         else if (differenceX <= -0.05f && !soundBytePlayer.isPlaying(GlobalVariables.leftPrep) && differenceZ < 0.05f && differenceZ > -0.05f && Input.GetMouseButtonDown(0))
         {
             soundBytePlayer.PlayLeft();
-            Debug.Log("LEFT");
+            
         }
         else if (differenceZ >= 0.05f && !soundBytePlayer.isPlaying(GlobalVariables.upPrep) && differenceX < 0.05f && differenceX > -0.05f && Input.GetMouseButtonDown(0))
         {
             soundBytePlayer.PlayUp();
-            Debug.Log("UP");
+            
         }
         else if (differenceZ <= -0.05f && !soundBytePlayer.isPlaying(GlobalVariables.downPrep) && differenceX < 0.05f && differenceX > -0.05f && Input.GetMouseButtonDown(0))
         {
             soundBytePlayer.PlayDown();
-            Debug.Log("DOWN");
+            
         }
         else if (differenceX >= 0.05f && !soundBytePlayer.isPlaying(GlobalVariables.upRightPrep) && differenceZ >= 0.05f && Input.GetMouseButtonDown(0))
         {
             soundBytePlayer.PlayUpRight();
-            Debug.Log("UPRIGHT");
+            
         }
         else if (differenceX >= 0.05f && !soundBytePlayer.isPlaying(GlobalVariables.downRightPrep) && differenceZ <= -0.05f && Input.GetMouseButtonDown(0))
         {
             soundBytePlayer.PlayDownRight();
-            Debug.Log("DOWNRIGHT");
+            
         }
         else if (differenceZ >= 0.05f && !soundBytePlayer.isPlaying(GlobalVariables.upLeftPrep) && differenceX <= -0.05f && Input.GetMouseButtonDown(0))
         {
             soundBytePlayer.PlayUpLeft();
-            Debug.Log("UPLEFT");
+            
         }
         else if (differenceX <= -0.05f && !soundBytePlayer.isPlaying(GlobalVariables.downLeftPrep) && differenceZ <= -0.05f && Input.GetMouseButtonDown(0))
         {
             soundBytePlayer.PlayDownLeft();
-            Debug.Log("DOWNLEFT");
+            
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -182,20 +231,55 @@ public class PrepStation : Station
 
     }
 
+    public void AddOrder(Order order, CustomerBehavior customer)
+    {
+        orders.Add(order, customer);
+    }
+
+    public void RemoveOrder(Order order)
+    {
+        if (order is null)
+        {
+            return;
+        }
+
+        if (selectedOrder == order)
+        {
+            selectedCustomer = null;
+            selectedOrder = null;
+            makingOrder = false;
+
+            toppingCoordinateGenerator.RemoveShape();
+            lineManager.UpdateLine();
+
+            foreach (Transform child in lineManager.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            UpdateCustomerOrders();
+        }
+
+        orders.Remove(order);
+    }
+
     public void UpdateCustomerOrders()
     {
-        foreach (Transform child in orderList)
+        foreach (Transform child in orderDisplay)
         {
             Destroy(child.gameObject);
         }
 
-        foreach (KeyValuePair<Order, CustomerBehavior> kvp in CustomerManager.Instance.GetAllActiveOrders())
+        int i = 0;
+
+        foreach (KeyValuePair<Order, CustomerBehavior> kvp in orders)
         {
-            GameObject newOrder = Instantiate(orderPrefab, orderList);
-            OrderButton newOrderButton = newOrder.GetComponentInChildren<OrderButton>();
-            newOrderButton.SetAssociatedOrder(kvp.Key);
-            newOrderButton.SetAssociatedCustomer(kvp.Value);
-            newOrder.GetComponentInChildren<TextMeshProUGUI>().text = kvp.Key.ToString();
+            GameObject newOrder = Instantiate(orderPrefab, orderDisplay);
+            OrderSlip newOrderSlip = newOrder.GetComponentInChildren<OrderSlip>();
+            newOrderSlip.SetAssociatedOrder(kvp.Key);
+            newOrderSlip.SetAssociatedCustomer(kvp.Value);
+            newOrderSlip.SetKeyCodeByIndex(i);
+            i++;
         }
     }
 
@@ -232,12 +316,6 @@ public class PrepStation : Station
             return;
         }
 
-        /*else if(String.Equals(topping.ToString(), "BUTTER"))
-        {
-        if butter == 3 return, else add butter
-
-        }*/
-
         if (preppedOrder.GetToppings().Contains(topping))
         {
             return;
@@ -249,63 +327,40 @@ public class PrepStation : Station
         }
     }
 
-    public void AddPancake() { SelectMainCourse(MainCourse.PANCAKE); }
-    public void AddWaffle() { SelectMainCourse(MainCourse.WAFFLE); }
-    public void ToggleChocolateChips() {ToggleTopping(Topping.CHOCOLATE_CHIP);}
-
-
-    public void SelectPancake()
-    {
-        setWaffle = false;
-        setPancake = true;
-    }
-
-    public void SelectWaffle()
-    {
-        setPancake = false;
-        setWaffle = true;
-    }
-
-    public void NullifyPreppedOrder()
-    {
-        preppedOrder = null;
-        selectedToppingLabel.text = "";
-    }
-    public Order GetPreppedOrder() { return preppedOrder; }
     public void SetRunning(bool running) { this.running = running; }
 
     public void ToppingsControl()
     {
-        //Butter
+        //foot
         if (Input.GetKey(KeyCode.W))
         {
-            if (selectedTopping == Topping.NONE || selectedTopping == Topping.BUTTER)
+            if (selectedTopping == Topping.NONE || selectedTopping == Topping.FRUIT)
             {
-                //butter.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+                fruitTongs.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButton(0))
                 {
-                    //check if on beat
-                    ToggleTopping(Topping.BUTTER);
+                    ToggleTopping(Topping.FRUIT);
+                    //activate pour effect   
                 }
             }
-            selectedTopping = Topping.BUTTER;
+            selectedTopping = Topping.FRUIT;
         }
 
         //Syrup
         if (Input.GetKey(KeyCode.A))
         {
-            if (selectedTopping == Topping.NONE || selectedTopping == Topping.SYRUP_OLD_FASHIONED)
+            if (selectedTopping == Topping.NONE || selectedTopping == Topping.SYRUP)
             {
                 syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
 
                 if (Input.GetMouseButton(0))
                 {
-                    ToggleTopping(Topping.SYRUP_OLD_FASHIONED);
+                    ToggleTopping(Topping.SYRUP);
                     //activate pour effect   
                 }
             }
-            selectedTopping = Topping.SYRUP_OLD_FASHIONED;
+            selectedTopping = Topping.SYRUP;
         }
 
         //Choccy Chippos
@@ -349,8 +404,9 @@ public class PrepStation : Station
 
     public void ToppingsRelease()
     {
-        if (Input.GetKeyUp(KeyCode.W)){
-            //butter.transform.position = initialButterPosition
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            fruitTongs.transform.position = initialFruitPosition;
         }
 
         if (Input.GetKeyUp(KeyCode.A))
@@ -367,11 +423,19 @@ public class PrepStation : Station
         {
             whipCream.transform.position = initialWhipPosition;
         }
+        
     }
 
     public void ScrapOrder()
     {
         preppedOrder.ClearOrder();
+    }
+
+    public bool IsOrderSelected() { return selectedOrder != null; }
+    public void SetSelectedOrderAndCustomer(Order selectedOrder, CustomerBehavior selectedCustomer)
+    {
+        this.selectedOrder = selectedOrder;
+        this.selectedCustomer = selectedCustomer;
     }
 
 }

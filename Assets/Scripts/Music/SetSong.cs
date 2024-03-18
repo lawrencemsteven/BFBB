@@ -76,11 +76,11 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.bpm = 180u;
 
-        GlobalVariables.earlyDish = "EarlyDish";
+        GlobalVariables.earlyDish = "EarlyDish3";
 
-        GlobalVariables.onTimeDish = "HiHat";
+        GlobalVariables.onTimeDish = "HiHat3";
 
-        GlobalVariables.lateDish = "LateDish";
+        GlobalVariables.lateDish = "LateDish3";
 
         GlobalVariables.upPrep = "D";
         GlobalVariables.upRightPrep = "B";
@@ -94,4 +94,18 @@ public class SetSong : MonoBehaviour
         GlobalVariables.volume = "Volume 2";
 
     }
+
+    public void songBumpin()
+    {
+        GlobalVariables.songChoice = "event:/BoogieSong 2";
+
+        GlobalVariables.bpm = 135u;
+
+        GlobalVariables.earlyDish = "EarlyDish2";
+
+        GlobalVariables.onTimeDish = "HiHat2";
+
+        GlobalVariables.lateDish = "LateDish2";
+    }
+
 }
