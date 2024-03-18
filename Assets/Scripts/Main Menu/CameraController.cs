@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    // All Camera Positions
     public Camera[] m_mainCameras;
     public Camera[] m_jukeboxCameras;
     public Camera[] m_boothCameras;
@@ -22,20 +23,22 @@ public class CameraController : MonoBehaviour
     public Camera[] m_lightCameras;
 
     public int m_numMainOutsideCameras;
-    private int m_numOutsideCamerasCounter;
-    public float m_individualTransitionTime = 3.0f;
-
+    public float[] m_individualTransitionTime = new float[(int)CameraPoses.TOTAL_LENGTH];
+    private float[] m_individualTransitionAmounts = new float[(int)CameraPoses.TOTAL_LENGTH];
+    private int[] m_previousPosition = new int[(int)CameraPoses.TOTAL_LENGTH];
     private bool m_useGameCameras = false;
 
-    private int m_currentCamera = 0;
-    private int m_nextCamera = 1;
-    private float m_currentTransitionAmount = 0.0f;
 
-    private Vector3[] animatedCameraPositions;
-    private Quaternion[] animatedCameraRotations;
+    // Camera Posing
+    private bool m_poseTransitioning = false;
+    public float m_poseTransitioningTime = 3.0f;
+    private float m_poseTransitioningAmount = 0.0f;
+    private CameraPoses m_previousCameraPose = CameraPoses.MAIN;
+    private CameraPoses m_currentCameraPose = CameraPoses.MAIN;
 
 
-    private enum CameraPoses
+    // All poses
+    public enum CameraPoses
     {
         MAIN,
         JUKEBOX,
@@ -59,32 +62,101 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        animatedCameraPositions = new Vector3[(int)CameraPoses.TOTAL_LENGTH];
-        animatedCameraRotations = new Quaternion[(int)CameraPoses.TOTAL_LENGTH];
+        // ICollection<string> test = AssetManager.GetAssetNames();
+        // foreach (string testString in test)
+        // {
+        //     Debug.Log(testString);
+        // }
+        // Debug.Log(test);
     }
 
     void Update()
     {
-        animatedCameraPositions[(int)CameraPoses.MAIN] = Vector3.Lerp(m_mainCameras[m_currentCamera].transform.position, m_mainCameras[m_nextCamera].transform.position, m_currentTransitionAmount / m_individualTransitionTime);
-        animatedCameraRotations[(int)CameraPoses.MAIN] = Quaternion.Lerp(m_mainCameras[m_currentCamera].transform.rotation, m_mainCameras[m_nextCamera].transform.rotation, m_currentTransitionAmount / m_individualTransitionTime);
-        m_currentTransitionAmount += Time.deltaTime;
-        if (m_currentTransitionAmount >= m_individualTransitionTime)
+        if (!m_poseTransitioning)
         {
-            m_currentCamera = (m_currentCamera + 1) % m_mainCameras.Length;
-            m_nextCamera = (m_nextCamera + 1) % m_mainCameras.Length;
-            m_currentTransitionAmount = 0.0f;
-            if (m_numOutsideCamerasCounter < m_numMainOutsideCameras - 1)
+            transform.SetPositionAndRotation(getPosePosition(m_currentCameraPose), getPoseRotation(m_currentCameraPose));
+        }
+        else
+        {
+            Vector3 oldPosition = getPosePosition(m_previousCameraPose);
+            Vector3 newPosition = getPosePosition(m_currentCameraPose);
+
+            Quaternion oldRotation = getPoseRotation(m_previousCameraPose);
+            Quaternion newRotation = getPoseRotation(m_currentCameraPose);
+
+            float lerpAmount = m_poseTransitioningAmount / m_poseTransitioningTime;
+            newPosition = Vector3.Lerp(oldPosition, newPosition, lerpAmount);
+            newRotation = Quaternion.Lerp(oldRotation, newRotation, lerpAmount);
+
+            transform.SetPositionAndRotation(newPosition, newRotation);
+
+            m_poseTransitioningAmount += Time.deltaTime;
+            if (m_poseTransitioningAmount > m_poseTransitioningTime)
             {
-                m_numOutsideCamerasCounter += 1;
-            }
-            else
-            {
-                m_currentCamera = Math.Max(m_currentCamera, m_numMainOutsideCameras);
-                m_nextCamera = Math.Max(m_nextCamera, m_numMainOutsideCameras);
+                m_poseTransitioning = false;
             }
         }
 
-        transform.SetPositionAndRotation(animatedCameraPositions[(int)CameraPoses.MAIN], animatedCameraRotations[(int)CameraPoses.MAIN]);
+        for (int i = 0; i < (int)CameraPoses.TOTAL_LENGTH; i++)
+        {
+            updatePoseValues((CameraPoses)i);
+        }
+    }
+
+    public Vector3 getPosePosition(CameraPoses cameraPose)
+    {
+        Camera[] stationCameras = getStationCameras(cameraPose);
+
+        if (stationCameras.Length == 1)
+        {
+            return stationCameras[0].transform.position;
+        }
+
+        Camera previous = stationCameras[m_previousPosition[(int)cameraPose]];
+        Camera next = stationCameras[(m_previousPosition[(int)cameraPose] + 1) % stationCameras.Length];
+
+        return Vector3.Lerp(previous.transform.position, next.transform.position, m_individualTransitionAmounts[(int)cameraPose] / m_individualTransitionTime[(int)cameraPose]);
+    }
+
+    public Quaternion getPoseRotation(CameraPoses cameraPose)
+    {
+        Camera[] stationCameras = getStationCameras(cameraPose);
+
+        if (stationCameras.Length == 1)
+        {
+            return stationCameras[0].transform.rotation;
+        }
+
+        Camera previous = stationCameras[m_previousPosition[(int)cameraPose]];
+        Camera next = stationCameras[(m_previousPosition[(int)cameraPose] + 1) % stationCameras.Length];
+
+        return Quaternion.Lerp(previous.transform.rotation, next.transform.rotation, m_individualTransitionAmounts[(int)cameraPose] / m_individualTransitionTime[(int)cameraPose]);
+    }
+
+    public void updatePoseValues(CameraPoses cameraPose)
+    {
+        Camera[] stationCameras = getStationCameras(cameraPose);
+
+        if (stationCameras.Length <= 1)
+        {
+            return;
+        }
+
+        m_individualTransitionAmounts[(int)cameraPose] += Time.deltaTime;
+        if (m_individualTransitionAmounts[(int)cameraPose] >= m_individualTransitionTime[(int)cameraPose])
+        {
+            m_individualTransitionAmounts[(int)cameraPose] %= m_individualTransitionTime[(int)cameraPose];
+            m_previousPosition[(int)cameraPose] = (m_previousPosition[(int)cameraPose] + 1) % stationCameras.Length;
+        }
+    }
+
+    public void changeTarget(CameraPoses newCameraPose, float time)
+    {
+        m_poseTransitioning = true;
+        m_poseTransitioningTime = time;
+        m_poseTransitioningAmount = 0.0f;
+        m_previousCameraPose = m_currentCameraPose;
+        m_currentCameraPose = newCameraPose;
     }
 
     private Camera[] getStationCameras(CameraPoses cameraPose)
