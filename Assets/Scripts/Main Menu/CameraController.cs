@@ -234,8 +234,14 @@ public class CameraController : MonoBehaviour
         return null;
     }
 
-    public bool useGameCameras()
+    public bool UsingGameCameras()
     {
         return m_useGameCameras;
+    }
+
+    public void SetUseGameCameras(bool use)
+    {
+        m_useGameCameras = use;
+        gameObject.SetActive(!use);
     }
 }

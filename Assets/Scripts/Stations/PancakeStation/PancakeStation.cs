@@ -19,7 +19,6 @@ public class PancakeStation : Station
     public LineManager lineManager2, lineManager3;
     private bool readyForNewMeasure;
     public EnableBatterArea enableBatterArea;
-    public SwitchCamera switchCam;
 
     private int pathToScore;
     private ScoreAndStreakManager scoreManager;
@@ -149,7 +148,7 @@ public class PancakeStation : Station
             }
         }
 
-        if ((Input.GetMouseButton(0)) && (switchCam.getCurrentStation().gameObject.name == "PancakeStation"))
+        if (Input.GetMouseButton(0) && Stations.Pancake.IsRunning())
         {
             List<Vector2> markerSpaces = new List<Vector2>();
             markerSpaces.Add(lineManager.GetMarkerSpace());

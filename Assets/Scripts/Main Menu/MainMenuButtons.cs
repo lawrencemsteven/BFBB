@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Enumerations;
 
 public class MainMenuButtons : MonoBehaviour
 {
+    [SerializeField] private SwitchCamera switchCamera;
     public CameraController cameraController;
     public ShopAssetManager shopAssetManager;
     public float transitionTime = 3.0f;
@@ -205,8 +207,10 @@ public class MainMenuButtons : MonoBehaviour
     }
     public void JukeboxPlay()
     {
-        Debug.Log("TODO: Jukebox Play");
+        cameraController.SetUseGameCameras(true);
+        switchCamera.Switch(StationType.DISH);
         Cursor.visible = false;
+        gameObject.SetActive(false);
     }
 
 

@@ -1891,6 +1891,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variantName: Cyberpunk
   prefab: {fileID: 7616471348591930547, guid: 4c7badfd60de5e3458c799c2b1a9877c, type: 3}
+--- !u!1 &826748456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1172488388695502536, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
+  m_PrefabInstance: {fileID: 5843084831700393144}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &849374800 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7977248260418981509, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
@@ -7495,6 +7500,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2472504299784571041, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: switchCamera
+      value: 
+      objectReference: {fileID: 1545663799}
+    - target: {fileID: 2472504299784571041, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 4638946048597708169}
@@ -8650,7 +8659,7 @@ PrefabInstance:
     - target: {fileID: 5843084831809718465, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
       propertyPath: fruitTongs
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 826748456}
     - target: {fileID: 5843084831809718465, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
       propertyPath: chocolateChip
       value: 

@@ -53,11 +53,6 @@ public class ShopAssetManager : MonoBehaviour
     void Start()
     {
         ICollection<string> test = AssetManager.GetAssetNames();
-        foreach (string testString in test)
-        {
-            Debug.Log(testString);
-        }
-        Debug.Log(test);
     }
 
     public void setSection(ShopSections shopSection)

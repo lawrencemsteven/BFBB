@@ -37,7 +37,7 @@ public class SwitchCamera : MonoBehaviour
 
     void Update()
     {
-        if (!cameraController.useGameCameras())
+        if (!cameraController.UsingGameCameras())
         {
             return;
         }
@@ -85,12 +85,12 @@ public class SwitchCamera : MonoBehaviour
             waitingToSwitch = false;
             GlobalVariables.camState = (int)switchToStation;
             scoreManager.resetStreak();
-            switchCamera(switchToStation);
+            Switch(switchToStation);
         }
 
     }
 
-    private void switchCamera(StationType stationType)
+    public void Switch(StationType stationType)
     {
         station = getStationByEnum(stationType);
         Station selectedStation = getStationByEnum(selectedStationType);
