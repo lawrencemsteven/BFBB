@@ -36,8 +36,14 @@ public class AssetSwapper : MonoBehaviour
 
     public void ApplyVariant(string swapName)
     {
-        variantOptions[currentSwap].Unapply();
-        variantOptions[swapName].Apply();
-        currentSwap = swapName;
+        if (variantOptions.ContainsKey(swapName))
+        {
+            variantOptions[currentSwap].Unapply();
+            variantOptions[swapName].Apply();
+            currentSwap = swapName;
+        } else
+        {
+            Debug.LogWarning("Attempted to add invalid variant " + swapName + " to asset " + assetName);
+        }
     }
 }
