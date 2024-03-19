@@ -86,7 +86,7 @@ public class CameraController : MonoBehaviour
 
             m_poseTransitioningAmount += Time.deltaTime;
             float lerpAmount = m_poseTransitioningAmount / m_poseTransitioningTime;
-            lerpAmount = Stevelation.Lerp(Stevelation.StevelationSpeeds.Slow, Stevelation.StevelationSpeeds.Slow, lerpAmount);
+            lerpAmount = Interpolawrence.Lerp(Interpolawrence.InterpolawrenceSpeeds.Slow, Interpolawrence.InterpolawrenceSpeeds.Slow, lerpAmount);
             lerpAmount = Math.Clamp(lerpAmount, 0.0f, 1.0f);
             newPosition = Vector3.Lerp(oldPosition, newPosition, lerpAmount);
             newRotation = Quaternion.Slerp(oldRotation, newRotation, lerpAmount);
@@ -127,7 +127,7 @@ public class CameraController : MonoBehaviour
         }
 
         float lerpAmount = m_individualTransitionAmounts[(int)cameraPose] / m_individualTransitionTime[(int)cameraPose];
-        lerpAmount = Stevelation.Lerp(Stevelation.StevelationSpeeds.Slow, Stevelation.StevelationSpeeds.Slow, lerpAmount);
+        lerpAmount = Interpolawrence.Lerp(Interpolawrence.InterpolawrenceSpeeds.Slow, Interpolawrence.InterpolawrenceSpeeds.Slow, lerpAmount);
         lerpAmount = Math.Clamp(lerpAmount, 0.0f, 1.0f);
         return Vector3.Lerp(previous.transform.position, next.transform.position, lerpAmount);
     }
@@ -154,7 +154,7 @@ public class CameraController : MonoBehaviour
         }
 
         float lerpAmount = m_individualTransitionAmounts[(int)cameraPose] / m_individualTransitionTime[(int)cameraPose];
-        lerpAmount = Stevelation.Lerp(Stevelation.StevelationSpeeds.Slow, Stevelation.StevelationSpeeds.Slow, lerpAmount);
+        lerpAmount = Interpolawrence.Lerp(Interpolawrence.InterpolawrenceSpeeds.Slow, Interpolawrence.InterpolawrenceSpeeds.Slow, lerpAmount);
         lerpAmount = Math.Clamp(lerpAmount, 0.0f, 1.0f);
         return Quaternion.Slerp(previous.transform.rotation, next.transform.rotation, lerpAmount);
     }

@@ -35,7 +35,7 @@ public class MainMenuButtons : MonoBehaviour
         if (menuTransitioning)
         {
             transitionAmount += Time.deltaTime;
-            float lerpAmount = Stevelation.Lerp(Stevelation.StevelationSpeeds.Slow, Stevelation.StevelationSpeeds.Slow, Mathf.Clamp(transitionAmount / transitionTime, 0.0f, 1.0f));
+            float lerpAmount = Interpolawrence.Lerp(Interpolawrence.InterpolawrenceSpeeds.Slow, Interpolawrence.InterpolawrenceSpeeds.Slow, Mathf.Clamp(transitionAmount / transitionTime, 0.0f, 1.0f));
 
             previousMenu.localPosition = new Vector3(previousMenu.localPosition.x, Mathf.Lerp(0.0f, -1080.0f, lerpAmount), previousMenu.localPosition.z);
             currentMenu.localPosition = new Vector3(currentMenu.localPosition.x, Mathf.Lerp(1080.0f, 0.0f, lerpAmount), currentMenu.localPosition.z);
@@ -83,6 +83,11 @@ public class MainMenuButtons : MonoBehaviour
                 {
                     backButtonParent.GetComponent<Button>().interactable = true;
                     enableBackButtonAfterTransition = false;
+                }
+
+                if (backButtonIn)
+                {
+                    moveBackButton(1.0f);
                 }
             }
         }
@@ -291,7 +296,7 @@ public class MainMenuButtons : MonoBehaviour
     }
     public void ShopDecor()
     {
-        cameraController.changeTarget(CameraController.CameraPoses.WALLS, transitionTime);
+        cameraController.changeTarget(CameraController.CameraPoses.TABLE_ACCESSORIES, transitionTime);
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Condiments);
