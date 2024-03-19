@@ -205,6 +205,7 @@ public class MainMenuButtons : MonoBehaviour
     public void JukeboxPlay()
     {
         Debug.Log("TODO: Jukebox Play");
+        Cursor.visible = false;
     }
 
 
@@ -314,6 +315,13 @@ public class MainMenuButtons : MonoBehaviour
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.Background);
+    }
+    public void ShopAll()
+    {
+        cameraController.changeTarget(CameraController.CameraPoses.MAIN, transitionTime);
+        transitionTo(shopStylesParent);
+        ensureBackButtonIn(true);
+        shopAssetManager.setSection(ShopAssetManager.ShopSections.All);
     }
 
 

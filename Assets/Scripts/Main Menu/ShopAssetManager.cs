@@ -34,6 +34,7 @@ public class ShopAssetManager : MonoBehaviour
         WallArt,
         Background,
         GriddleStation,
+        All,
 
     }
 
@@ -70,6 +71,18 @@ public class ShopAssetManager : MonoBehaviour
 
     public void activateButtons()
     {
+        if (m_selectedSection == ShopSections.All)
+        {
+            m_defaultButton.interactable = true;
+            m_pinkButton.interactable = true;
+            m_orangeButton.interactable = true;
+            m_greenButton.interactable = true;
+            m_purpleButton.interactable = true;
+            m_cyberpunkButton.interactable = true;
+            m_spaceButton.interactable = true;
+            m_seaButton.interactable = true;
+        }
+
         ICollection<string> styles = AssetManager.GetAvailableSwapsForAsset(convertSectionToString(m_selectedSection));
         foreach (string style in styles)
         {
@@ -104,6 +117,15 @@ public class ShopAssetManager : MonoBehaviour
     }
     public void setStyle(ShopStyles style)
     {
+        if (m_selectedSection == ShopSections.All)
+        {
+            for (int i = 0; i < (int)ShopSections.All; i++)
+            {
+                AssetManager.ApplyAssetSwap(convertSectionToString((ShopSections)i), convertStyleToString(style));
+            }
+            return;
+        }
+
         if (m_selectedSection == ShopSections.Walls)
         {
             AssetManager.ApplyAssetSwap(convertSectionToString(ShopSections.Doors), convertStyleToString(style));
