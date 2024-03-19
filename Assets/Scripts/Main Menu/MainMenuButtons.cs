@@ -30,6 +30,8 @@ public class MainMenuButtons : MonoBehaviour
     {
         previousMenu = mainMenuButtonsParent;
         currentMenu = mainMenuButtonsParent;
+        gameObject.SetActive(true);
+        switchCamera.transform.parent.GetComponent<Canvas>().enabled = false;
     }
 
     public void Update()
@@ -210,6 +212,7 @@ public class MainMenuButtons : MonoBehaviour
         cameraController.SetUseGameCameras(true);
         switchCamera.Switch(StationType.DISH);
         Cursor.visible = false;
+        switchCamera.transform.parent.GetComponent<Canvas>().enabled = true;
         gameObject.SetActive(false);
     }
 
