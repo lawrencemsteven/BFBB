@@ -36,5 +36,5 @@ public class GlobalVariables : MonoBehaviour
     public static string downRightPrep;
 
     public static FMOD.Studio.EventInstance instance;
-    public static string volume;
+    public static string volume = "Volume";
 }

@@ -49,10 +49,10 @@ public class DishStation : Station
             return;
         }
 
+        ReservoirManager.GetPlates().Add(smudgeCoordinateGenerator.CreateReservoirPlate());
         smudgeCoordinateGenerator.NewPlate();
         lineManager.DrawLine();
         PlaySwapAnimation();
-        ReservoirManager.GetPlates().Add(smudgeCoordinateGenerator.CreateReservoirPlate());
     }
 
     protected override void pointCollision(int index)

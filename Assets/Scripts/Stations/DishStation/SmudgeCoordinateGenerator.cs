@@ -9,8 +9,8 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
     [SerializeField] private float smudgeQualityCost;
     [SerializeField] private List<Material> smearMaterials;
     [SerializeField] private List<Material> scrapeMaterials;
-    private int smudgesRemaining;
     private List<bool> collidedSmudges = new List<bool>();
+    private List<bool> perfectSmudges = new List<bool>();
 
     private ScoreAndStreakManager scoreManager;
 
@@ -34,6 +34,7 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
             coordinates.Add(target);
 
             collidedSmudges.Add(false);
+            perfectSmudges.Add(false);
         }
     }
 
@@ -62,6 +63,7 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
     private void setSmudgeInvisible(int index)
     {
         points[index].transform.GetChild(0).GetComponent<Renderer>().enabled = false;
+        perfectSmudges[index] = true;
     }
 
     private void setSmudgeAsSmear(int index)
@@ -86,13 +88,25 @@ public class SmudgeCoordinateGenerator : CoordinateGenerator
             points[i].transform.GetChild(0).GetComponent<Renderer>().enabled = true;
             
         }
-
-        smudgesRemaining = points.Count;
     }
 
     public ReservoirPlate CreateReservoirPlate()
     {
-        float quality = 1.0f - (smudgesRemaining * smudgeQualityCost);
+        float quality = 1.0f;
+        for (int i = 0; i < points.Count; i++)
+        {
+            if (collidedSmudges[i])
+            {
+                if (!perfectSmudges[i])
+                {
+                    quality -= smudgeQualityCost * 0.5f;
+                }
+            }
+            else
+            {
+                quality -= smudgeQualityCost;
+            }
+        }
         return new ReservoirPlate(quality);
     }
 
