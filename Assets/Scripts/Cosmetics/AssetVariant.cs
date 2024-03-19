@@ -11,6 +11,11 @@ public class AssetVariant : MonoBehaviour
 
     public virtual void Apply()
     {
+        if (prefab == null)
+        {
+            Debug.LogWarning("Variant " + variantName + " on " + name + " has null prefab!");
+            return;
+        }
         instantiated = Instantiate(prefab, transform);
     }
 

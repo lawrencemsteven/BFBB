@@ -21,6 +21,11 @@ public class SpongeAsCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Stations.Dish.IsRunning())
+        {
+            return;
+        }
+
         if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
         {
             isMouseMoving = true;
