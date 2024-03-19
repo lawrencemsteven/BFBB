@@ -102,7 +102,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -552,7 +552,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -1140,6 +1140,8 @@ MonoBehaviour:
   pancakeCountdown: {fileID: 0}
   lineManager2: {fileID: 8069909452296265954}
   lineManager3: {fileID: 8069909452520853082}
+  enableBatterArea: {fileID: 0}
+  switchCam: {fileID: 0}
 --- !u!114 &8069909453147067679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,6 +1154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3377de63939eaa54bb4f2736c9d1a7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emitter: {fileID: 0}
 --- !u!1 &8069909453199177817
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,7 +2289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39b0313ea300bd4fb69a7e1cd052006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceThreshold: 5
+  offset: -0.7
 --- !u!1 &8069909453878872478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,7 +2770,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -3311,37 +3314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a658fa9e2c6ee846b6cf33be1a43a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8069909453964244458 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3452001473438171368, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
-  m_PrefabInstance: {fileID: 4618981177438680322}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &8069909453340767614
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8069909453964244458}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.43, y: 0.34, z: 15.26}
-  m_Center: {x: 0.0000019073486, y: 0, z: 13.2}
---- !u!114 &8069909453340767612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8069909453964244458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 482f3a605606cf8478e27d13d5340191, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleSpawner: {fileID: 3444155976094007150}
 --- !u!1 &8069909454039491405 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3452001473513494095, guid: 7221e82caae3aaa4691f8fd74f800db1, type: 3}
