@@ -9,9 +9,9 @@ public class ReservoirManager : MonoBehaviour
     private static ReservoirStack<ReservoirPlate> plates;
     private static ReservoirStack<ReservoirWaffle> waffles;
 
-    [SerializeField] private static int maxPancakes = 24;
-    [SerializeField] private static int maxPlates = 30;
-    [SerializeField] private static int maxWaffles = 12;
+    [SerializeField] private int maxPancakes = 24;
+    [SerializeField] private int maxPlates = 30;
+    [SerializeField] private int maxWaffles = 12;
 
     void Awake()
     {
