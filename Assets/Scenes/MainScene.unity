@@ -260,6 +260,99 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f821c3851267659409a246e7e388922a, type: 3}
+--- !u!1 &87401417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87401422}
+  - component: {fileID: 87401421}
+  - component: {fileID: 87401420}
+  - component: {fileID: 87401419}
+  - component: {fileID: 87401418}
+  m_Layer: 0
+  m_Name: SkyboxSwapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &87401418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87401417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5be2a8ef49cd7e40930d3d8c4c95cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Space
+  prefab: {fileID: 0}
+  skybox: {fileID: 2100000, guid: b4d1e1180d6b45d4eaa6f6b684d18e2b, type: 2}
+--- !u!114 &87401419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87401417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5be2a8ef49cd7e40930d3d8c4c95cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Sea
+  prefab: {fileID: 0}
+  skybox: {fileID: 2100000, guid: ab628e4423e23804a8a246b1b789aa02, type: 2}
+--- !u!114 &87401420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87401417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5be2a8ef49cd7e40930d3d8c4c95cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Default
+  prefab: {fileID: 0}
+  skybox: {fileID: 2100000, guid: a88d5568c826d35469b022d0e7708f91, type: 2}
+--- !u!114 &87401421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87401417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f0687dcec207a47a86c166d57b107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Background
+--- !u!4 &87401422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87401417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.2184086, y: 2.4582357, z: -6.244985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 50
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &130854265
 GameObject:
   m_ObjectHideFlags: 0
