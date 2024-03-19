@@ -65,7 +65,6 @@ public class DishStation : Station
         {
             smudgeCoordinateGenerator.SetSmudgeAsScrape(index);
             if (smudgeCoordinateGenerator.IsSmudgeCollided(index)) {
-                Debug.Log("Streak Reset From lineManager.GetCurrentBeat");
                 scoreManager.resetStreak();
             }
         }
