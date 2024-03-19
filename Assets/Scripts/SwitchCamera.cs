@@ -9,8 +9,6 @@ public class SwitchCamera : MonoBehaviour
     [SerializeField] private GameObject overheadCamera;
     private bool waitingToSwitch;
     private int switchReqBar;
-    private Image transitionScreen;
-    private AudioSource audioSource;
     private FMOD.Studio.EventInstance eventInstance;
     private string eventObjectName;
     private StationType switchToStation;
@@ -30,9 +28,6 @@ public class SwitchCamera : MonoBehaviour
         getStationByEnum(StationType.PANCAKE).Deactivate();
         getStationByEnum(StationType.PREP).Deactivate();
         getStationByEnum(StationType.COFFEE).Deactivate();
-        
-        transitionScreen = GetComponent<Image>();
-        audioSource = GetComponent<AudioSource>();
 
         GlobalVariables.camState = 0;
         GlobalVariables.currentStation = "Dish";
@@ -78,14 +73,6 @@ public class SwitchCamera : MonoBehaviour
             waitingToSwitch = true;
             switchToStation = StationType.OVERHEAD_VIEW;
         }
-
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            audioSource.pitch = Random.Range(0.5f, 1.5f);
-            audioSource.Play();
-        }
-
-        transitionScreen.enabled = Input.GetKey(KeyCode.Backspace);
 
         if(waitingToSwitch && timer.bar != switchReqBar)
         {
