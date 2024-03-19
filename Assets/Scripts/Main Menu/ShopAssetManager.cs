@@ -56,10 +56,6 @@ public class ShopAssetManager : MonoBehaviour
         foreach (string testString in test)
         {
             Debug.Log(testString);
-            foreach (string testString2 in AssetManager.GetAvailableSwapsForAsset(testString))
-            {
-                Debug.Log(testString2);
-            }
         }
         Debug.Log(test);
     }

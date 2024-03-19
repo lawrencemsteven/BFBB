@@ -88,6 +88,7 @@ public class MainMenuButtons : MonoBehaviour
                 if (backButtonIn)
                 {
                     moveBackButton(1.0f);
+                    backButtonParent.GetComponent<Button>().interactable = true;
                 }
             }
         }
@@ -100,7 +101,7 @@ public class MainMenuButtons : MonoBehaviour
             if (backButtonIn)
             {
                 enableBackButtonAfterTransition = true;
-                backButtonParent.GetComponent<Button>().interactable = false;
+                backButtonParent.GetComponent<Button>().interactable = true;
             }
             return;
         }
@@ -113,7 +114,7 @@ public class MainMenuButtons : MonoBehaviour
         else
         {
             moveBackButtonOut = true;
-            backButtonParent.GetComponent<Button>().interactable = false;
+            backButtonParent.GetComponent<Button>().interactable = true;
             backButtonIn = false;
         }
     }
