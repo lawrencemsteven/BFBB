@@ -24,16 +24,19 @@ public class HoldSFX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isPlaying && Input.GetKeyDown(inputCondition))
+        if (Stations.Pancake.IsRunning())
         {
-            isPlaying = true;
-            emitter.Play();
-        }
+            if(!isPlaying && Input.GetKeyDown(inputCondition))
+            {
+                isPlaying = true;
+                emitter.Play();
+            }
 
-        if(isPlaying && Input.GetKeyUp(inputCondition))
-        {
-            isPlaying = false;
-            emitter.Stop();
+            if(isPlaying && Input.GetKeyUp(inputCondition))
+            {
+                isPlaying = false;
+                emitter.Stop();
+            }
         }
     }
 
