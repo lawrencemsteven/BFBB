@@ -115,6 +115,11 @@ public class SwitchCamera : MonoBehaviour
         selectedStationType = stationType;
     }
 
+    public void DeactivateAll()
+    {
+        getStationByEnum(selectedStationType).Deactivate();
+    }
+
     private Station getStationByEnum(StationType stationType)
     {
         switch (stationType)
