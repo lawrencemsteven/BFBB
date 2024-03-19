@@ -44,10 +44,10 @@ public class DishStation : Station
 
     public void NewMeasure()
     {
+        ReservoirManager.GetPlates().Add(smudgeCoordinateGenerator.CreateReservoirPlate());
         smudgeCoordinateGenerator.NewPlate();
         lineManager.DrawLine();
-        PlaySwapAnimation();                
-        ReservoirManager.GetPlates().Add(smudgeCoordinateGenerator.CreateReservoirPlate());
+        PlaySwapAnimation();
     }
 
     protected override void pointCollision(int index)
