@@ -130,6 +130,7 @@ public class LineManager : MonoBehaviour
             }
             else
             {
+                beatsPassed += beatsPassed - fullBeats;
                 if (beatProgress > 0.5)
                 {
                     previous = points[beatsPassed + 1].transform.position;

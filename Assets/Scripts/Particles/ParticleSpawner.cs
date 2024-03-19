@@ -22,7 +22,7 @@ public abstract class ParticleSpawner : MonoBehaviour
 
     public void SpawnSingleParticle(Vector3 position)
     {
-        Ray rayCast = Camera.main.ScreenPointToRay(position);
+        Ray rayCast = Stations.Pancake.GetAssociatedCamera().ScreenPointToRay(position);
         GameObject spawnedParticle = Instantiate(particle, new Vector3(rayCast.GetPoint(1).x, spawnHeight, rayCast.GetPoint(1).z), Quaternion.identity);
         particleObject.AddToParticles(spawnedParticle.GetComponent<Particle>());
     }

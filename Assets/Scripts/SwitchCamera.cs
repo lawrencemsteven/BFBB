@@ -9,30 +9,26 @@ public class SwitchCamera : MonoBehaviour
     [SerializeField] private GameObject overheadCamera;
     private bool waitingToSwitch;
     private int switchReqBar;
-    private Image transitionScreen;
-    private AudioSource audioSource;
     private FMOD.Studio.EventInstance eventInstance;
     private string eventObjectName;
     private StationType switchToStation;
     private StationType selectedStationType;
     private ScoreAndStreakManager scoreManager;
     private Station station;
+    public CameraController cameraController;
 
     void Start()
-    {       
+    {
         scoreManager = GetComponent<ScoreAndStreakManager>();
         if (eventObjectName == null || eventObjectName == "") eventObjectName = "FMOD Music Event";
-        
+
         countdown1.SetActive(false);
         countdown2.SetActive(false);
 
-        switchCamera(StationType.DISH);
+        getStationByEnum(StationType.DISH).Deactivate();
         getStationByEnum(StationType.PANCAKE).Deactivate();
         getStationByEnum(StationType.PREP).Deactivate();
         getStationByEnum(StationType.COFFEE).Deactivate();
-        
-        transitionScreen = GetComponent<Image>();
-        audioSource = GetComponent<AudioSource>();
 
         GlobalVariables.camState = 0;
         GlobalVariables.currentStation = "Dish";
@@ -41,6 +37,11 @@ public class SwitchCamera : MonoBehaviour
 
     void Update()
     {
+        if (!cameraController.UsingGameCameras())
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1) && GlobalVariables.camState != 0)
         {
             switchReqBar = timer.bar;
@@ -79,25 +80,17 @@ public class SwitchCamera : MonoBehaviour
             switchToStation = StationType.OVERHEAD_VIEW;
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            audioSource.pitch = Random.Range(0.5f, 1.5f);
-            audioSource.Play();
-        }
-
-        transitionScreen.enabled = Input.GetKey(KeyCode.Backspace);
-
-        if(waitingToSwitch && timer.bar != switchReqBar)
+        if (waitingToSwitch && timer.bar != switchReqBar)
         {
             waitingToSwitch = false;
             GlobalVariables.camState = (int)switchToStation;
             scoreManager.resetStreak();
-            switchCamera(switchToStation);
+            Switch(switchToStation);
         }
 
     }
 
-    private void switchCamera(StationType stationType)
+    public void Switch(StationType stationType)
     {
         station = getStationByEnum(stationType);
         Station selectedStation = getStationByEnum(selectedStationType);
@@ -118,7 +111,7 @@ public class SwitchCamera : MonoBehaviour
         {
             station.Activate();
         }
-        
+
         selectedStationType = stationType;
     }
 
@@ -128,7 +121,7 @@ public class SwitchCamera : MonoBehaviour
         {
             case StationType.DISH:
                 return Stations.Dish;
-            
+
             case StationType.PANCAKE:
                 return Stations.Pancake;
 
@@ -137,7 +130,7 @@ public class SwitchCamera : MonoBehaviour
 
             case StationType.PREP:
                 return Stations.Prep;
-            
+
             default:
                 return null;
         }

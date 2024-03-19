@@ -5,7 +5,7 @@ using UnityEngine;
 public class PrepStationCursor : MonoBehaviour
 {
     private float offset = 0.70f;
-    [SerializeField] private float distanceThreshold = 20f;
+    //[SerializeField] private float distanceThreshold = 20f;
 
     // Update is called once per frame
     void Update()
