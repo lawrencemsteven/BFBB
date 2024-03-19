@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PancakeStationCursor : MonoBehaviour
 {
-    public Material squeezed, unsqueezed;
+    public GameObject squeezed, unsqueezed;
     public bool paused = false;
     private PancakeParticleSpawner pancakeParticleSpawner;
     private ParticleSystem batterPour;
-    private float offset = 0.70f;
+    private float offset = 0.90f;
     private Renderer bottleRenderer;
     private Vector3? storedMousePosition;
     private EnableBatterArea eba;
@@ -50,7 +50,8 @@ public class PancakeStationCursor : MonoBehaviour
             lastPancakeArea = eba.getCurrentPancakeArea();
             trySpawnParticle();
             Stations.Pancake.SetPancakeParticleObject(pancakeParticleSpawner.GetParticleObject() as PancakeParticleObject);
-            bottleRenderer.material = squeezed;
+            unsqueezed.SetActive(false);
+            squeezed.SetActive(true);
             batterEmission.enabled = true;
         }
         if (Input.GetMouseButton(0))
@@ -66,7 +67,8 @@ public class PancakeStationCursor : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             storedMousePosition = null;
-            bottleRenderer.material = unsqueezed;
+            squeezed.SetActive(false);
+            unsqueezed.SetActive(true);
             batterEmission.enabled = false;
         }
     }
