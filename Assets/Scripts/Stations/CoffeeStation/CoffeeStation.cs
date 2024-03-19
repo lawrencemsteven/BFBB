@@ -25,7 +25,7 @@ public class CoffeeStation : Station
     private Vector3 signPos;
     bool needsGenerated;
 
-    private float acceptableDistance = .1f;
+    private float acceptableDistance = 1f;
 
     [SerializeField] private GameObject instructions;
 
@@ -37,7 +37,7 @@ public class CoffeeStation : Station
         coffeePot.SetActive(false);
         cream.SetActive(false);
         sugar.SetActive(false);
-        bool needsGenerated = false;
+        needsGenerated = false;
 
         beatsPerMeasure = (int)GameInfoManager.Instance.Song.GetBeatsPerMeasure();
 
@@ -214,10 +214,12 @@ public class CoffeeStation : Station
     int RangeCheck()
     {
         //change this to simple if check if container is close to customerMug[currentBeat]
-        for(int i = 0;i < customerMugArray.Length; i++)
+        for(int i = 0; i < customerMugArray.Length; i++)
         {
-            if (containerPos.y - customerMugArray[i].transform.position.y <= acceptableDistance && signArray[i] is not null)
+            Debug.Log("RangeCheck Entered");
+            if (Input.mousePosition.y - customerMugArray[i].transform.position.y <= acceptableDistance && signArray[i] is not null)
             {
+                Debug.Log("found in rage of thing");
                 return i;
             }
         }
@@ -226,8 +228,10 @@ public class CoffeeStation : Station
 
     void CorrectItemCheck(int mugIndex)
     {
+        Debug.Log("Correct Itemcheck entered");
         if (needsArray[mugIndex].Equals(selected))
         {
+            Debug.Log("Correct item found");
             pointTotal += 1;
             needsArray[mugIndex] = "";
             Destroy(signArray[mugIndex]);
