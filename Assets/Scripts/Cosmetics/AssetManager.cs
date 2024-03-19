@@ -22,12 +22,24 @@ public static class AssetManager
 
     public static ICollection<string> GetAvailableSwapsForAsset(string targetAssetName)
     {
-        AssetSwapper asset = assets[targetAssetName][0];
-        return asset.GetVariantOptionNames();
+        if (assets.ContainsKey(targetAssetName))
+        {
+            AssetSwapper asset = assets[targetAssetName][0];
+            return asset.GetVariantOptionNames();
+        } else
+        {
+            Debug.LogWarning("Invalid asset name " + targetAssetName);
+            return null;
+        }
     }
 
     public static void ApplyAssetSwap(string assetName, string variantName)
     {
+        if (!assets.ContainsKey(assetName))
+        {
+            Debug.LogWarning("Invalid asset name " + assetName);
+            return;
+        }
         foreach (AssetSwapper swapper in assets[assetName])
         {
             swapper.ApplyVariant(variantName);

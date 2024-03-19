@@ -44,6 +44,11 @@ public class DishStation : Station
 
     public void NewMeasure()
     {
+        if (!running)
+        {
+            return;
+        }
+
         ReservoirManager.GetPlates().Add(smudgeCoordinateGenerator.CreateReservoirPlate());
         smudgeCoordinateGenerator.NewPlate();
         lineManager.DrawLine();
@@ -84,7 +89,7 @@ public class DishStation : Station
     private void scalePlate()
     {
         Vector3 newScale = new Vector3(intitialScale.x * scale, intitialScale.y, intitialScale.z * scale);
-        
+
         plate.transform.localScale = newScale;
         plate.transform.position = new Vector3(initialPos.x, initialPos.y, initialPos.z);
     }

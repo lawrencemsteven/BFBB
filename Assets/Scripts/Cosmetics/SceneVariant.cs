@@ -22,7 +22,6 @@ public class SceneVariant : AssetVariant
     {
         if (!loaded)
         {
-            Debug.Log("Already unloaded. Not unloading again.");
             yield break;
         }
         AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(targetScene);
