@@ -14,6 +14,10 @@ public class PauseMenuScript : MonoBehaviour
     [SerializeField] private TutorialMenuScript tutorialMenu;
 
     public ScriptUsageTimeline pauser;
+
+    public GameObject musicPlayer;
+
+    public GameObject metronome;
     
     // Update is called once per frame
     void Update()
@@ -48,6 +52,8 @@ public class PauseMenuScript : MonoBehaviour
     {
         pauser.Unpause();
         pauser.StopMusic();
+        musicPlayer.SetActive(false);
+        metronome.SetActive(false);
         Time.timeScale = 1f;
         MenuScreenOn = false;
         menuScreen.SetActive(false);
