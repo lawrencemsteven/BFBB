@@ -3978,6 +3978,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1669747827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8688189678840500396, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+  m_PrefabInstance: {fileID: 8556014196617171305}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1709181595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8069909453147067669, guid: 027ef67ba5481794f92df55e5a7e4082, type: 3}
@@ -4471,11 +4476,6 @@ Transform:
 Camera:
   m_CorrespondingSourceObject: {fileID: 7426425254286034239, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
   m_PrefabInstance: {fileID: 8562384127649966092}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2016241821 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8688189679983456457, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
-  m_PrefabInstance: {fileID: 8556014196617171305}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2066864611 stripped
 MonoBehaviour:
@@ -5747,7 +5747,7 @@ PrefabInstance:
     - target: {fileID: 1335693079598871064, guid: 6e07f56f988574847a5123645a7f62fc, type: 3}
       propertyPath: mainMenuButtons
       value: 
-      objectReference: {fileID: 2016241821}
+      objectReference: {fileID: 1669747827}
     - target: {fileID: 1335693079598871064, guid: 6e07f56f988574847a5123645a7f62fc, type: 3}
       propertyPath: cameraController
       value: 
