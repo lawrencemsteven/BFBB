@@ -27,7 +27,7 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.bpm = 60;
 
-        GlobalVariables.songLengthMeasures = 1; //48;
+        GlobalVariables.songLengthMeasures = 48;
 
         GlobalVariables.earlyDish = "EarlyDish";
 
