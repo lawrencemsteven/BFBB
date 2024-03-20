@@ -302,6 +302,11 @@ public class PrepStation : Station
 
     public void UpdateCustomerOrders()
     {
+        if (orderDisplay is null)
+        {
+            return;
+        }
+        
         foreach (Transform child in orderDisplay)
         {
             Destroy(child.gameObject);
