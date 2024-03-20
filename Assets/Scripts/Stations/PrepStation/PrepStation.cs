@@ -103,6 +103,9 @@ public class PrepStation : Station
             ToggleTopping(Topping.BUTTER);
             clearParticles();
             //turn in order
+            //CHECK IF TOPPING FROM ORDER IS IN DISH
+            //CLEAR TOPPINGS
+            //ASSIGN POINTS
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && preppedOrder is not null)
@@ -398,11 +401,11 @@ public class PrepStation : Station
         }
 
         //Syrup
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             if (selectedTopping == Topping.NONE || selectedTopping == Topping.SYRUP)
             {
-                syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
+                syrupContainer.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, .75f));
                 syrupContainer.transform.eulerAngles = new Vector3(0f, 0f, 45f);
 
                 if (Input.GetMouseButton(0))
@@ -418,12 +421,12 @@ public class PrepStation : Station
         }
 
         //Choccy Chippos
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             if (selectedTopping == Topping.NONE || selectedTopping == Topping.CHOCOLATE_CHIP)
             {
-                chocolateChip.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 1f));
-                chocolateChip.transform.eulerAngles = new Vector3(45f, 0f, 0f);
+                chocolateChip.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, .8f));
+                chocolateChip.transform.eulerAngles = new Vector3(45f, 90f, 0f);
 
                 //set cursor and choccies to follow mouse movement
                 if (Input.GetMouseButton(0))
@@ -438,7 +441,7 @@ public class PrepStation : Station
         }
 
         //Whip
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             if (selectedTopping == Topping.NONE || selectedTopping == Topping.WHIPPED_CREAM)
             {
