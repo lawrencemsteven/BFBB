@@ -19,7 +19,7 @@ public class DishStation : Station
     private ScoreAndStreakManager scoreManager;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Initialize()
     {
         if (SceneManager.GetActiveScene().name != "MainScene")
         {
@@ -32,6 +32,10 @@ public class DishStation : Station
         plateAnimator = plate.GetComponent<Animator>();
 
         smudgeCoordinateGenerator = coordinateGenerator as SmudgeCoordinateGenerator;
+
+        smudgeCoordinateGenerator.RemoveShape();
+        lineManager.UpdateLine();
+        ReservoirManager.GetPlates().Clear();
 
         soundBytePlayer.SetSounds(GameInfoManager.Instance.Dish.earlySound, GameInfoManager.Instance.Dish.onTimeSound, GameInfoManager.Instance.Dish.lateSound);
         soundBytePlayer.SetPlayMode(SoundBytePlayer.PlayMode.THREE_SOUNDS);

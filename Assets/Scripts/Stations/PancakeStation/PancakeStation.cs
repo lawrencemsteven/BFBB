@@ -25,7 +25,7 @@ public class PancakeStation : Station
 
 
     // Start is called before the first frame update
-    void Start()
+    public override void Initialize()
     {
         scoreManager = GetComponent<ScoreAndStreakManager>();
         pathToScore = false;
@@ -35,6 +35,8 @@ public class PancakeStation : Station
         timeToFinishPancake = (34 / bpm) * 60;
         timeToFinishWaffle = (38 / bpm) * 60;
         timeToFlash = (1 / (bpm)) * 60;
+
+        ReservoirManager.GetPancakes().Clear();
 
         Composer.Instance.onBeat.AddListener(NewBeat);
         Composer.Instance.onMeasure.AddListener(NewMeasure);
@@ -176,6 +178,9 @@ public class PancakeStation : Station
             }
             Station.HandlePathUpdate(offset);
         }
+        else if (Input.GetMouseButtonUp(0) && Stations.Pancake.IsRunning()) {
+            Composer.Instance.PitchChange(0);
+        }
 
         IEnumerator CountBeatsToWaffleFlip()
         {
@@ -253,7 +258,7 @@ public class PancakeStation : Station
     public override void Deactivate()
     {
         base.Deactivate();
-        Composer.Instance.PitchChange(0);
+        Composer.Instance?.PitchChange(0);
     }
 
     public PancakeParticleObject GetPancakeParticleObject() { return pancakeParticleObject; }

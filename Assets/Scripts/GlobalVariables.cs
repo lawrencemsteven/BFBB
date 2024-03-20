@@ -11,6 +11,7 @@ public class GlobalVariables : MonoBehaviour
     public static int missCounter = 0;
     public static int streak = 0;
     public static string songChoice = "event:/60BPM";
+    public static string songUI = "60BPM";
     public static uint bpm = 60u;
 
     public static string earlyDish = "EarlyDish";
@@ -36,5 +37,8 @@ public class GlobalVariables : MonoBehaviour
     public static string downRightPrep;
 
     public static FMOD.Studio.EventInstance instance;
+    public static FMOD.Studio.EventInstance preview;
     public static string volume = "Volume";
+
+    public static int songIndex = 0;
 }

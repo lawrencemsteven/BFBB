@@ -24,7 +24,7 @@ public class fmodTimer : MonoBehaviour
     //public FMOD.Studio.TIMELINE_BEAT_PROPERTIES beatProperties;
 
     // Start is called before the first frame update
-    void Start()
+    public void Initialize()
     {
         /*
         if(emitter == null && GameObject.Find(eventEmitterName).GetComponent<StudioEventEmitter>())

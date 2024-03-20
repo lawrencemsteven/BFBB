@@ -62,4 +62,6 @@ public abstract class Station : MonoBehaviour
     public CoordinateGenerator GetCoordinateGenerator() { return coordinateGenerator; }
     public LineRenderer GetLineRenderer() { return lineRenderer; }
     public SoundBytePlayer GetSoundBytePlayer() { return soundBytePlayer; }
+
+    public abstract void Initialize();
 }

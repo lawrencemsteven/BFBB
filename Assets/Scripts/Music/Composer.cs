@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(ComposerInterpreter))]
 public class Composer : Singleton<Composer>
 {
+    [SerializeField] CameraController cameraController;
     public bool debugTimer = true;
     public bool isFading = false;  //Meant to mean is fading out, will be replaced by isFade
     public bool eqEffect = false;
@@ -23,7 +24,6 @@ public class Composer : Singleton<Composer>
     private uint measureCounter = 0u;
     public UnityEvent onBeat = new();
     public UnityEvent onMeasure = new();
-    public GameObject prepCam;
 
     protected override void Awake()
     {
@@ -89,25 +89,29 @@ public class Composer : Singleton<Composer>
             eqEffect = !eqEffect;
         }
 
-        if (GlobalVariables.camState == 3)
+        if (cameraController.UsingGameCameras())
         {
-            //Pour batter on left click hold
-            if (Input.GetMouseButtonDown(0))
+            if (Stations.Pancake.IsRunning())
             {
-                composerInterpreter.pourBatter();
+                //Pour batter on left click hold
+                if (Input.GetMouseButtonDown(0))
+                {
+                    composerInterpreter.pourBatter();
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    composerInterpreter.stopBatter();
+                }
             }
-            if (Input.GetMouseButtonUp(0))
-            {
-                composerInterpreter.stopBatter();
-            }
-        }
 
-        if (prepCam.activeSelf)
-        {
-            composerInterpreter.SetLeadVolume(0f);
-        } else
-        {
-            composerInterpreter.SetLeadVolume(0.75f);
+            if (Stations.Prep.IsRunning())
+            {
+                composerInterpreter.SetLeadVolume(0f);
+            } 
+            else
+            {
+                composerInterpreter.SetLeadVolume(0.75f);
+            }
         }
     }
 
