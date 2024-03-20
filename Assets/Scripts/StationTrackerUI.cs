@@ -8,21 +8,42 @@ public class StationTrackerUI : MonoBehaviour
 {
     [SerializeField] private SwitchCamera switchCamera;
     
+    List<GameObject> selectedTabs = new List<GameObject>();
+    List<GameObject> unselectedTabs = new List<GameObject>();
+
+    void Start()
+    {
+        foreach (Transform child in transform.GetChild(0))
+        {
+            unselectedTabs.Add(child.gameObject);
+        }
+        
+        foreach (Transform child in transform.GetChild(1))
+        {
+            selectedTabs.Add(child.gameObject);
+        }
+    }
+
     void Update()
     {
-        foreach (Transform button in transform)
+        for (int i = 0; i < 4; i++)
         {
-            if (button.GetSiblingIndex() == (int)switchCamera.GetSelectedStationType())
+            if (i == (int)switchCamera.GetSelectedStationType())
             {
-                button.GetComponent<Image>().color = Color.white;
+                unselectedTabs[i].GetComponent<Image>().enabled = false;
+                selectedTabs[i].GetComponent<Image>().enabled = true;
             }
-            else if (button.GetSiblingIndex() == (int)switchCamera.GetQueuedStationType())
+            else if (i == (int)switchCamera.GetQueuedStationType())
             {
-                button.GetComponent<Image>().color = Color.red;
+                unselectedTabs[i].GetComponent<Image>().enabled = true;
+                selectedTabs[i].GetComponent<Image>().enabled = false;
+                unselectedTabs[i].GetComponent<Image>().color = Color.yellow;
             }
             else
             {
-                button.GetComponent<Image>().color = Color.grey;
+                unselectedTabs[i].GetComponent<Image>().enabled = true;
+                selectedTabs[i].GetComponent<Image>().enabled = false;
+                unselectedTabs[i].GetComponent<Image>().color = Color.white;
             }
         }
     }
