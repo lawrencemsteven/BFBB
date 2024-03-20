@@ -15,9 +15,11 @@ public class CoffeeStation : Station
     public string[] needsArray = new string[4];
     public GameObject[] signArray = new GameObject[4];
 
+
+
     private float bpm = 135f;
-    private int beatsPerMeasure;
-    private int currentBeat;
+    public int beatsPerMeasure;
+    public int currentBeat;
 
     private string selected;
 
@@ -25,7 +27,7 @@ public class CoffeeStation : Station
     private Vector3 signPos;
     bool needsGenerated;
 
-    private float acceptableDistance = 1f;
+    private float acceptableDistance = .3f;
 
     [SerializeField] private GameObject instructions;
 
@@ -53,11 +55,17 @@ public class CoffeeStation : Station
 
         currentBeat = lineManager.GetCurrentBeat();
         //Debug.Log("Current Beat is " + currentBeat);
+       
 
         //LineManager.GetCurrentBeat(){}
         //if current = bpm recreate needs
 
         if(!needsGenerated) { GenerateNeed();}
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GenerateNeed();
+        }
 
         if(currentBeat == beatsPerMeasure)
         {
@@ -86,7 +94,7 @@ public class CoffeeStation : Station
             {
                 if (!coffeeParticle.isPlaying) { coffeeParticle.Play(); }
 
-                int x = RangeCheck();
+                int x = RangeCheck(coffeePot.transform.position.x) ;
                 if (x == 0 || x == 1 || x == 2 || x == 3)
                 {
                     CorrectItemCheck(x);
@@ -110,7 +118,7 @@ public class CoffeeStation : Station
             {
                 if (!sugarParticle.isPlaying) { sugarParticle.Play(); }
 
-                int x = RangeCheck();
+                int x = RangeCheck(sugar.transform.position.x);
                 if(x == 0 || x == 1 || x == 2 || x == 3) 
                 {
                     CorrectItemCheck(x);
@@ -133,7 +141,8 @@ public class CoffeeStation : Station
             if (Input.GetMouseButton(0))
             {
                 if (!creamParticle.isPlaying) { creamParticle.Play(); }
-                int x = RangeCheck();
+
+                int x = RangeCheck(cream.transform.position.x);
                 if (x == 0 || x == 1 || x == 2 || x == 3)
                 {
                     CorrectItemCheck(x);
@@ -181,6 +190,8 @@ public class CoffeeStation : Station
         Debug.Log("Entering Generate need");
         for (int i = 0; i < customerMugArray.Length; i++)
         {
+            if (signArray[i] is not null) { Destroy(signArray[i]); }
+
             int toppingInt = Random.Range(1, 4);
             signPos = customerMugArray[i].transform.position;
             signPos.y += .2f;
@@ -211,15 +222,23 @@ public class CoffeeStation : Station
 
     }
 
-    int RangeCheck()
+    int RangeCheck(float posX)
     {
         //change this to simple if check if container is close to customerMug[currentBeat]
+        //USE CONTAINER POSITION INSTEAD OF MOUSE POSITION
         for(int i = 0; i < customerMugArray.Length; i++)
         {
-            Debug.Log("RangeCheck Entered");
-            if (Input.mousePosition.y - customerMugArray[i].transform.position.y <= acceptableDistance && signArray[i] is not null)
+
+            float actualDistance = posX - customerMugArray[i].transform.position.x;
+  
+
+            if ((actualDistance <=  acceptableDistance && actualDistance >= -acceptableDistance) && signArray[i] is not null)
             {
-                Debug.Log("found in rage of thing");
+
+                // associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 2f));
+
+                //associatedCamera.ScreenToWorldPoint(new Vector3(customer.MugArray[i].transform.position.x)
+                Debug.Log("found in range of thing");
                 return i;
             }
         }
@@ -233,15 +252,11 @@ public class CoffeeStation : Station
         {
             Debug.Log("Correct item found");
             pointTotal += 1;
-            needsArray[mugIndex] = "";
-            Destroy(signArray[mugIndex]);
         }
 
-        else
-        {
-            needsArray[mugIndex] = "";
-            Destroy(signArray[mugIndex]);
-        }
+        needsArray[mugIndex] = "";
+        Destroy(signArray[mugIndex]);
+        signArray[mugIndex] = null;
     }
 
 }
