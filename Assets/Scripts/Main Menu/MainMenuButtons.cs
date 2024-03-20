@@ -17,7 +17,7 @@ public class MainMenuButtons : MonoBehaviour
     public Transform jukeboxButtonsParent;
     public Transform shopParent;
     public Transform shopStylesParent;
-    public GameObject difficultyText;
+    public TMP_Text difficultyText;
 
     private Transform previousMenu;
     private Transform currentMenu;
@@ -27,6 +27,10 @@ public class MainMenuButtons : MonoBehaviour
     private bool moveBackButtonOut = false;
     private bool backButtonIn = false;
     private bool enableBackButtonAfterTransition = false;
+
+    private bool switchDifficulty = false;
+
+    private int currentDiff = 0;
 
     public void Start()
     {
@@ -232,11 +236,39 @@ public class MainMenuButtons : MonoBehaviour
     {
         if (songDifficulty == SongDifficulty.Easy)
         {
-            difficultyText.GetComponent<TextMeshPro>().text = "Easy " + bpm + "BPM";
+            difficultyText.text = "Easy " + bpm + "BPM";
         }
         else if (songDifficulty == SongDifficulty.Hard)
         {
-            difficultyText.GetComponent<TextMeshPro>().text = "Hard " + bpm + "BPM";
+            difficultyText.text = "Hard " + bpm + "BPM";
+        }
+    }
+
+    public void JukeboxSetSongEasy() {
+        currentDiff = 0;
+        if (switchDifficulty) {
+            GlobalVariables.bpm = GlobalVariables.bpm / 2;
+            switchDifficulty = false;
+        }
+        difficultyText.text = "Easy " + GlobalVariables.bpm + "BPM";
+    }
+
+    public void JukeboxSetSongHard() {
+        currentDiff = 1;
+        if (!switchDifficulty) {
+            GlobalVariables.bpm = GlobalVariables.bpm * 2;
+        }
+        difficultyText.text = "Hard " + GlobalVariables.bpm + "BPM";
+        switchDifficulty = true;
+    }
+
+    public void ResetSongState() {
+        switchDifficulty = false;
+    }
+
+    public void checkBPM() {
+        if (currentDiff == 1) {
+            GlobalVariables.bpm = GlobalVariables.bpm * 2;
         }
     }
 
