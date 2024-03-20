@@ -25,7 +25,7 @@ public class PancakeStation : Station
 
 
     // Start is called before the first frame update
-    void Start()
+    public override void Initialize()
     {
         scoreManager = GetComponent<ScoreAndStreakManager>();
         pathToScore = false;
@@ -175,6 +175,9 @@ public class PancakeStation : Station
                 offset = markerSpaces[2];
             }
             Station.HandlePathUpdate(offset);
+        }
+        else if (Input.GetMouseButtonUp(0) && Stations.Pancake.IsRunning()) {
+            Composer.Instance.PitchChange(0);
         }
 
         IEnumerator CountBeatsToWaffleFlip()

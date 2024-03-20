@@ -25,6 +25,8 @@ public class Composer : Singleton<Composer>
     public UnityEvent onMeasure = new();
     public GameObject prepCam;
 
+    public GameObject pancakeCame;
+
     protected override void Awake()
     {
         base.Awake();
@@ -89,7 +91,7 @@ public class Composer : Singleton<Composer>
             eqEffect = !eqEffect;
         }
 
-        if (GlobalVariables.camState == 3)
+        if (pancakeCame.activeSelf)
         {
             //Pour batter on left click hold
             if (Input.GetMouseButtonDown(0))

@@ -24,10 +24,12 @@ public class ScriptUsageTimeline : MonoBehaviour
 
     private bool isPaused = false;
 
-    private string eventLocation = GlobalVariables.songChoice;
+    private string eventLocation;
 
     void Start()
     {
+        eventLocation = GlobalVariables.songChoice;
+        
         timelineInfo = new TimelineInfo();
 
         // Explicitly create the delegate object and assign it to a member so it doesn't get freed

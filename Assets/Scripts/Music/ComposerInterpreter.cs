@@ -16,7 +16,7 @@ public class ComposerInterpreter : MonoBehaviour
     public int mouseSpeed;
     private string song;
     
-    void Start()
+    public void Begin()
     {
         composer = this.transform.GetComponent<Composer>();
         //WaitToInitialize();
@@ -25,16 +25,6 @@ public class ComposerInterpreter : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //All effect functions are called every frame
-        //Logic is handled within the functions
-        //VolumeFader();
-        //EQ();
-        timerDecrement();
-
-    }
 
     void Initialize()
     {

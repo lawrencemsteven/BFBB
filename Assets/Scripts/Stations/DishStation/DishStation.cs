@@ -19,7 +19,7 @@ public class DishStation : Station
     private ScoreAndStreakManager scoreManager;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Initialize()
     {
         if (SceneManager.GetActiveScene().name != "MainScene")
         {

@@ -48,7 +48,7 @@ public class PrepStation : Station
 
     [SerializeField] private List<Sprite> toppingIcons = new List<Sprite>();
 
-    public void Start()
+    public override void Initialize()
     {
         scoreManager = GetComponent<ScoreAndStreakManager>();
         orderDisplay = prepStationUI.transform.GetChild(0);
