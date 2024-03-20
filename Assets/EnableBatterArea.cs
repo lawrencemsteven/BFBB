@@ -20,7 +20,6 @@ public class EnableBatterArea : MonoBehaviour
         if (other.gameObject.tag == "AreaDetector")
         {
             currentPancakeArea = other.gameObject;
-            Debug.Log(other.gameObject.name);
             // currentPancakeArea.transform.GetChild(0).gameObject.SetActive(true);
         }
 

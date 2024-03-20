@@ -73,7 +73,7 @@ public class HitDetector : MonoBehaviour
         {
             //hihat.Play();
             hihatFmod.PlayHiHat();
-            scoreManager.scoreUpdate(1);
+            //scoreManager.scoreUpdate(1);
             GlobalVariables.notesHit += 1;
             smudgeHitStatus[closestSmudgeIndex] = true; 
             //SetSmudgeInvisible(closestSmudgeIndex);
