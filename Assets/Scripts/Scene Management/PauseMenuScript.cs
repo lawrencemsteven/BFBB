@@ -9,6 +9,8 @@ public class PauseMenuScript : MonoBehaviour
     [SerializeField] private CameraController cameraController;
     [SerializeField] private GameObject mainMenuButtons;
     [SerializeField] private SwitchCamera switchCamera;
+
+    public ScriptUsageTimeline pauser;
     bool MenuScreenOn = false;
     
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class PauseMenuScript : MonoBehaviour
                 MenuScreenOn = true;
                 menuScreen.SetActive(true);
                 Cursor.visible = true;
+                pauser.Pause();
             }
             else
             {
@@ -34,12 +37,15 @@ public class PauseMenuScript : MonoBehaviour
                 MenuScreenOn = false;
                 menuScreen.SetActive(false);
                 Cursor.visible = false;
+                pauser.Unpause();
             }
         }
     }
 
     public void ExitToMainMenu()
     {
+        pauser.Unpause();
+        pauser.StopMusic();
         Time.timeScale = 1f;
         MenuScreenOn = false;
         menuScreen.SetActive(false);

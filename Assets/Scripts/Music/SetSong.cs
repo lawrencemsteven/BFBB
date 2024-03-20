@@ -44,6 +44,8 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.volume = "Volume 2";
 
+        GameInfoManager.Instance.Song.UpdateBPM();
+
     }
 
     public void songBoogie()
@@ -70,6 +72,9 @@ public class SetSong : MonoBehaviour
         GlobalVariables.leftPrep = "C";
 
         GlobalVariables.volume = "Volume 1";
+
+        GameInfoManager.Instance.Song.UpdateBPM();
+        GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish,  GlobalVariables.lateDish);
     }
 
     public void songRock()
@@ -97,6 +102,9 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.volume = "Volume 2";
 
+        GameInfoManager.Instance.Song.UpdateBPM();
+        GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish,  GlobalVariables.lateDish);
+
     }
 
     public void songBumpin()
@@ -112,6 +120,9 @@ public class SetSong : MonoBehaviour
         GlobalVariables.onTimeDish = "HiHat2";
 
         GlobalVariables.lateDish = "LateDish2";
+
+        GameInfoManager.Instance.Song.UpdateBPM();
+        GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish,  GlobalVariables.lateDish);
     }
 
 }
