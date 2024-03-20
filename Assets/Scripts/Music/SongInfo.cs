@@ -6,8 +6,8 @@ using UnityEngine.Events;
 [System.Serializable]
 public class SongInfo
 {
-    public uint bpm = GlobalVariables.bpm;
-    public uint beatsPerMeasure = 4u;
+    public int bpm = GlobalVariables.bpm;
+    public int beatsPerMeasure = 4;
     
     // Returns the time in seconds for each beat
     public float GetSecondsPerBeat()
@@ -15,7 +15,7 @@ public class SongInfo
         return 60.0f / bpm;
     }
 
-    public uint GetBeatsPerMeasure()
+    public int GetBeatsPerMeasure()
     {
         return beatsPerMeasure;
     }

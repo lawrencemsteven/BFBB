@@ -16,6 +16,7 @@ public class MainMenuButtons : MonoBehaviour
     public Transform jukeboxButtonsParent;
     public Transform shopParent;
     public Transform shopStylesParent;
+    public Transform endOfDayParent;
 
     private Transform previousMenu;
     private Transform currentMenu;
@@ -144,6 +145,7 @@ public class MainMenuButtons : MonoBehaviour
         transitionAmount = 0.0f;
         previousMenu = currentMenu;
         currentMenu = newMenu;
+     
         foreach (Transform child in previousMenu)
         {
             // Deactivate all buttons
@@ -336,6 +338,13 @@ public class MainMenuButtons : MonoBehaviour
         transitionTo(shopStylesParent);
         ensureBackButtonIn(true);
         shopAssetManager.setSection(ShopAssetManager.ShopSections.All);
+    }
+
+    public void ShowShiftComplete()
+    {
+        cameraController.changeTarget(CameraController.CameraPoses.CASH_REGISTER, transitionTime);
+        transitionTo(endOfDayParent);
+        ensureBackButtonIn(true);
     }
 
 

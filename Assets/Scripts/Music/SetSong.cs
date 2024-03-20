@@ -25,7 +25,9 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.songUI = "Boogie Slow";
 
-        GlobalVariables.bpm = 60u;
+        GlobalVariables.bpm = 60;
+
+        GlobalVariables.songLengthMeasures = 1; //48;
 
         GlobalVariables.earlyDish = "EarlyDish";
 
@@ -54,7 +56,9 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.songUI = "Boogie Feel";
 
-        GlobalVariables.bpm = 120u;
+        GlobalVariables.bpm = 120;
+
+        GlobalVariables.songLengthMeasures = 90;
 
         GlobalVariables.earlyDish = "EarlyDish";
 
@@ -83,7 +87,9 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.songUI = "Boogie Rock";
 
-        GlobalVariables.bpm = 180u;
+        GlobalVariables.bpm = 180;
+
+        GlobalVariables.songLengthMeasures = 177;
 
         GlobalVariables.earlyDish = "EarlyDish3";
 
@@ -113,7 +119,9 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.songUI = "Boogie Bumpin";
 
-        GlobalVariables.bpm = 135u;
+        GlobalVariables.bpm = 135;
+
+        GlobalVariables.songLengthMeasures = 64;
 
         GlobalVariables.earlyDish = "EarlyDish2";
 
