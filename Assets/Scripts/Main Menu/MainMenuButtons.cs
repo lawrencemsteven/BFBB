@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Enumerations;
+using TMPro;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MainMenuButtons : MonoBehaviour
     public Transform jukeboxButtonsParent;
     public Transform shopParent;
     public Transform shopStylesParent;
+    public GameObject difficultyText;
 
     private Transform previousMenu;
     private Transform currentMenu;
@@ -207,11 +209,11 @@ public class MainMenuButtons : MonoBehaviour
     // Jukebox Buttons
     public void JukeboxLeft()
     {
-        Debug.Log("TODO: Jukebox Left");
+        // This was done elsewhere?
     }
     public void JukeboxRight()
     {
-        Debug.Log("TODO: Jukebox Right");
+        // This was also done elsewhere?
     }
     public void JukeboxPlay()
     {
@@ -220,6 +222,22 @@ public class MainMenuButtons : MonoBehaviour
         Cursor.visible = false;
         switchCamera.transform.parent.GetComponent<Canvas>().enabled = true;
         gameObject.SetActive(false);
+    }
+    public enum SongDifficulty
+    {
+        Easy,
+        Hard,
+    }
+    public void JukeboxSetSongDifficulty(SongDifficulty songDifficulty, int bpm)
+    {
+        if (songDifficulty == SongDifficulty.Easy)
+        {
+            difficultyText.GetComponent<TextMeshPro>().text = "Easy " + bpm + "BPM";
+        }
+        else if (songDifficulty == SongDifficulty.Hard)
+        {
+            difficultyText.GetComponent<TextMeshPro>().text = "Hard " + bpm + "BPM";
+        }
     }
 
 
