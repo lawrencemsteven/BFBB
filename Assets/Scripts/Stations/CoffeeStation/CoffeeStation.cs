@@ -248,7 +248,7 @@ public class CoffeeStation : Station
         if (needsArray[mugIndex].Equals(selected) && currentBeatTime <= accetableTiming)
         {
             //add success sfx here
-            pointTotal += 1;
+            GlobalVariables.score += 1;
         }
 
         //late sound effects go here
