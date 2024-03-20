@@ -52,5 +52,6 @@ public class EndOfDayScript : MonoBehaviour
         mainMenuButtons.SetActive(true);
         switchCamera.DeactivateAll();
         Cursor.visible = true;
+        mainMenuButtons.GetComponent<MainMenuButtons>().backToMainMenu();
     }
 }
