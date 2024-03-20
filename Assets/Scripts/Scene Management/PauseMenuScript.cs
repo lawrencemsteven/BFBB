@@ -66,6 +66,7 @@ public class PauseMenuScript : MonoBehaviour
         mainMenuButtons.SetActive(true);
         switchCamera.DeactivateAll();
         Cursor.visible = true;
+        switchCamera.transform.parent.GetComponent<Canvas>().enabled = false;
         mainMenuButtons.GetComponent<MainMenuButtons>().backToMainMenu();
     }
 

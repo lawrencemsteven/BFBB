@@ -48,6 +48,8 @@ public class EndOfDayScript : MonoBehaviour
         mainMenuButtons.SetActive(true);
         mainMenuButtons.GetComponent<MainMenuButtons>().ShowShiftComplete();
 
+        switchCamera.transform.parent.GetComponent<Canvas>().enabled = false;
+
         MoneyManager.addMoney(GlobalVariables.score);
         displayMoney(GlobalVariables.score);
         GlobalVariables.score = 0;
