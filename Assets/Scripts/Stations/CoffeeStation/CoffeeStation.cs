@@ -36,11 +36,13 @@ public class CoffeeStation : Station
 
     [SerializeField] private GameObject instructions;
 
-    [SerializeField] private int pointTotal = 0;
+    private ScoreAndStreakManager scoreManager;
 
     // Start is called before the first frame update
-   public override void Initialize()
+    public override void Initialize()
     {
+        scoreManager = GetComponent<ScoreAndStreakManager>();
+
         coffeePot.SetActive(false);
         cream.SetActive(false);
         sugar.SetActive(false);
@@ -75,7 +77,7 @@ public class CoffeeStation : Station
         {
             currentBeatTime = 0;
 
-            if (currentBeat == beatsPerMeasure)
+            if (currentBeat == beatsPerMeasure || currentBeat == 4)
             {
                 currentBeat = 1;
                 needsGenerated = false;
@@ -248,10 +250,14 @@ public class CoffeeStation : Station
         if (needsArray[mugIndex].Equals(selected) && currentBeatTime <= accetableTiming)
         {
             //add success sfx here
-            GlobalVariables.score += 1;
+            scoreManager.scoreUpdate(1);
+        }
+        else
+        {
+            //late sound effects here
+            scoreManager.resetStreak();
         }
 
-        //late sound effects go here
 
         needsArray[mugIndex] = "";
         Destroy(signArray[mugIndex]);

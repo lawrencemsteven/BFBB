@@ -1498,6 +1498,7 @@ GameObject:
   - component: {fileID: 3195107126759138152}
   - component: {fileID: 6746190028582515786}
   - component: {fileID: 7614985824684458292}
+  - component: {fileID: 3786688817094896203}
   m_Layer: 0
   m_Name: CoffeeStation
   m_TagString: Untagged
@@ -1564,7 +1565,6 @@ MonoBehaviour:
   currentBeat: 0
   currentBeatTime: 0
   instructions: {fileID: 0}
-  pointTotal: 0
 --- !u!114 &2669026715339035517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1737,6 +1737,18 @@ MonoBehaviour:
   markerMinScale: 0
   markerMaxScale: 0
   earlyThreshold: 0
+--- !u!114 &3786688817094896203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8562384129074783750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d4f6493ed253742aa1c2c19452d051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8634053893621942610
 GameObject:
   m_ObjectHideFlags: 0
