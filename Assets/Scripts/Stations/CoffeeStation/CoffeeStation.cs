@@ -53,7 +53,7 @@ public class CoffeeStation : Station
     [SerializeField] private int pointTotal = 0;
 
     // Start is called before the first frame update
-    void Start()
+   public override void Initialize()
     {
         time = 8f / (bpm / 60f);
         travelDistance = Vector3.Distance(waypoints[0].transform.position, waypoints[waypoints.Length - 1].transform.position);

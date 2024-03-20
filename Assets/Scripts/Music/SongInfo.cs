@@ -19,4 +19,7 @@ public class SongInfo
     {
         return beatsPerMeasure;
     }
+    public void UpdateBPM() {
+        bpm = GlobalVariables.bpm;
+    }
 }

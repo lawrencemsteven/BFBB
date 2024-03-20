@@ -24,10 +24,12 @@ public class ScriptUsageTimeline : MonoBehaviour
 
     private bool isPaused = false;
 
-    private string eventLocation = GlobalVariables.songChoice;
+    private string eventLocation;
 
-    void Start()
+    public void Initialize()
     {
+        eventLocation = GlobalVariables.songChoice;
+
         timelineInfo = new TimelineInfo();
 
         // Explicitly create the delegate object and assign it to a member so it doesn't get freed
@@ -47,16 +49,6 @@ public class ScriptUsageTimeline : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
-        {
-            musicInstance.setPaused(true);
-            isPaused = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
-        {
-            musicInstance.setPaused(false);
-            isPaused = false;
-        }
     }
 
     void OnDestroy()
@@ -117,6 +109,21 @@ public class ScriptUsageTimeline : MonoBehaviour
         }
         return FMOD.RESULT.OK;
         
+    }
+
+    public void Pause() {
+        musicInstance.setPaused(true);
+        isPaused = true;
+    }
+
+    public void Unpause() {
+        musicInstance.setPaused(false);
+        isPaused = false;
+    }
+
+    public void StopMusic() {
+        musicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        musicInstance.release();
     }
 
 

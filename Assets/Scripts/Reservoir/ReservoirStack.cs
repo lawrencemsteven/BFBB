@@ -73,4 +73,9 @@ public class ReservoirStack<T> where T : ReservoirItem
             onReservoirUpdated.Invoke();
         }
     }
+
+    public void Clear()
+    {
+        items.Clear();
+    }
 }
