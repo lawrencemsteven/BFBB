@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 39219967}
   - component: {fileID: 39219966}
   - component: {fileID: 39219965}
+  - component: {fileID: 39219972}
   m_Layer: 0
   m_Name: Lighting_Script
   m_TagString: Untagged
@@ -375,6 +376,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assetName: Lights
+--- !u!114 &39219972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39219963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 4988700833509930858, guid: aa05a095b2e5e1445809f092f341b891, type: 3}
 --- !u!1 &43930851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,6 +2995,20 @@ MonoBehaviour:
   upDownMovement3: {fileID: 0}
   pancakeStationCursor: {fileID: 0}
   musicController: {fileID: 482994500}
+--- !u!114 &1052215562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554935344879596763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 344125396404643897, guid: b83c73176cf6e6c4e983f1b43809eec3, type: 3}
 --- !u!1 &1076731133 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5843084830624186437, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
@@ -2990,6 +3019,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2798547537820097020, guid: b8523555f31b6c24ab634b2454b6b601, type: 3}
   m_PrefabInstance: {fileID: 5012501452434759053}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1156417266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554935344879596764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 344125396404643897, guid: b83c73176cf6e6c4e983f1b43809eec3, type: 3}
 --- !u!1 &1171425062
 GameObject:
   m_ObjectHideFlags: 0
@@ -4162,6 +4205,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1638449041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554935344879596765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 344125396404643897, guid: b83c73176cf6e6c4e983f1b43809eec3, type: 3}
 --- !u!1 &1643884772 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1512139069670243332, guid: 8c004392669c1ae4094e00ceb7d15bc0, type: 3}
@@ -4542,6 +4599,20 @@ Transform:
   m_Father: {fileID: 1267610792}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2084819886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554935344879596761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 344125396404643897, guid: b83c73176cf6e6c4e983f1b43809eec3, type: 3}
 --- !u!114 &2085735034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4577,6 +4648,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2126441205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554935344879596766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 344125396404643897, guid: b83c73176cf6e6c4e983f1b43809eec3, type: 3}
 --- !u!23 &40255138191983466
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7329,6 +7414,121 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variantName: Sea
   prefab: {fileID: 4639460524403770216, guid: 90aa59275aaabf545bd23d59a0f0176f, type: 3}
+--- !u!1 &4554935344879596763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6651999295977642458, guid: d7173a83f89d60745a4498930ec4b5d3, type: 3}
+  m_PrefabInstance: {fileID: 4554935344879596760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4554935344879596764 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4554935345778453431, guid: d7173a83f89d60745a4498930ec4b5d3, type: 3}
+  m_PrefabInstance: {fileID: 4554935344879596760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4554935344879596765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4554935346081682843, guid: d7173a83f89d60745a4498930ec4b5d3, type: 3}
+  m_PrefabInstance: {fileID: 4554935344879596760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4554935344879596766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4554935346017643523, guid: d7173a83f89d60745a4498930ec4b5d3, type: 3}
+  m_PrefabInstance: {fileID: 4554935344879596760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4554935344879596767 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4554935344661605122, guid: d7173a83f89d60745a4498930ec4b5d3, type: 3}
+  m_PrefabInstance: {fileID: 4554935344879596760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4554935344879596768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4554935345681322951, guid: d7173a83f89d60745a4498930ec4b5d3, type: 3}
+  m_PrefabInstance: {fileID: 4554935344879596760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4554935344879596769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4554935346229475076, guid: d7173a83f89d60745a4498930ec4b5d3, type: 3}
+  m_PrefabInstance: {fileID: 4554935344879596760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4554935344879596770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4554935344696267164, guid: d7173a83f89d60745a4498930ec4b5d3, type: 3}
+  m_PrefabInstance: {fileID: 4554935344879596760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4554935344879596771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4554935345263295135, guid: d7173a83f89d60745a4498930ec4b5d3, type: 3}
+  m_PrefabInstance: {fileID: 4554935344879596760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4554935344879596772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554935344879596767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 344125396404643897, guid: b83c73176cf6e6c4e983f1b43809eec3, type: 3}
+--- !u!114 &4554935344879596773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554935344879596768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 344125396404643897, guid: b83c73176cf6e6c4e983f1b43809eec3, type: 3}
+--- !u!114 &4554935344879596774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554935344879596769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 344125396404643897, guid: b83c73176cf6e6c4e983f1b43809eec3, type: 3}
+--- !u!114 &4554935344879596775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554935344879596770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 344125396404643897, guid: b83c73176cf6e6c4e983f1b43809eec3, type: 3}
+--- !u!114 &4554935344879596776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554935344879596771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362a24ac25afdb54591e9d3b831b8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variantName: Cyberpunk
+  prefab: {fileID: 344125396404643897, guid: b83c73176cf6e6c4e983f1b43809eec3, type: 3}
 --- !u!114 &4638946048597708169 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7245852231720800102, guid: 160cfdd1e408cc545a5fb5a10a2f58d6, type: 3}
