@@ -4,76 +4,53 @@ using UnityEngine;
 
 public class CoffeeStation : Station
 {
-    [SerializeField] private GameObject coffeeStationDeco;
-    [SerializeField] private GameObject customerMug;
     [SerializeField] private GameObject coffeePot;
     [SerializeField] private ParticleSystem coffeeParticle;
     [SerializeField] private GameObject sugar;
     [SerializeField] private ParticleSystem sugarParticle;
     [SerializeField] private GameObject cream;
     [SerializeField] private ParticleSystem creamParticle;
+    [SerializeField] private GameObject[] customerMugArray;
+    [SerializeField] private GameObject ring;
 
-    [SerializeField] private GameObject[] waypoints;
-    [SerializeField] private int current = 0;
-    private float waypointRadius = .1f;
+    public string[] needsArray = new string[4];
+    public GameObject[] signArray = new GameObject[4];
 
-    private float baseMoveSpeed;
 
-    [SerializeField] private float bpm = 135f;
-    private float travelDistance;
-    private float time;
+    public float secondsPerBeat;
+    public int beatsPerMeasure;
+    public int currentBeat;
+    public float currentBeatTime;
 
-    private Vector2 iniMousePos;
-    private Vector3 coffeeMousePos;
-    private Vector3 iniPotPos;
-    private Vector3 iniCreamPos;
-    private Vector3 initialCoffeePourBarSize;
-    private Vector3 initialCreamPourBarSize;
+    private string selected;
 
-    [SerializeField] private float coffeePourTime = 0f;
-    private float idealCoffeePourTime;
-    private float coffeePourPercentage;
-    [SerializeField] private GameObject coffeePourBar;
+    private Vector3 containerPos;
+    private Vector3 signPos;
+    bool needsGenerated;
 
-    [SerializeField] private float creamPourTime = 0f;
-    private float idealCreamPourTime;
-    private float creamPourPercentage;
-    [SerializeField] private GameObject creamPourBar;
+    private float acceptableDistance = .3f;
+    private float accetableTiming = .5f;
 
-    private float coffeeDistanceFromMug;
-    private float creamDistanceFromMug;
-    private float sugarDistanceFromMug;
-
-    private bool customerMugMoving = false;
-    private bool pouring = false;
-    private bool sugarEnabled;
+    Color lightRed = new Color(.5f, 0f, 0f, 1f);
+    Color changeColor = new Color(.1f, 0f, 0f, 1f);
 
     [SerializeField] private GameObject instructions;
 
-    [SerializeField] private int pointTotal = 0;
+    private ScoreAndStreakManager scoreManager;
 
     // Start is called before the first frame update
-   public override void Initialize()
+    public override void Initialize()
     {
-        time = 8f / (bpm / 60f);
-        travelDistance = Vector3.Distance(waypoints[0].transform.position, waypoints[waypoints.Length - 1].transform.position);
-        baseMoveSpeed = travelDistance / time;
-
-        idealCoffeePourTime = Vector3.Distance(waypoints[1].transform.position, waypoints[2].transform.position) / (3 * baseMoveSpeed);
-        idealCreamPourTime = Vector3.Distance(waypoints[3].transform.position, waypoints[4].transform.position) / (3 * baseMoveSpeed);
-
-        iniPotPos = coffeePot.transform.position;
-        iniCreamPos = cream.transform.position;
-
-        initialCoffeePourBarSize = coffeePourBar.transform.localScale;
-        initialCreamPourBarSize = creamPourBar.transform.localScale;
-
-        coffeePourBar.SetActive(false);
-        creamPourBar.SetActive(false);
+        scoreManager = GetComponent<ScoreAndStreakManager>();
 
         coffeePot.SetActive(false);
         cream.SetActive(false);
         sugar.SetActive(false);
+        needsGenerated = false;
+
+        secondsPerBeat = GameInfoManager.Instance.Song.GetSecondsPerBeat();
+        beatsPerMeasure = (int)GameInfoManager.Instance.Song.GetBeatsPerMeasure();
+        currentBeat = 1;
 
     }
 
@@ -85,202 +62,219 @@ public class CoffeeStation : Station
             return;
         }
 
-        if (customerMugMoving)
+        currentBeatTime += Time.deltaTime;
+
+        if (currentBeat == 1 && needsGenerated == false) 
         {
-            if (Vector3.Distance(waypoints[current].transform.position, customerMug.transform.position) < waypointRadius)
+            GenerateNeed();
+            ring.GetComponentInChildren<Renderer>().material.color = lightRed;
+            ring.transform.position = customerMugArray[0].transform.position;
+
+
+        }
+
+        if (currentBeatTime >= secondsPerBeat)
+        {
+            currentBeatTime = 0;
+
+            if (currentBeat == beatsPerMeasure || currentBeat == 4)
             {
-                current++;
-
-
-                if (current >= waypoints.Length)
-                {
-                    //reset stats on everything
-                    coffeePourPercentage = 100 - System.Math.Abs(1 - (coffeePourTime / idealCoffeePourTime)) * 100;
-
-                    if (coffeePourPercentage >= 90)
-                    {
-                        pointTotal += 4;
-                    }
-                    else if (coffeePourPercentage >= 80)
-                    {
-                        pointTotal += 2;
-                    }
-
-                    creamPourPercentage = 100 - System.Math.Abs(1 - (creamPourTime / idealCreamPourTime)) * 100;
-
-                    if (creamPourPercentage >= 90)
-                    {
-                        pointTotal += 3;
-                    }
-                    else if (creamPourPercentage >= 80)
-                    {
-                        pointTotal += 1;
-                    }
-
-                    customerMugMoving = false;
-                    coffeePourTime = 0;
-                    creamPourTime = 0;
-                    current = 0;
-
-                    customerMug.transform.position = waypoints[current].transform.position;
-
-                    coffeePourBar.transform.localScale = initialCoffeePourBarSize;
-                    coffeePourBar.SetActive(false);
-
-                    creamPourBar.transform.localScale = initialCreamPourBarSize;
-                    creamPourBar.SetActive(false);
-
-                    coffeeStationDeco.SetActive(true);
-                    coffeePot.SetActive(false);
-                    cream.SetActive(false);
-                    sugar.SetActive(false);
-
-                    instructions.SetActive(false);
-                }
+                currentBeat = 1;
+                needsGenerated = false;
             }
-            customerMug.transform.position = Vector3.MoveTowards(customerMug.transform.position, waypoints[current].transform.position, baseMoveSpeed * Time.deltaTime);
-
-
-        }
-
-        if (current == 2)
-        {
-            coffeeMousePos = Input.mousePosition;
-            coffeePot.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(coffeeMousePos.x, coffeeMousePos.y, 2f));
-
-
-            if (pouring)
+            else
             {
-
-                if (!coffeeParticle.isPlaying)
-                {
-                    coffeeParticle.Play();
-                }
-
-                coffeeDistanceFromMug = System.Math.Abs(coffeeParticle.transform.position.x - customerMug.transform.position.x);
-
-                if (coffeeDistanceFromMug <= .15)
-                {
-                    coffeePourTime += Time.deltaTime;
-                    coffeePourBar.transform.localScale += new Vector3(0f, .005f, 0f);
-                    //add sound effects for when the coffee is hitting or not
-                }
-
-
-                if (coffeePourTime >= idealCoffeePourTime && coffeePourTime <= idealCoffeePourTime + .2f)
-                {
-                    coffeePourBar.GetComponent<Renderer>().material.color = Color.green;
-                }
-                else
-                {
-                    coffeePourBar.GetComponent<Renderer>().material.color = Color.red;
-                }
-            }
-
-        }
-        else if (current == 3)
-        {
-            if(coffeeParticle.isPlaying) { coffeeParticle.Stop(); }
-
-            coffeePot.transform.position = iniPotPos;
-            pouring = false;
-        }
-        else if (current == 4)
-        {
-            coffeeMousePos = Input.mousePosition;
-            cream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(coffeeMousePos.x, coffeeMousePos.y, 2f));
-
-            if (pouring)
-            {
-
-                if(!creamParticle.isPlaying) { creamParticle.Play(); }
-
-                creamDistanceFromMug = System.Math.Abs(creamParticle.transform.position.x - customerMug.transform.position.x);
-
-                if (creamDistanceFromMug <= .15)
-                {
-                    creamPourTime += Time.deltaTime;
-                    creamPourBar.transform.localScale += new Vector3(0f, .005f, 0f);
-                    //add sound effects for cream pouring music
-                }
-
-                if (creamPourTime >= idealCreamPourTime && creamPourTime <= creamPourTime + .2f)
-                {
-                    creamPourBar.GetComponent<Renderer>().material.color = Color.green;
-                }
-                else
-                {
-                    creamPourBar.GetComponent<Renderer>().material.color = Color.red;
-                }
-            }
-        }
-        else if (current == 5)
-        {
-            if(creamParticle.isPlaying) { creamParticle.Stop(); }
-
-            cream.transform.position = iniCreamPos;
-            pouring = false;
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!customerMugMoving)
-            {
-                customerMugMoving = true;
-                sugarEnabled = true;
-
-                coffeePourBar.SetActive(true);
-                coffeePourBar.GetComponent<Renderer>().material.color = Color.red;
-
-                creamPourBar.SetActive(true);
-                creamPourBar.GetComponent<Renderer>().material.color = Color.red;
-
-                coffeeStationDeco.SetActive(false);
-                coffeePot.SetActive(true);
-                sugar.SetActive(true);
-                cream.SetActive(true);
-
-                instructions.SetActive(true);
+                ring.GetComponentInChildren<Renderer>().material.color = Color.white;
+                currentBeat += 1;
+                ring.transform.position = customerMugArray[currentBeat-1].transform.position;
+                ring.GetComponentInChildren<Renderer>().material.color = lightRed;
 
             }
         }
-
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        else
         {
-            //pouring starts
-            if (current == 2 || current == 4)
+            colorItems();
+        }
+
+
+        
+        PourControl();
+        PourRelease();
+    }
+
+    void PourControl()
+    {
+        containerPos = Input.mousePosition;
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            selected = "COFFEE";
+
+            if (!coffeePot.activeSelf) { coffeePot.SetActive(true); }
+
+            coffeePot.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 2f));
+
+            if (Input.GetMouseButtonDown(0))
             {
-                pouring = true;
+                if (!coffeeParticle.isPlaying) { coffeeParticle.Play(); }
+
+                RangeCheck(coffeeParticle.transform.position.x) ;
+       
+            }
+
+            else if (Input.GetMouseButtonUp(0))
+            {
+                if (coffeeParticle.isPlaying) { coffeeParticle.Stop(); }
             }
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+
+        else if (Input.GetKey(KeyCode.S))
         {
-            //pouring stops
-            if (current == 2 || current == 4)
+            selected = "SUGAR";
+            if (!sugar.activeSelf) { sugar.SetActive(true); }
+
+            sugar.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 2f));
+
+            if (Input.GetMouseButtonDown(0))
             {
-                pouring = false;
-                coffeePot.GetComponentInChildren<ParticleSystem>().Stop();
-                cream.GetComponentInChildren<ParticleSystem>().Stop();
+                if (!sugarParticle.isPlaying) { sugarParticle.Play(); }
+
+                RangeCheck(sugarParticle.transform.position.x);
+    
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                if (sugarParticle.isPlaying) { sugarParticle.Stop(); }
             }
         }
 
 
-
-
-        if (Input.GetKeyDown(KeyCode.Space) && sugarEnabled && customerMugMoving)
+        else if (Input.GetKey(KeyCode.D))
         {
-            sugarEnabled = false;
-            sugarParticle.Emit(20);
-            sugarDistanceFromMug = System.Math.Abs(sugarParticle.transform.position.x - customerMug.transform.position.x);
+            selected = "CREAM";
+            if (!cream.activeSelf) { cream.SetActive(true); }
 
-            if (sugarDistanceFromMug <= .1)
+            cream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 2f));
+
+            if (Input.GetMouseButtonDown(0))
             {
-                pointTotal += 3;
+                if (!creamParticle.isPlaying) { creamParticle.Play(); }
+
+                RangeCheck(creamParticle.transform.position.x);
+ 
             }
-            else if (sugarDistanceFromMug < .25)
+
+            else if (Input.GetMouseButtonUp(0))
             {
-                pointTotal += 1;
+                if (creamParticle.isPlaying) { creamParticle.Stop(); }
             }
         }
     }
+    
+    void PourRelease()
+    {
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            selected = "";
+
+            if (coffeePot.activeSelf) { coffeePot.SetActive(false); }
+            
+            if (coffeeParticle.isPlaying) { coffeeParticle.Stop(); }
+        }
+
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            selected = "";
+
+            if (sugar.activeSelf) { sugar.SetActive(false); }
+
+            if(sugarParticle.isPlaying) { sugarParticle.Stop(); }
+        }
+
+        if (Input.GetKeyUp(KeyCode.D)) 
+        {
+            selected = "";
+
+            if(cream.activeSelf) { cream.SetActive(false); }
+
+            if (creamParticle.isPlaying) { creamParticle.Stop(); }
+        }
+    }
+
+    void GenerateNeed()
+    {
+        for (int i = 0; i < customerMugArray.Length; i++)
+        {
+            if (signArray[i] is not null) { Destroy(signArray[i]); }
+
+            int toppingInt = Random.Range(1, 4);
+            signPos = customerMugArray[i].transform.position;
+            signPos.y += .2f;
+            
+            if(toppingInt == 1)
+            {
+                needsArray[i] = "COFFEE";
+                signArray[i] = Instantiate(coffeePot, signPos, Quaternion.identity) ;
+       
+            }
+            else if (toppingInt == 2) 
+            {
+                needsArray[i] = "SUGAR";
+                signPos.y += .2f;
+                signArray[i] = Instantiate(sugar, signPos, Quaternion.Euler(0, 90, 90));
+                
+            }
+            else if (toppingInt == 3)
+            {
+                needsArray[i] = "CREAM";
+                signArray[i] = Instantiate(cream, signPos, Quaternion.identity);
+                
+            }
+
+            signArray[i].transform.localScale /= 2;
+            signArray[i].SetActive(true);
+        }
+        needsGenerated = true;
+    }
+
+    void RangeCheck(float posX)
+    {
+        float actualDistance = posX - customerMugArray[currentBeat-1].transform.position.x;
+
+        if(actualDistance<= acceptableDistance && actualDistance >= -acceptableDistance){ CorrectItemCheck(currentBeat - 1); }
+
+    }
+
+    void CorrectItemCheck(int mugIndex)
+    {
+        if (needsArray[mugIndex].Equals(selected) && currentBeatTime <= accetableTiming)
+        {
+            //add success sfx here
+            scoreManager.scoreUpdate(1);
+        }
+        else
+        {
+            //late sound effects here
+            scoreManager.resetStreak();
+        }
+
+
+        needsArray[mugIndex] = "";
+        Destroy(signArray[mugIndex]);
+        signArray[mugIndex] = null;
+    }
+
+    void colorItems()
+    {
+
+        if (ring.GetComponentInChildren<Renderer>().material.color != Color.green && (secondsPerBeat - currentBeatTime) <= accetableTiming)
+        {
+            ring.GetComponentInChildren<Renderer>().material.color = Color.green;
+        }
+        else
+        {
+            ring.GetComponentInChildren<Renderer>().material.color += changeColor;
+        }
+    }
+
 }

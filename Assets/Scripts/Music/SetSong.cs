@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SetSong : MonoBehaviour
 {
     public string scene = "";
+    public MainMenuButtons buttonCheck;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,8 @@ public class SetSong : MonoBehaviour
         GlobalVariables.songUI = "Boogie Slow";
 
         GlobalVariables.bpm = 60;
+
+        buttonCheck.checkBPM();
 
         GlobalVariables.songLengthMeasures = 48;
 
@@ -58,6 +61,8 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.bpm = 120;
 
+        buttonCheck.checkBPM();
+
         GlobalVariables.songLengthMeasures = 90;
 
         GlobalVariables.earlyDish = "EarlyDish";
@@ -88,6 +93,8 @@ public class SetSong : MonoBehaviour
         GlobalVariables.songUI = "Boogie Rock";
 
         GlobalVariables.bpm = 180;
+
+        buttonCheck.checkBPM();
 
         GlobalVariables.songLengthMeasures = 177;
 
@@ -121,6 +128,8 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.bpm = 135;
 
+        buttonCheck.checkBPM();
+
         GlobalVariables.songLengthMeasures = 64;
 
         GlobalVariables.earlyDish = "EarlyDish2";
@@ -131,6 +140,12 @@ public class SetSong : MonoBehaviour
 
         GameInfoManager.Instance.Song.UpdateBPM();
         GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish,  GlobalVariables.lateDish);
+    }
+
+    public void songMenu()
+    {
+        GlobalVariables.songChoice = "event:/MenuSong";
+   
     }
 
 }
