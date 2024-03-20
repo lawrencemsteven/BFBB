@@ -71,5 +71,14 @@ public class EndOfDayScript : MonoBehaviour
     {
         //gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1620.0f, gameObject.transform.position.z);
         mainMenuButtons.GetComponent<MainMenuButtons>().backToMainMenu();
+        confetti.Clear();
+        confetti.Stop();
+        coins.Clear();
+        coins.Stop();
+        foreach (Transform child in explosion.transform)
+        {
+            child.GetComponent<ParticleSystem>().Clear();
+            child.GetComponent<ParticleSystem>().Stop();
+        }
     }
 }
