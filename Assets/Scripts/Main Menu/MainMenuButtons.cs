@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Enumerations;
+using TMPro;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MainMenuButtons : MonoBehaviour
     public Transform jukeboxButtonsParent;
     public Transform shopParent;
     public Transform shopStylesParent;
+    public TMP_Text difficultyText;
 
     private Transform previousMenu;
     private Transform currentMenu;
@@ -25,6 +27,10 @@ public class MainMenuButtons : MonoBehaviour
     private bool moveBackButtonOut = false;
     private bool backButtonIn = false;
     private bool enableBackButtonAfterTransition = false;
+
+    private bool switchDifficulty = false;
+
+    private int currentDiff = 0;
 
     public void Start()
     {
@@ -207,11 +213,11 @@ public class MainMenuButtons : MonoBehaviour
     // Jukebox Buttons
     public void JukeboxLeft()
     {
-        Debug.Log("TODO: Jukebox Left");
+        // This was done elsewhere?
     }
     public void JukeboxRight()
     {
-        Debug.Log("TODO: Jukebox Right");
+        // This was also done elsewhere?
     }
     public void JukeboxPlay()
     {
@@ -220,6 +226,50 @@ public class MainMenuButtons : MonoBehaviour
         Cursor.visible = false;
         switchCamera.transform.parent.GetComponent<Canvas>().enabled = true;
         gameObject.SetActive(false);
+    }
+    public enum SongDifficulty
+    {
+        Easy,
+        Hard,
+    }
+    public void JukeboxSetSongDifficulty(SongDifficulty songDifficulty, int bpm)
+    {
+        if (songDifficulty == SongDifficulty.Easy)
+        {
+            difficultyText.text = "Easy " + bpm + "BPM";
+        }
+        else if (songDifficulty == SongDifficulty.Hard)
+        {
+            difficultyText.text = "Hard " + bpm + "BPM";
+        }
+    }
+
+    public void JukeboxSetSongEasy() {
+        currentDiff = 0;
+        if (switchDifficulty) {
+            GlobalVariables.bpm = GlobalVariables.bpm / 2;
+            switchDifficulty = false;
+        }
+        difficultyText.text = "Easy " + GlobalVariables.bpm + "BPM";
+    }
+
+    public void JukeboxSetSongHard() {
+        currentDiff = 1;
+        if (!switchDifficulty) {
+            GlobalVariables.bpm = GlobalVariables.bpm * 2;
+        }
+        difficultyText.text = "Hard " + GlobalVariables.bpm + "BPM";
+        switchDifficulty = true;
+    }
+
+    public void ResetSongState() {
+        switchDifficulty = false;
+    }
+
+    public void checkBPM() {
+        if (currentDiff == 1) {
+            GlobalVariables.bpm = GlobalVariables.bpm * 2;
+        }
     }
 
 
