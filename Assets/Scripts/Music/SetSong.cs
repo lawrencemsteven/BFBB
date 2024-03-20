@@ -45,7 +45,7 @@ public class SetSong : MonoBehaviour
         GlobalVariables.volume = "Volume 2";
 
         GameInfoManager.Instance.Song.UpdateBPM();
-
+        GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish,  GlobalVariables.lateDish);
     }
 
     public void songBoogie()
