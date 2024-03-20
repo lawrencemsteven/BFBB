@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SetSong : MonoBehaviour
 {
     public string scene = "";
+    public MainMenuButtons buttonCheck;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,8 @@ public class SetSong : MonoBehaviour
         GlobalVariables.songUI = "Boogie Slow";
 
         GlobalVariables.bpm = 60u;
+
+        buttonCheck.checkBPM();
 
         GlobalVariables.earlyDish = "EarlyDish";
 
@@ -54,7 +57,9 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.songUI = "Boogie Feel";
 
-        GlobalVariables.bpm = 120u;
+        GlobalVariables.bpm = 60u;
+
+        buttonCheck.checkBPM();
 
         GlobalVariables.earlyDish = "EarlyDish";
 
@@ -83,7 +88,9 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.songUI = "Boogie Rock";
 
-        GlobalVariables.bpm = 180u;
+        GlobalVariables.bpm = 90u;
+
+        buttonCheck.checkBPM();
 
         GlobalVariables.earlyDish = "EarlyDish3";
 
@@ -114,6 +121,8 @@ public class SetSong : MonoBehaviour
         GlobalVariables.songUI = "Boogie Bumpin";
 
         GlobalVariables.bpm = 135u;
+
+        buttonCheck.checkBPM();
 
         GlobalVariables.earlyDish = "EarlyDish2";
 
