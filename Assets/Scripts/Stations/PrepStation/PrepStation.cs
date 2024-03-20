@@ -424,7 +424,7 @@ public class PrepStation : Station
         {
             if (selectedTopping == Topping.NONE || selectedTopping == Topping.CHOCOLATE_CHIP)
             {
-                chocolateChip.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, .5f));
+                chocolateChip.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, .8f));
                 chocolateChip.transform.eulerAngles = new Vector3(45f, 90f, 0f);
 
                 //set cursor and choccies to follow mouse movement
