@@ -327,9 +327,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3838911359185027006}
-        m_TargetAssemblyTypeName: MainMenuButtons, Assembly-CSharp
-        m_MethodName: JukeboxPlay
+      - m_Target: {fileID: 6049671955899615564}
+        m_TargetAssemblyTypeName: EndOfDayScript, Assembly-CSharp
+        m_MethodName: continueButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4321,6 +4321,8 @@ MonoBehaviour:
   shopParent: {fileID: 3838911360124361755}
   shopStylesParent: {fileID: 3838911359092534470}
   difficultyText: {fileID: 3838911359603895413}
+  eventSystem: {fileID: 0}
+  endOfDayParent: {fileID: 0}
 --- !u!1 &3838911359278113341
 GameObject:
   m_ObjectHideFlags: 0
@@ -10893,6 +10895,9 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   mainMenuButtons: {fileID: 0}
   switchCamera: {fileID: 0}
+  confetti: {fileID: 0}
+  coins: {fileID: 0}
+  explosion: {fileID: 0}
   m_moneyDisplay: {fileID: 0}
 --- !u!1 &8909872950180615446
 GameObject:

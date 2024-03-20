@@ -60,10 +60,10 @@ public class ScriptUsageTimeline : MonoBehaviour
     }
 
     
-    void OnGUI()
-    {
-        GUILayout.Box(String.Format("Current Bar = {0}, Current Beat = {1}", timelineInfo.currentBar.ToString(), timelineInfo.currentBeat.ToString()));
-    }
+    //void OnGUI()
+    //{
+        //GUILayout.Box(String.Format("Current Bar = {0}, Current Beat = {1}", timelineInfo.currentBar.ToString(), timelineInfo.currentBeat.ToString()));
+    //}
     
 
     [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]

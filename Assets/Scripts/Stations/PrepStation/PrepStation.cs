@@ -101,6 +101,7 @@ public class PrepStation : Station
         {
             butter.SetActive(true);
             ToggleTopping(Topping.BUTTER);
+            clearParticles();
             //turn in order
             //CHECK IF TOPPING FROM ORDER IS IN DISH
             //CLEAR TOPPINGS
@@ -510,4 +511,14 @@ public class PrepStation : Station
         this.selectedCustomer = selectedCustomer;
     }
 
+    void clearParticles()
+    {
+        if (syrupParticle != null && fruitParticle.IsAlive()) { syrupParticle.Stop(); syrupParticle.Clear(); }
+
+        if(fruitParticle!= null && fruitParticle.IsAlive()) { fruitParticle.Stop(); fruitParticle.Clear(); }
+
+        if(whipParticle!= null && whipParticle.IsAlive()) { whipParticle.Stop(); whipParticle.Clear(); }
+
+        if(chocoParticle!= null && chocoParticle.IsAlive()) { chocoParticle.Stop(); chocoParticle.Clear(); }
+    }
 }

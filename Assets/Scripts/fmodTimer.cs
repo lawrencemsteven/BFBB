@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using System;
+using FMOD.Studio;
 
 public class fmodTimer : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class fmodTimer : MonoBehaviour
     public FMOD.Studio.EventInstance eventInstance;
     public int timelinePos;
     */
+    [SerializeField] private EndOfDayScript endOfDayScript;
     public string eventObjectName;
     //public ScriptUsageTimeline event;
     public ScriptUsageTimeline.TimelineInfo timeline;
@@ -68,7 +70,7 @@ public class fmodTimer : MonoBehaviour
             beatChange = false;
         }
         previousBeat = beat;
-        
+
         //if(Input.GetKeyDown(KeyCode.0)) 
         //    print(eventRef.getTimelinePosition());
         //eventInstance.getTimelinePosition(out timelinePos);
