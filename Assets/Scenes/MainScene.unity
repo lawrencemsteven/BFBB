@@ -10752,6 +10752,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3030447494028643463, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3112727996212994036, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10783,6 +10787,10 @@ PrefabInstance:
     - target: {fileID: 3112727996212994037, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112727996212994037, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4100210709940543086, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
       propertyPath: m_LocalPosition.x
