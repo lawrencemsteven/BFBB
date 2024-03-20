@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Enumerations;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class MainMenuButtons : MonoBehaviour
     public Transform shopParent;
     public Transform shopStylesParent;
     public TMP_Text difficultyText;
+    public PlaySnippet eventSystem;
 
     private Transform previousMenu;
     private Transform currentMenu;
@@ -166,6 +168,11 @@ public class MainMenuButtons : MonoBehaviour
     // Back Button
     public void backButton()
     {
+        if (currentMenu == jukeboxButtonsParent)
+        {
+            eventSystem.StopSong();
+        }
+
         if (currentMenu == jukeboxButtonsParent || currentMenu == shopParent)
         {
             cameraController.changeTarget(CameraController.CameraPoses.MAIN, transitionTime);
@@ -244,30 +251,37 @@ public class MainMenuButtons : MonoBehaviour
         }
     }
 
-    public void JukeboxSetSongEasy() {
+    public void JukeboxSetSongEasy()
+    {
         currentDiff = 0;
-        if (switchDifficulty) {
+        if (switchDifficulty)
+        {
             GlobalVariables.bpm = GlobalVariables.bpm / 2;
             switchDifficulty = false;
         }
         difficultyText.text = "Easy " + GlobalVariables.bpm + "BPM";
     }
 
-    public void JukeboxSetSongHard() {
+    public void JukeboxSetSongHard()
+    {
         currentDiff = 1;
-        if (!switchDifficulty) {
+        if (!switchDifficulty)
+        {
             GlobalVariables.bpm = GlobalVariables.bpm * 2;
         }
         difficultyText.text = "Hard " + GlobalVariables.bpm + "BPM";
         switchDifficulty = true;
     }
 
-    public void ResetSongState() {
+    public void ResetSongState()
+    {
         switchDifficulty = false;
     }
 
-    public void checkBPM() {
-        if (currentDiff == 1) {
+    public void checkBPM()
+    {
+        if (currentDiff == 1)
+        {
             GlobalVariables.bpm = GlobalVariables.bpm * 2;
         }
     }
