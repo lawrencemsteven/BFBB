@@ -141,10 +141,11 @@ public class SwitchCamera : MonoBehaviour
         }
     }
 
-
-
-    public Station getCurrentStation()
+    public Station GetCurrentStation()
     {
         return station;
     }
+
+    public StationType GetSelectedStationType() { return selectedStationType; }
+    public StationType GetQueuedStationType() { return switchToStation; }
 }

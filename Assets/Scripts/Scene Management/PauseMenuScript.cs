@@ -9,9 +9,11 @@ public class PauseMenuScript : MonoBehaviour
     [SerializeField] private CameraController cameraController;
     [SerializeField] private GameObject mainMenuButtons;
     [SerializeField] private SwitchCamera switchCamera;
+    bool MenuScreenOn = false;
+
+    [SerializeField] private TutorialMenuScript tutorialMenu;
 
     public ScriptUsageTimeline pauser;
-    bool MenuScreenOn = false;
     
     // Update is called once per frame
     void Update()
@@ -21,7 +23,7 @@ public class PauseMenuScript : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !tutorialMenu.IsOpen() )
         {
             if (MenuScreenOn == false)
             {
@@ -54,5 +56,7 @@ public class PauseMenuScript : MonoBehaviour
         switchCamera.DeactivateAll();
         Cursor.visible = true;
     }
+
+    public bool IsOpen() { return MenuScreenOn; }
 }
 
