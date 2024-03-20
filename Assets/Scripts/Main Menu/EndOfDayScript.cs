@@ -11,6 +11,9 @@ public class EndOfDayScript : MonoBehaviour
     [SerializeField] private CameraController cameraController;
     [SerializeField] private GameObject mainMenuButtons;
     [SerializeField] private SwitchCamera switchCamera;
+    [SerializeField] private ParticleSystem confetti;
+    [SerializeField] private ParticleSystem coins;
+    [SerializeField] private GameObject explosion;
     public GameObject m_moneyDisplay;
 
     private float m_animationAmount = 0.0f;
@@ -28,12 +31,34 @@ public class EndOfDayScript : MonoBehaviour
             if (m_animationAmount >= m_animationTime)
             {
                 m_animating = false;
+                coins.Play();
+                foreach (Transform child in explosion.transform)
+                {
+                    child.GetComponent<ParticleSystem>().Play();
+                }
             }
         }
     }
 
     public void showDisplay(float time = 2.0f)
     {
+        switchCamera.DeactivateAll();
+        Cursor.visible = true;
+        cameraController.SetUseGameCameras(false);
+        mainMenuButtons.SetActive(true);
+        mainMenuButtons.GetComponent<MainMenuButtons>().ShowShiftComplete();
+
+        switchCamera.transform.parent.GetComponent<Canvas>().enabled = false;
+
+        MoneyManager.addMoney(GlobalVariables.score);
+        displayMoney(GlobalVariables.score);
+        GlobalVariables.score = 0;
+
+        confetti.Play();
+
+        ReservoirManager.GetPancakes().Clear();
+        ReservoirManager.GetPlates().Clear();
+
         m_animationTime = time;
         m_animating = true;
     }
@@ -41,16 +66,21 @@ public class EndOfDayScript : MonoBehaviour
     public void displayMoney(int money)
     {
         money = Math.Max(money, 0);
-        m_moneyDisplay.GetComponent<TextMeshPro>().text = "$" + money;
+        m_moneyDisplay.GetComponent<TextMeshProUGUI>().text = "$" + money;
     }
 
     public void continueButton()
     {
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1620.0f, gameObject.transform.position.z);
-        cameraController.SetUseGameCameras(false);
-        mainMenuButtons.SetActive(true);
-        switchCamera.DeactivateAll();
-        Cursor.visible = true;
+        //gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1620.0f, gameObject.transform.position.z);
         mainMenuButtons.GetComponent<MainMenuButtons>().backToMainMenu();
+        confetti.Clear();
+        confetti.Stop();
+        coins.Clear();
+        coins.Stop();
+        foreach (Transform child in explosion.transform)
+        {
+            child.GetComponent<ParticleSystem>().Clear();
+            child.GetComponent<ParticleSystem>().Stop();
+        }
     }
 }
