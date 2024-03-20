@@ -61,4 +61,12 @@ public class PlaySnippet : MonoBehaviour
             info.UpdateBPM();
         }
     }
+
+    public void PlayMenuMusic()
+    {
+        setSong.songMenu();
+        GlobalVariables.preview = FMODUnity.RuntimeManager.CreateInstance("event:/MenuSong");
+        GlobalVariables.preview.start();
+        GlobalVariables.preview.release();
+    }
 }

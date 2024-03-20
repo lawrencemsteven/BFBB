@@ -134,4 +134,10 @@ public class SetSong : MonoBehaviour
         GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish,  GlobalVariables.lateDish);
     }
 
+    public void songMenu()
+    {
+        GlobalVariables.songChoice = "event:/MenuSong";
+   
+    }
+
 }
