@@ -30,7 +30,7 @@ public class SetSong : MonoBehaviour
 
         buttonCheck.checkBPM();
 
-        GlobalVariables.songLengthMeasures = 48;
+        GlobalVariables.songLengthMeasures = 1;//(int)((3.2 * GlobalVariables.bpm) / 4);
 
         GlobalVariables.earlyDish = "EarlyDish";
 
@@ -63,7 +63,7 @@ public class SetSong : MonoBehaviour
 
         buttonCheck.checkBPM();
 
-        GlobalVariables.songLengthMeasures = 90;
+        GlobalVariables.songLengthMeasures = (int)((3 * GlobalVariables.bpm) / 4);
 
         GlobalVariables.earlyDish = "EarlyDish";
 
@@ -96,7 +96,7 @@ public class SetSong : MonoBehaviour
 
         buttonCheck.checkBPM();
 
-        GlobalVariables.songLengthMeasures = 177;
+        GlobalVariables.songLengthMeasures = (int)((3.93 * GlobalVariables.bpm) / 4);
 
         GlobalVariables.earlyDish = "EarlyDish3";
 
@@ -130,7 +130,7 @@ public class SetSong : MonoBehaviour
 
         buttonCheck.checkBPM();
 
-        GlobalVariables.songLengthMeasures = 64;
+        GlobalVariables.songLengthMeasures = (int)((1.9 * GlobalVariables.bpm) / 4);
 
         GlobalVariables.earlyDish = "EarlyDish2";
 
