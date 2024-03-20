@@ -2,22 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using TMPro.Examples;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EndOfDayScript : MonoBehaviour
 {
-    public TextMeshPro m_moneyDisplay;
+    [SerializeField] private CameraController cameraController;
+    [SerializeField] private GameObject mainMenuButtons;
+    [SerializeField] private SwitchCamera switchCamera;
+    public GameObject m_moneyDisplay;
 
     private float m_animationAmount = 0.0f;
     private float m_animationTime = 2.0f;
     private bool m_animating = false;
-
-    public void Start()
-    {
-        showDisplay();
-    }
 
     public void Update()
     {
@@ -43,13 +42,15 @@ public class EndOfDayScript : MonoBehaviour
     public void displayMoney(int money)
     {
         money = Math.Max(money, 0);
-        m_moneyDisplay.text = "$" + money;
+        m_moneyDisplay.GetComponent<TextMeshPro>().text = "$" + money;
     }
 
     public void continueButton()
     {
-        // Hopefully reloads the scene?
-        // Hi, this is later Steven, it does not.
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1620.0f, gameObject.transform.position.z);
+        cameraController.SetUseGameCameras(false);
+        mainMenuButtons.SetActive(true);
+        switchCamera.DeactivateAll();
+        Cursor.visible = true;
     }
 }
