@@ -132,6 +132,12 @@ public class MainMenuButtons : MonoBehaviour
         backButtonParent.localPosition = new Vector3(backButtonParent.localPosition.x, Mathf.Lerp(0.0f, -1080.0f, amount), backButtonParent.localPosition.z);
     }
 
+    public void backToMainMenu()
+    {
+        transitionTo(mainMenuButtonsParent);
+        cameraController.changeTarget(CameraController.CameraPoses.MAIN, 2.0f);
+    }
+
     public void transitionTo(Transform newMenu)
     {
         menuTransitioning = true;

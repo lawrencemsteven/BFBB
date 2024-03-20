@@ -18,33 +18,38 @@ public class PauseMenuScript : MonoBehaviour
     public GameObject musicPlayer;
 
     public GameObject metronome;
-    
+
     // Update is called once per frame
     void Update()
-    {     
+    {
         if (!cameraController.UsingGameCameras())
         {
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !tutorialMenu.IsOpen() )
+        if (Input.GetKeyDown(KeyCode.Escape) && !tutorialMenu.IsOpen())
         {
-            if (MenuScreenOn == false)
-            {
-                Time.timeScale = 0;
-                MenuScreenOn = true;
-                menuScreen.SetActive(true);
-                Cursor.visible = true;
-                pauser.Pause();
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                MenuScreenOn = false;
-                menuScreen.SetActive(false);
-                Cursor.visible = false;
-                pauser.Unpause();
-            }
+            resumeGame();
+        }
+    }
+
+    public void resumeGame()
+    {
+        if (MenuScreenOn == false)
+        {
+            Time.timeScale = 0;
+            MenuScreenOn = true;
+            menuScreen.SetActive(true);
+            Cursor.visible = true;
+            pauser.Pause();
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            MenuScreenOn = false;
+            menuScreen.SetActive(false);
+            Cursor.visible = false;
+            pauser.Unpause();
         }
     }
 
@@ -61,6 +66,7 @@ public class PauseMenuScript : MonoBehaviour
         mainMenuButtons.SetActive(true);
         switchCamera.DeactivateAll();
         Cursor.visible = true;
+        mainMenuButtons.GetComponent<MainMenuButtons>().backToMainMenu();
     }
 
     public bool IsOpen() { return MenuScreenOn; }
