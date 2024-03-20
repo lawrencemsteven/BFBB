@@ -17,13 +17,13 @@ public class SetSong : MonoBehaviour
     public void startGame()
     {        
         GameInfoManager.Instance.ReadFile();
-        SceneManager.LoadScene(scene);
         //GameInfoManager.Instance.WriteFile();
     }
-
     public void song60BPM()
     {
         GlobalVariables.songChoice = "event:/60BPM";
+
+        GlobalVariables.songUI = "Boogie Slow";
 
         GlobalVariables.bpm = 60u;
 
@@ -44,11 +44,15 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.volume = "Volume 2";
 
+        GameInfoManager.Instance.Song.UpdateBPM();
+        GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish,  GlobalVariables.lateDish);
     }
 
     public void songBoogie()
     {
         GlobalVariables.songChoice = "event:/BoogieSong";
+
+        GlobalVariables.songUI = "Boogie Feel";
 
         GlobalVariables.bpm = 120u;
 
@@ -68,11 +72,16 @@ public class SetSong : MonoBehaviour
         GlobalVariables.leftPrep = "C";
 
         GlobalVariables.volume = "Volume 1";
+
+        GameInfoManager.Instance.Song.UpdateBPM();
+        GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish,  GlobalVariables.lateDish);
     }
 
     public void songRock()
     {
         GlobalVariables.songChoice = "event:/BoogieRock";
+
+        GlobalVariables.songUI = "Boogie Rock";
 
         GlobalVariables.bpm = 180u;
 
@@ -93,11 +102,16 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.volume = "Volume 2";
 
+        GameInfoManager.Instance.Song.UpdateBPM();
+        GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish,  GlobalVariables.lateDish);
+
     }
 
     public void songBumpin()
     {
         GlobalVariables.songChoice = "event:/BoogieSong 2";
+
+        GlobalVariables.songUI = "Boogie Bumpin";
 
         GlobalVariables.bpm = 135u;
 
@@ -106,6 +120,9 @@ public class SetSong : MonoBehaviour
         GlobalVariables.onTimeDish = "HiHat2";
 
         GlobalVariables.lateDish = "LateDish2";
+
+        GameInfoManager.Instance.Song.UpdateBPM();
+        GameInfoManager.Instance.Dish.SetSounds(GlobalVariables.earlyDish, GlobalVariables.onTimeDish,  GlobalVariables.lateDish);
     }
 
 }

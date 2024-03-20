@@ -16,6 +16,7 @@ public class CoordinateGenerator : MonoBehaviour
 
     void Start()
     {
+        points = new List<CoordinateCollider>();
         GenerateShape();
     }
 

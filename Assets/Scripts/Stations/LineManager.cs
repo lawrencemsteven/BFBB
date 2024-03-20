@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using Orders;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CoordinateGenerator))]
 [RequireComponent(typeof(LineRenderer))]
@@ -37,6 +38,7 @@ public class LineManager : MonoBehaviour
     void Start()
     {
         lineRenderer.useWorldSpace = false;
+        lineRenderer.positionCount = 0;
     }
 
     public void UpdateLine()
@@ -82,6 +84,11 @@ public class LineManager : MonoBehaviour
 
         float beatDuration = GameInfoManager.Instance.Song.GetSecondsPerBeat() * measuresPerShape;
         List<CoordinateCollider> points = coordinateGenerator.GetColliders();
+
+        if (points[0].IsDestroyed())
+        {
+            yield return null;
+        }
 
         while (accumulatedTime < (beatDuration * GameInfoManager.Instance.Song.GetBeatsPerMeasure()))
         {

@@ -6,17 +6,8 @@ public class SpongeAsCursor : MonoBehaviour
 {
     public Camera dishWashingCamera;
     private float offset = 0.70f;
-    private ComposerInterpreter composer;
+    [SerializeField] private ComposerInterpreter composer;
     private bool isMouseMoving = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        composer = GameObject.FindObjectOfType<ComposerInterpreter>();
-        if (composer == null)
-        {
-            Debug.LogError("Composer not found in the scene");
-        }
-    }
 
     // Update is called once per frame
     void Update()

@@ -48,7 +48,7 @@ public class PrepStation : Station
 
     [SerializeField] private List<Sprite> toppingIcons = new List<Sprite>();
 
-    public void Start()
+    public override void Initialize()
     {
         scoreManager = GetComponent<ScoreAndStreakManager>();
         orderDisplay = prepStationUI.transform.GetChild(0);
@@ -73,6 +73,9 @@ public class PrepStation : Station
         chocoParticle.Stop();
 
         toppingCoordinateGenerator = coordinateGenerator as ToppingCoordinateGenerator;
+
+        toppingCoordinateGenerator.RemoveShape();
+        lineManager.UpdateLine();
 
         Composer.Instance.onBeat.AddListener(NewBeat);
         Composer.Instance.onMeasure.AddListener(NewMeasure);
@@ -302,6 +305,11 @@ public class PrepStation : Station
 
     public void UpdateCustomerOrders()
     {
+        if (orderDisplay is null)
+        {
+            return;
+        }
+        
         foreach (Transform child in orderDisplay)
         {
             Destroy(child.gameObject);

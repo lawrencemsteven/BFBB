@@ -48,4 +48,5 @@ public class GameInfoManager : Singleton<GameInfoManager>
         string jsonString = JsonUtility.ToJson(info);
         File.WriteAllText(saveFile, jsonString);
     }
+
 }

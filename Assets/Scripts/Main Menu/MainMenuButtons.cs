@@ -30,6 +30,8 @@ public class MainMenuButtons : MonoBehaviour
     {
         previousMenu = mainMenuButtonsParent;
         currentMenu = mainMenuButtonsParent;
+        gameObject.SetActive(true);
+        switchCamera.transform.parent.GetComponent<Canvas>().enabled = false;
     }
 
     public void Update()
@@ -130,6 +132,12 @@ public class MainMenuButtons : MonoBehaviour
         backButtonParent.localPosition = new Vector3(backButtonParent.localPosition.x, Mathf.Lerp(0.0f, -1080.0f, amount), backButtonParent.localPosition.z);
     }
 
+    public void backToMainMenu()
+    {
+        transitionTo(mainMenuButtonsParent);
+        cameraController.changeTarget(CameraController.CameraPoses.MAIN, 2.0f);
+    }
+
     public void transitionTo(Transform newMenu)
     {
         menuTransitioning = true;
@@ -210,6 +218,7 @@ public class MainMenuButtons : MonoBehaviour
         cameraController.SetUseGameCameras(true);
         switchCamera.Switch(StationType.DISH);
         Cursor.visible = false;
+        switchCamera.transform.parent.GetComponent<Canvas>().enabled = true;
         gameObject.SetActive(false);
     }
 

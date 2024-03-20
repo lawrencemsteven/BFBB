@@ -39,7 +39,7 @@ public class CoffeeStation : Station
     [SerializeField] private int pointTotal = 0;
 
     // Start is called before the first frame update
-    void Start()
+   public override void Initialize()
     {
         coffeePot.SetActive(false);
         cream.SetActive(false);

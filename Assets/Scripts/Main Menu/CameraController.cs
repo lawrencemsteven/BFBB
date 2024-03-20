@@ -36,6 +36,8 @@ public class CameraController : MonoBehaviour
     private CameraPoses m_previousCameraPose = CameraPoses.MAIN;
     private CameraPoses m_currentCameraPose = CameraPoses.MAIN;
 
+    private bool m_runAnimation = false;
+
 
     // All poses
     public enum CameraPoses
@@ -60,18 +62,13 @@ public class CameraController : MonoBehaviour
         TOTAL_LENGTH
     }
 
-    void Start()
-    {
-        // ICollection<string> test = AssetManager.GetAssetNames();
-        // foreach (string testString in test)
-        // {
-        //     Debug.Log(testString);
-        // }
-        // Debug.Log(test);
-    }
-
     void Update()
     {
+        if (!m_runAnimation)
+        {
+            return;
+        }
+
         if (!m_poseTransitioning)
         {
             transform.SetPositionAndRotation(getPosePosition(m_currentCameraPose), getPoseRotation(m_currentCameraPose));
@@ -243,5 +240,10 @@ public class CameraController : MonoBehaviour
     {
         m_useGameCameras = use;
         gameObject.SetActive(!use);
+    }
+
+    public void runAnimation(bool runAnimation = true)
+    {
+        m_runAnimation = runAnimation;
     }
 }

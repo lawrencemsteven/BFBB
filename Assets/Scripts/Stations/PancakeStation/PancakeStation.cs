@@ -20,15 +20,15 @@ public class PancakeStation : Station
     private bool readyForNewMeasure;
     public EnableBatterArea enableBatterArea;
 
-    private int pathToScore;
+    private bool pathToScore;
     private ScoreAndStreakManager scoreManager;
 
 
     // Start is called before the first frame update
-    void Start()
+    public override void Initialize()
     {
         scoreManager = GetComponent<ScoreAndStreakManager>();
-        pathToScore = 0;
+        pathToScore = false;
         timeToStartWaffles = (16 / bpm) * 60;
         timeToFlipPancake = (26 / bpm) * 60;
         timeToFlipWaffle = (30 / bpm) * 60;
@@ -36,8 +36,19 @@ public class PancakeStation : Station
         timeToFinishWaffle = (38 / bpm) * 60;
         timeToFlash = (1 / (bpm)) * 60;
 
+        ReservoirManager.GetPancakes().Clear();
+
+        Composer.Instance.onBeat.AddListener(NewBeat);
         Composer.Instance.onMeasure.AddListener(NewMeasure);
         NewMeasure();
+    }
+
+    public void NewBeat()
+    {
+        if (pathToScore) {
+            scoreManager.scoreUpdate(1);
+            pathToScore = false;
+        }
     }
 
     public void NewMeasure()
@@ -167,6 +178,9 @@ public class PancakeStation : Station
             }
             Station.HandlePathUpdate(offset);
         }
+        else if (Input.GetMouseButtonUp(0) && Stations.Pancake.IsRunning()) {
+            Composer.Instance.PitchChange(0);
+        }
 
         IEnumerator CountBeatsToWaffleFlip()
         {
@@ -221,12 +235,6 @@ public class PancakeStation : Station
                 yield return new WaitForSeconds(beatInterval);
             }
         }
-
-        if (pathToScore == 1) {
-            scoreManager.scoreUpdate(1);
-            pathToScore = 0;
-        }
-
     }
 
     public override void pathUpdate(Vector2 offset)
@@ -236,7 +244,7 @@ public class PancakeStation : Station
         if (distance < distanceMinimum)
         {
             distance = 0;
-            pathToScore += 1;
+            pathToScore = true;
         }
         
         else {
@@ -250,7 +258,7 @@ public class PancakeStation : Station
     public override void Deactivate()
     {
         base.Deactivate();
-        Composer.Instance.PitchChange(0);
+        Composer.Instance?.PitchChange(0);
     }
 
     public PancakeParticleObject GetPancakeParticleObject() { return pancakeParticleObject; }
