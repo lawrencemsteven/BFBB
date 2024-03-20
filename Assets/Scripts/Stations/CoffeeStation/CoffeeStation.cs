@@ -11,15 +11,16 @@ public class CoffeeStation : Station
     [SerializeField] private GameObject cream;
     [SerializeField] private ParticleSystem creamParticle;
     [SerializeField] private GameObject[] customerMugArray;
+    [SerializeField] private GameObject ring;
 
     public string[] needsArray = new string[4];
     public GameObject[] signArray = new GameObject[4];
 
 
-
-    private float bpm = 135f;
+    public float secondsPerBeat;
     public int beatsPerMeasure;
     public int currentBeat;
+    public float currentBeatTime;
 
     private string selected;
 
@@ -28,6 +29,10 @@ public class CoffeeStation : Station
     bool needsGenerated;
 
     private float acceptableDistance = .3f;
+    private float accetableTiming = .5f;
+
+    Color lightRed = new Color(.5f, 0f, 0f, 1f);
+    Color changeColor = new Color(.1f, 0f, 0f, 1f);
 
     [SerializeField] private GameObject instructions;
 
@@ -41,7 +46,9 @@ public class CoffeeStation : Station
         sugar.SetActive(false);
         needsGenerated = false;
 
+        secondsPerBeat = GameInfoManager.Instance.Song.GetSecondsPerBeat();
         beatsPerMeasure = (int)GameInfoManager.Instance.Song.GetBeatsPerMeasure();
+        currentBeat = 1;
 
     }
 
@@ -53,27 +60,42 @@ public class CoffeeStation : Station
             return;
         }
 
-        currentBeat = lineManager.GetCurrentBeat();
-        //Debug.Log("Current Beat is " + currentBeat);
-       
+        currentBeatTime += Time.deltaTime;
 
-        //LineManager.GetCurrentBeat(){}
-        //if current = bpm recreate needs
-
-        if(!needsGenerated) { GenerateNeed();}
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (currentBeat == 1 && needsGenerated == false) 
         {
             GenerateNeed();
+            ring.GetComponentInChildren<Renderer>().material.color = lightRed;
+            ring.transform.position = customerMugArray[0].transform.position;
+
+
         }
 
-        if(currentBeat == beatsPerMeasure)
+        if (currentBeatTime >= secondsPerBeat)
         {
-            //destroy elements in an needsArray;
-            //
-            needsGenerated = false;
+            currentBeatTime = 0;
+
+            if (currentBeat == beatsPerMeasure)
+            {
+                currentBeat = 1;
+                needsGenerated = false;
+            }
+            else
+            {
+                ring.GetComponentInChildren<Renderer>().material.color = Color.white;
+                currentBeat += 1;
+                ring.transform.position = customerMugArray[currentBeat-1].transform.position;
+                ring.GetComponentInChildren<Renderer>().material.color = lightRed;
+
+            }
+        }
+        else
+        {
+            colorItems();
         }
 
+
+        
         PourControl();
         PourRelease();
     }
@@ -90,15 +112,12 @@ public class CoffeeStation : Station
 
             coffeePot.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 2f));
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 if (!coffeeParticle.isPlaying) { coffeeParticle.Play(); }
 
-                int x = RangeCheck(coffeePot.transform.position.x) ;
-                if (x == 0 || x == 1 || x == 2 || x == 3)
-                {
-                    CorrectItemCheck(x);
-                }
+                RangeCheck(coffeeParticle.transform.position.x) ;
+       
             }
 
             else if (Input.GetMouseButtonUp(0))
@@ -114,15 +133,12 @@ public class CoffeeStation : Station
 
             sugar.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 2f));
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 if (!sugarParticle.isPlaying) { sugarParticle.Play(); }
 
-                int x = RangeCheck(sugar.transform.position.x);
-                if(x == 0 || x == 1 || x == 2 || x == 3) 
-                {
-                    CorrectItemCheck(x);
-                }
+                RangeCheck(sugarParticle.transform.position.x);
+    
             }
             else if (Input.GetMouseButtonUp(0))
             {
@@ -138,16 +154,14 @@ public class CoffeeStation : Station
 
             cream.transform.position = associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 2f));
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 if (!creamParticle.isPlaying) { creamParticle.Play(); }
 
-                int x = RangeCheck(cream.transform.position.x);
-                if (x == 0 || x == 1 || x == 2 || x == 3)
-                {
-                    CorrectItemCheck(x);
-                }
+                RangeCheck(creamParticle.transform.position.x);
+ 
             }
+
             else if (Input.GetMouseButtonUp(0))
             {
                 if (creamParticle.isPlaying) { creamParticle.Stop(); }
@@ -187,7 +201,6 @@ public class CoffeeStation : Station
 
     void GenerateNeed()
     {
-        Debug.Log("Entering Generate need");
         for (int i = 0; i < customerMugArray.Length; i++)
         {
             if (signArray[i] is not null) { Destroy(signArray[i]); }
@@ -205,6 +218,7 @@ public class CoffeeStation : Station
             else if (toppingInt == 2) 
             {
                 needsArray[i] = "SUGAR";
+                signPos.y += .2f;
                 signArray[i] = Instantiate(sugar, signPos, Quaternion.Euler(0, 90, 90));
                 
             }
@@ -217,46 +231,44 @@ public class CoffeeStation : Station
 
             signArray[i].transform.localScale /= 2;
             signArray[i].SetActive(true);
-            needsGenerated = true;
         }
-
+        needsGenerated = true;
     }
 
-    int RangeCheck(float posX)
+    void RangeCheck(float posX)
     {
-        //change this to simple if check if container is close to customerMug[currentBeat]
-        //USE CONTAINER POSITION INSTEAD OF MOUSE POSITION
-        for(int i = 0; i < customerMugArray.Length; i++)
-        {
+        float actualDistance = posX - customerMugArray[currentBeat-1].transform.position.x;
 
-            float actualDistance = posX - customerMugArray[i].transform.position.x;
-  
+        if(actualDistance<= acceptableDistance && actualDistance >= -acceptableDistance){ CorrectItemCheck(currentBeat - 1); }
 
-            if ((actualDistance <=  acceptableDistance && actualDistance >= -acceptableDistance) && signArray[i] is not null)
-            {
-
-                // associatedCamera.ScreenToWorldPoint(new Vector3(containerPos.x, containerPos.y, 2f));
-
-                //associatedCamera.ScreenToWorldPoint(new Vector3(customer.MugArray[i].transform.position.x)
-                Debug.Log("found in range of thing");
-                return i;
-            }
-        }
-        return 5;
     }
 
     void CorrectItemCheck(int mugIndex)
     {
-        Debug.Log("Correct Itemcheck entered");
-        if (needsArray[mugIndex].Equals(selected))
+        if (needsArray[mugIndex].Equals(selected) && currentBeatTime <= accetableTiming)
         {
-            Debug.Log("Correct item found");
+            //add success sfx here
             pointTotal += 1;
         }
+
+        //late sound effects go here
 
         needsArray[mugIndex] = "";
         Destroy(signArray[mugIndex]);
         signArray[mugIndex] = null;
+    }
+
+    void colorItems()
+    {
+
+        if (ring.GetComponentInChildren<Renderer>().material.color != Color.green && (secondsPerBeat - currentBeatTime) <= accetableTiming)
+        {
+            ring.GetComponentInChildren<Renderer>().material.color = Color.green;
+        }
+        else
+        {
+            ring.GetComponentInChildren<Renderer>().material.color += changeColor;
+        }
     }
 
 }
