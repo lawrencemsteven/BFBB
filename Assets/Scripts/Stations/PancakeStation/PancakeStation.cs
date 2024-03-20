@@ -36,6 +36,8 @@ public class PancakeStation : Station
         timeToFinishWaffle = (38 / bpm) * 60;
         timeToFlash = (1 / (bpm)) * 60;
 
+        ReservoirManager.GetPancakes().Clear();
+
         Composer.Instance.onBeat.AddListener(NewBeat);
         Composer.Instance.onMeasure.AddListener(NewMeasure);
         NewMeasure();
@@ -256,7 +258,7 @@ public class PancakeStation : Station
     public override void Deactivate()
     {
         base.Deactivate();
-        Composer.Instance.PitchChange(0);
+        Composer.Instance?.PitchChange(0);
     }
 
     public PancakeParticleObject GetPancakeParticleObject() { return pancakeParticleObject; }

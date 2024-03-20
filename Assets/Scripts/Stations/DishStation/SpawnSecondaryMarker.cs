@@ -6,18 +6,20 @@ public class SpawnSecondaryMarker : MonoBehaviour
 {
     [SerializeField] private GameObject secondaryMarker;
 
+    private GameObject markerInstance;
+
     void Start()
     {
-        secondaryMarker = Instantiate(secondaryMarker, transform.position, transform.rotation);
+        markerInstance = Instantiate(secondaryMarker, transform.position, transform.rotation);
     }
 
     void OnDestroy()
     {
-        Destroy(secondaryMarker);
+        Destroy(markerInstance.gameObject);
     }
 
     void Update()
     {
-        secondaryMarker.transform.position = transform.position;
+        markerInstance.transform.position = transform.position;
     }
 }

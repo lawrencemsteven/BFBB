@@ -74,6 +74,9 @@ public class PrepStation : Station
 
         toppingCoordinateGenerator = coordinateGenerator as ToppingCoordinateGenerator;
 
+        toppingCoordinateGenerator.RemoveShape();
+        lineManager.UpdateLine();
+
         Composer.Instance.onBeat.AddListener(NewBeat);
         Composer.Instance.onMeasure.AddListener(NewMeasure);
     }

@@ -33,6 +33,10 @@ public class DishStation : Station
 
         smudgeCoordinateGenerator = coordinateGenerator as SmudgeCoordinateGenerator;
 
+        smudgeCoordinateGenerator.RemoveShape();
+        lineManager.UpdateLine();
+        ReservoirManager.GetPlates().Clear();
+
         soundBytePlayer.SetSounds(GameInfoManager.Instance.Dish.earlySound, GameInfoManager.Instance.Dish.onTimeSound, GameInfoManager.Instance.Dish.lateSound);
         soundBytePlayer.SetPlayMode(SoundBytePlayer.PlayMode.THREE_SOUNDS);
 

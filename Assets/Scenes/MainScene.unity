@@ -1576,11 +1576,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536a215311edb394fb732c2ba4893ad0, type: 3}
---- !u!224 &592332145 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3680708364045580831, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
-  m_PrefabInstance: {fileID: 3680708364540550513}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &618010156 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1335693078952884438, guid: 6e07f56f988574847a5123645a7f62fc, type: 3}
@@ -4311,49 +4306,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2039160559594641636, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
   m_PrefabInstance: {fileID: 5843084831700393144}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1843248457
+--- !u!1 &1843248457 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5745345572944755986, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
+  m_PrefabInstance: {fileID: 3680708364540550513}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1843248458}
-  - component: {fileID: 1843248460}
-  - component: {fileID: 1843248459}
-  m_Layer: 5
-  m_Name: ComposerInterpreter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1843248458
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843248457}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 592332145}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1843248459
+--- !u!114 &1843248459 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8113425634962804339, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
+  m_PrefabInstance: {fileID: 3680708364540550513}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843248457}
   m_Enabled: 1
@@ -4361,38 +4322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad27e29c3e4950489a05927dd6e6ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventObjectName: FMOD Music Event
-  composer: {fileID: 0}
-  fadeRate: 0.1
-  eqChangeRate: 0.1
-  countdownTimer: 10
-  maxTime: 10
-  toggleTimer: 1
-  mouseSpeed: 0
---- !u!114 &1843248460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843248457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9cddde9f51a65646ba494f857d3ef98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraController: {fileID: 0}
-  debugTimer: 0
-  isFading: 0
-  eqEffect: 0
-  isFade: 0
-  hiHatFmod: {fileID: 2066864611}
-  onBeat:
-    m_PersistentCalls:
-      m_Calls: []
-  onMeasure:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!850595691 &1853045212
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -5547,6 +5476,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1016459982636002339, guid: 5b8de1c9c257c5f4f864754f0b97ae87, type: 3}
+      propertyPath: composer
+      value: 
+      objectReference: {fileID: 1843248459}
     - target: {fileID: 2252659742345822183, guid: 5b8de1c9c257c5f4f864754f0b97ae87, type: 3}
       propertyPath: ready
       value: 
@@ -5795,6 +5728,14 @@ PrefabInstance:
       propertyPath: pauser
       value: 
       objectReference: {fileID: 2112636874}
+    - target: {fileID: 1335693079598871064, guid: 6e07f56f988574847a5123645a7f62fc, type: 3}
+      propertyPath: metronome
+      value: 
+      objectReference: {fileID: 779833893}
+    - target: {fileID: 1335693079598871064, guid: 6e07f56f988574847a5123645a7f62fc, type: 3}
+      propertyPath: musicPlayer
+      value: 
+      objectReference: {fileID: 30378276}
     - target: {fileID: 1335693079598871064, guid: 6e07f56f988574847a5123645a7f62fc, type: 3}
       propertyPath: switchCamera
       value: 
@@ -9305,6 +9246,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1253768220197792798, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
+      propertyPath: hiHatFmod
+      value: 
+      objectReference: {fileID: 2066864611}
+    - target: {fileID: 1253768220197792798, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1716184779}
     - target: {fileID: 1614086663888938015, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
