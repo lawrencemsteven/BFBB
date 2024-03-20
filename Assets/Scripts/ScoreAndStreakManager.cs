@@ -5,23 +5,9 @@ using UnityEngine;
 
 public class ScoreAndStreakManager : MonoBehaviour
 {
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void scoreUpdate(int Score) {
         GlobalVariables.score += Score;
         GlobalVariables.streak += 1;
-        Debug.Log(GlobalVariables.streak);
         if (GlobalVariables.streak == 3) {
             switch (GlobalVariables.currentStation) {
                 case "Dish":

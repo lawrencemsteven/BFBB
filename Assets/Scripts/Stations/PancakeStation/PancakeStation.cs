@@ -20,7 +20,7 @@ public class PancakeStation : Station
     private bool readyForNewMeasure;
     public EnableBatterArea enableBatterArea;
 
-    private int pathToScore;
+    private bool pathToScore;
     private ScoreAndStreakManager scoreManager;
 
 
@@ -28,7 +28,7 @@ public class PancakeStation : Station
     void Start()
     {
         scoreManager = GetComponent<ScoreAndStreakManager>();
-        pathToScore = 0;
+        pathToScore = false;
         timeToStartWaffles = (16 / bpm) * 60;
         timeToFlipPancake = (26 / bpm) * 60;
         timeToFlipWaffle = (30 / bpm) * 60;
@@ -36,8 +36,17 @@ public class PancakeStation : Station
         timeToFinishWaffle = (38 / bpm) * 60;
         timeToFlash = (1 / (bpm)) * 60;
 
+        Composer.Instance.onBeat.AddListener(NewBeat);
         Composer.Instance.onMeasure.AddListener(NewMeasure);
         NewMeasure();
+    }
+
+    public void NewBeat()
+    {
+        if (pathToScore) {
+            scoreManager.scoreUpdate(1);
+            pathToScore = false;
+        }
     }
 
     public void NewMeasure()
@@ -221,12 +230,6 @@ public class PancakeStation : Station
                 yield return new WaitForSeconds(beatInterval);
             }
         }
-
-        if (pathToScore == 1) {
-            scoreManager.scoreUpdate(1);
-            pathToScore = 0;
-        }
-
     }
 
     public override void pathUpdate(Vector2 offset)
@@ -236,7 +239,7 @@ public class PancakeStation : Station
         if (distance < distanceMinimum)
         {
             distance = 0;
-            pathToScore += 1;
+            pathToScore = true;
         }
         
         else {
