@@ -3978,6 +3978,7 @@ MonoBehaviour:
   - event:/BoogieRock
   - event:/BoogieSong 2
   shopMenuActive: 0
+  playButton: 0
 --- !u!114 &1507200110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11634,7 +11635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358866169399, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358866169399, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
