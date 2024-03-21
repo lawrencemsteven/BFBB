@@ -14,7 +14,7 @@ public class CheckSongEnd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Metronome.activeSelf && timer.bar > GlobalVariables.songLengthMeasures)
+        if (Metronome.activeSelf && (timer.bar > GlobalVariables.songLengthMeasures || Input.GetKeyDown(KeyCode.Backspace)))
         {
             endOfDayScript.showDisplay();
             timer.bar = 0;
