@@ -157,7 +157,7 @@ public class Composer : Singleton<Composer>
         }
         else
         {
-            composerInterpreter.setPitch(0f);
+            composerInterpreter.setPitch(.5f);
         }
     }
 

@@ -7,6 +7,7 @@ public class SpatulaCursor : MonoBehaviour
     public float offset = -0.70f;
     private MeshRenderer mesh;
     private bool paused = false;
+    private int spatulaArea;
 
     // Start is called before the first frame update
     void Start()
@@ -45,4 +46,15 @@ public class SpatulaCursor : MonoBehaviour
             transform.position = new Vector3(targetPosition.x, targetPosition.y, targetPosition.z);
         }
     }
+
+    public int GetSpatulaArea()
+    {
+        return spatulaArea;
+    }
+
+    public void SetSpatulaArea(int area)
+    {
+        spatulaArea = area;
+    }
+
 }

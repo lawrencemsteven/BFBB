@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,6 @@ public class PancakeParticleObject : ParticleObject
             return 64;
         }
     }
-
 
     public void Update()
     {
@@ -50,33 +50,38 @@ public class PancakeParticleObject : ParticleObject
     {
         if (cookingSide == 0)
         {
-            if (transform.parent is not null)
-            {
-                transform.parent.gameObject.GetComponent<Animator>().SetTrigger("FlipTrigger");
-            }
             cookingSide = 1;
             return;
         }
 
         if (cookingSide == 1)
         {
-            ReservoirManager.GetPancakes().Add(new ReservoirPancake(GetQuality(), gameObject));
-
-            // Reset for new pancake
-
-            foreach (Particle particle in particles)
-            {
-                Destroy(particle.gameObject);
-            }
-            particles = new Queue<Particle>();
-
             cookAmountTop = 0.0f;
             cookAmountBottom = 0.0f;
             cooking = true;
             cookSpeed = 0.1f;
             cookingSide = 0;
+            SavePancake();
             return;
         }
+    }
+
+    public void SavePancake()
+    {
+        ReservoirManager.GetPancakes().Add(new ReservoirPancake(GetQuality(), gameObject));
+
+        // Reset for new pancake
+
+        foreach (Particle particle in particles)
+        {
+            Destroy(particle.gameObject);
+        }
+        particles = new Queue<Particle>();
+    }
+
+    public bool isDone()
+    {
+        return (cookingSide == 0);
     }
 
     public float GetQuality()
