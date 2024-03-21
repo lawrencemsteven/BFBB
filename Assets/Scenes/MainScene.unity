@@ -12883,11 +12883,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358721993037, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: ResetSongState
+      value: JukeboxSetSongEasy
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358721993037, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: JukeboxSetSongEasy
+      value: ResetSongState
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358721993037, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
@@ -12927,10 +12927,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
@@ -12942,7 +12946,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 683314469}
     - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 683314469}
+    - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
@@ -12951,6 +12963,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: JukeboxSetSongEasy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: ResetSongState
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
@@ -12958,7 +12974,15 @@ PrefabInstance:
       value: MainMenuButtons, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: MainMenuButtons, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3838911359185027006, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
@@ -13227,11 +13251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838911360197282194, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: ResetSongState
+      value: JukeboxSetSongEasy
       objectReference: {fileID: 0}
     - target: {fileID: 3838911360197282194, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: JukeboxSetSongEasy
+      value: ResetSongState
       objectReference: {fileID: 0}
     - target: {fileID: 3838911360197282194, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
