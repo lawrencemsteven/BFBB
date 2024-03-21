@@ -91,11 +91,7 @@ public class ShopAssetManager : MonoBehaviour
 
     public bool purchaseStyle(ShopSections shopSection, ShopStyles shopStyle)
     {
-        Debug.Log(getStyleCost(ShopSections.All, ShopStyles.Pink));
-        Debug.Log(shopSection);
-        Debug.Log(shopStyle);
         int cost = getStyleCost(shopSection, shopStyle);
-        Debug.Log(cost);
         if (MoneyManager.getMoney() >= cost)
         {
             m_cost.GetComponent<TextMeshProUGUI>().text = "";
