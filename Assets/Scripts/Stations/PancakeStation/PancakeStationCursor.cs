@@ -38,11 +38,15 @@ public class PancakeStationCursor : MonoBehaviour
         transform.position = new Vector3(targetPosition.x, targetPosition.y, targetPosition.z);
         if (Input.GetMouseButtonDown(1))
         {
-            bottleRenderer.enabled = false;
+            squeezed.SetActive(false);
+            unsqueezed.SetActive(false);
         }
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1) && !Input.GetMouseButton(0))
         {
-            bottleRenderer.enabled = true;
+            unsqueezed.SetActive(true);
+        }
+        else if (Input.GetMouseButtonUp(1) && Input.GetMouseButton(0)){
+            squeezed.SetActive(true);
         }
         var batterEmission = batterPour.emission;
         if (Input.GetMouseButtonDown(0))

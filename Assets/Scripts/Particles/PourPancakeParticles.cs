@@ -14,6 +14,7 @@ public class PourPancakeParticles : MonoBehaviour
 
     public void Update()
     {
+        /*
 
         if (Input.GetMouseButton(0))
         {
@@ -35,6 +36,7 @@ public class PourPancakeParticles : MonoBehaviour
             Debug.Log("SAVED");
            // pancakeParticleSystem.SavePancake();
         }
+        */
     }
 
     private void trySpawnParticle()

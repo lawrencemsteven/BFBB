@@ -23,4 +23,11 @@ public class SetStartFlip : MonoBehaviour
             fc.startFlip = true;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Spatula"))
+        {
+            fc.startFlip = false;
+        }
+    }
 }
