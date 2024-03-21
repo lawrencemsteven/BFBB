@@ -284,6 +284,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PartyHat
       objectReference: {fileID: 0}
+    - target: {fileID: 4987167466487617179, guid: 106c5a8b77e9ebc4eac85b2fd1da7ac4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5656005253285366817, guid: 106c5a8b77e9ebc4eac85b2fd1da7ac4, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -492,6 +496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chef Hat
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: da0b6c71ae53f2b4580f144fa2eb34d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da0b6c71ae53f2b4580f144fa2eb34d3, type: 3}
 --- !u!4 &2636374696481673344 stripped
@@ -565,6 +573,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3775bf9cfbd3fe049994a91d93081c20, type: 3}
       propertyPath: m_Name
       value: WizardHat
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3775bf9cfbd3fe049994a91d93081c20, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3775bf9cfbd3fe049994a91d93081c20, type: 3}
@@ -664,11 +676,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3305141548239310059, guid: cbe66de6fb36f8341ab78d0769dda7f7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3889
+      value: 1.3206699
       objectReference: {fileID: 0}
     - target: {fileID: 3305141548239310059, guid: cbe66de6fb36f8341ab78d0769dda7f7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.3889
+      value: 0.5835658
       objectReference: {fileID: 0}
     - target: {fileID: 3305141548239310059, guid: cbe66de6fb36f8341ab78d0769dda7f7, type: 3}
       propertyPath: m_LocalScale.z
@@ -680,11 +692,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3305141548239310059, guid: cbe66de6fb36f8341ab78d0769dda7f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0125
+      value: -0.021
       objectReference: {fileID: 0}
     - target: {fileID: 3305141548239310059, guid: cbe66de6fb36f8341ab78d0769dda7f7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0002
+      value: 0.0021
       objectReference: {fileID: 0}
     - target: {fileID: 3305141548239310059, guid: cbe66de6fb36f8341ab78d0769dda7f7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -735,6 +747,10 @@ PrefabInstance:
     - target: {fileID: 6952952882442472808, guid: b8ffe57c9c456424c863672e9bffd205, type: 3}
       propertyPath: m_Name
       value: TopHat
+      objectReference: {fileID: 0}
+    - target: {fileID: 6952952882442472808, guid: b8ffe57c9c456424c863672e9bffd205, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7725372529202911186, guid: b8ffe57c9c456424c863672e9bffd205, type: 3}
       propertyPath: m_RootOrder
