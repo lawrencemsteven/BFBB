@@ -15,7 +15,10 @@ public class SpawnSecondaryMarker : MonoBehaviour
 
     void OnDestroy()
     {
-        Destroy(markerInstance.gameObject);
+        if (markerInstance is not null)
+        {
+            Destroy(markerInstance.gameObject);
+        }
     }
 
     void Update()

@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     public Camera[] m_tableAccessoryCameras;
     public Camera[] m_windowCameras;
     public Camera[] m_lightCameras;
+    public Camera[] m_endOfDayCameras; 
 
     public int m_numMainOutsideCameras;
     public float[] m_individualTransitionTime = new float[(int)CameraPoses.TOTAL_LENGTH];
@@ -56,6 +57,7 @@ public class CameraController : MonoBehaviour
         TABLE_ACCESSORIES,
         WINDOWS,
         LIGHTS,
+        CASH_REGISTER,
 
 
 
@@ -227,6 +229,8 @@ public class CameraController : MonoBehaviour
                 return m_windowCameras;
             case CameraPoses.LIGHTS:
                 return m_lightCameras;
+            case CameraPoses.CASH_REGISTER:
+                return m_endOfDayCameras;
         }
         return null;
     }
