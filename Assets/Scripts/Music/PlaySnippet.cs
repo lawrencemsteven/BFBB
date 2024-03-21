@@ -9,6 +9,8 @@ public class PlaySnippet : MonoBehaviour
     private SongInfo info = new SongInfo();
     public SetSong setSong;
     public List<string> setList = new List<string>();
+    public bool shopMenuActive = false;
+    public bool playButton = false;
     
     public void PlaySong() {
         FMOD.Studio.PLAYBACK_STATE state;
@@ -44,6 +46,8 @@ public class PlaySnippet : MonoBehaviour
     }
 
     public void SetVariables() {
+        playButton = true;
+
         if (GlobalVariables.songIndex == 0) {
             setSong.song60BPM();
             info.UpdateBPM();
@@ -64,9 +68,18 @@ public class PlaySnippet : MonoBehaviour
 
     public void PlayMenuMusic()
     {
-        setSong.songMenu();
-        GlobalVariables.preview = FMODUnity.RuntimeManager.CreateInstance("event:/MenuSong");
-        GlobalVariables.preview.start();
-        GlobalVariables.preview.release();
+        if(playButton)
+        {
+            setSong.songMenu();
+            GlobalVariables.preview = FMODUnity.RuntimeManager.CreateInstance("event:/MenuSong");
+            GlobalVariables.preview.start();
+            GlobalVariables.preview.release();
+            playButton = false;
+        }
+    }
+
+    public void Shop()
+    {
+        shopMenuActive = true;
     }
 }

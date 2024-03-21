@@ -59,7 +59,7 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.songUI = "Boogie Feel";
 
-        GlobalVariables.bpm = 120;
+        GlobalVariables.bpm = 60;
 
         buttonCheck.checkBPM();
 
@@ -92,7 +92,7 @@ public class SetSong : MonoBehaviour
 
         GlobalVariables.songUI = "Boogie Rock";
 
-        GlobalVariables.bpm = 180;
+        GlobalVariables.bpm = 90;
 
         buttonCheck.checkBPM();
 
