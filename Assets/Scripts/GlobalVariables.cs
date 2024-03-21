@@ -12,7 +12,8 @@ public class GlobalVariables : MonoBehaviour
     public static int streak = 0;
     public static string songChoice = "event:/60BPM";
     public static string songUI = "60BPM";
-    public static uint bpm = 60u;
+    public static int bpm = 60;
+    public static int songLengthMeasures;
 
     public static string earlyDish = "EarlyDish";
     public static string onTimeDish = "HiHat";
