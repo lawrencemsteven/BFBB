@@ -3977,6 +3977,7 @@ MonoBehaviour:
   - event:/BoogieSong
   - event:/BoogieRock
   - event:/BoogieSong 2
+  shopMenuActive: 0
 --- !u!114 &1507200110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11629,6 +11630,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358721993037, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358866169399, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358866169399, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358866169399, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1507200109}
+    - target: {fileID: 3838911358866169399, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358866169399, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358866169399, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PlaySnippet, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838911358866169399, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3838911358871286711, guid: bee678e3a94358b4dad46bb339c89311, type: 3}
