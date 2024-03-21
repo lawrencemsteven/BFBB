@@ -531,6 +531,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee6fa68f81b2b944882ad34cee1ae16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &184237228 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7301489532445638520, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+  m_PrefabInstance: {fileID: 8562384127649966092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &232301782 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3953110269461586048, guid: 027ef67ba5481794f92df55e5a7e4082, type: 3}
@@ -1607,6 +1612,11 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 475907589102043700, guid: 6cb071e9974a5474aaaae8b2b467e582, type: 3}
   m_PrefabInstance: {fileID: 5843084831700393144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &571089799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2773131630800142995, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
+  m_PrefabInstance: {fileID: 8562384127649966092}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &618010156 stripped
 GameObject:
@@ -9091,8 +9101,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8156769048451850353, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 399
+      objectReference: {fileID: 0}
+    - target: {fileID: 8156769048451850353, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 248
       objectReference: {fileID: 0}
     - target: {fileID: 8363268287447168821, guid: 289d410c11c0be44bbbd21f5e2f633ac, type: 3}
       propertyPath: m_fontAsset
@@ -13059,11 +13073,11 @@ PrefabInstance:
     - target: {fileID: 8562384129074783751, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
       propertyPath: customerMugArray.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 184237228}
     - target: {fileID: 8562384129074783751, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
       propertyPath: customerMugArray.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 571089799}
     - target: {fileID: 8562384129074783751, guid: 3c26d43b748654d45ae355a7f265b4cb, type: 3}
       propertyPath: customerMugArray.Array.data[3]
       value: 
