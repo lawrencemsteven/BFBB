@@ -30,7 +30,7 @@ public class SetSong : MonoBehaviour
 
         buttonCheck.checkBPM();
 
-        GlobalVariables.songLengthMeasures = (int)((3.2 * GlobalVariables.bpm) / 4);
+        GlobalVariables.songLengthMeasures = 1;// (int)((3.2 * GlobalVariables.bpm) / 4);
 
         GlobalVariables.earlyDish = "EarlyDish";
 
