@@ -16,8 +16,8 @@ public class MenuMusic : MonoBehaviour
 
     IEnumerator WaitToStartMusic()
     {
-        yield return new WaitForSeconds(1.2f);
-
+        yield return new WaitForSeconds(0.2f);
+        playSnippet.playButton = true;
         playSnippet.PlayMenuMusic();
     }
 }

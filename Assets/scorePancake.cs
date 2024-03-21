@@ -19,9 +19,11 @@ public class scorePancake : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("PancakeAnchor"))
+        /*
+        if (other.gameObject.tag.Equals("PancakeAnchor") && (other.gameObject.transform.GetChild(0).GetComponent<PancakeParticleObject>().isDone()))
         {
-            spawner.SavePancake(other.transform.GetChild(0).gameObject);
+
         }
+        */
     }
 }

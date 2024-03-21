@@ -6,6 +6,7 @@ public class flipController : MonoBehaviour
 {
     public GameObject camera1;
     public bool startFlip = false;
+    public PancakeParticleSpawner spawner;
     private Animator anim;
     private bool flipped = false;
 
@@ -34,5 +35,12 @@ public class flipController : MonoBehaviour
         flipped = !flipped;
         anim.SetTrigger("FlipTrigger");
         anim.SetBool("isFlipped", flipped);
+        spawner.Flip();
+    }
+
+
+    public void SaveAndDestroyPancake()
+    {
+        spawner.SavePancake();
     }
 }

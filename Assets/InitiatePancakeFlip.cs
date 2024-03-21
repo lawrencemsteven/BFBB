@@ -5,6 +5,7 @@ using UnityEngine;
 public class InitiatePancakeFlip : MonoBehaviour
 {
     public flipController fc;
+    private bool noFlip = false;
     void Start()
     {
     }
@@ -17,12 +18,29 @@ public class InitiatePancakeFlip : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.tag.Equals("Spatula")) && fc.startFlip)
+        if ((other.gameObject.tag.Equals("Spatula")))
         {
-            GlobalVariables.score += 1;
+            if (fc.startFlip && !noFlip)
+            {
+                GlobalVariables.score += 1;
 
-            fc.startFlip = false;
-            fc.FlipPancake();
+                fc.startFlip = false;
+                fc.FlipPancake();
+
+            }
+            else
+            {
+                noFlip = true;
+            }
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if ((other.gameObject.tag.Equals("Spatula")))
+        {
+            noFlip = false;
+        }
+    }
+
 }

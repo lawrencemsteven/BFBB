@@ -117,26 +117,6 @@ public class PancakeStation : Station
             StartCoroutine(CountBeatsToWaffleFinish());
         }
 
-        if (Input.GetMouseButtonDown(1) && (!pancakeFlipped))
-        {
-            Vector3 currentMousePosition = Input.mousePosition;
-            float swipeDistance = currentMousePosition.y - mousePosition.y;
-            // Check if the swipe is upwards
-            if (swipeDistance > 1)
-            {
-                pancakeParticleObject.Flip();
-            }
-        }
-        else if (Input.GetMouseButtonDown(1) && pancakeFlipped)
-        {
-            Vector3 currentMousePosition = Input.mousePosition;
-            float swipeDistance = currentMousePosition.y - mousePosition.y;
-            // Check if the swipe is upwards
-            if (swipeDistance > 1)
-            {
-                pancakeParticleObject.Flip();
-            }
-        }
         if ((Input.GetKeyDown(KeyCode.Space) && (!waffleFlipped)))
         {
             waffleFlipped = true;
