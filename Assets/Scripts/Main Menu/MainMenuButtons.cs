@@ -10,6 +10,7 @@ public class MainMenuButtons : MonoBehaviour
 {
     [SerializeField] private SwitchCamera switchCamera;
     public CameraController cameraController;
+    public AlbumAnimator albumAnimator;
     public ShopAssetManager shopAssetManager;
     public float transitionTime = 3.0f;
     private float transitionAmount = 0.0f;
@@ -45,6 +46,11 @@ public class MainMenuButtons : MonoBehaviour
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            backButton();
+        }
+
         if (menuTransitioning)
         {
             transitionAmount += Time.deltaTime;
@@ -153,7 +159,7 @@ public class MainMenuButtons : MonoBehaviour
         transitionAmount = 0.0f;
         previousMenu = currentMenu;
         currentMenu = newMenu;
-     
+
         foreach (Transform child in previousMenu)
         {
             // Deactivate all buttons
@@ -222,11 +228,11 @@ public class MainMenuButtons : MonoBehaviour
     // Jukebox Buttons
     public void JukeboxLeft()
     {
-        // This was done elsewhere?
+        albumAnimator.decrementTarget();
     }
     public void JukeboxRight()
     {
-        // This was also done elsewhere?
+        albumAnimator.incrementTarget();
     }
     public void JukeboxPlay()
     {
