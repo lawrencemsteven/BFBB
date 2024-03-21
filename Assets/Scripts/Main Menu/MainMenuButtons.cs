@@ -51,6 +51,11 @@ public class MainMenuButtons : MonoBehaviour
             backButton();
         }
 
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            MoneyManager.addMoney(100);
+        }
+
         if (menuTransitioning)
         {
             transitionAmount += Time.deltaTime;
@@ -192,6 +197,7 @@ public class MainMenuButtons : MonoBehaviour
             cameraController.changeTarget(CameraController.CameraPoses.MAIN, transitionTime);
             transitionTo(shopParent);
             ensureBackButtonIn(true);
+            shopAssetManager.backButtonClicked();
         }
     }
 
@@ -451,5 +457,10 @@ public class MainMenuButtons : MonoBehaviour
     public void ShopStylesSea()
     {
         shopAssetManager.setStyle(ShopAssetManager.ShopStyles.Sea);
+    }
+
+    public void ShopStylesPurchase()
+    {
+        shopAssetManager.purchaseButton();
     }
 }

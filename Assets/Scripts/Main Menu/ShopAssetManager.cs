@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +16,12 @@ public class ShopAssetManager : MonoBehaviour
     public Button m_seaButton;
     public Button m_defaultButton;
     private ShopSections m_selectedSection;
+    public Button m_purchaseButton;
+    public GameObject m_cost;
+
+    private int[] allAssetCosts = new int[18 * 8];
+    private ShopStyles[] m_currAppliedAssets = new ShopStyles[18];
+    private ShopStyles[] m_tempAppliedAssets = new ShopStyles[18];
 
     public enum ShopSections
     {
@@ -52,7 +60,68 @@ public class ShopAssetManager : MonoBehaviour
 
     void Start()
     {
-        ICollection<string> test = AssetManager.GetAssetNames();
+        m_cost.GetComponent<TextMeshProUGUI>().text = "";
+        for (int i = 0; i < 17; i++)
+        {
+            for (int j = 1; j < 8; j++)
+            {
+                allAssetCosts[i * 8 + j] = 0;
+                if (AssetManager.GetAvailableSwapsForAsset(convertSectionToString((ShopSections)i)).Contains(convertStyleToString((ShopStyles)j)))
+                {
+                    allAssetCosts[i * 8 + j] = 20;
+                    allAssetCosts[17 * 8 + j] += 20;
+                }
+                else
+                {
+                    allAssetCosts[i * 8 + j] = -1;
+                }
+            }
+        }
+        for (int i = 0; i < 18; i++)
+        {
+            m_currAppliedAssets[i] = ShopStyles.Default;
+            m_tempAppliedAssets[i] = ShopStyles.Default;
+        }
+    }
+
+    public int getStyleCost(ShopSections shopSection, ShopStyles shopStyle)
+    {
+        return allAssetCosts[(int)shopSection * 8u + (int)shopStyle];
+    }
+
+    public bool purchaseStyle(ShopSections shopSection, ShopStyles shopStyle)
+    {
+        Debug.Log(getStyleCost(ShopSections.All, ShopStyles.Pink));
+        Debug.Log(shopSection);
+        Debug.Log(shopStyle);
+        int cost = getStyleCost(shopSection, shopStyle);
+        Debug.Log(cost);
+        if (MoneyManager.getMoney() >= cost)
+        {
+            m_cost.GetComponent<TextMeshProUGUI>().text = "";
+            m_purchaseButton.interactable = false;
+            MoneyManager.addMoney(-((int)cost));
+            if (shopSection != ShopSections.All)
+            {
+                allAssetCosts[(int)ShopSections.All * 8u + (int)shopStyle] -= allAssetCosts[(int)shopSection * 8u + (int)shopStyle];
+                allAssetCosts[(int)shopSection * 8u + (int)shopStyle] = 0;
+                m_currAppliedAssets[(int)shopSection] = shopStyle;
+                m_tempAppliedAssets[(int)shopSection] = shopStyle;
+            }
+            else
+            {
+                for (int i = 0; i < 18; i++)
+                {
+                    if (allAssetCosts[i * 8 + (int)shopStyle] != -1)
+                    {
+                        allAssetCosts[i * 8 + (int)shopStyle] = 0;
+                        m_currAppliedAssets[i] = shopStyle;
+                        m_tempAppliedAssets[i] = shopStyle;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public void setSection(ShopSections shopSection)
@@ -106,8 +175,57 @@ public class ShopAssetManager : MonoBehaviour
             }
         }
     }
+    public void backButtonClicked()
+    {
+        if (m_tempAppliedAssets[(int)m_selectedSection] != m_currAppliedAssets[(int)m_selectedSection])
+        {
+            setStyle(m_currAppliedAssets[(int)m_selectedSection]);
+        }
+        m_purchaseButton.interactable = false;
+        m_cost.GetComponent<TextMeshProUGUI>().text = "";
+    }
     public void setStyle(ShopStyles style)
     {
+        if (m_selectedSection == ShopSections.All && getStyleCost(m_selectedSection, style) != 0)
+        {
+            m_purchaseButton.interactable = true;
+            m_cost.GetComponent<TextMeshProUGUI>().text = "$" + getStyleCost(m_selectedSection, style);
+            for (int i = 0; i < 18; i++)
+            {
+                if (getStyleCost((ShopSections)i, style) != -1)
+                {
+                    m_tempAppliedAssets[i] = style;
+                }
+            }
+        }
+        else if (getStyleCost(m_selectedSection, style) != 0)
+        {
+            m_tempAppliedAssets[(int)m_selectedSection] = style;
+            m_purchaseButton.interactable = true;
+            m_cost.GetComponent<TextMeshProUGUI>().text = "$" + getStyleCost(m_selectedSection, style);
+        }
+        else
+        {
+            if (m_selectedSection == ShopSections.All)
+            {
+                for (int i = 0; i < 18; i++)
+                {
+                    if (getStyleCost((ShopSections)i, style) != -1)
+                    {
+                        m_currAppliedAssets[i] = style;
+                        m_tempAppliedAssets[i] = style;
+                    }
+                }
+            }
+            else
+            {
+                m_currAppliedAssets[(int)m_selectedSection] = style;
+                m_tempAppliedAssets[(int)m_selectedSection] = style;
+            }
+            m_purchaseButton.interactable = false;
+            m_cost.GetComponent<TextMeshProUGUI>().text = "";
+        }
+
         if (m_selectedSection == ShopSections.All)
         {
             for (int i = 0; i < (int)ShopSections.All; i++)
@@ -127,6 +245,13 @@ public class ShopAssetManager : MonoBehaviour
         }
 
         AssetManager.ApplyAssetSwap(convertSectionToString(m_selectedSection), convertStyleToString(style));
+    }
+    public void purchaseButton()
+    {
+        if (purchaseStyle(m_selectedSection, m_tempAppliedAssets[(int)m_selectedSection]))
+        {
+            m_purchaseButton.interactable = false;
+        }
     }
 
     private string convertSectionToString(ShopSections shopSection)
