@@ -72,6 +72,7 @@ public class EndOfDayScript : MonoBehaviour
     public void continueButton()
     {
         //gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1620.0f, gameObject.transform.position.z);
+        switchCamera.transform.parent.GetComponent<Canvas>().enabled = false;
         mainMenuButtons.GetComponent<MainMenuButtons>().backToMainMenu();
         confetti.Clear();
         confetti.Stop();
