@@ -97,7 +97,14 @@ public class PancakeParticleSpawner : ParticleSpawner
         if (spatulaCursor.GetSpatulaArea() != areaNum)
         {
             areaNum = spatulaCursor.GetSpatulaArea();
-            pancake = pancakes[areaNum];
+            if (pancakes.ContainsKey(areaNum))
+            {
+                pancake = pancakes[areaNum];
+            }
+            else
+            {
+                return;
+            }
         }
         pancake.Flip();
         if (pancake.isDone())
