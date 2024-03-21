@@ -51,6 +51,11 @@ public class MainMenuButtons : MonoBehaviour
             backButton();
         }
 
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            MoneyManager.addMoney(100);
+        }
+
         if (menuTransitioning)
         {
             transitionAmount += Time.deltaTime;
