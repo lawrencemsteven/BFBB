@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Enumerations;
 using TMPro;
 using UnityEngine.EventSystems;
+using System.Runtime.InteropServices;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class MainMenuButtons : MonoBehaviour
     public Transform jukeboxButtonsParent;
     public Transform shopParent;
     public Transform shopStylesParent;
+    public Transform creditsParent;
+    public Transform optionsParent;
     public TMP_Text difficultyText;
     public PlaySnippet eventSystem;
     public Transform endOfDayParent;
@@ -186,7 +189,7 @@ public class MainMenuButtons : MonoBehaviour
             eventSystem.StopSong();
         }
 
-        if (currentMenu == jukeboxButtonsParent || currentMenu == shopParent)
+        if (currentMenu == jukeboxButtonsParent || currentMenu == shopParent || currentMenu == creditsParent || currentMenu == optionsParent)
         {
             cameraController.changeTarget(CameraController.CameraPoses.MAIN, transitionTime);
             transitionTo(mainMenuButtonsParent);
@@ -218,11 +221,15 @@ public class MainMenuButtons : MonoBehaviour
     }
     public void MainOptions()
     {
-        Debug.Log("TODO: Options");
+        cameraController.changeTarget(CameraController.CameraPoses.MAIN, transitionTime);
+        transitionTo(optionsParent);
+        ensureBackButtonIn(true);
     }
     public void MainCredits()
     {
-        Debug.Log("TODO: Credits");
+        cameraController.changeTarget(CameraController.CameraPoses.MAIN, transitionTime);
+        transitionTo(creditsParent);
+        ensureBackButtonIn(true);
     }
     public void MainExit()
     {
