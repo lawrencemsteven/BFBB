@@ -197,6 +197,7 @@ public class MainMenuButtons : MonoBehaviour
             cameraController.changeTarget(CameraController.CameraPoses.MAIN, transitionTime);
             transitionTo(shopParent);
             ensureBackButtonIn(true);
+            shopAssetManager.backButtonClicked();
         }
     }
 
@@ -456,5 +457,10 @@ public class MainMenuButtons : MonoBehaviour
     public void ShopStylesSea()
     {
         shopAssetManager.setStyle(ShopAssetManager.ShopStyles.Sea);
+    }
+
+    public void ShopStylesPurchase()
+    {
+        shopAssetManager.purchaseButton();
     }
 }
